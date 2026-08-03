@@ -13,13 +13,13 @@
   --radius:16px; --shadow:0 2px 12px rgba(141,110,99,0.08);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:17px}
 .header{background:linear-gradient(135deg,#FF8A65 0%,#FFAB91 100%);color:#fff;padding:24px 20px 20px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(230,81,0,0.2)}
 .header h1{font-size:22px;margin-bottom:4px;letter-spacing:1px}
-.header .baby-info{font-size:13px;opacity:.92;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.header .baby-info{font-size:15px;opacity:.92;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
 .header .baby-info span{background:rgba(255,255,255,.2);padding:2px 12px;border-radius:20px}
 .nav{background:var(--card);display:flex;overflow-x:auto;border-bottom:1px solid var(--border);position:sticky;top:84px;z-index:99;box-shadow:0 1px 8px rgba(141,110,99,0.06)}
-.nav button{flex:1;min-width:90px;padding:14px 8px;border:none;background:none;font-size:14px;color:var(--text-mid);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s}
+.nav button{flex:1;min-width:90px;padding:14px 8px;border:none;background:none;font-size:16px;color:var(--text-mid);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s}
 .nav button.active{color:var(--primary-dark);border-bottom-color:var(--primary);font-weight:600}
 .nav button:hover{background:#FFF3EE}
 .container{max-width:1100px;margin:0 auto;padding:16px}
@@ -27,9 +27,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .page.active{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .card{background:var(--card);border-radius:var(--radius);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)}
-.card-title{font-size:17px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card-title{font-size:19px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .card-title .icon{font-size:20px}
-.tag{display:inline-block;font-size:11px;padding:2px 10px;border-radius:12px;font-weight:500;margin-right:6px}
+.tag{display:inline-block;font-size:13px;padding:2px 10px;border-radius:12px;font-weight:500;margin-right:6px}
 .t-motor{background:#FFEBEE;color:#C62828}
 .t-fine{background:#E3F2FD;color:#1565C0}
 .t-lang{background:#F3E5F5;color:#7B1FA2}
@@ -38,79 +38,79 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .t-mem{background:#FCE4EC;color:#AD1457}
 .welcome{background:linear-gradient(135deg,#FFF3E0,#FFE0B2);border-radius:var(--radius);padding:20px;margin-bottom:14px}
 .welcome h2{font-size:18px;color:var(--primary-dark);margin-bottom:6px}
-.welcome p{font-size:13px;color:var(--text-mid)}
+.welcome p{font-size:15px;color:var(--text-mid)}
 .focus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .focus-item{background:var(--card);border-radius:12px;padding:14px;border-left:4px solid var(--primary)}
-.focus-item h4{font-size:14px;margin-bottom:4px}
-.focus-item p{font-size:12px;color:var(--text-mid)}
+.focus-item h4{font-size:16px;margin-bottom:4px}
+.focus-item p{font-size:14px;color:var(--text-mid)}
 .week-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
 .day-card{background:var(--card);border-radius:12px;padding:12px;border-top:3px solid var(--green);min-height:120px}
 .day-card.weekend{border-top-color:var(--pink)}
-.day-card .day{font-size:12px;color:var(--text-light);font-weight:600}
-.day-card .gname{font-size:14px;font-weight:600;margin:4px 0}
-.day-card .gdesc{font-size:11px;color:var(--text-mid)}
+.day-card .day{font-size:14px;color:var(--text-light);font-weight:600}
+.day-card .gname{font-size:16px;font-weight:600;margin:4px 0}
+.day-card .gdesc{font-size:13px;color:var(--text-mid)}
 .assess-mini{background:#FFF8E1;border-radius:12px;padding:14px;margin-top:14px}
-.assess-mini h4{font-size:14px;color:#F57F17;margin-bottom:8px}
-.assess-mini ul{list-style:none;font-size:13px}
+.assess-mini h4{font-size:16px;color:#F57F17;margin-bottom:8px}
+.assess-mini ul{list-style:none;font-size:15px}
 .assess-mini li{padding:4px 0;padding-left:18px;position:relative}
 .assess-mini li:before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:bold}
 .milestone-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.milestone-tabs button{padding:10px 18px;border:2px solid var(--border);background:var(--card);border-radius:20px;font-size:13px;cursor:pointer;transition:all .2s}
+.milestone-tabs button{padding:10px 18px;border:2px solid var(--border);background:var(--card);border-radius:20px;font-size:15px;cursor:pointer;transition:all .2s}
 .milestone-tabs button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
 .age-row{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px dashed var(--border)}
 .age-row:last-child{border:none}
-.age-label{min-width:70px;font-size:13px;font-weight:600;color:var(--primary-dark);background:#FFF3E0;padding:4px 10px;border-radius:8px;text-align:center;flex-shrink:0}
-.age-items{flex:1;font-size:13px}
+.age-label{min-width:70px;font-size:15px;font-weight:600;color:var(--primary-dark);background:#FFF3E0;padding:4px 10px;border-radius:8px;text-align:center;flex-shrink:0}
+.age-items{flex:1;font-size:15px}
 .age-items .item{padding:3px 0;color:var(--text-mid)}
 .game-filter{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.game-filter button{padding:8px 16px;border:1px solid var(--border);background:var(--card);border-radius:16px;font-size:12px;cursor:pointer}
+.game-filter button{padding:8px 16px;border:1px solid var(--border);background:var(--card);border-radius:16px;font-size:14px;cursor:pointer}
 .game-filter button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
 .game-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
 .game-card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border)}
 .game-card .gc-head{padding:14px;border-bottom:1px solid var(--border)}
-.game-card .gc-head h4{font-size:15px;margin-bottom:6px}
-.game-card .gc-body{padding:12px 14px;font-size:12px}
+.game-card .gc-head h4{font-size:17px;margin-bottom:6px}
+.game-card .gc-body{padding:12px 14px;font-size:14px}
 .game-card .gc-row{padding:4px 0;display:flex;gap:6px}
 .game-card .gc-label{color:var(--text-light);min-width:46px;flex-shrink:0}
 .game-card .gc-val{color:var(--text-mid);flex:1}
-.game-card .gc-principle{background:#F3E5F5;border-radius:8px;padding:8px 10px;margin-top:8px;font-size:11px;color:#6A1B9A}
+.game-card .gc-principle{background:#F3E5F5;border-radius:8px;padding:8px 10px;margin-top:8px;font-size:13px;color:#6A1B9A}
 .theory-grid{display:grid;grid-template-columns:1fr;gap:14px}
 .theory-card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border-left:4px solid var(--blue)}
 .theory-card.mem-card{border-left-color:var(--purple)}
-.theory-card h4{font-size:16px;margin-bottom:10px;color:var(--primary-dark);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.theory-card h4{font-size:18px;margin-bottom:10px;color:var(--primary-dark);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .theory-card .t-section{margin-bottom:10px}
-.theory-card .t-label{font-size:12px;font-weight:600;color:var(--primary);margin-bottom:3px}
-.theory-card .t-text{font-size:13px;color:var(--text-mid)}
-.theory-card .t-metaphor{background:#FFF3E0;border-radius:8px;padding:8px 12px;font-size:13px;color:#E65100;font-style:italic}
-.theory-card .t-scene{background:#E3F2FD;border-radius:8px;padding:8px 12px;font-size:13px;color:#1565C0}
-.theory-card .t-action{background:#E8F5E9;border-radius:8px;padding:8px 12px;font-size:13px;color:#2E7D32}
+.theory-card .t-label{font-size:14px;font-weight:600;color:var(--primary);margin-bottom:3px}
+.theory-card .t-text{font-size:15px;color:var(--text-mid)}
+.theory-card .t-metaphor{background:#FFF3E0;border-radius:8px;padding:8px 12px;font-size:15px;color:#E65100;font-style:italic}
+.theory-card .t-scene{background:#E3F2FD;border-radius:8px;padding:8px 12px;font-size:15px;color:#1565C0}
+.theory-card .t-action{background:#E8F5E9;border-radius:8px;padding:8px 12px;font-size:15px;color:#2E7D32}
 .assess-layout{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:700px){.assess-layout{grid-template-columns:1fr}}
 .chart-box{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
-.chart-box h4{font-size:15px;margin-bottom:12px;text-align:center}
+.chart-box h4{font-size:17px;margin-bottom:12px;text-align:center}
 .qa-block{background:var(--card);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow);border:1px solid var(--border)}
-.qa-block .qa-title{font-size:14px;font-weight:600;margin-bottom:6px;color:var(--primary-dark)}
-.qa-block .qa-scene{font-size:12px;color:var(--text-mid);background:#FFF8E1;border-radius:8px;padding:8px 10px;margin-bottom:8px}
+.qa-block .qa-title{font-size:16px;font-weight:600;margin-bottom:6px;color:var(--primary-dark)}
+.qa-block .qa-scene{font-size:14px;color:var(--text-mid);background:#FFF8E1;border-radius:8px;padding:8px 10px;margin-bottom:8px}
 .qa-opts{display:flex;flex-direction:column;gap:6px}
-.qa-opt{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px;transition:all .2s}
+.qa-opt{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:15px;transition:all .2s}
 .qa-opt:hover{background:#FFF3EE}
 .qa-opt.selected{background:#FFE0B2;border-color:var(--primary);font-weight:500}
 .qa-opt input{accent-color:var(--primary)}
-.score-table{width:100%;font-size:13px;border-collapse:collapse}
-.score-table th{background:#FFF3E0;padding:8px;text-align:left;font-size:12px;color:var(--primary-dark)}
+.score-table{width:100%;font-size:15px;border-collapse:collapse}
+.score-table th{background:#FFF3E0;padding:8px;text-align:left;font-size:14px;color:var(--primary-dark)}
 .score-table td{padding:8px;border-bottom:1px solid var(--border)}
 .score-table .bar{height:8px;border-radius:4px;background:var(--primary);display:inline-block;vertical-align:middle}
-.history-note{background:#E3F2FD;border-radius:8px;padding:10px;font-size:12px;color:#1565C0;margin-top:12px}
-.btn{background:var(--primary);color:#fff;border:none;padding:10px 24px;border-radius:10px;font-size:14px;cursor:pointer;font-weight:500}
+.history-note{background:#E3F2FD;border-radius:8px;padding:10px;font-size:14px;color:#1565C0;margin-top:12px}
+.btn{background:var(--primary);color:#fff;border:none;padding:10px 24px;border-radius:10px;font-size:16px;cursor:pointer;font-weight:500}
 .btn:hover{background:var(--primary-dark)}
-.source-badge{display:inline-block;font-size:10px;padding:1px 6px;border-radius:4px;margin-left:4px;vertical-align:middle}
+.source-badge{display:inline-block;font-size:12px;padding:1px 6px;border-radius:4px;margin-left:4px;vertical-align:middle}
 .src-harvard{background:#E3F2FD;color:#1565C0}
 .src-gov{background:#E8F5E9;color:#2E7D32}
 .src-zhiya{background:#FFF3E0;color:#E65100}
 .src-aibeirui{background:#FCE4EC;color:#AD1457}
 .src-expert{background:#F3E5F5;color:#7B1FA2}
-.section-h{font-size:15px;margin:8px 0 12px;color:var(--primary-dark)}
-.footer{text-align:center;padding:24px 16px;font-size:11px;color:var(--text-light)}
+.section-h{font-size:17px;margin:8px 0 12px;color:var(--primary-dark)}
+.footer{text-align:center;padding:24px 16px;font-size:13px;color:var(--text-light)}
 </style>
 </head>
 <body>
@@ -169,7 +169,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 <div class="page" id="page-milestone">
   <div class="card">
     <div class="card-title"><span class="icon">📈</span>五大能区发展里程碑</div>
-    <p style="font-size:13px;color:var(--text-mid);margin-bottom:16px">基于知芽五大能区框架，18月数据参考卫健委指南、MedlinePlus及三甲医院儿科标准。2岁档为爱贝睿测评体系接入点。</p>
+    <p style="font-size:15px;color:var(--text-mid);margin-bottom:16px">基于知芽五大能区框架，18月数据参考卫健委指南、MedlinePlus及三甲医院儿科标准。2岁档为爱贝睿测评体系接入点。</p>
     <div class="milestone-tabs" id="milestoneTabs">
       <button class="active" onclick="showMilestone('motor',this)">🏃 大运动</button>
       <button onclick="showMilestone('fine',this)">✋ 精细动作</button>
@@ -185,7 +185,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 <div class="page" id="page-games">
   <div class="card">
     <div class="card-title"><span class="icon">🎮</span>游戏活动库</div>
-    <p style="font-size:13px;color:var(--text-mid);margin-bottom:16px">1岁半游戏基于哈佛儿童发展中心、卫健委指南及国内权威早教资料，每款标注脑科学原理。2岁档为爱贝睿原版测评游戏，到龄再做。</p>
+    <p style="font-size:15px;color:var(--text-mid);margin-bottom:16px">1岁半游戏基于哈佛儿童发展中心、卫健委指南及国内权威早教资料，每款标注脑科学原理。2岁档为爱贝睿原版测评游戏，到龄再做。</p>
     <div class="game-filter" id="gameFilter">
       <button class="active" onclick="filterGame('all',this)">全部</button>
       <button onclick="filterGame('motor',this)">大运动</button>
@@ -203,7 +203,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 <div class="page" id="page-theory">
   <div class="card">
     <div class="card-title"><span class="icon">🧬</span>脑科学与早教理论库</div>
-    <p style="font-size:13px;color:var(--text-mid);margin-bottom:16px">第一部分：1岁半脑发育窗口期（基于卫健委指南、哈佛研究中心）。第二部分：爱贝睿记忆学习系列（2岁+通用理论）。</p>
+    <p style="font-size:15px;color:var(--text-mid);margin-bottom:16px">第一部分：1岁半脑发育窗口期（基于卫健委指南、哈佛研究中心）。第二部分：爱贝睿记忆学习系列（2岁+通用理论）。</p>
     <h3 class="section-h">一、1岁半脑发育窗口期</h3>
     <div class="theory-grid" id="theoryBrain"></div>
     <h3 class="section-h" style="margin-top:20px">二、记忆学习系列（爱贝睿 · 2岁+通用）</h3>
@@ -215,7 +215,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 <div class="page" id="page-assess">
   <div class="card">
     <div class="card-title"><span class="icon">📋</span>1岁半八维度测评（爱贝睿式题目）</div>
-    <p style="font-size:13px;color:var(--text-mid);margin-bottom:16px">每道题给出测试场景，观察小鹿玛的表现后选择最接近的选项，系统自动计分并生成雷达图。选完点下方按钮查看结果。</p>
+    <p style="font-size:15px;color:var(--text-mid);margin-bottom:16px">每道题给出测试场景，观察小鹿玛的表现后选择最接近的选项，系统自动计分并生成雷达图。选完点下方按钮查看结果。</p>
     <div id="qaContainer"></div>
     <div style="text-align:center;margin-top:16px">
       <button class="btn" onclick="calcScore()">📊 生成测评结果</button>
@@ -422,7 +422,7 @@ function calcScore(){
   document.getElementById('resultArea').style.display='block';
   document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
 
-  document.getElementById('scoreTable').innerHTML='<tr><th>维度</th><th>得分</th></tr>'+results.map(function(r){return '<tr><td>'+r.dim+'<br><span style="font-size:10px;color:var(--text-light)">'+r.area+'</span></td><td><span class="bar" style="width:'+r.score*0.8+'px"></span> '+r.score+'%</td></tr>'}).join('');
+  document.getElementById('scoreTable').innerHTML='<tr><th>维度</th><th>得分</th></tr>'+results.map(function(r){return '<tr><td>'+r.dim+'<br><span style="font-size:12px;color:var(--text-light)">'+r.area+'</span></td><td><span class="bar" style="width:'+r.score*0.8+'px"></span> '+r.score+'%</td></tr>'}).join('');
 
   var ctx=document.getElementById('radarChart').getContext('2d');
   if(radarChart)radarChart.destroy();
