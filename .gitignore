@@ -1,0 +1,4 @@
+# 忽略WorkBuddy内部文件
+.workbuddy/
+.DS_Store
+爱贝睿/
