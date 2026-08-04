@@ -13,13 +13,13 @@
   --radius:16px; --shadow:0 2px 12px rgba(141,110,99,0.08);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
-.header{background:linear-gradient(135deg,#FF8A65 0%,#FFAB91 100%);color:#fff;padding:24px 20px 20px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(230,81,0,0.2)}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:17px}
+.header{background:linear-gradient(135deg,#FF8A65 0%,#FFAB91 100%);color:#fff;padding:10px 20px;text-align:center}
 .header h1{font-size:22px;margin-bottom:4px;letter-spacing:1px}
-.header .baby-info{font-size:13px;opacity:.92;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.header .baby-info{font-size:15px;opacity:.92;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
 .header .baby-info span{background:rgba(255,255,255,.2);padding:2px 12px;border-radius:20px}
-.nav{background:var(--card);display:flex;overflow-x:auto;border-bottom:1px solid var(--border);position:sticky;top:84px;z-index:99;box-shadow:0 1px 8px rgba(141,110,99,0.06)}
-.nav button{flex:1;min-width:90px;padding:14px 8px;border:none;background:none;font-size:14px;color:var(--text-mid);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s}
+.nav{background:var(--card);display:flex;overflow-x:auto;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(141,110,99,0.06)}
+.nav button{flex:1;min-width:90px;padding:14px 8px;border:none;background:none;font-size:16px;color:var(--text-mid);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s}
 .nav button.active{color:var(--primary-dark);border-bottom-color:var(--primary);font-weight:600}
 .nav button:hover{background:#FFF3EE}
 .container{max-width:1100px;margin:0 auto;padding:16px}
@@ -27,9 +27,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .page.active{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .card{background:var(--card);border-radius:var(--radius);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)}
-.card-title{font-size:17px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card-title{font-size:19px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .card-title .icon{font-size:20px}
-.tag{display:inline-block;font-size:11px;padding:2px 10px;border-radius:12px;font-weight:500;margin-right:6px}
+.tag{display:inline-block;font-size:13px;padding:2px 10px;border-radius:12px;font-weight:500;margin-right:6px}
 .t-motor{background:#FFEBEE;color:#C62828}
 .t-fine{background:#E3F2FD;color:#1565C0}
 .t-lang{background:#F3E5F5;color:#7B1FA2}
@@ -38,79 +38,82 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .t-mem{background:#FCE4EC;color:#AD1457}
 .welcome{background:linear-gradient(135deg,#FFF3E0,#FFE0B2);border-radius:var(--radius);padding:20px;margin-bottom:14px}
 .welcome h2{font-size:18px;color:var(--primary-dark);margin-bottom:6px}
-.welcome p{font-size:13px;color:var(--text-mid)}
+.welcome p{font-size:15px;color:var(--text-mid)}
 .focus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .focus-item{background:var(--card);border-radius:12px;padding:14px;border-left:4px solid var(--primary)}
-.focus-item h4{font-size:14px;margin-bottom:4px}
-.focus-item p{font-size:12px;color:var(--text-mid)}
+.focus-item h4{font-size:16px;margin-bottom:4px}
+.focus-item p{font-size:14px;color:var(--text-mid)}
 .week-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
 .day-card{background:var(--card);border-radius:12px;padding:12px;border-top:3px solid var(--green);min-height:120px}
 .day-card.weekend{border-top-color:var(--pink)}
-.day-card .day{font-size:12px;color:var(--text-light);font-weight:600}
-.day-card .gname{font-size:14px;font-weight:600;margin:4px 0}
-.day-card .gdesc{font-size:11px;color:var(--text-mid)}
+.day-card .day{font-size:14px;color:var(--text-light);font-weight:600}
+.day-card .gname{font-size:16px;font-weight:600;margin:4px 0}
+.day-card .gdesc{font-size:13px;color:var(--text-mid)}
 .assess-mini{background:#FFF8E1;border-radius:12px;padding:14px;margin-top:14px}
-.assess-mini h4{font-size:14px;color:#F57F17;margin-bottom:8px}
-.assess-mini ul{list-style:none;font-size:13px}
+.assess-mini h4{font-size:16px;color:#F57F17;margin-bottom:8px}
+.assess-mini ul{list-style:none;font-size:15px}
 .assess-mini li{padding:4px 0;padding-left:18px;position:relative}
 .assess-mini li:before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:bold}
 .milestone-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.milestone-tabs button{padding:10px 18px;border:2px solid var(--border);background:var(--card);border-radius:20px;font-size:13px;cursor:pointer;transition:all .2s}
+.milestone-tabs button{padding:10px 18px;border:2px solid var(--border);background:var(--card);border-radius:20px;font-size:15px;cursor:pointer;transition:all .2s}
 .milestone-tabs button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
 .age-row{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px dashed var(--border)}
 .age-row:last-child{border:none}
-.age-label{min-width:70px;font-size:13px;font-weight:600;color:var(--primary-dark);background:#FFF3E0;padding:4px 10px;border-radius:8px;text-align:center;flex-shrink:0}
-.age-items{flex:1;font-size:13px}
+.age-label{min-width:70px;font-size:15px;font-weight:600;color:var(--primary-dark);background:#FFF3E0;padding:4px 10px;border-radius:8px;text-align:center;flex-shrink:0}
+.age-items{flex:1;font-size:15px}
 .age-items .item{padding:3px 0;color:var(--text-mid)}
 .game-filter{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.game-filter button{padding:8px 16px;border:1px solid var(--border);background:var(--card);border-radius:16px;font-size:12px;cursor:pointer}
+.game-filter button{padding:8px 16px;border:1px solid var(--border);background:var(--card);border-radius:16px;font-size:14px;cursor:pointer}
 .game-filter button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+  .game-filter .flbl{font-size:13px;color:var(--text-light);margin-right:4px;align-self:center}
 .game-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
 .game-card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border)}
 .game-card .gc-head{padding:14px;border-bottom:1px solid var(--border)}
-.game-card .gc-head h4{font-size:15px;margin-bottom:6px}
-.game-card .gc-body{padding:12px 14px;font-size:12px}
+.game-card .gc-head h4{font-size:17px;margin-bottom:6px}
+.game-card .gc-body{padding:12px 14px;font-size:14px}
 .game-card .gc-row{padding:4px 0;display:flex;gap:6px}
 .game-card .gc-label{color:var(--text-light);min-width:46px;flex-shrink:0}
 .game-card .gc-val{color:var(--text-mid);flex:1}
-.game-card .gc-principle{background:#F3E5F5;border-radius:8px;padding:8px 10px;margin-top:8px;font-size:11px;color:#6A1B9A}
+.game-card .gc-principle{background:#F3E5F5;border-radius:8px;padding:8px 10px;margin-top:8px;font-size:13px;color:#6A1B9A}
 .theory-grid{display:grid;grid-template-columns:1fr;gap:14px}
 .theory-card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border-left:4px solid var(--blue)}
 .theory-card.mem-card{border-left-color:var(--purple)}
-.theory-card h4{font-size:16px;margin-bottom:10px;color:var(--primary-dark);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.theory-card h4{font-size:18px;margin-bottom:10px;color:var(--primary-dark);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .theory-card .t-section{margin-bottom:10px}
-.theory-card .t-label{font-size:12px;font-weight:600;color:var(--primary);margin-bottom:3px}
-.theory-card .t-text{font-size:13px;color:var(--text-mid)}
-.theory-card .t-metaphor{background:#FFF3E0;border-radius:8px;padding:8px 12px;font-size:13px;color:#E65100;font-style:italic}
-.theory-card .t-scene{background:#E3F2FD;border-radius:8px;padding:8px 12px;font-size:13px;color:#1565C0}
-.theory-card .t-action{background:#E8F5E9;border-radius:8px;padding:8px 12px;font-size:13px;color:#2E7D32}
+.theory-card .t-label{font-size:14px;font-weight:600;color:var(--primary);margin-bottom:3px}
+.theory-card .t-text{font-size:15px;color:var(--text-mid)}
+.theory-card .t-metaphor{background:#FFF3E0;border-radius:8px;padding:8px 12px;font-size:15px;color:#E65100;font-style:italic}
+.theory-card .t-scene{background:#E3F2FD;border-radius:8px;padding:8px 12px;font-size:15px;color:#1565C0}
+.theory-card .t-action{background:#E8F5E9;border-radius:8px;padding:8px 12px;font-size:15px;color:#2E7D32}
 .assess-layout{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:700px){.assess-layout{grid-template-columns:1fr}}
 .chart-box{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
-.chart-box h4{font-size:15px;margin-bottom:12px;text-align:center}
+.chart-box h4{font-size:17px;margin-bottom:12px;text-align:center}
 .qa-block{background:var(--card);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow);border:1px solid var(--border)}
-.qa-block .qa-title{font-size:14px;font-weight:600;margin-bottom:6px;color:var(--primary-dark)}
-.qa-block .qa-scene{font-size:12px;color:var(--text-mid);background:#FFF8E1;border-radius:8px;padding:8px 10px;margin-bottom:8px}
+.qa-block .qa-title{font-size:16px;font-weight:600;margin-bottom:6px;color:var(--primary-dark)}
+.qa-block .qa-scene{font-size:14px;color:var(--text-mid);background:#FFF8E1;border-radius:8px;padding:8px 10px;margin-bottom:8px}
 .qa-opts{display:flex;flex-direction:column;gap:6px}
-.qa-opt{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px;transition:all .2s}
+.qa-opt{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:15px;transition:all .2s}
 .qa-opt:hover{background:#FFF3EE}
 .qa-opt.selected{background:#FFE0B2;border-color:var(--primary);font-weight:500}
 .qa-opt input{accent-color:var(--primary)}
-.score-table{width:100%;font-size:13px;border-collapse:collapse}
-.score-table th{background:#FFF3E0;padding:8px;text-align:left;font-size:12px;color:var(--primary-dark)}
+.score-table{width:100%;font-size:15px;border-collapse:collapse}
+.score-table th{background:#FFF3E0;padding:8px;text-align:left;font-size:14px;color:var(--primary-dark)}
 .score-table td{padding:8px;border-bottom:1px solid var(--border)}
 .score-table .bar{height:8px;border-radius:4px;background:var(--primary);display:inline-block;vertical-align:middle}
-.history-note{background:#E3F2FD;border-radius:8px;padding:10px;font-size:12px;color:#1565C0;margin-top:12px}
-.btn{background:var(--primary);color:#fff;border:none;padding:10px 24px;border-radius:10px;font-size:14px;cursor:pointer;font-weight:500}
+.history-note{background:#E3F2FD;border-radius:8px;padding:10px;font-size:14px;color:#1565C0;margin-top:12px}
+.btn{background:var(--primary);color:#fff;border:none;padding:10px 24px;border-radius:10px;font-size:16px;cursor:pointer;font-weight:500}
 .btn:hover{background:var(--primary-dark)}
-.source-badge{display:inline-block;font-size:10px;padding:1px 6px;border-radius:4px;margin-left:4px;vertical-align:middle}
+.source-badge{display:inline-block;font-size:12px;padding:1px 6px;border-radius:4px;margin-left:4px;vertical-align:middle}
 .src-harvard{background:#E3F2FD;color:#1565C0}
 .src-gov{background:#E8F5E9;color:#2E7D32}
 .src-zhiya{background:#FFF3E0;color:#E65100}
 .src-aibeirui{background:#FCE4EC;color:#AD1457}
 .src-expert{background:#F3E5F5;color:#7B1FA2}
-.section-h{font-size:15px;margin:8px 0 12px;color:var(--primary-dark)}
-.footer{text-align:center;padding:24px 16px;font-size:11px;color:var(--text-light)}
+  .src-anxiao{background:#FCE4EC;color:#AD1457}
+  .src-net{background:#E8F5E9;color:#2E7D32}
+.section-h{font-size:17px;margin:8px 0 12px;color:var(--primary-dark)}
+.footer{text-align:center;padding:24px 16px;font-size:13px;color:var(--text-light)}
 </style>
 </head>
 <body>
@@ -119,8 +122,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
   <h1>🦌 小鹿玛成长计划</h1>
   <div class="baby-info">
     <span>👶 小鹿玛 · 1岁半（18个月）</span>
-    <span>📅 2026年8月</span>
-    <span>🧠 知芽×爱贝睿×哈佛 融合体系</span>
   </div>
 </div>
 
@@ -169,7 +170,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 <div class="page" id="page-milestone">
   <div class="card">
     <div class="card-title"><span class="icon">📈</span>五大能区发展里程碑</div>
-    <p style="font-size:13px;color:var(--text-mid);margin-bottom:16px">基于知芽五大能区框架，18月数据参考卫健委指南、MedlinePlus及三甲医院儿科标准。2岁档为爱贝睿测评体系接入点。</p>
+    <p style="font-size:15px;color:var(--text-mid);margin-bottom:16px">基于知芽五大能区框架，18月数据参考卫健委指南、MedlinePlus及三甲医院儿科标准。2岁档为爱贝睿测评体系接入点。</p>
     <div class="milestone-tabs" id="milestoneTabs">
       <button class="active" onclick="showMilestone('motor',this)">🏃 大运动</button>
       <button onclick="showMilestone('fine',this)">✋ 精细动作</button>
@@ -185,15 +186,28 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 <div class="page" id="page-games">
   <div class="card">
     <div class="card-title"><span class="icon">🎮</span>游戏活动库</div>
-    <p style="font-size:13px;color:var(--text-mid);margin-bottom:16px">1岁半游戏基于哈佛儿童发展中心、卫健委指南及国内权威早教资料，每款标注脑科学原理。2岁档为爱贝睿原版测评游戏，到龄再做。</p>
-    <div class="game-filter" id="gameFilter">
-      <button class="active" onclick="filterGame('all',this)">全部</button>
-      <button onclick="filterGame('motor',this)">大运动</button>
-      <button onclick="filterGame('fine',this)">精细动作</button>
-      <button onclick="filterGame('lang',this)">语言</button>
-      <button onclick="filterGame('cog',this)">认知</button>
-      <button onclick="filterGame('soc',this)">社会情绪</button>
-      <button onclick="filterGame('mem',this)">记忆/感官</button>
+    <p style="font-size:15px;color:var(--text-mid);margin-bottom:16px">1岁半游戏基于哈佛儿童发展中心、卫健委指南及国内权威早教资料，每款标注脑科学原理。2岁档为爱贝睿原版测评游戏，到龄再做。</p>
+    <div class="game-filter"><span class="flbl">维度</span>
+      <button class="active" onclick="setF(this,'cat','all')">全部</button>
+      <button onclick="setF(this,'cat','motor')">大运动</button>
+      <button onclick="setF(this,'cat','fine')">精细动作</button>
+      <button onclick="setF(this,'cat','lang')">语言</button>
+      <button onclick="setF(this,'cat','cog')">认知</button>
+      <button onclick="setF(this,'cat','soc')">社会情绪</button>
+      <button onclick="setF(this,'cat','mem')">记忆/感官</button>
+    </div>
+    <div class="game-filter"><span class="flbl">来源</span>
+      <button class="active" onclick="setF(this,'src','all')">全部</button>
+      <button onclick="setF(this,'src','core')">看板核心</button>
+      <button onclick="setF(this,'src','安潇·ima')">安潇·ima</button>
+      <button onclick="setF(this,'src','网络·权威')">网络·权威</button>
+    </div>
+    <div class="game-filter"><span class="flbl">年龄</span>
+      <button class="active" onclick="setF(this,'age','all')">全部</button>
+      <button onclick="setF(this,'age','18月+')">18月+</button>
+      <button onclick="setF(this,'age','2岁+')">2岁+</button>
+      <button onclick="setF(this,'age','3岁+')">3岁+</button>
+      <button onclick="setF(this,'age','4岁+')">4岁+</button>
     </div>
     <div class="game-grid" id="gameGrid"></div>
   </div>
@@ -203,7 +217,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 <div class="page" id="page-theory">
   <div class="card">
     <div class="card-title"><span class="icon">🧬</span>脑科学与早教理论库</div>
-    <p style="font-size:13px;color:var(--text-mid);margin-bottom:16px">第一部分：1岁半脑发育窗口期（基于卫健委指南、哈佛研究中心）。第二部分：爱贝睿记忆学习系列（2岁+通用理论）。</p>
+    <p style="font-size:15px;color:var(--text-mid);margin-bottom:16px">第一部分：1岁半脑发育窗口期（基于卫健委指南、哈佛研究中心）。第二部分：爱贝睿记忆学习系列（2岁+通用理论）。</p>
     <h3 class="section-h">一、1岁半脑发育窗口期</h3>
     <div class="theory-grid" id="theoryBrain"></div>
     <h3 class="section-h" style="margin-top:20px">二、记忆学习系列（爱贝睿 · 2岁+通用）</h3>
@@ -215,7 +229,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 <div class="page" id="page-assess">
   <div class="card">
     <div class="card-title"><span class="icon">📋</span>1岁半八维度测评（爱贝睿式题目）</div>
-    <p style="font-size:13px;color:var(--text-mid);margin-bottom:16px">每道题给出测试场景，观察小鹿玛的表现后选择最接近的选项，系统自动计分并生成雷达图。选完点下方按钮查看结果。</p>
+    <p style="font-size:15px;color:var(--text-mid);margin-bottom:16px">每道题给出测试场景，观察小鹿玛的表现后选择最接近的选项，系统自动计分并生成雷达图。选完点下方按钮查看结果。</p>
     <div id="qaContainer"></div>
     <div style="text-align:center;margin-top:16px">
       <button class="btn" onclick="calcScore()">📊 生成测评结果</button>
@@ -306,6 +320,122 @@ var allGames=[
   {name:'够玩具',age:'2岁+',cat:'cog',catLabel:'认知',src:'爱贝睿',mat:'玩具+小棍子',steps:'1.玩具放远处 2.给棍子 3.观察如何够 4.鼓励尝试不同方式',time:'8分钟',principle:'爱贝睿2岁测评项。训练解决问题能力，观察是否用工具。'},
   {name:'动作讲故事',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'爱贝睿',mat:'无',steps:'1.讲故事配动作 2.做兔子耳朵蹦跳 3.让孩子模仿 4.下次做动作',time:'10分钟',principle:'爱贝睿记忆理论。肢体动作+表情帮助记忆编码，比纯听有效。'},
   {name:'西瓜多感官',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'爱贝睿',mat:'西瓜（或其他水果）',steps:'1.看说绿色 2.摸说滑滑的 3.切看红色 4.尝说甜的',time:'15分钟',principle:'爱贝睿记忆理论。视+听+触+味多感官同步输入，记忆最深刻。'}
+,
+{name:'橡皮泥杯子蛋糕',age:'18月+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'纸杯+扣子+吸管+豆子+橡皮泥',steps:'纸杯+扣子+吸管+豆子+橡皮泥，让宝宝装饰杯子蛋糕',time:'5-10分钟',principle:''},
+  {name:'橡皮泥的切割',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'切割模具练切、滚、压等手指动作',steps:'切割模具练切、滚、压等手指动作',time:'10分钟',principle:''},
+  {name:'橡皮糖牙签建筑',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'橡皮糖+牙签搭构件（可用橡皮泥代替',steps:'橡皮糖+牙签搭构件（可用橡皮泥代替，牙签需看护）',time:'15分钟',principle:''},
+  {name:'乐高大颗粒娃娃屋',age:'18月+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'大颗粒乐高搭房屋建筑',steps:'大颗粒乐高搭房屋建筑，宝宝编情节',time:'5-10分钟',principle:''},
+  {name:'乐高小颗粒搭墙体',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'演示小颗粒搭墙',steps:'演示小颗粒搭墙，宝宝尝试搭小屋',time:'15分钟',principle:''},
+  {name:'多材质风景',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'橡皮泥+弹珠+橡皮球+硬卷心粉塑风景',steps:'橡皮泥+弹珠+橡皮球+硬卷心粉塑风景',time:'10分钟',principle:''},
+  {name:'粘土怪物军队',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'设计粘土怪物',steps:'设计粘土怪物，烤箱加热永久保存',time:'15分钟',principle:''},
+  {name:'磁力片搭建',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'磁力片造房屋、城堡、火箭等',steps:'磁力片造房屋、城堡、火箭等',time:'10分钟',principle:''},
+  {name:'舀水筛豆子',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'安潇·ima',mat:'水+水杯+筛子+硬豆子',steps:'水+水杯+筛子+硬豆子，玩运输',time:'5-10分钟',principle:''},
+  {name:'冰格藏宝',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'安潇·ima',mat:'冰格放材质冷冻成冰块',steps:'冰格放材质冷冻成冰块，观察宝藏',time:'5-10分钟',principle:''},
+  {name:'自然色彩配对',age:'2岁+',cat:'cog',catLabel:'认知',src:'安潇·ima',mat:'带色彩卡到公园找对应事物',steps:'带色彩卡到公园找对应事物',time:'10分钟',principle:''},
+  {name:'室内沙粒盒',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'安潇·ima',mat:'沙粒放塑料盒+小工具',steps:'沙粒放塑料盒+小工具',time:'5-10分钟',principle:''},
+  {name:'彩色米粒',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'安潇·ima',mat:'米粒食用色素染色',steps:'米粒食用色素染色，当感官材料',time:'5-10分钟',principle:''},
+  {name:'冰山与海洋',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'安潇·ima',mat:'冰块放水+小船+勺子',steps:'冰块放水+小船+勺子，想象海洋',time:'5-10分钟',principle:''},
+  {name:'自制灯箱',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'安潇·ima',mat:'圣诞灯放塑料盒',steps:'圣诞灯放塑料盒，感官游戏更美',time:'5-10分钟',principle:''},
+  {name:'冰球',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'安潇·ima',mat:'珠子放水冻冰球',steps:'珠子放水冻冰球',time:'5-10分钟',principle:''},
+  {name:'感官游戏大混战',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'安潇·ima',mat:'大托盘放彩色米/意面/颜料/土壤等',steps:'大托盘放彩色米/意面/颜料/土壤等',time:'5-10分钟',principle:''},
+  {name:'麦圈彩虹',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'安潇·ima',mat:'麦圈+食用色素搅拌摆彩虹',steps:'麦圈+食用色素搅拌摆彩虹',time:'10分钟',principle:''},
+  {name:'纸板全家福松树',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'纸板剪松树贴全家照',steps:'纸板剪松树贴全家照',time:'10分钟',principle:''},
+  {name:'数字串珠',age:'3岁+',cat:'cog',catLabel:'认知',src:'安潇·ima',mat:'意面插橡皮泥标数字',steps:'意面插橡皮泥标数字，串对应数量珠',time:'15分钟',principle:''},
+  {name:'浴室七巧板',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'彩色塑胶纸剪七巧板贴瓷砖玩',steps:'彩色塑胶纸剪七巧板贴瓷砖玩',time:'10分钟',principle:''},
+  {name:'井字棋',age:'3岁+',cat:'cog',catLabel:'认知',src:'安潇·ima',mat:'3岁第一个棋',steps:'3岁第一个棋，先攻后守',time:'15分钟',principle:''},
+  {name:'折纸',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'从纸船纸飞机开始练几何与手指',steps:'从纸船纸飞机开始练几何与手指',time:'15分钟',principle:''},
+  {name:'餐馆游戏',age:'3岁+',cat:'cog',catLabel:'认知',src:'安潇·ima',mat:'糖包拼字母/数字/形状',steps:'糖包拼字母/数字/形状',time:'15分钟',principle:''},
+  {name:'数字一一对应',age:'3岁+',cat:'cog',catLabel:'认知',src:'安潇·ima',mat:'数字前数出对应数量物品',steps:'数字前数出对应数量物品',time:'15分钟',principle:''},
+  {name:'硬币拓印',age:'3岁+',cat:'cog',catLabel:'认知',src:'安潇·ima',mat:'硬币拓印认面值',steps:'硬币拓印认面值',time:'15分钟',principle:''},
+  {name:'喷绘卡片',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'喷雾瓶水彩喷颜料做卡片',steps:'喷雾瓶水彩喷颜料做卡片',time:'10分钟',principle:''},
+  {name:'立体纸雕塑',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'纸条弯折贴做三维造型',steps:'纸条弯折贴做三维造型',time:'15分钟',principle:''},
+  {name:'雪糕棍挂饰',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'雪糕棍拼造型+溜溜眼装饰',steps:'雪糕棍拼造型+溜溜眼装饰',time:'10分钟',principle:''},
+  {name:'宝宝的王冠',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'不织布王冠+珠宝贴画',steps:'不织布王冠+珠宝贴画',time:'10分钟',principle:''},
+  {name:'康复卡',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'创可贴+溜溜眼做关心卡',steps:'创可贴+溜溜眼做关心卡',time:'15分钟',principle:''},
+  {name:'小蜜蜂的家',age:'3岁+',cat:'cog',catLabel:'认知',src:'安潇·ima',mat:'竹筒+扭扭棒绑挂树梢',steps:'竹筒+扭扭棒绑挂树梢',time:'15分钟',principle:''},
+  {name:'纸板笔记本电脑',age:'2岁+',cat:'soc',catLabel:'社会情绪',src:'安潇·ima',mat:'纸板+锡纸做电脑假装办公',steps:'纸板+锡纸做电脑假装办公',time:'10分钟',principle:''},
+  {name:'纸箱电视机',age:'2岁+',cat:'soc',catLabel:'社会情绪',src:'安潇·ima',mat:'纸箱+锡纸+衣架做电视',steps:'纸箱+锡纸+衣架做电视',time:'10分钟',principle:''},
+  {name:'刷牙水彩游戏',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'牙刷+白颜料刷牙齿小人',steps:'牙刷+白颜料刷牙齿小人',time:'10分钟',principle:''},
+  {name:'泡泡包装印刷',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'泡泡纸裹擀面杖滚颜料',steps:'泡泡纸裹擀面杖滚颜料',time:'10分钟',principle:''},
+  {name:'牛奶印刷',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'牛奶滴水彩印刷图案',steps:'牛奶滴水彩印刷图案',time:'15分钟',principle:''},
+  {name:'茶包做旧地图',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'茶包涂纸做旧藏宝图',steps:'茶包涂纸做旧藏宝图',time:'15分钟',principle:''},
+  {name:'纸胶带色彩构成',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'纸胶带贴水彩纸填色',steps:'纸胶带贴水彩纸填色',time:'15分钟',principle:''},
+  {name:'蝴蝶昆虫印刷',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'对折纸挤颜料按压对称图案',steps:'对折纸挤颜料按压对称图案',time:'10分钟',principle:''},
+  {name:'魔光轮',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'安潇·ima',mat:'荧光棒转圈看光残留成像',steps:'荧光棒转圈看光残留成像',time:'10分钟',principle:''},
+  {name:'彩虹豆实验',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'安潇·ima',mat:'彩虹豆放水褪色成色盘',steps:'彩虹豆放水褪色成色盘',time:'10分钟',principle:''},
+  {name:'彩虹冰城堡',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'安潇·ima',mat:'冰格冰砖+食用色素',steps:'冰格冰砖+食用色素',time:'10分钟',principle:''},
+  {name:'手机全息成像',age:'4岁+',cat:'mem',catLabel:'记忆/感官',src:'安潇·ima',mat:'塑料片梯形+全息视频',steps:'塑料片梯形+全息视频',time:'15分钟',principle:''},
+  {name:'纸箱高架桥',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'纸箱剪翻成双道高架桥',steps:'纸箱剪翻成双道高架桥',time:'10分钟',principle:''},
+  {name:'沿线剪纸',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'2岁后练剪刀',steps:'2岁后练剪刀，直线/折线/形状',time:'10分钟',principle:''},
+  {name:'不织布系扣子',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'大扣子缝不织布练系扣',steps:'大扣子缝不织布练系扣',time:'10分钟',principle:''},
+  {name:'扭扭棒串珠',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'扭扭棒代替绳子串珠',steps:'扭扭棒代替绳子串珠，更易上手',time:'10分钟',principle:''},
+  {name:'灯箱字母',age:'3岁+',cat:'cog',catLabel:'认知',src:'安潇·ima',mat:'字母放灯箱拓印描画',steps:'字母放灯箱拓印描画',time:'15分钟',principle:''},
+  {name:'灯箱彩色米',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'安潇·ima',mat:'盆放彩色米灯箱上写字',steps:'盆放彩色米灯箱上写字',time:'10分钟',principle:''},
+  {name:'胶带迷宫',age:'18月+',cat:'motor',catLabel:'大运动',src:'安潇·ima',mat:'彩色胶带贴地板迷宫行走不踩线',steps:'彩色胶带贴地板迷宫行走不踩线',time:'5-10分钟',principle:''},
+  {name:'气球与球拍',age:'2岁+',cat:'motor',catLabel:'大运动',src:'安潇·ima',mat:'拍气球对打比赛',steps:'拍气球对打比赛',time:'10分钟',principle:''},
+  {name:'穿越红外线',age:'3岁+',cat:'motor',catLabel:'大运动',src:'安潇·ima',mat:'纸胶带警报线救兔子',steps:'纸胶带警报线救兔子',time:'15分钟',principle:''},
+  {name:'藏猫猫',age:'18月+',cat:'motor',catLabel:'大运动',src:'安潇·ima',mat:'全家创意躲藏',steps:'全家创意躲藏，声音引导',time:'5-10分钟',principle:''},
+  {name:'漫天泡泡',age:'18月+',cat:'motor',catLabel:'大运动',src:'安潇·ima',mat:'泡泡龙/泡泡彩虹桥/大泡泡',steps:'泡泡龙/泡泡彩虹桥/大泡泡',time:'5-10分钟',principle:''},
+  {name:'鞋盒水族馆',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'鞋盒做水族馆悬吊小鱼',steps:'鞋盒做水族馆悬吊小鱼',time:'10分钟',principle:''},
+  {name:'橡皮泥涂色画',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'画花瓶线条+橡皮泥小花',steps:'画花瓶线条+橡皮泥小花',time:'10分钟',principle:''},
+  {name:'出水青蛙拼贴画',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'青蛙机理拼贴画',steps:'青蛙机理拼贴画',time:'15分钟',principle:''},
+  {name:'靠垫桥',age:'18月+',cat:'motor',catLabel:'大运动',src:'安潇·ima',mat:'靠垫摆桥跑跳',steps:'靠垫摆桥跑跳',time:'5-10分钟',principle:''},
+  {name:'玻璃鱼缸雪球',age:'3岁+',cat:'mem',catLabel:'记忆/感官',src:'安潇·ima',mat:'胶带纸画鱼+水油亮片雪球',steps:'胶带纸画鱼+水油亮片雪球',time:'15分钟',principle:''},
+  {name:'手纸卷芯心型印刷',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'卷芯折心型印刷',steps:'卷芯折心型印刷',time:'10分钟',principle:''},
+  {name:'压花感谢卡',age:'3岁+',cat:'cog',catLabel:'认知',src:'安潇·ima',mat:'叶花瓣压花做感谢卡',steps:'叶花瓣压花做感谢卡',time:'15分钟',principle:''},
+  {name:'心连心鸟食挂饰',age:'3岁+',cat:'cog',catLabel:'认知',src:'安潇·ima',mat:'扭扭棒+麦圈鸟食挂饰',steps:'扭扭棒+麦圈鸟食挂饰',time:'15分钟',principle:''},
+  {name:'抱心小熊剪纸',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'小熊剪纸抱橡皮泥心',steps:'小熊剪纸抱橡皮泥心',time:'15分钟',principle:''},
+  {name:'动物剪纸油彩',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'动物剪纸涂油彩',steps:'动物剪纸涂油彩',time:'15分钟',principle:''},
+  {name:'方便面碗鸟食小屋',age:'3岁+',cat:'cog',catLabel:'认知',src:'安潇·ima',mat:'方便面碗做鸟食小屋',steps:'方便面碗做鸟食小屋',time:'15分钟',principle:''},
+  {name:'纸团拼贴画',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'薄宣纸揉团胶水拼贴',steps:'薄宣纸揉团胶水拼贴',time:'10分钟',principle:''},
+  {name:'靠垫房屋',age:'18月+',cat:'soc',catLabel:'社会情绪',src:'安潇·ima',mat:'靠垫毯子搭房子爬进爬出',steps:'靠垫毯子搭房子爬进爬出',time:'5-10分钟',principle:''},
+  {name:'画一本小书',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'白纸裁条折书每页画故事',steps:'白纸裁条折书每页画故事',time:'15分钟',principle:''},
+  {name:'插花',age:'3岁+',cat:'cog',catLabel:'认知',src:'安潇·ima',mat:'挑花自己审美插花',steps:'挑花自己审美插花',time:'15分钟',principle:''},
+  {name:'陶瓷茶具上色',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'陶瓷颜料给小茶具上色',steps:'陶瓷颜料给小茶具上色',time:'15分钟',principle:''},
+  {name:'爸爸的藏宝图',age:'3岁+',cat:'cog',catLabel:'认知',src:'安潇·ima',mat:'三维地图找宝藏练空间',steps:'三维地图找宝藏练空间',time:'15分钟',principle:''},
+  {name:'立体小熊上色',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'给立体小熊水彩上色+溜溜眼',steps:'给立体小熊水彩上色+溜溜眼',time:'10分钟',principle:''},
+  {name:'弹珠水彩画',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'剪纸+弹珠+颜料摇出纹理',steps:'剪纸+弹珠+颜料摇出纹理',time:'15分钟',principle:''},
+  {name:'扇子画',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'空白纸扇画画',steps:'空白纸扇画画',time:'15分钟',principle:''},
+  {name:'折纸船',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'折纸船放水中吹风机驱动',steps:'折纸船放水中吹风机驱动',time:'15分钟',principle:''},
+  {name:'踩泡泡包装',age:'18月+',cat:'motor',catLabel:'大运动',src:'安潇·ima',mat:'踩爆泡泡包装蹦跳',steps:'踩爆泡泡包装蹦跳',time:'5-10分钟',principle:''},
+  {name:'和朋友做杯子蛋糕',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'糖霜+糖粒装饰杯子蛋糕',steps:'糖霜+糖粒装饰杯子蛋糕',time:'15分钟',principle:''},
+  {name:'玩啫喱',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'安潇·ima',mat:'啫喱粉温水变粘稠感官游戏',steps:'啫喱粉温水变粘稠感官游戏',time:'10分钟',principle:''},
+  {name:'小仙子磁力服装展',age:'3岁+',cat:'soc',catLabel:'社会情绪',src:'安潇·ima',mat:'磁力片搭展台角色扮演',steps:'磁力片搭展台角色扮演',time:'15分钟',principle:''},
+  {name:'学时间日期季节',age:'3岁+',cat:'cog',catLabel:'认知',src:'安潇·ima',mat:'木制日历每天调整讲时间',steps:'木制日历每天调整讲时间',time:'15分钟',principle:''},
+  {name:'听古典音乐作画',age:'2岁+',cat:'lang',catLabel:'语言',src:'安潇·ima',mat:'听音乐想象画下来',steps:'听音乐想象画下来',time:'10分钟',principle:''},
+  {name:'体验电脑设计',age:'4岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'画作变产品参与电脑设计',steps:'画作变产品参与电脑设计',time:'15分钟',principle:''},
+  {name:'和爸爸乱弹吉他',age:'18月+',cat:'lang',catLabel:'语言',src:'安潇·ima',mat:'跟爸爸节奏表演',steps:'跟爸爸节奏表演',time:'5-10分钟',principle:''},
+  {name:'爸爸吉他伴奏音乐课',age:'2岁+',cat:'lang',catLabel:'语言',src:'安潇·ima',mat:'弹儿歌唱歌旋转跳舞',steps:'弹儿歌唱歌旋转跳舞',time:'10分钟',principle:''},
+  {name:'橡皮泥捏怪兽',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'橡皮泥+扭扭棒+溜溜眼捏怪兽',steps:'橡皮泥+扭扭棒+溜溜眼捏怪兽',time:'10分钟',principle:''},
+  {name:'饼干机器人',age:'3岁+',cat:'soc',catLabel:'社会情绪',src:'安潇·ima',mat:'纸盒机器人发饼干假装',steps:'纸盒机器人发饼干假装',time:'15分钟',principle:''},
+  {name:'数字迷宫',age:'4岁+',cat:'cog',catLabel:'认知',src:'安潇·ima',mat:'1~100数字迷宫画线',steps:'1~100数字迷宫画线',time:'15分钟',principle:''},
+  {name:'鹦鹉羽毛拼贴画',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'鹦鹉轮廓+羽毛拼贴',steps:'鹦鹉轮廓+羽毛拼贴',time:'15分钟',principle:''},
+  {name:'蝴蝶印刷画',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'对折纸挤颜料印蝴蝶',steps:'对折纸挤颜料印蝴蝶',time:'10分钟',principle:''},
+  {name:'乐高小颗粒超市',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'搭超市门窗货架收银机',steps:'搭超市门窗货架收银机',time:'15分钟',principle:''},
+  {name:'橡皮泥杯子蛋糕(2)',age:'18月+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'漂亮橡皮泥动手塑形',steps:'漂亮橡皮泥动手塑形',time:'5-10分钟',principle:''},
+  {name:'纸板相机',age:'3岁+',cat:'soc',catLabel:'社会情绪',src:'安潇·ima',mat:'纸板做相机假装游戏',steps:'纸板做相机假装游戏',time:'15分钟',principle:''},
+  {name:'尼莫小剧场',age:'3岁+',cat:'lang',catLabel:'语言',src:'安潇·ima',mat:'纸箱剧场角色表演',steps:'纸箱剧场角色表演',time:'15分钟',principle:''},
+  {name:'纸转盘',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'纸板圆形转盘拉绳旋转',steps:'纸板圆形转盘拉绳旋转',time:'15分钟',principle:''},
+  {name:'追泡泡+推行小车',age:'18月+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'吹泡泡追逐触碰',steps:'吹泡泡追逐触碰，配小推车练迈步（不用学步带）',time:'5-10分钟',principle:''},
+  {name:'居家障碍闯关',age:'18月+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'靠垫椅子搭通道',steps:'靠垫椅子搭通道，翻越钻爬绕行，家长鼓励',time:'5-10分钟',principle:''},
+  {name:'抛接球互动',age:'18月+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'软球/毛绒玩偶互相传递',steps:'软球/毛绒玩偶互相传递，完成投掷给正向反馈',time:'5-10分钟',principle:''},
+  {name:'多材质感官瓶',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'网络·权威',mat:'密封瓶装米/亮片/水',steps:'密封瓶装米/亮片/水，摇晃听声摸触感',time:'5-10分钟',principle:''},
+  {name:'实时物品命名',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'指身边物品清晰说名称特征',steps:'指身边物品清晰说名称特征，回应宝宝指认',time:'5-10分钟',principle:''},
+  {name:'厚页绘本共读',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'低幼厚纸绘本每天5-10分钟',steps:'低幼厚纸绘本每天5-10分钟，手指画面问答',time:'5-10分钟',principle:''},
+  {name:'简易配对',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'成对袜子/形状卡片配对',steps:'成对袜子/形状卡片配对，完成鼓掌',time:'5-10分钟',principle:''},
+  {name:'动作模仿游戏',age:'18月+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'互相模仿动作与表情',steps:'互相模仿动作与表情，缓解分离焦虑',time:'5-10分钟',principle:''},
+  {name:'吹棉花球',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'网络·权威',mat:'桌前吹棉球落地',steps:'桌前吹棉球落地，练圆唇口肌促发音',time:'5-10分钟',principle:''},
+  {name:'水果寻宝',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'按名称找水果放篮子',steps:'按名称找水果放篮子，进阶蒙眼摸闻猜',time:'5-10分钟',principle:''},
+  {name:'绒球钻山洞',age:'18月+',cat:'fine',catLabel:'精细动作',src:'网络·权威',mat:'纸筒固定桌面',steps:'纸筒固定桌面，绒球从一端送进另一端出来',time:'5-10分钟',principle:''},
+  {name:'撕彩纸贴贴乐',age:'18月+',cat:'fine',catLabel:'精细动作',src:'网络·权威',mat:'撕彩纸碎片贴胶区',steps:'撕彩纸碎片贴胶区，给小花穿花衣',time:'5-10分钟',principle:''},
+  {name:'障碍爬行大冒险',age:'18月+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'抱枕毯子搭隧道',steps:'抱枕毯子搭隧道，玩具引导爬行通过',time:'5-10分钟',principle:''},
+  {name:'简单指令互动',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:"发清晰指令'把球给妈妈'",steps:"发清晰指令'把球给妈妈'，完成即鼓励",time:'5-10分钟',principle:''},
+  {name:'趣味玩水探索',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'网络·权威',mat:'温水+杯勺漂浮玩具自由舀玩',steps:'温水+杯勺漂浮玩具自由舀玩，全程看护',time:'5-10分钟',principle:''},
+  {name:'颜色形状配对',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'积木/卡片按颜色形状分类配对',steps:'积木/卡片按颜色形状分类配对，认名称',time:'5-10分钟',principle:''},
+  {name:'小小家务能手',age:'18月+',cat:'soc',catLabel:'社会情绪',src:'网络·权威',mat:'引导叠袜子/收纳玩具/整理绘本',steps:'引导叠袜子/收纳玩具/整理绘本，建秩序感',time:'5-10分钟',principle:''},
+  {name:'看图说故事',age:'2岁+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'绘本卡片家长讲述',steps:'绘本卡片家长讲述，引导宝宝复述一两个字',time:'10分钟',principle:''},
+  {name:'绘本角色扮演',age:'2岁+',cat:'soc',catLabel:'社会情绪',src:'网络·权威',mat:'共读后模仿角色对话动作',steps:'共读后模仿角色对话动作，轻松互动',time:'10分钟',principle:''},
+  {name:'障碍跳跃游戏',age:'2岁+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'摆小障碍引导双脚并拢跳跨',steps:'摆小障碍引导双脚并拢跳跨，循序渐进',time:'10分钟',principle:''},
 ];
 
 var quiz=[
@@ -364,20 +494,30 @@ function showMilestone(key,btn){
 }
 showMilestone('motor',document.querySelector('#milestoneTabs button'));
 
-var currentFilter='all';
-function filterGame(cat,btn){
-  currentFilter=cat;
-  document.querySelectorAll('#gameFilter button').forEach(function(b){b.classList.remove('active')});
+var fState={cat:'all',src:'all',age:'all'};
+function setF(btn,key,val){
+  fState[key]=val;
+  btn.parentNode.querySelectorAll('button').forEach(function(b){b.classList.remove('active')});
   btn.classList.add('active');
   renderGames();
 }
 function renderGames(){
-  var list=currentFilter==='all'?allGames:allGames.filter(function(g){return g.cat===currentFilter});
+  var list=allGames.filter(function(g){
+    if(fState.cat!=='all' && g.cat!==fState.cat) return false;
+    if(fState.src!=='all'){
+      if(fState.src==='core'){ if(['哈佛','卫健委','知芽','爱贝睿','专家'].indexOf(g.src)<0) return false; }
+      else if(g.src!==fState.src) return false;
+    }
+    if(fState.age!=='all' && g.age!==fState.age) return false;
+    return true;
+  });
   document.getElementById('gameGrid').innerHTML=list.map(function(g){
     var cls=catMap[g.cat][0],ico=catMap[g.cat][1];
-    var srcMap={哈佛:'src-harvard',卫健委:'src-gov',知芽:'src-zhiya',爱贝睿:'src-aibeirui',专家:'src-expert'};
+    var srcMap={哈佛:'src-harvard',卫健委:'src-gov',知芽:'src-zhiya',爱贝睿:'src-aibeirui',专家:'src-expert','安潇·ima':'src-anxiao','网络·权威':'src-net'};;
     var srcCls=srcMap[g.src]||'src-expert';
-    return '<div class="game-card"><div class="gc-head"><h4>'+ico+' '+g.name+'</h4><span class="tag '+cls+'">'+g.catLabel+'</span><span class="tag" style="background:#F5F5F5;color:#616161">月龄:'+g.age+'</span><span class="source-badge '+srcCls+'">'+g.src+'</span></div><div class="gc-body"><div class="gc-row"><span class="gc-label">材料</span><span class="gc-val">'+g.mat+'</span></div><div class="gc-row"><span class="gc-label">步骤</span><span class="gc-val">'+g.steps+'</span></div><div class="gc-row"><span class="gc-label">时长</span><span class="gc-val">'+g.time+'</span></div><div class="gc-principle">🧠 '+g.principle+'</div></div></div>';
+    var mat=g.mat?'<div class="gc-row"><span class="gc-label">材料</span><span class="gc-val">'+g.mat+'</span></div>':'';
+    var pr=g.principle?'<div class="gc-principle">🧠 '+g.principle+'</div>':'';
+    return '<div class="game-card"><div class="gc-head"><h4>'+ico+' '+g.name+'</h4><span class="tag '+cls+'">'+g.catLabel+'</span><span class="tag" style="background:#F5F5F5;color:#616161">月龄:'+g.age+'</span><span class="source-badge '+srcCls+'">'+g.src+'</span></div><div class="gc-body">'+mat+'<div class="gc-row"><span class="gc-label">玩法</span><span class="gc-val">'+g.steps+'</span></div><div class="gc-row"><span class="gc-label">时长</span><span class="gc-val">'+g.time+'</span></div>'+pr+'</div></div>';
   }).join('');
 }
 renderGames();
@@ -422,7 +562,7 @@ function calcScore(){
   document.getElementById('resultArea').style.display='block';
   document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
 
-  document.getElementById('scoreTable').innerHTML='<tr><th>维度</th><th>得分</th></tr>'+results.map(function(r){return '<tr><td>'+r.dim+'<br><span style="font-size:10px;color:var(--text-light)">'+r.area+'</span></td><td><span class="bar" style="width:'+r.score*0.8+'px"></span> '+r.score+'%</td></tr>'}).join('');
+  document.getElementById('scoreTable').innerHTML='<tr><th>维度</th><th>得分</th></tr>'+results.map(function(r){return '<tr><td>'+r.dim+'<br><span style="font-size:12px;color:var(--text-light)">'+r.area+'</span></td><td><span class="bar" style="width:'+r.score*0.8+'px"></span> '+r.score+'%</td></tr>'}).join('');
 
   var ctx=document.getElementById('radarChart').getContext('2d');
   if(radarChart)radarChart.destroy();
