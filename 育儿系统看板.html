@@ -114,6 +114,35 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
   .src-net{background:#E8F5E9;color:#2E7D32}
 .section-h{font-size:17px;margin:8px 0 12px;color:var(--primary-dark)}
 .footer{text-align:center;padding:24px 16px;font-size:13px;color:var(--text-light)}
+
+/* 每周一测 / 每月成长档案 */
+.wk-status{font-size:14px;color:var(--text-mid);margin-bottom:12px;line-height:1.7}
+.wk-status b{color:var(--primary-dark);font-size:15px}
+.wk-row{display:flex;align-items:center;gap:10px;margin:9px 0}
+.wk-name{width:92px;font-size:14px;font-weight:500;flex-shrink:0}
+.wk-row input[type=range]{flex:1;accent-color:var(--primary)}
+.wk-val{width:30px;text-align:right;font-size:13px;color:var(--primary-dark);font-weight:600}
+.wk-note{width:100%;box-sizing:border-box;min-height:64px;margin-top:10px;padding:10px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;resize:vertical}
+.wk-input{padding:6px 8px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit}
+.mini-btn{padding:4px 10px;border:1px solid var(--border);background:#fff;border-radius:8px;font-size:13px;cursor:pointer;color:var(--text-mid)}
+.mini-btn:hover{background:color-mix(in srgb,var(--primary) 12%,#fff)}
+.wk-hist{margin-top:8px;border-top:1px dashed var(--border);padding-top:10px}
+.wk-hist .hrow{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:6px 8px;border-radius:8px;cursor:pointer;color:var(--text-mid)}
+.wk-hist .hrow:hover{background:color-mix(in srgb,var(--primary) 10%,#fff)}
+.wk-hist .hrow b{color:var(--primary-dark)}
+.arch-table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+.arch-table th,.arch-table td{border:1px solid var(--border);padding:6px 8px;text-align:center}
+.arch-table th{background:color-mix(in srgb,var(--primary) 16%,#fff);color:var(--primary-dark)}
+.arch-note{font-size:14px;color:var(--text-mid);background:color-mix(in srgb,var(--primary) 8%,#fff);border-radius:10px;padding:10px 12px;margin-top:8px;white-space:pre-wrap}
+.arch-title{font-size:18px;font-weight:600;color:var(--primary-dark);margin:6px 0 2px}
+@media print{
+  .header,.nav,.footer,.no-print{display:none!important}
+  #quizCard,#resultArea{display:none!important}
+  #page-assess{display:block!important}
+  #page-home,#page-milestone,#page-games,#page-theory{display:none!important}
+  .card{box-shadow:none!important;border:1px solid #ddd}
+  body{background:#fff}
+}
 </style>
 </head>
 <body>
@@ -121,7 +150,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 <div class="header">
   <h1>🦌 小鹿玛成长计划</h1>
   <div class="baby-info">
-    <span>👶 小鹿玛 · 1岁半（18个月）</span>
+    <span id="babyAge">👶 小鹿玛</span>
   </div>
 </div>
 
@@ -137,8 +166,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 
 <!-- ===== 首页 ===== -->
 <div class="page active" id="page-home">
+  <!-- 每周一测 -->
+  <div class="card" id="weeklyCard">
+    <div class="card-title"><span class="icon">📅</span>每周一测</div>
+    <div class="wk-status" id="wkStatus"></div>
+    <div id="wkForm">
+      <div class="wk-row"><span class="wk-name">🏃 大运动</span><input type="range" min="1" max="5" value="3" data-dim="motor" oninput="wkVal(this)"><span class="wk-val" id="v-motor">3</span></div>
+      <div class="wk-row"><span class="wk-name">✋ 精细动作</span><input type="range" min="1" max="5" value="3" data-dim="fine" oninput="wkVal(this)"><span class="wk-val" id="v-fine">3</span></div>
+      <div class="wk-row"><span class="wk-name">🗣️ 语言</span><input type="range" min="1" max="5" value="3" data-dim="lang" oninput="wkVal(this)"><span class="wk-val" id="v-lang">3</span></div>
+      <div class="wk-row"><span class="wk-name">🧠 认知</span><input type="range" min="1" max="5" value="3" data-dim="cog" oninput="wkVal(this)"><span class="wk-val" id="v-cog">3</span></div>
+      <div class="wk-row"><span class="wk-name">💛 社会情绪</span><input type="range" min="1" max="5" value="3" data-dim="soc" oninput="wkVal(this)"><span class="wk-val" id="v-soc">3</span></div>
+      <textarea class="wk-note" id="wkNote" placeholder="本周观察/新里程碑：比如「会说新词狗狗」「自己扶栏上楼」「搭5块积木」…"></textarea>
+      <div style="text-align:center;margin-top:12px"><button class="btn" onclick="saveWeekly()">💾 保存本周测评</button></div>
+    </div>
+    <div id="wkHistory" style="margin-top:14px"></div>
+  </div>
+
   <div class="welcome">
-    <h2>本周育儿重点 · 第18个月</h2>
+    <h2>本周育儿重点 · 第<span id="welcomeMonth">18</span>个月</h2>
     <p>小鹿玛正处于<strong>大脑爆发黄金期</strong>——据国家卫健委2025《婴幼儿早期发展服务指南》，18月龄大脑发育完成度接近成人80%，每秒生成700-1000个神经元连接。本周聚焦：<strong>多感官探索 + 模仿学习 + 语言输入</strong>，用生活化陪玩激活大脑神经通路。</p>
   </div>
   <div class="card">
@@ -227,7 +272,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 
 <!-- ===== 月度测评 ===== -->
 <div class="page" id="page-assess">
-  <div class="card">
+  <div class="card" id="quizCard">
     <div class="card-title"><span class="icon">📋</span>1岁半八维度测评（爱贝睿式题目）</div>
     <p style="font-size:15px;color:var(--text-mid);margin-bottom:16px">每道题给出测试场景，观察小鹿玛的表现后选择最接近的选项，系统自动计分并生成雷达图。选完点下方按钮查看结果。</p>
     <div id="qaContainer"></div>
@@ -250,8 +295,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
   </div>
 </div>
 
+  <!-- 每月成长档案 -->
+  <div class="card" id="archiveCard">
+    <div class="card-title"><span class="icon">🗂️</span>每月成长档案 <span class="no-print" style="float:right;font-size:13px;font-weight:400"><button class="mini-btn" onclick="exportData()">⬇ 导出全部</button> <button class="mini-btn" onclick="document.getElementById('importFile').click()">⬆ 导入</button><input type="file" id="importFile" accept="application/json" style="display:none" onchange="importData(this)"></span></div>
+    <p style="font-size:14px;color:var(--text-mid);margin-bottom:12px">每月自动汇总「本周一测」记录，生成可打印的成长档案。选好月份后点生成（建议月底或次月初操作）。</p>
+    <div class="no-print" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
+      <label>月份：<input type="month" id="archiveMonth" class="wk-input"></label>
+      <button class="btn" onclick="genArchive()">🗂️ 生成成长档案</button>
+      <button class="btn" onclick="window.print()">🖨️ 打印 / 导出PDF</button>
+    </div>
+    <div id="archiveArea"></div>
+  </div>
+
+
 </div>
-<div class="footer">小鹿玛成长计划 · 知芽专家×爱贝睿×哈佛儿童发展中心 融合体系 · 为小鹿玛1岁半定制<br>1岁半内容基于卫健委2025指南+MedlinePlus+三甲儿科标准 · 2岁档接入爱贝睿原版</div>
+<div class="footer">小鹿玛成长计划 · 知芽专家×爱贝睿×哈佛儿童发展中心 融合体系 · 为小鹿玛定制<br>1岁半内容基于卫健委2025指南+MedlinePlus+三甲儿科标准 · 2岁档接入爱贝睿原版</div>
 
 <script>
 var weekGames=[
@@ -577,6 +635,86 @@ function calcScore(){
     options:{responsive:true,scales:{r:{min:0,max:100,ticks:{stepSize:20,backdropColor:'transparent',font:{size:10}},pointLabels:{font:{size:13}},grid:{color:pc+'22'},angleLines:{color:pc+'22'}}},plugins:{legend:{position:'bottom',labels:{font:{size:12}}}}}
   });
 }
+
+/* ===== 每周一测 / 每月成长档案 ===== */
+var BIRTH=new Date(2025,0,16); // 女儿出生 2025-01-16
+var WK_KEY='xlma_weekly_v1';
+var DIM_ORDER=['motor','fine','lang','cog','soc'];
+var DIM_NAME={motor:'大运动',fine:'精细动作',lang:'语言',cog:'认知',soc:'社会情绪'};
+function daysBetween(a,b){return Math.floor((b-a)/86400000);}
+function addDays(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x;}
+function fmt(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function mondayOf(d){var x=new Date(d);var day=(x.getDay()+6)%7;return addDays(x,-day);}
+function isoWeek(d){var m=mondayOf(d);var yr=m.getFullYear();var firstMon=new Date(yr,0,1);var wk=Math.floor(daysBetween(firstMon,m)/7)+1;return {mon:m,wk:wk};}
+function nextMonday(d){return addDays(mondayOf(d),7);}
+function ageInfo(){var now=new Date();var days=daysBetween(BIRTH,now);var weeks=Math.floor(days/7)+1;var totM=(now.getFullYear()-BIRTH.getFullYear())*12+(now.getMonth()-BIRTH.getMonth());if(now.getDate()<BIRTH.getDate())totM--;var y=Math.floor(totM/12),mo=totM%12;return {days:days,weeks:weeks,totM:totM,y:y,mo:mo};}
+function updateAge(){var a=ageInfo();var el=document.getElementById('babyAge');if(el)el.textContent='👶 小鹿玛 · '+a.y+'岁'+a.mo+'个月（'+a.totM+'个月）';var wm=document.getElementById('welcomeMonth');if(wm)wm.textContent=a.totM;}
+function loadWeekly(){try{return JSON.parse(localStorage.getItem(WK_KEY)||'[]')}catch(e){return[]}}
+function saveWeeklyStore(arr){localStorage.setItem(WK_KEY,JSON.stringify(arr));}
+function wkVal(inp){document.getElementById('v-'+inp.dataset.dim).textContent=inp.value;}
+function thisWeekKey(){return fmt(mondayOf(new Date()));}
+function renderWeekly(){
+  var now=new Date();var a=ageInfo();var nm=nextMonday(now);var wk=isoWeek(now);
+  document.getElementById('wkStatus').innerHTML='自出生 <b>第'+a.weeks+'周</b>（'+a.days+'天） · 下次测评：下周一 <b>'+fmt(nm)+'</b>';
+  var arr=loadWeekly();var key=thisWeekKey();var ex=arr.find(function(e){return e.wk===key;});
+  if(ex){DIM_ORDER.forEach(function(d){var r=document.querySelector('#wkForm input[data-dim="'+d+'"]');if(r){r.value=ex.ratings[d];document.getElementById('v-'+d).textContent=ex.ratings[d];}});document.getElementById('wkNote').value=ex.note||'';}
+  renderHistory(arr);
+}
+function renderHistory(arr){
+  var box=document.getElementById('wkHistory');
+  if(!arr.length){box.innerHTML='<div style="font-size:13px;color:var(--text-light);margin-top:8px">还没有记录。每周一测一次，月底就能生成成长档案啦～</div>';return;}
+  var sorted=arr.slice().sort(function(a,b){return a.wk<b.wk?-1:1;}).slice(-8).reverse();
+  box.innerHTML='<div class="wk-hist">'+sorted.map(function(e){var vals=DIM_ORDER.map(function(d){return e.ratings[d];});var avg=(vals.reduce(function(s,v){return s+v;},0)/vals.length).toFixed(1);return '<div class="hrow" onclick="loadWeek(\''+e.wk+'\')"><span>第'+e.wkNum+'周 · '+e.wk+' 起</span><span><b>均分 '+avg+'</b> · 点击编辑</span></div>';}).join('')+'</div>';
+}
+function loadWeek(key){var arr=loadWeekly();var e=arr.find(function(x){return x.wk===key;});if(!e)return;DIM_ORDER.forEach(function(d){var r=document.querySelector('#wkForm input[data-dim="'+d+'"]');if(r){r.value=e.ratings[d];document.getElementById('v-'+d).textContent=e.ratings[d];}});document.getElementById('wkNote').value=e.note||'';document.getElementById('wkForm').scrollIntoView({behavior:'smooth'});}
+function saveWeekly(){
+  var ratings={};DIM_ORDER.forEach(function(d){ratings[d]=+document.querySelector('#wkForm input[data-dim="'+d+'"]').value;});
+  var note=document.getElementById('wkNote').value.trim();
+  var now=new Date();var m=mondayOf(now);var wk=fmt(m);var info=isoWeek(now);
+  var arr=loadWeekly();var ex=arr.find(function(e){return e.wk===wk;});
+  var rec={wk:wk,wkNum:info.wk,monthKey:wk.slice(0,7),date:fmt(now),ratings:ratings,note:note,ts:Date.now()};
+  if(ex){arr[arr.indexOf(ex)]=rec;}else{arr.push(rec);}
+  saveWeeklyStore(arr);renderWeekly();
+  alert('✅ 已保存第'+info.wk+'周（'+wk+'）的测评！月底可生成成长档案。');
+}
+var archiveChart=null;
+function genArchive(){
+  var mv=document.getElementById('archiveMonth').value;if(!mv){alert('请先选择月份');return;}
+  var y=+mv.slice(0,4),mo=+mv.slice(5,7);
+  var arr=loadWeekly().filter(function(e){return e.monthKey===mv;});
+  var area=document.getElementById('archiveArea');
+  if(!arr.length){area.innerHTML='<div class="arch-note">该月（'+y+'年'+mo+'月）暂无「每周一测」记录。先去「本周看板」完成每周一测，月底即可生成档案。</div>';if(archiveChart){archiveChart.destroy();archiveChart=null;}return;}
+  arr.sort(function(a,b){return a.wk<b.wk?-1:1;});
+  var avg={};DIM_ORDER.forEach(function(d){avg[d]=Math.round(arr.reduce(function(s,e){return s+e.ratings[d];},0)/arr.length);});
+  var mid=new Date(y,mo-1,15);var totM=(mid.getFullYear()-BIRTH.getFullYear())*12+(mid.getMonth()-BIRTH.getMonth());if(mid.getDate()<BIRTH.getDate())totM--;
+  var html='';
+  html+='<div class="arch-title">🗂️ 小鹿玛成长档案 · '+y+'年'+mo+'月</div>';
+  html+='<div style="font-size:14px;color:var(--text-mid);margin-bottom:8px">本月约 '+totM+' 个月 · 共 '+arr.length+' 次每周测评（第'+arr[0].wkNum+'–'+arr[arr.length-1].wkNum+'周）</div>';
+  html+='<div class="assess-layout"><div class="chart-box"><h4>本月能区均分</h4><canvas id="archiveRadar" height="240"></canvas></div>';
+  html+='<div class="chart-box"><h4>各维度月均</h4><table class="arch-table"><tr><th>能区</th><th>月均(1-5)</th></tr>'+DIM_ORDER.map(function(d){return '<tr><td>'+DIM_NAME[d]+'</td><td>'+avg[d]+'</td></tr>';}).join('')+'</table></div></div>';
+  html+='<h4 style="margin:14px 0 6px">📋 每周明细</h4>';
+  html+='<table class="arch-table"><tr><th>周次</th><th>周一起</th><th>大运动</th><th>精细</th><th>语言</th><th>认知</th><th>社交</th></tr>'+arr.map(function(e){return '<tr><td>'+e.wkNum+'</td><td>'+e.wk+'</td>'+DIM_ORDER.map(function(d){return '<td>'+e.ratings[d]+'</td>';}).join('')+'</tr>';}).join('')+'</table>';
+  var notes=arr.map(function(e){return '· 【第'+e.wkNum+'周】'+(e.note||'（无文字记录）');}).join('\n');
+  html+='<h4 style="margin:14px 0 6px">✨ 本月观察与里程碑</h4><div class="arch-note">'+notes.replace(/</g,'&lt;')+'</div>';
+  area.innerHTML=html;
+  var pc=getComputedStyle(document.documentElement).getPropertyValue('--primary').trim()||'#F44336';
+  var ctx=document.getElementById('archiveRadar').getContext('2d');
+  if(archiveChart)archiveChart.destroy();
+  archiveChart=new Chart(ctx,{type:'radar',data:{labels:DIM_ORDER.map(function(d){return DIM_NAME[d];}),datasets:[{label:y+'年'+mo+'月均分',data:DIM_ORDER.map(function(d){return avg[d];}),backgroundColor:pc+'33',borderColor:pc,pointBackgroundColor:pc,pointRadius:4}]},options:{responsive:true,scales:{r:{min:0,max:5,ticks:{stepSize:1,backdropColor:'transparent',font:{size:10}},pointLabels:{font:{size:13}},grid:{color:pc+'22'},angleLines:{color:pc+'22'}}},plugins:{legend:{position:'bottom',labels:{font:{size:12}}}}}});
+}
+function exportData(){
+  var data={birth:'2025-01-16',weekly:loadWeekly(),exportedAt:fmt(new Date())};
+  var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='小鹿玛成长数据_'+fmt(new Date())+'.json';a.click();URL.revokeObjectURL(a.href);
+}
+function importData(inp){
+  var fl=inp.files[0];if(!fl)return;var r=new FileReader();
+  r.onload=function(){try{var d=JSON.parse(r.result);if(d.weekly&&Array.isArray(d.weekly)){saveWeeklyStore(d.weekly);renderWeekly();if(document.getElementById('archiveMonth'))genArchive();alert('✅ 已导入 '+d.weekly.length+' 条每周测评记录');}}catch(e){alert('导入失败：文件格式不正确');}};
+  r.readAsText(fl);inp.value='';
+}
+document.getElementById('archiveMonth').value=fmt(new Date()).slice(0,7);
+updateAge();renderWeekly();
+
 </script>
 </body>
 </html>
