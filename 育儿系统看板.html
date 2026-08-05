@@ -36,7 +36,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .t-cog{background:#E8F5E9;color:#2E7D32}
 .t-soc{background:#FFF3E0;color:#E65100}
 .t-mem{background:#FCE4EC;color:#AD1457}
-.welcome{background:linear-gradient(135deg,#FFF3E0,#FFE0B2);border-radius:var(--radius);padding:20px;margin-bottom:14px}
+.welcome{background:linear-gradient(135deg,#E8F5E9,#C8E6C9);border-radius:var(--radius);padding:20px;margin-bottom:14px}
 .welcome h2{font-size:18px;color:var(--primary-dark);margin-bottom:6px}
 .welcome p{font-size:15px;color:var(--text-mid)}
 .focus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
@@ -82,7 +82,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .theory-card .t-section{margin-bottom:10px}
 .theory-card .t-label{font-size:14px;font-weight:600;color:var(--primary);margin-bottom:3px}
 .theory-card .t-text{font-size:15px;color:var(--text-mid)}
-.theory-card .t-metaphor{background:#FFF3E0;border-radius:8px;padding:8px 12px;font-size:15px;color:#E65100;font-style:italic}
+.theory-card .t-metaphor{background:#FFF8E1;border-radius:8px;padding:8px 12px;font-size:15px;color:#F57F17;font-style:italic}
 .theory-card .t-scene{background:#E3F2FD;border-radius:8px;padding:8px 12px;font-size:15px;color:#1565C0}
 .theory-card .t-action{background:#E8F5E9;border-radius:8px;padding:8px 12px;font-size:15px;color:#2E7D32}
 .assess-layout{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -94,7 +94,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .qa-block .qa-scene{font-size:14px;color:var(--text-mid);background:#FFF8E1;border-radius:8px;padding:8px 10px;margin-bottom:8px}
 .qa-opts{display:flex;flex-direction:column;gap:6px}
 .qa-opt{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:15px;transition:all .2s}
-.qa-opt:hover{background:#FFF3EE}
+.qa-opt:hover{background:#E8F5E9}
 .qa-opt.selected{background:#E8F5E9;border-color:var(--primary);font-weight:500}
 .qa-opt input{accent-color:var(--primary)}
 .score-table{width:100%;font-size:15px;border-collapse:collapse}
@@ -568,8 +568,8 @@ function calcScore(){
   if(radarChart)radarChart.destroy();
   radarChart=new Chart(ctx,{
     type:'radar',
-    data:{labels:radarLabels,datasets:[{label:'小鹿玛 1岁半测评',data:radarData,backgroundColor:'rgba(255,138,101,0.2)',borderColor:'#FF8A65',pointBackgroundColor:'#FF8A65',pointRadius:4}]},
-    options:{responsive:true,scales:{r:{min:0,max:100,ticks:{stepSize:20,backdropColor:'transparent',font:{size:10}},pointLabels:{font:{size:13}},grid:{color:'#F0E0D8'},angleLines:{color:'#F0E0D8'}}},plugins:{legend:{position:'bottom',labels:{font:{size:12}}}}}
+    data:{labels:radarLabels,datasets:[{label:'小鹿玛 1岁半测评',data:radarData,backgroundColor:'rgba(76,175,80,0.2)',borderColor:'#4CAF50',pointBackgroundColor:'#4CAF50',pointRadius:4}]},
+    options:{responsive:true,scales:{r:{min:0,max:100,ticks:{stepSize:20,backdropColor:'transparent',font:{size:10}},pointLabels:{font:{size:13}},grid:{color:'#E0EBE0'},angleLines:{color:'#E0EBE0'}}},plugins:{legend:{position:'bottom',labels:{font:{size:12}}}}}
   });
 }
 </script>
