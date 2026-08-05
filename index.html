@@ -7,21 +7,21 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
 :root{
-  --bg:#FFFBF0; --card:#FFFFFF; --primary:#FFCA28; --primary-dark:#F9A825;
+  --bg:#FAFAFA; --card:#FFFFFF; --primary:#FFCA28; --primary-dark:#F9A825;
   --green:#66BB6A; --blue:#42A5F5; --purple:#AB47BC; --yellow:#FFCA28; --pink:#EC407A;
-  --text:#3E2723; --text-mid:#6D4C41; --text-light:#9E9E9E; --border:#F3E9C8;
-  --radius:16px; --shadow:0 2px 12px rgba(255,193,7,0.10);
+  --text:#3E2723; --text-mid:#6D4C41; --text-light:#9E9E9E; --border:#ECECEC;
+  --radius:16px; --shadow:0 2px 12px rgba(0,0,0,0.06);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:17px}
-.header{background:linear-gradient(135deg,#F9A825 0%,#FFD54F 100%);color:#fff;padding:10px 20px;text-align:center}
+.header{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 100%);color:#fff;padding:10px 20px;text-align:center}
 .header h1{font-size:22px;margin-bottom:4px;letter-spacing:1px}
 .header .baby-info{font-size:15px;opacity:.92;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
 .header .baby-info span{background:rgba(255,255,255,.2);padding:2px 12px;border-radius:20px}
 .nav{background:var(--card);display:flex;overflow-x:auto;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(255,193,7,0.08)}
-.nav button{flex:1;min-width:90px;padding:14px 8px;border:none;background:none;font-size:16px;color:var(--text-mid);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s}
-.nav button.active{color:var(--primary-dark);border-bottom-color:var(--primary);font-weight:600}
-.nav button:hover{background:#FFF8E1}
+.nav button{flex:1;min-width:90px;padding:14px 8px;border:none;background:none;font-size:16px;color:var(--text-mid);cursor:pointer;border-bottom:3px solid var(--mc,transparent);white-space:nowrap;transition:all .2s}
+.nav button.active{color:var(--mc);border-bottom-color:var(--mc);border-bottom-width:4px;font-weight:600}
+.nav button:hover{background:color-mix(in srgb,var(--primary) 12%,#fff)}
 .container{max-width:1100px;margin:0 auto;padding:16px}
 .page{display:none;animation:fade .3s}
 .page.active{display:block}
@@ -49,7 +49,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .day-card .day{font-size:14px;color:var(--text-light);font-weight:600}
 .day-card .gname{font-size:16px;font-weight:600;margin:4px 0}
 .day-card .gdesc{font-size:13px;color:var(--text-mid)}
-.assess-mini{background:#FFF8E1;border-radius:12px;padding:14px;margin-top:14px}
+.assess-mini{background:color-mix(in srgb,var(--primary) 12%,#fff);border-radius:12px;padding:14px;margin-top:14px}
 .assess-mini h4{font-size:16px;color:#F57F17;margin-bottom:8px}
 .assess-mini ul{list-style:none;font-size:15px}
 .assess-mini li{padding:4px 0;padding-left:18px;position:relative}
@@ -59,7 +59,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .milestone-tabs button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
 .age-row{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px dashed var(--border)}
 .age-row:last-child{border:none}
-.age-label{min-width:70px;font-size:15px;font-weight:600;color:var(--primary-dark);background:#FFF8E1;padding:4px 10px;border-radius:8px;text-align:center;flex-shrink:0}
+.age-label{min-width:70px;font-size:15px;font-weight:600;color:var(--primary-dark);background:color-mix(in srgb,var(--primary) 14%,#fff);padding:4px 10px;border-radius:8px;text-align:center;flex-shrink:0}
 .age-items{flex:1;font-size:15px}
 .age-items .item{padding:3px 0;color:var(--text-mid)}
 .game-filter{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
@@ -82,7 +82,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .theory-card .t-section{margin-bottom:10px}
 .theory-card .t-label{font-size:14px;font-weight:600;color:var(--primary);margin-bottom:3px}
 .theory-card .t-text{font-size:15px;color:var(--text-mid)}
-.theory-card .t-metaphor{background:#FFF8E1;border-radius:8px;padding:8px 12px;font-size:15px;color:#F57F17;font-style:italic}
+.theory-card .t-metaphor{background:color-mix(in srgb,var(--primary) 14%,#fff);border-radius:8px;padding:8px 12px;font-size:15px;color:var(--primary-dark);font-style:italic}
 .theory-card .t-scene{background:#E3F2FD;border-radius:8px;padding:8px 12px;font-size:15px;color:#1565C0}
 .theory-card .t-action{background:#E8F5E9;border-radius:8px;padding:8px 12px;font-size:15px;color:#2E7D32}
 .assess-layout{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -91,14 +91,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .chart-box h4{font-size:17px;margin-bottom:12px;text-align:center}
 .qa-block{background:var(--card);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow);border:1px solid var(--border)}
 .qa-block .qa-title{font-size:16px;font-weight:600;margin-bottom:6px;color:var(--primary-dark)}
-.qa-block .qa-scene{font-size:14px;color:var(--text-mid);background:#FFF8E1;border-radius:8px;padding:8px 10px;margin-bottom:8px}
+.qa-block .qa-scene{font-size:14px;color:var(--text-mid);background:color-mix(in srgb,var(--primary) 12%,#fff);border-radius:8px;padding:8px 10px;margin-bottom:8px}
 .qa-opts{display:flex;flex-direction:column;gap:6px}
 .qa-opt{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:15px;transition:all .2s}
-.qa-opt:hover{background:#FFF8E1}
-.qa-opt.selected{background:#FFF8E1;border-color:var(--primary);font-weight:500}
+.qa-opt:hover{background:color-mix(in srgb,var(--primary) 12%,#fff)}
+.qa-opt.selected{background:color-mix(in srgb,var(--primary) 16%,#fff);border-color:var(--primary);font-weight:500}
 .qa-opt input{accent-color:var(--primary)}
 .score-table{width:100%;font-size:15px;border-collapse:collapse}
-.score-table th{background:#FFF8E1;padding:8px;text-align:left;font-size:14px;color:var(--primary-dark)}
+.score-table th{background:color-mix(in srgb,var(--primary) 16%,#fff);padding:8px;text-align:left;font-size:14px;color:var(--primary-dark)}
 .score-table td{padding:8px;border-bottom:1px solid var(--border)}
 .score-table .bar{height:8px;border-radius:4px;background:var(--primary);display:inline-block;vertical-align:middle}
 .history-note{background:#E3F2FD;border-radius:8px;padding:10px;font-size:14px;color:#1565C0;margin-top:12px}
@@ -126,11 +126,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 </div>
 
 <div class="nav">
-  <button class="active" onclick="showPage('home',this)">本周看板</button>
-  <button onclick="showPage('milestone',this)">发展里程碑</button>
-  <button onclick="showPage('games',this)">游戏库</button>
-  <button onclick="showPage('theory',this)">脑科学</button>
-  <button onclick="showPage('assess',this)">月度测评</button>
+  <button class="active" style="--mc:#FFCA28" onclick="showPage('home',this)">本周看板</button>
+  <button style="--mc:#4CAF50" onclick="showPage('milestone',this)">发展里程碑</button>
+  <button style="--mc:#9C27B0" onclick="showPage('games',this)">游戏库</button>
+  <button style="--mc:#2196F3" onclick="showPage('theory',this)">脑科学</button>
+  <button style="--mc:#F44336" onclick="showPage('assess',this)">月度测评</button>
 </div>
 
 <div class="container">
@@ -468,7 +468,11 @@ var theories={
   ]
 };
 
+var pageTheme={home:['#FFCA28','#F9A825'],milestone:['#4CAF50','#388E3C'],games:['#9C27B0','#6A1B9A'],theory:['#2196F3','#1565C0'],assess:['#F44336','#C62828']};
 function showPage(id,btn){
+  var th=pageTheme[id]||pageTheme.home;
+  document.documentElement.style.setProperty('--primary',th[0]);
+  document.documentElement.style.setProperty('--primary-dark',th[1]);
   document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
   document.getElementById('page-'+id).classList.add('active');
   document.querySelectorAll('.nav button').forEach(function(b){b.classList.remove('active')});
@@ -564,12 +568,13 @@ function calcScore(){
 
   document.getElementById('scoreTable').innerHTML='<tr><th>维度</th><th>得分</th></tr>'+results.map(function(r){return '<tr><td>'+r.dim+'<br><span style="font-size:12px;color:var(--text-light)">'+r.area+'</span></td><td><span class="bar" style="width:'+r.score*0.8+'px"></span> '+r.score+'%</td></tr>'}).join('');
 
+  var pc=getComputedStyle(document.documentElement).getPropertyValue('--primary').trim()||'#FFCA28';
   var ctx=document.getElementById('radarChart').getContext('2d');
   if(radarChart)radarChart.destroy();
   radarChart=new Chart(ctx,{
     type:'radar',
-    data:{labels:radarLabels,datasets:[{label:'小鹿玛 1岁半测评',data:radarData,backgroundColor:'rgba(255,193,7,0.2)',borderColor:'#FFCA28',pointBackgroundColor:'#FFCA28',pointRadius:4}]},
-    options:{responsive:true,scales:{r:{min:0,max:100,ticks:{stepSize:20,backdropColor:'transparent',font:{size:10}},pointLabels:{font:{size:13}},grid:{color:'#E0EBE0'},angleLines:{color:'#E0EBE0'}}},plugins:{legend:{position:'bottom',labels:{font:{size:12}}}}}
+    data:{labels:radarLabels,datasets:[{label:'小鹿玛 1岁半测评',data:radarData,backgroundColor:pc+'33',borderColor:pc,pointBackgroundColor:pc,pointRadius:4}]},
+    options:{responsive:true,scales:{r:{min:0,max:100,ticks:{stepSize:20,backdropColor:'transparent',font:{size:10}},pointLabels:{font:{size:13}},grid:{color:pc+'22'},angleLines:{color:pc+'22'}}},plugins:{legend:{position:'bottom',labels:{font:{size:12}}}}}
   });
 }
 </script>
