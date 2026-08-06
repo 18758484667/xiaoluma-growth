@@ -150,6 +150,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .obs-btn:hover{background:color-mix(in srgb,#FF9800 8%,#fff)}
 .obs-btn.active{background:color-mix(in srgb,#FF9800 16%,#fff);border-color:#FF9800;color:#E65100;font-weight:600}
 
+/* 五大脑概览 + 弱项推荐 */
+.obs-sum-title{font-size:14px;font-weight:600;color:var(--text-mid);margin:12px 0 8px}
+.obs-sum-bar{display:flex;align-items:center;gap:8px;margin:5px 0}
+.obs-sum-name{width:70px;font-size:12px;font-weight:500;flex-shrink:0}
+.obs-sum-track{flex:1;height:8px;background:#F0F0F0;border-radius:4px;overflow:hidden}
+.obs-sum-fill{height:100%;border-radius:4px;transition:width .4s}
+.obs-sum-val{width:28px;font-size:12px;color:var(--text-mid);text-align:right;flex-shrink:0}
+.obs-sum-bar.obs-sum-weak .obs-sum-name{color:#E65100;font-weight:600}
+.obs-sum-bar.obs-sum-weak .obs-sum-val{color:#E65100;font-weight:700}
+.obs-sum-rec{display:flex;align-items:center;gap:10px;margin-top:10px;padding:8px 12px;background:color-mix(in srgb,#FF9800 8%,#fff);border-radius:8px;font-size:13px;color:var(--text);flex-wrap:wrap}
+.obs-sum-rec b{color:#E65100}
+.obs-rec-btn{margin-left:auto;padding:5px 12px;background:#FF9800;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;flex-shrink:0}
+.obs-rec-btn:hover{background:#E65100}
+
 /* 脑计划内部子 tab */
 .brain-subtabs{display:flex;gap:8px;margin-bottom:14px;border-bottom:2px solid var(--border);padding-bottom:0}
 .brain-subtabs button{padding:8px 16px;border:none;background:none;font-size:15px;color:var(--text-mid);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;font-weight:500}
@@ -237,6 +251,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
       <div class="card-title"><span class="icon">🔍</span>本周行为观察</div>
       <div class="obs-status" id="obsStatus"></div>
       <div class="obs-progress"><div class="obs-progress-fill" id="obsProgress" style="width:0%"></div></div>
+      <div id="obsSummary"></div>
       <div id="obsList"></div>
       <div style="margin-top:14px;text-align:center;color:var(--text-light);font-size:13px;line-height:1.6">💡 提示：日常陪娃时观察到任何一项，点对应按钮即可。<br>不需要一次填完，下次进入自动保留。一周观察完，月底可在「月度档案」自动汇总。</div>
       <textarea class="wk-note" id="obsNote" placeholder="本周补充观察：比如「会说新词狗狗」「搭5块积木」「自己扶栏上楼」…" style="margin-top:14px"></textarea>
@@ -614,6 +629,7 @@ renderTheory('theoryMem',theories.mem,'mem');
 var OBS_COLOR={cog:'#AB47BC',lang:'#42A5F5',emo:'#EC407A',mov:'#66BB6A',cre:'#FFA726'};
 var OBS_NAME={cog:'🧠 智力脑',lang:'🗣️ 语言脑',emo:'💛 情绪脑',mov:'🏃 运动脑',cre:'🎨 创意脑'};
 var OBS_DIM_IDS=['cog','lang','emo','mov','cre'];
+var OBS_TO_GAME_CAT={cog:'cog',lang:'lang',emo:'soc',mov:'motor',cre:'fine'};
 var OBS_ITEMS=[
   {dim:'cog', text:'主动掀开布找藏起的玩具（客体永久性）'},
   {dim:'cog', text:'能模仿你做的简单动作（拍手、点头）'},
@@ -707,6 +723,7 @@ function renderObserve(){
       +'</div>';
   }).join('');
   document.getElementById('obsNote').value=rec.note||'';
+  renderObsSummary(rec);
   renderObsHistory();
 }
 function setObs(k,v){
@@ -721,6 +738,45 @@ function setObs(k,v){
   if(idx>=0)arr[idx]=rec;else arr.push(rec);
   saveObs(arr);
   renderObserve();
+}
+function renderObsSummary(rec){
+  var box=document.getElementById('obsSummary');if(!box)return;
+  var done=Object.keys(rec.items||{}).length;
+  if(done<3){
+    box.innerHTML='<div style="font-size:13px;color:var(--text-light);text-align:center;padding:8px 0">📊 再观察 '+(3-done)+' 项，将自动分析五大脑弱项并推荐针对性游戏</div>';
+    return;
+  }
+  var sc=rec.scores||{};
+  var dims=OBS_DIM_IDS.slice();
+  var sorted=dims.map(function(d){return{d:d,s:sc[d]||0}}).filter(function(x){return x.s>0}).sort(function(a,b){return a.s-b.s;});
+  var weakest=sorted.length?sorted[0]:null;
+  var bars=dims.map(function(d){
+    var s=sc[d]||0,pct=(s/5)*100;
+    var cls=weakest&&weakest.d===d?' obs-sum-weak':'';
+    return '<div class="obs-sum-bar'+cls+'"><span class="obs-sum-name">'+OBS_NAME[d]+'</span><div class="obs-sum-track"><div class="obs-sum-fill" style="width:'+pct+'%;background:'+OBS_COLOR[d]+'"></div></div><span class="obs-sum-val">'+s.toFixed(1)+'</span></div>';
+  }).join('');
+  var recHtml='';
+  if(weakest){
+    recHtml='<div class="obs-sum-rec"><span>🎯 本周弱项：<b>'+OBS_NAME[weakest.d]+'</b>（'+weakest.s.toFixed(1)+'/5）</span><button class="obs-rec-btn" onclick="recommendGames(\''+weakest.d+'\')">📋 推荐游戏 →</button></div>';
+  }
+  box.innerHTML='<div class="obs-sum-title">📊 本周五大脑概览</div>'+bars+recHtml;
+}
+function recommendGames(dim){
+  var cat=OBS_TO_GAME_CAT[dim]||'cog';
+  fState.cat=cat;fState.src='all';fState.age='all';
+  var filters=document.querySelectorAll('#page-games .game-filter');
+  if(filters.length>=3){
+    filters[0].querySelectorAll('button').forEach(function(b){
+      var m=b.getAttribute('onclick').match(/'cat','([^']+)'/);
+      b.classList.toggle('active',m&&m[1]===cat);
+    });
+    filters[1].querySelectorAll('button').forEach(function(b){b.classList.toggle('active',b.getAttribute('onclick').indexOf("'all'")>0);});
+    filters[2].querySelectorAll('button').forEach(function(b){b.classList.toggle('active',b.getAttribute('onclick').indexOf("'all'")>0);});
+  }
+  renderGames();
+  var navBtns=document.querySelectorAll('.nav button');
+  for(var i=0;i<navBtns.length;i++){if(navBtns[i].textContent.indexOf('游戏库')>=0){showPage('games',navBtns[i]);break;}}
+  setTimeout(function(){document.getElementById('gameGrid').scrollIntoView({behavior:'smooth',block:'start'});},100);
 }
 function renderObsHistory(){
   var box=document.getElementById('obsHistory');
