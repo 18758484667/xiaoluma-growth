@@ -134,8 +134,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .obs-status b{color:#E65100;font-size:15px}
 .obs-progress{height:8px;background:#F0F0F0;border-radius:4px;overflow:hidden;margin-bottom:14px}
 .obs-progress-fill{height:100%;background:linear-gradient(90deg,#FF9800,#E65100);border-radius:4px;transition:width .4s}
-.obs-item{background:#FFFFFF;border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:10px;transition:all .2s}
-.obs-item.done{background:color-mix(in srgb,#FF9800 5%,#fff);border-color:color-mix(in srgb,#FF9800 24%,transparent)}
+.obs-item{background:transparent;border:none;border-top:1px dashed var(--border);border-radius:0;padding:10px 0 12px;margin:0;transition:all .2s}
+.obs-item:first-child{border-top:none;padding-top:4px}
+.obs-item:last-child{padding-bottom:4px}
+.obs-item.done{background:color-mix(in srgb,#FF9800 5%,transparent);border-radius:8px;padding:10px 12px 12px;margin:0 -8px}
 .obs-dim{font-size:12px;font-weight:600;display:inline-block;padding:2px 10px;border-radius:10px;margin-bottom:6px}
 .obs-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:8px;color:var(--text)}
 .obs-btns{display:flex;gap:6px}
