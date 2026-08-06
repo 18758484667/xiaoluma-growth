@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>幼儿游戏整理 · 二宝 1.5 岁适配</title>
+<style>
+  :root{
+    --bg:#f6f7fb; --card:#ffffff; --ink:#232733; --sub:#6b7280;
+    --line:#e6e8ef; --accent:#ff7a59; --accent2:#4f8cff; --ok:#2faa6a;
+    --c1:#ffe3d6; --c2:#d9e6ff; --c3:#d7f5e3; --c4:#fff3c4; --c5:#f0d9ff; --c6:#d6f0f5; --c7:#ffe0ec; --c8:#e8e8ee; --c9:#e3f3d9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  header{padding:28px 22px 18px;background:linear-gradient(135deg,#fff 0%,#fff4ef 100%);border-bottom:1px solid var(--line)}
+  header h1{margin:0 0 6px;font-size:24px}
+  header .meta{color:var(--sub);font-size:13px}
+  .wrap{max-width:1080px;margin:0 auto;padding:18px 16px 60px}
+  .stat{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 4px}
+  .stat .chip{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:6px 14px;font-size:13px}
+  .stat .chip b{color:var(--accent)}
+  .stat .chip.net b{color:var(--ok)}
+  .controls{position:sticky;top:0;z-index:20;background:rgba(246,247,251,.95);backdrop-filter:blur(6px);padding:12px 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-bottom:1px solid var(--line)}
+  .controls .grp{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .controls .lbl{font-size:12px;color:var(--sub);margin-right:2px}
+  .btn{border:1px solid var(--line);background:#fff;border-radius:18px;padding:6px 13px;font-size:13px;cursor:pointer;transition:.15s;color:var(--ink)}
+  .btn:hover{border-color:var(--accent)}
+  .btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .btn.alt.active{background:var(--ok);border-color:var(--ok)}
+  select{border:1px solid var(--line);border-radius:18px;padding:6px 12px;font-size:13px;background:#fff;color:var(--ink)}
+  .pin{background:linear-gradient(135deg,#fff7f3,#fff);border:1px solid #ffd9cc;border-radius:14px;padding:14px 16px;margin:16px 0}
+  .pin h2{margin:0 0 4px;font-size:16px;color:var(--accent)}
+  .pin p{margin:0 0 10px;font-size:13px;color:var(--sub)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:12px;margin-top:8px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 13px;position:relative;transition:.15s}
+  .card:hover{box-shadow:0 6px 18px rgba(20,30,60,.08);transform:translateY(-2px)}
+  .card .no{position:absolute;top:10px;right:12px;font-size:12px;color:#c2c6d2;font-weight:700}
+  .card .tt{font-weight:600;font-size:14.5px;padding-right:34px;margin-bottom:4px}
+  .card .ds{font-size:12.5px;color:var(--sub);min-height:34px}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .tag{font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600}
+  .tag.cat{color:#fff}
+  .tag.age{background:#eef1f6;color:#54607a}
+  .tag.age.a1{background:var(--c3);color:#1f7a4d}
+  .tag.age.a2{background:var(--c4);color:#9a7b12}
+  .tag.age.a3{background:var(--c2);color:#2f5fb0}
+  .tag.age.a4{background:var(--c5);color:#7a3aa0}
+  .tag.src{background:#eafaf0;color:#1f9d57;border:1px solid #bfe9d2}
+  .rec{margin-top:8px;font-size:11.5px;color:var(--ok);font-weight:600;display:none}
+  body.show-rec .card.rec-on .rec{display:block}
+  body.show-rec .card.rec-on{border-color:#bfe9d2}
+  footer{color:var(--sub);font-size:12px;text-align:center;padding:20px}
+  .count{font-size:13px;color:var(--sub);margin:10px 2px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🧸 幼儿游戏整理 · 二宝 1.5 岁适配</h1>
+  <div class="meta">来源：ima「幼儿游戏」文件夹 · 安潇《100个1～6岁的超简单早教游戏》（2019 原创版 + 2020 修订版）合并去重 ＋ 网络权威早教游戏 26 个（CDC 18个月里程碑 / 1.5–2岁托班游戏 / 居家早教合集），全部按起始年龄匹配二宝</div>
+</header>
+<div class="wrap">
+  <div class="stat">
+    <span class="chip">游戏总数 <b id="total">126</b></span>
+    <span class="chip">感官探索 <b id="s-sensory">21</b></span>
+    <span class="chip">二宝（1.5岁）可玩 <b id="s-baby">44</b></span>
+    <span class="chip">精细/手工 <b id="s-fine">16</b></span>
+    <span class="chip net">网络新增 <b id="s-net">26</b></span>
+  </div>
+
+  <div class="pin">
+    <h2>⭐ 二宝现在就能玩（1.5 岁适配）</h2>
+    <p>以下游戏起始年龄标注为「1岁+」，共 44 个（原 21 个 + 网络新增 23 个），材料多为家中常备（橡皮泥、水、冰、泡泡、靠垫、乐高、棉球、瓶盖），安全且易上手。点「只看二宝适配」可只看这些；点「来源」筛选可只看网络新增。</p>
+  </div>
+
+  <div class="controls">
+    <div class="grp"><span class="lbl">年龄</span>
+      <button class="btn age active" data-age="all">全部</button>
+      <button class="btn age" data-age="1">1岁+</button>
+      <button class="btn age" data-age="2">2岁+</button>
+      <button class="btn age" data-age="3">3岁+</button>
+      <button class="btn age" data-age="4">4岁+</button>
+    </div>
+    <div class="grp"><span class="lbl">维度</span>
+      <select id="cat">
+        <option value="all">全部维度</option>
+        <option value="感官探索">感官探索</option>
+        <option value="精细动作">精细动作</option>
+        <option value="建构搭建">建构搭建</option>
+        <option value="大运动">大运动</option>
+        <option value="假装游戏">假装游戏</option>
+        <option value="认知数学">认知数学</option>
+        <option value="艺术绘画">艺术绘画</option>
+        <option value="音乐戏剧">音乐戏剧</option>
+        <option value="自然户外">自然户外</option>
+      </select>
+    </div>
+    <div class="grp"><span class="lbl">来源</span>
+      <select id="src">
+        <option value="all">全部来源</option>
+        <option value="安潇·ima">ima·安潇</option>
+        <option value="网络·权威">网络·权威</option>
+      </select>
+    </div>
+    <div class="grp">
+      <button class="btn alt" id="recBtn">只看二宝适配</button>
+    </div>
+  </div>
+  <div class="count" id="count"></div>
+  <div class="grid" id="grid"></div>
+
+  <footer>整理自 ima 知识库「幼儿游戏」文件夹 + 网络权威早教来源 · 仅供家庭亲子参考 · 标注年龄为起步建议，具体请结合二宝实际能力与安全看护</footer>
+</div>
+
+<script>
+const CAT_COLOR={"感官探索":"var(--c1)","精细动作":"var(--c2)","建构搭建":"var(--c3)","大运动":"var(--c4)","假装游戏":"var(--c5)","认知数学":"var(--c6)","艺术绘画":"var(--c7)","音乐戏剧":"var(--c8)","自然户外":"var(--c9)"};
+const G=[
+[1,"橡皮泥杯子蛋糕","纸杯+扣子+吸管+豆子+橡皮泥，让宝宝装饰杯子蛋糕","精细动作",1],
+[2,"橡皮泥的切割","切割模具练切、滚、压等手指动作","精细动作",2],
+[3,"橡皮糖牙签建筑","橡皮糖+牙签搭构件（可用橡皮泥代替，牙签需看护）","建构搭建",3],
+[4,"乐高大颗粒娃娃屋","大颗粒乐高搭房屋建筑，宝宝编情节","建构搭建",1],
+[5,"乐高小颗粒搭墙体","演示小颗粒搭墙，宝宝尝试搭小屋","建构搭建",3],
+[6,"多材质风景","橡皮泥+弹珠+橡皮球+硬卷心粉塑风景","精细动作",2],
+[7,"粘土怪物军队","设计粘土怪物，烤箱加热永久保存","精细动作",3],
+[8,"磁力片搭建","磁力片造房屋、城堡、火箭等","建构搭建",2],
+[9,"舀水筛豆子","水+水杯+筛子+硬豆子，玩运输","感官探索",1],
+[10,"聆听小蛋壳","巧克力蛋壳放不同材质，听声音配对","感官探索",1],
+[11,"冰格藏宝","冰格放材质冷冻成冰块，观察宝藏","感官探索",1],
+[12,"色彩配对卡片","彩纸包扑克+洗衣夹子，颜色配对","认知数学",2],
+[13,"自然色彩配对","带色彩卡到公园找对应事物","自然户外",2],
+[14,"室内沙粒盒","沙粒放塑料盒+小工具","感官探索",1],
+[15,"彩色米粒","米粒食用色素染色，当感官材料","感官探索",1],
+[16,"泡泡地板","泡泡包装纸固定地板，按泡泡","大运动",1],
+[17,"冰山与海洋","冰块放水+小船+勺子，想象海洋","感官探索",1],
+[18,"自制灯箱","圣诞灯放塑料盒，感官游戏更美","感官探索",1],
+[19,"冰球","珠子放水冻冰球","感官探索",1],
+[20,"感官游戏大混战","大托盘放彩色米/意面/颜料/土壤等","感官探索",1],
+[21,"麦圈彩虹","麦圈+食用色素搅拌摆彩虹","感官探索",2],
+[22,"纸板全家福松树","纸板剪松树贴全家照","精细动作",2],
+[23,"乐高颜色配对","大颗粒原色积木做颜色碗配对","认知数学",1],
+[24,"数字串珠","意面插橡皮泥标数字，串对应数量珠","认知数学",3],
+[25,"浴室七巧板","彩色塑胶纸剪七巧板贴瓷砖玩","艺术绘画",2],
+[26,"井字棋","3岁第一个棋，先攻后守","认知数学",3],
+[27,"折纸","从纸船纸飞机开始练几何与手指","精细动作",3],
+[28,"餐馆游戏","糖包拼字母/数字/形状","认知数学",3],
+[29,"数字一一对应","数字前数出对应数量物品","认知数学",3],
+[30,"硬币拓印","硬币拓印认面值","认知数学",3],
+[31,"拼贴卡片","剪元素用胶水拼贴生日/节日卡","艺术绘画",2],
+[32,"喷绘卡片","喷雾瓶水彩喷颜料做卡片","艺术绘画",2],
+[33,"立体纸雕塑","纸条弯折贴做三维造型","艺术绘画",3],
+[34,"雪糕棍挂饰","雪糕棍拼造型+溜溜眼装饰","艺术绘画",2],
+[35,"宝宝的王冠","不织布王冠+珠宝贴画","艺术绘画",2],
+[36,"康复卡","创可贴+溜溜眼做关心卡","艺术绘画",3],
+[37,"小蜜蜂的家","竹筒+扭扭棒绑挂树梢","自然户外",3],
+[38,"纸板笔记本电脑","纸板+锡纸做电脑假装办公","假装游戏",2],
+[39,"纸箱电视机","纸箱+锡纸+衣架做电视","假装游戏",2],
+[40,"刷牙水彩游戏","牙刷+白颜料刷牙齿小人","艺术绘画",2],
+[41,"泡泡包装印刷","泡泡纸裹擀面杖滚颜料","艺术绘画",2],
+[42,"牛奶印刷","牛奶滴水彩印刷图案","艺术绘画",3],
+[43,"茶包做旧地图","茶包涂纸做旧藏宝图","艺术绘画",3],
+[44,"纸胶带色彩构成","纸胶带贴水彩纸填色","艺术绘画",3],
+[45,"蝴蝶昆虫印刷","对折纸挤颜料按压对称图案","艺术绘画",2],
+[46,"魔光轮","荧光棒转圈看光残留成像","感官探索",2],
+[47,"彩虹豆实验","彩虹豆放水褪色成色盘","感官探索",2],
+[48,"彩虹冰城堡","冰格冰砖+食用色素","感官探索",2],
+[49,"手机全息成像","塑料片梯形+全息视频","感官探索",4],
+[50,"纸箱高架桥","纸箱剪翻成双道高架桥","建构搭建",2],
+[51,"沿线剪纸","2岁后练剪刀，直线/折线/形状","精细动作",2],
+[52,"不织布系扣子","大扣子缝不织布练系扣","精细动作",2],
+[53,"扭扭棒串珠","扭扭棒代替绳子串珠，更易上手","精细动作",2],
+[54,"灯箱字母","字母放灯箱拓印描画","认知数学",3],
+[55,"灯箱彩色米","盆放彩色米灯箱上写字","感官探索",2],
+[56,"胶带迷宫","彩色胶带贴地板迷宫行走不踩线","大运动",1],
+[57,"气球与球拍","拍气球对打比赛","大运动",2],
+[58,"穿越红外线","纸胶带警报线救兔子","大运动",3],
+[59,"藏猫猫","全家创意躲藏，声音引导","大运动",1],
+[60,"漫天泡泡","泡泡龙/泡泡彩虹桥/大泡泡","大运动",1],
+[61,"鞋盒水族馆","鞋盒做水族馆悬吊小鱼","艺术绘画",2],
+[62,"橡皮泥涂色画","画花瓶线条+橡皮泥小花","艺术绘画",2],
+[63,"出水青蛙拼贴画","青蛙机理拼贴画","艺术绘画",3],
+[64,"靠垫桥","靠垫摆桥跑跳","大运动",1],
+[65,"玻璃鱼缸雪球","胶带纸画鱼+水油亮片雪球","感官探索",3],
+[66,"手纸卷芯心型印刷","卷芯折心型印刷","艺术绘画",2],
+[67,"压花感谢卡","叶花瓣压花做感谢卡","自然户外",3],
+[68,"心连心鸟食挂饰","扭扭棒+麦圈鸟食挂饰","自然户外",3],
+[69,"抱心小熊剪纸","小熊剪纸抱橡皮泥心","艺术绘画",3],
+[70,"动物剪纸油彩","动物剪纸涂油彩","艺术绘画",3],
+[71,"方便面碗鸟食小屋","方便面碗做鸟食小屋","自然户外",3],
+[72,"纸团拼贴画","薄宣纸揉团胶水拼贴","艺术绘画",2],
+[73,"靠垫房屋","靠垫毯子搭房子爬进爬出","假装游戏",1],
+[74,"画一本小书","白纸裁条折书每页画故事","艺术绘画",3],
+[75,"插花","挑花自己审美插花","自然户外",3],
+[76,"陶瓷茶具上色","陶瓷颜料给小茶具上色","艺术绘画",3],
+[77,"爸爸的藏宝图","三维地图找宝藏练空间","认知数学",3],
+[78,"立体小熊上色","给立体小熊水彩上色+溜溜眼","艺术绘画",2],
+[79,"弹珠水彩画","剪纸+弹珠+颜料摇出纹理","艺术绘画",3],
+[80,"扇子画","空白纸扇画画","艺术绘画",3],
+[81,"折纸船","折纸船放水中吹风机驱动","精细动作",3],
+[82,"踩泡泡包装","踩爆泡泡包装蹦跳","大运动",1],
+[83,"和朋友做杯子蛋糕","糖霜+糖粒装饰杯子蛋糕","精细动作",3],
+[84,"玩啫喱","啫喱粉温水变粘稠感官游戏","感官探索",2],
+[85,"小仙子磁力服装展","磁力片搭展台角色扮演","假装游戏",3],
+[86,"学时间日期季节","木制日历每天调整讲时间","认知数学",3],
+[87,"听古典音乐作画","听音乐想象画下来","音乐戏剧",2],
+[88,"体验电脑设计","画作变产品参与电脑设计","艺术绘画",4],
+[89,"和爸爸乱弹吉他","跟爸爸节奏表演","音乐戏剧",1],
+[90,"爸爸吉他伴奏音乐课","弹儿歌唱歌旋转跳舞","音乐戏剧",2],
+[91,"橡皮泥捏怪兽","橡皮泥+扭扭棒+溜溜眼捏怪兽","精细动作",2],
+[92,"饼干机器人","纸盒机器人发饼干假装","假装游戏",3],
+[93,"数字迷宫","1~100数字迷宫画线","认知数学",4],
+[94,"鹦鹉羽毛拼贴画","鹦鹉轮廓+羽毛拼贴","艺术绘画",3],
+[95,"蝴蝶印刷画","对折纸挤颜料印蝴蝶","艺术绘画",2],
+[96,"乐高小颗粒超市","搭超市门窗货架收银机","建构搭建",3],
+[97,"橡皮泥杯子蛋糕(2)","漂亮橡皮泥动手塑形","精细动作",1],
+[98,"纸板相机","纸板做相机假装游戏","假装游戏",3],
+[99,"尼莫小剧场","纸箱剧场角色表演","音乐戏剧",3],
+[100,"纸转盘","纸板圆形转盘拉绳旋转","精细动作",3],
+[101,"追泡泡+推行小车","吹泡泡追逐触碰，配小推车练迈步（不用学步带）","大运动",1,"网络·权威"],
+[102,"居家障碍闯关","靠垫椅子搭通道，翻越钻爬绕行，家长鼓励","大运动",1,"网络·权威"],
+[103,"抛接球互动","软球/毛绒玩偶互相传递，完成投掷给正向反馈","大运动",1,"网络·权威"],
+[104,"积木搭高推倒","示范搭高2-3块，让宝宝推倒重来，理解因果","建构搭建",1,"网络·权威"],
+[105,"多材质感官瓶","密封瓶装米/亮片/水，摇晃听声摸触感","感官探索",1,"网络·权威"],
+[106,"实时物品命名","指身边物品清晰说名称特征，回应宝宝指认","认知数学",1,"网络·权威"],
+[107,"厚页绘本共读","低幼厚纸绘本每天5-10分钟，手指画面问答","认知数学",1,"网络·权威"],
+[108,"简易配对","成对袜子/形状卡片配对，完成鼓掌","认知数学",1,"网络·权威"],
+[109,"动作模仿游戏","互相模仿动作与表情，缓解分离焦虑","大运动",1,"网络·权威"],
+[110,"手指谣合唱","Itsy-Bitsy Spider等儿歌配手指动作，镜像模仿","音乐戏剧",1,"网络·权威"],
+[111,"模仿做家务","给小扫把/抹布模仿扫地擦拭，同步口语","假装游戏",1,"网络·权威"],
+[112,"假装喂食娃娃","碗勺喂娃娃，叙述简单词如'宝宝饿'","假装游戏",1,"网络·权威"],
+[113,"吹棉花球","桌前吹棉球落地，练圆唇口肌促发音","感官探索",1,"网络·权威"],
+[114,"神奇触摸盒","鞋盒放手伸进摸不同触感物，说软硬毛茸茸","感官探索",1,"网络·权威"],
+[115,"瓶盖配对","收集瓶盖拧回对应瓶口，练手指手眼协调","精细动作",1,"网络·权威"],
+[116,"水果寻宝","按名称找水果放篮子，进阶蒙眼摸闻猜","认知数学",1,"网络·权威"],
+[117,"绒球钻山洞","纸筒固定桌面，绒球从一端送进另一端出来","精细动作",1,"网络·权威"],
+[118,"撕彩纸贴贴乐","撕彩纸碎片贴胶区，给小花穿花衣","艺术绘画",1,"网络·权威"],
+[119,"障碍爬行大冒险","抱枕毯子搭隧道，玩具引导爬行通过","大运动",1,"网络·权威"],
+[120,"简单指令互动","发清晰指令'把球给妈妈'，完成即鼓励","认知数学",1,"网络·权威"],
+[121,"趣味玩水探索","温水+杯勺漂浮玩具自由舀玩，全程看护","感官探索",1,"网络·权威"],
+[122,"颜色形状配对","积木/卡片按颜色形状分类配对，认名称","认知数学",1,"网络·权威"],
+[123,"小小家务能手","引导叠袜子/收纳玩具/整理绘本，建秩序感","假装游戏",1,"网络·权威"],
+[124,"看图说故事","绘本卡片家长讲述，引导宝宝复述一两个字","认知数学",2,"网络·权威"],
+[125,"绘本角色扮演","共读后模仿角色对话动作，轻松互动","假装游戏",2,"网络·权威"],
+[126,"障碍跳跃游戏","摆小障碍引导双脚并拢跳跨，循序渐进","大运动",2,"网络·权威"]
+];
+
+const grid=document.getElementById('grid');
+let curAge='all',curCat='all',curSrc='all',recOnly=false;
+
+function render(){
+  grid.innerHTML='';
+  let n=0, tot=G.length, sens=0, baby=0, fine=0, net=0;
+  G.forEach(([no,tt,ds,cat,age,src])=>{
+    if(cat==='感官探索')sens++;
+    if(age===1)baby++;
+    if(cat==='精细动作')fine++;
+    if(src)net++;
+  });
+  document.getElementById('total').textContent=tot;
+  document.getElementById('s-sensory').textContent=sens;
+  document.getElementById('s-baby').textContent=baby;
+  document.getElementById('s-fine').textContent=fine;
+  const netEl=document.getElementById('s-net'); if(netEl)netEl.textContent=net;
+
+  G.forEach(([no,tt,ds,cat,age,src])=>{
+    const recOn=age===1;
+    const srcVal=src||'安潇·ima';
+    if(curAge!=='all' && age> +curAge) return;
+    if(curCat!=='all' && cat!==curCat) return;
+    if(curSrc!=='all' && srcVal!==curSrc) return;
+    if(recOnly && !recOn) return;
+    n++;
+    const div=document.createElement('div');
+    div.className='card'+(recOn?' rec-on':'');
+    const srcTag=src?`<span class="tag src">${src}</span>`:'';
+    div.innerHTML=`<div class="no">#${no}</div>
+      <div class="tt">${tt}</div>
+      <div class="ds">${ds}</div>
+      <div class="tags">
+        <span class="tag cat" style="background:${CAT_COLOR[cat]}">${cat}</span>
+        <span class="tag age a${age}">${age}岁+</span>
+        ${srcTag}
+      </div>
+      <div class="rec">✓ 二宝现在就能玩</div>`;
+    grid.appendChild(div);
+  });
+  document.getElementById('count').textContent='显示 '+n+' 个游戏';
+}
+// bind
+document.querySelectorAll('.btn.age').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.btn.age').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');curAge=b.dataset.age;render();
+});
+document.getElementById('cat').onchange=e=>{curCat=e.target.value;render();};
+document.getElementById('src').onchange=e=>{curSrc=e.target.value;render();};
+document.getElementById('recBtn').onclick=()=>{
+  recOnly=!recOnly;
+  document.getElementById('recBtn').classList.toggle('active',recOnly);
+  document.body.classList.toggle('show-rec',recOnly);
+  render();
+};
+render();
+</script>
+</body>
+</html>
