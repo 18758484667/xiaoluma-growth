@@ -19,6 +19,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .header .baby-info{font-size:15px;opacity:.92;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
 .header .baby-info span{background:rgba(255,255,255,.2);padding:2px 12px;border-radius:20px}
 .nav{background:var(--card);display:flex;overflow-x:auto;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(255,193,7,0.08)}
+.backup-bar{display:flex;align-items:center;gap:10px;padding:8px 12px;background:#FFF3E0;border-bottom:1px solid #FFB74D;font-size:13px;color:#E65100}
+.backup-bar .backup-msg{flex:1;line-height:1.4}
+.backup-bar .backup-btn{padding:4px 12px;background:#FF9800;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;flex-shrink:0}
+.backup-bar .backup-btn:hover{background:#E65100}
+.backup-bar .backup-x{background:none;border:none;font-size:16px;color:#E65100;cursor:pointer;padding:0 4px;flex-shrink:0;line-height:1}
 .nav button{flex:1;min-width:78px;padding:14px 6px;border:none;background:none;font-size:15px;color:var(--text-mid);cursor:pointer;border-bottom:3px solid var(--mc,transparent);white-space:nowrap;transition:all .2s}
 .nav button.active{color:var(--mc);border-bottom-color:var(--mc);border-bottom-width:4px;font-weight:600}
 .nav button:hover{background:color-mix(in srgb,var(--primary) 12%,#fff)}
@@ -183,6 +188,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
   </div>
 </div>
 
+<div id="backupBar" class="backup-bar" style="display:none">
+  <span class="backup-msg"></span>
+  <button class="backup-btn" onclick="exportData()">⬇ 立即导出</button>
+  <button class="backup-x" onclick="this.parentNode.style.display='none'" title="稍后提醒">✕</button>
+</div>
 <div class="nav">
   <button class="active" style="--mc:#FFCA28" onclick="showPage('home',this)">本周看板</button>
   <button style="--mc:#4CAF50" onclick="showPage('milestone',this)">发展里程碑</button>
@@ -618,8 +628,51 @@ var OBS_ITEMS=[
 ];
 var OBS_KEY='xlma_weeklyobs_v1';
 
+/* ===== 自动备份（IndexedDB 双写 + 4周提醒导出）===== */
+var DB_NAME='xlma_db',DB_STORE='kv',EXPORT_KEY='xlma_last_export_ts';
+function idbOpen(){
+  return new Promise(function(res){
+    if(!window.indexedDB){res(null);return;}
+    try{
+      var r=indexedDB.open(DB_NAME,1);
+      r.onupgradeneeded=function(e){var db=e.target.result;if(!db.objectStoreNames.contains(DB_STORE))db.createObjectStore(DB_STORE);};
+      r.onsuccess=function(e){res(e.target.result);};
+      r.onerror=function(){res(null);};
+    }catch(e){res(null);}
+  });
+}
+function idbSet(key,val){idbOpen().then(function(db){if(!db)return;try{var tx=db.transaction(DB_STORE,'readwrite');tx.objectStore(DB_STORE).put(val,key);}catch(e){}});}
+function idbGet(key){return new Promise(function(res){idbOpen().then(function(db){if(!db){res(null);return;}try{var tx=db.transaction(DB_STORE,'readonly');var rq=tx.objectStore(DB_STORE).get(key);rq.onsuccess=function(){res(rq.result);};rq.onerror=function(){res(null);};}catch(e){res(null);}});});}
+function autoBackup(arr){try{idbSet('obs_data',arr);idbSet('obs_backup_ts',Date.now());}catch(e){}}
+function tryRestoreFromIDB(){
+  return new Promise(function(resolve){
+    try{
+      var local=JSON.parse(localStorage.getItem(OBS_KEY)||'[]');
+      if(local&&local.length){resolve(false);return;}
+      idbGet('obs_data').then(function(backup){
+        if(backup&&Array.isArray(backup)&&backup.length){
+          if(confirm('💾 检测到本地数据为空，但发现 IndexedDB 中有 '+backup.length+' 条历史备份。\n\n是否恢复？\n（点取消则保持空白，重新开始记录）')){
+            localStorage.setItem(OBS_KEY,JSON.stringify(backup));
+            resolve(true);return;
+          }
+        }
+        resolve(false);
+      });
+    }catch(e){resolve(false);}
+  });
+}
+function checkBackupReminder(){
+  var last=+localStorage.getItem(EXPORT_KEY)||0;
+  var weeks=last?(Date.now()-last)/(7*86400000):Infinity;
+  if(weeks<4)return;
+  var bar=document.getElementById('backupBar');if(!bar)return;
+  bar.style.display='flex';
+  var msg=last?('已 '+Math.floor(weeks)+' 周未导出备份'):'从未导出过备份';
+  bar.querySelector('.backup-msg').textContent='⚠️ '+msg+'，建议导出一份 JSON 存到云盘/电脑，防止清缓存丢失';
+}
+
 function loadObs(){try{var r=JSON.parse(localStorage.getItem(OBS_KEY)||'[]');if(!r.length && localStorage.getItem(WK_KEY)){r=migrateOldObs();saveObs(r);}return r;}catch(e){return[];}}
-function saveObs(a){localStorage.setItem(OBS_KEY,JSON.stringify(a));}
+function saveObs(a){localStorage.setItem(OBS_KEY,JSON.stringify(a));autoBackup(a);}
 function migrateOldObs(){
   try {
     var old=JSON.parse(localStorage.getItem(WK_KEY)||'[]');
@@ -741,15 +794,20 @@ function genArchive(){
   archiveChart=new Chart(ctx,{type:'radar',data:{labels:OBS_DIM_IDS.map(function(d){return OBS_NAME[d].slice(2);}),datasets:[{label:y+'年'+mo+'月均分',data:OBS_DIM_IDS.map(function(d){return avg[d];}),backgroundColor:pc+'33',borderColor:pc,pointBackgroundColor:pc,pointRadius:4}]},options:{responsive:true,scales:{r:{min:0,max:5,ticks:{stepSize:1,backdropColor:'transparent',font:{size:10}},pointLabels:{font:{size:13}},grid:{color:pc+'22'},angleLines:{color:pc+'22'}}},plugins:{legend:{position:'bottom',labels:{font:{size:12}}}}}});
 }
 function exportData(){
-  var data={birth:'2025-01-16',obs:loadObs(),exportedAt:fmt(new Date())};
+  var now=new Date();
+  var data={birth:'2025-01-16',obs:loadObs(),exportedAt:fmt(now)+' '+String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0')};
   var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='小鹿玛成长数据_'+fmt(new Date())+'.json';a.click();URL.revokeObjectURL(a.href);
+  var ts=fmt(now)+'_'+String(now.getHours()).padStart(2,'0')+String(now.getMinutes()).padStart(2,'0');
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='小鹿玛成长数据_'+ts+'.json';a.click();URL.revokeObjectURL(a.href);
+  localStorage.setItem(EXPORT_KEY,Date.now()+'');
+  var bar=document.getElementById('backupBar');if(bar)bar.style.display='none';
+  alert('✅ 已导出 '+loadObs().length+' 条观察记录\n建议存到云盘/电脑做长期备份');
 }
 function importData(inp){
   var fl=inp.files[0];if(!fl)return;var r=new FileReader();
   r.onload=function(){try{
     var d=JSON.parse(r.result);
-    if(d.obs&&Array.isArray(d.obs)){saveObs(d.obs);renderObserve();if(document.getElementById('archiveMonth'))genArchive();alert('✅ 已导入 '+d.obs.length+' 条每周观察记录');}
+    if(d.obs&&Array.isArray(d.obs)){saveObs(d.obs);renderObserve();if(document.getElementById('archiveMonth'))genArchive();localStorage.setItem(EXPORT_KEY,Date.now()+'');var bar=document.getElementById('backupBar');if(bar)bar.style.display='none';alert('✅ 已导入 '+d.obs.length+' 条每周观察记录');}
     else if(d.weekly&&Array.isArray(d.weekly)){var migrated=migrateOldObs();saveObs(migrated);renderObserve();if(document.getElementById('archiveMonth'))genArchive();alert('✅ 已迁移旧版（兼容） '+d.weekly.length+' 条每周记录，新体系下维度已映射为五大脑');}
     else alert('导入失败：文件不含 obs 或 weekly 数组');
   }catch(e){alert('导入失败：文件格式不正确');}};
@@ -757,6 +815,10 @@ function importData(inp){
 }
 document.getElementById('archiveMonth').value=fmt(new Date()).slice(0,7);
 updateAge();renderObserve();renderBrain();
+tryRestoreFromIDB().then(function(restored){
+  if(restored){renderObserve();renderBrain();alert('✅ 已从 IndexedDB 备份恢复 '+loadObs().length+' 条观察记录');}
+});
+checkBackupReminder();
 
 </script>
 </body>
