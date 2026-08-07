@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>小鹿玛成长计划 · 育儿系统看板</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="assets/chart.umd.min.js"></script>
 <style>
 :root{
   --bg:#FAFAFA; --card:#FFFFFF; --primary:#FFCA28; --primary-dark:#F9A825;
@@ -33,7 +33,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .card{background:var(--card);border-radius:var(--radius);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)}
 .card-title{font-size:19px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.card-title .icon{font-size:20px}
+.card-title .icon{width:30px;height:30px;border-radius:9px;background:color-mix(in srgb,var(--primary) 14%,#fff);display:inline-flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
 .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;font-weight:500;margin-right:6px}
 .t-motor{background:#FFEBEE;color:#C62828}
 .t-fine{background:#E3F2FD;color:#1565C0}
@@ -45,13 +45,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .welcome h2{font-size:18px;color:var(--primary-dark);margin-bottom:6px}
 .welcome p{font-size:15px;color:var(--text-mid)}
 .focus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.focus-item{background:var(--card);border-radius:12px;padding:14px;border-left:4px solid var(--primary)}
+.focus-item{background:color-mix(in srgb,var(--primary) 7%,#fff);border:1px solid color-mix(in srgb,var(--primary) 16%,#fff);border-radius:14px;padding:14px}
+.focus-item .focus-icon{width:36px;height:36px;border-radius:12px;background:#fff;border:1px solid color-mix(in srgb,var(--primary) 22%,#fff);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:8px}
 .focus-item h4{font-size:16px;margin-bottom:4px}
 .focus-item p{font-size:14px;color:var(--text-mid)}
+.toy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.toy-item{background:color-mix(in srgb,var(--primary) 5%,#fff);border:1px solid color-mix(in srgb,var(--primary) 14%,#fff);border-radius:14px;padding:14px}
+.toy-item .toy-icon{width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid color-mix(in srgb,var(--primary) 20%,#fff);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:8px}
+.toy-item h4{font-size:15px;margin-bottom:6px}
+.toy-tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;background:color-mix(in srgb,var(--primary) 14%,#fff);color:var(--primary-dark);margin-bottom:6px}
+.toy-item p{font-size:13px;color:var(--text-mid);margin-bottom:6px}
+.toy-item .toy-why{font-size:12px;color:var(--text-light)}
 .week-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
-.day-card{background:var(--card);border-radius:12px;padding:12px;border-top:3px solid var(--green);min-height:120px}
-.day-card.weekend{border-top-color:var(--pink)}
-.day-card .day{font-size:14px;color:var(--text-light);font-weight:600}
+.day-card{background:color-mix(in srgb,var(--green) 6%,#fff);border:1px solid color-mix(in srgb,var(--green) 18%,#fff);border-radius:14px;padding:12px;min-height:120px}
+.day-card.weekend{background:color-mix(in srgb,var(--pink) 7%,#fff);border-color:color-mix(in srgb,var(--pink) 20%,#fff)}
+.day-card .day{width:32px;height:32px;border-radius:50%;background:#fff;color:var(--text-mid);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:6px}
 .day-card .gname{font-size:16px;font-weight:600;margin:4px 0}
 .day-card .gdesc{font-size:13px;color:var(--text-mid)}
 .assess-mini{background:color-mix(in srgb,var(--primary) 12%,#fff);border-radius:12px;padding:14px;margin-top:14px}
@@ -80,12 +88,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .game-card .gc-row{padding:4px 0;display:flex;gap:6px}
 .game-card .gc-label{color:var(--text-light);min-width:46px;flex-shrink:0;font-size:14px}
 .game-card .gc-val{color:var(--text-mid);flex:1}
+.game-card .gc-steps{margin:6px 0 4px;padding:8px 10px;background:#FAFAFA;border-radius:8px}
+.game-card .gc-steps-title{font-size:13px;font-weight:600;color:var(--primary-dark);margin-bottom:4px}
+.game-card .gc-step{padding:3px 0;font-size:14px;color:var(--text-mid);line-height:1.6}
 .game-card .gc-principle{background:#F3E5F5;border-radius:8px;padding:8px 10px;margin-top:8px;font-size:13px;color:#6A1B9A}
 .theory-grid{display:grid;grid-template-columns:1fr;gap:14px}
-.theory-card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border-left:4px solid var(--blue)}
-.theory-card.mem-card{border-left-color:var(--purple)}
-.theory-card h4{font-size:18px;margin-bottom:10px;color:var(--primary-dark);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.theory-card .t-section{margin-bottom:10px}
+.theory-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.theory-card h4{font-size:17px;margin:0 0 12px;padding:12px 16px;color:var(--primary-dark);background:color-mix(in srgb,var(--blue) 10%,#fff);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.theory-card.mem-card h4{background:color-mix(in srgb,var(--purple) 10%,#fff)}
+.theory-card .t-section{margin:0 16px 10px}
 .theory-card .t-label{font-size:14px;font-weight:600;color:var(--primary);margin-bottom:3px}
 .theory-card .t-text{font-size:15px;color:var(--text-mid)}
 .theory-card .t-metaphor{background:color-mix(in srgb,var(--primary) 14%,#fff);border-radius:8px;padding:8px 12px;font-size:15px;color:var(--primary-dark);font-style:italic}
@@ -163,6 +174,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .obs-sum-rec b{color:#E65100}
 .obs-rec-btn{margin-left:auto;padding:5px 12px;background:#FF9800;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;flex-shrink:0}
 .obs-rec-btn:hover{background:#E65100}
+.obs-sum-bar.obs-sum-none .obs-sum-track{background:#F5F5F5}
+.obs-sum-bar.obs-sum-none .obs-sum-val{color:#9E9E9E;font-weight:400}
+.gc-safety{margin-top:8px;padding:6px 10px;border-radius:8px;background:#FFF3E0;color:#E65100;font-size:12px;line-height:1.5}
 
 /* 脑计划内部子 tab */
 .brain-subtabs{display:flex;gap:8px;margin-bottom:14px;border-bottom:2px solid var(--border);padding-bottom:0}
@@ -184,9 +198,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .arch-note{font-size:14px;color:var(--text-mid);background:color-mix(in srgb,var(--primary) 8%,#fff);border-radius:10px;padding:10px 12px;margin-top:8px;white-space:pre-wrap}
 .arch-title{font-size:18px;font-weight:600;color:var(--primary-dark);margin:6px 0 2px}
 @media print{
-  .header,.nav,.footer,.no-print{display:none!important}
-  #quizCard,#resultArea{display:none!important}
-  #page-assess{display:block!important}
+  .header,.nav,.footer,.no-print,.brain-subtabs{display:none!important}
+  #page-brain{display:block!important}
+  .brain-sub{display:none!important}
+  #bsub-arch{display:block!important}
   #page-home,#page-milestone,#page-games,#page-theory{display:none!important}
   .card{box-shadow:none!important;border:1px solid #ddd}
   body{background:#fff}
@@ -221,16 +236,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 <div class="page active" id="page-home">
   <div class="welcome">
     <h2>本周育儿重点 · 第<span id="welcomeMonth">18</span>个月</h2>
-    <p>小鹿玛正处于<strong>大脑爆发黄金期</strong>——据国家卫健委2025《婴幼儿早期发展服务指南》，18月龄大脑发育完成度接近成人80%，每秒生成700-1000个神经元连接。本周聚焦：<strong>多感官探索 + 模仿学习 + 语言输入</strong>，用生活化陪玩激活大脑神经通路。</p>
+    <p id="welcomeSub">小鹿玛正处于<strong>大脑爆发黄金期</strong>——据国家卫健委2025《婴幼儿早期发展服务指南》，18月龄大脑发育完成度接近成人80%，每秒生成700-1000个神经元连接。本周聚焦：<strong>多感官探索 + 模仿学习 + 语言输入</strong>，用生活化陪玩激活大脑神经通路。</p>
   </div>
   <div class="card">
     <div class="card-title"><span class="icon">🎯</span>本周发展重点</div>
-    <div class="focus-grid">
+    <div class="focus-grid" id="focusGrid">
       <div class="focus-item"><h4>🗣️ 语言爆发铺垫</h4><p>18月是语言中枢黄金节点。用「场景旁白」——小鹿玛做什么你就描述什么，海量输入比教说话更有效。</p></div>
       <div class="focus-item"><h4>🪞 模仿学习激活</h4><p>镜像神经元活跃期，模仿是此阶段最强学习通道。示范扫地、打电话、喂娃娃，让她跟着做。</p></div>
       <div class="focus-item"><h4>🖐️ 多感官探索</h4><p>提供不同材质物品（毛巾/积木/勺子），让小鹿玛摸、捏、敲，触觉+视觉+听觉同步编码大脑。</p></div>
       <div class="focus-item"><h4>🧩 客体永久性巩固</h4><p>玩「藏玩具」游戏，让小鹿玛理解「看不见≠消失」，这是认知发展的核心里程碑。</p></div>
     </div>
+  </div>
+  <div class="card">
+    <div class="card-title"><span class="icon">🧸</span>本月龄玩具推荐</div>
+    <div class="toy-grid" id="toyGrid"></div>
   </div>
   <div class="card">
     <div class="card-title"><span class="icon">📅</span>每日游戏计划</div>
@@ -243,6 +262,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
   <div class="brain-subtabs">
     <button class="active" id="subt-obs" onclick="showBrainSub('obs',this)">🔍 每周观察</button>
     <button id="subt-arch" onclick="showBrainSub('arch',this)">🗂️ 月度档案</button>
+    <button id="subt-dx" onclick="showBrainSub('dx',this)">🧭 深度诊断</button>
   </div>
 
   <!-- 子页：每周观察 -->
@@ -267,7 +287,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
     <div class="card">
       <div class="card-title"><span class="icon">🧠</span>脑计划·月评</div>
       <p style="font-size:15px;color:var(--text-mid);margin-bottom:14px;line-height:1.8">月评 = <strong>每周观察数据自动汇总</strong>。日常陪娃时在「每周观察」勾选行为项，月末/月初点这里选月份，自动生成五大脑发育雷达图 + 成长档案，无需重新测评。</p>
-      <div style="background:color-mix(in srgb,#F44336 8%,#fff);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--text-mid);line-height:1.7">📖 测评逻辑：每周推送 10 条简单行为观察题（5 大脑各 2 条），家长日常陪娃时随手勾选<br>· <b>月评</b> = 当月所有周观察自动汇总（五大脑雷达图）<br>· <b>专项能力测评</b>（认知/语言 8 项场景题）按需开启，不属于每月必做</div>
+      <div style="background:color-mix(in srgb,#F44336 8%,#fff);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--text-mid);line-height:1.7">📖 测评逻辑：每周推送 10 条简单行为观察题（5 大脑各 2 条），家长日常陪娃时随手勾选<br>· <b>月评</b> = 当月所有周观察自动汇总（五大脑雷达图）<br>· <b>深度诊断</b>（认知/语言 8 项场景题）按需做，结果会写入当月档案</div>
     </div>
     <div class="card" id="archiveCard">
       <div class="card-title"><span class="icon">🗂️</span>每月成长档案 <span class="no-print" style="float:right;font-size:13px;font-weight:400"><button class="mini-btn" onclick="exportData()">⬇ 导出全部</button> <button class="mini-btn" onclick="document.getElementById('importFile').click()">⬆ 导入</button><input type="file" id="importFile" accept="application/json" style="display:none" onchange="importData(this)"></span></div>
@@ -275,9 +295,30 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
       <div class="no-print" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
         <label>月份：<input type="month" id="archiveMonth" class="wk-input"></label>
         <button class="btn" onclick="genArchive()">🗂️ 生成成长档案</button>
-        <button class="btn" onclick="window.print()">🖨️ 打印 / 导出PDF</button>
+        <button class="btn" onclick="genArchive();setTimeout(function(){window.print()},150)">🖨️ 打印 / 导出PDF</button>
       </div>
       <div id="archiveArea"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">📈</span>月度趋势对比</div>
+      <p style="font-size:14px;color:var(--text-mid);margin-bottom:12px">至少两个月有记录后，自动生成多月雷达叠加和五大脑月度走势。</p>
+      <div id="trendArea"></div>
+    </div>
+  </div>
+
+  <!-- 子页：深度诊断 -->
+  <div class="brain-sub" id="bsub-dx">
+    <div class="card">
+      <div class="card-title"><span class="icon">🧭</span>深度诊断（认知 / 语言 8 项）</div>
+      <p style="font-size:15px;color:var(--text-mid);margin-bottom:14px;line-height:1.8">按需开启，不属于每月必做。用真实场景观察小鹿玛，选「经常 / 偶尔 / 还没」，结果会写入当月成长档案。</p>
+      <div class="obs-status" id="dxStatus"></div>
+      <div class="obs-progress"><div class="obs-progress-fill" id="dxProgress" style="width:0%"></div></div>
+      <div id="dxResult"></div>
+      <div id="dxList"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">📚</span>诊断历史</div>
+      <div id="dxHistory"></div>
     </div>
   </div>
 </div>
@@ -345,14 +386,88 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 <div class="footer">小鹿玛成长计划 · 知芽专家×爱贝睿×哈佛儿童发展中心 融合体系 · 为小鹿玛定制<br>1岁半内容基于卫健委2025指南+MedlinePlus+三甲儿科标准 · 2岁档接入爱贝睿原版</div>
 
 <script>
-var weekGames=[
-  {day:'周一',name:'场景旁白聊天',cat:'lang',desc:'小鹿玛做什么你就描述什么，海量语言输入'},
-  {day:'周二',name:'杯子藏物记忆',cat:'mem',desc:'三个杯子藏玩具，问在哪里'},
-  {day:'周三',name:'假装游戏',cat:'soc',desc:'模仿做饭喂娃娃，激活镜像神经元'},
-  {day:'周四',name:'积木塔',cat:'fine',desc:'垒2-4块积木，推倒重来'},
-  {day:'周五',name:'材质触摸分辨',cat:'mem',desc:'摸毛巾积木勺子，感受软硬滑粗'},
-  {day:'周六',name:'泡泡追跑',cat:'motor',desc:'吹泡泡让小鹿玛追拍'},
-  {day:'周日',name:'家务变游戏',cat:'soc',desc:'一起收玩具扫地，轮流配合'}
+var homeBands=[
+  {
+    min:18,
+    desc:'小鹿玛正处于<strong>大脑爆发黄金期</strong>——据国家卫健委2025《婴幼儿早期发展服务指南》，18月龄大脑发育完成度接近成人80%，每秒生成700-1000个神经元连接。本周聚焦：<strong>多感官探索 + 模仿学习 + 语言输入</strong>，用生活化陪玩激活大脑神经通路。',
+    focus:[
+      {icon:'🗣️',title:'语言爆发铺垫',desc:'18月是语言中枢黄金节点。用「场景旁白」——小鹿玛做什么你就描述什么，海量输入比教说话更有效。'},
+      {icon:'🪞',title:'模仿学习激活',desc:'镜像神经元活跃期，模仿是此阶段最强学习通道。示范扫地、打电话、喂娃娃，让她跟着做。'},
+      {icon:'🖐️',title:'多感官探索',desc:'提供不同材质物品（毛巾/积木/勺子），让小鹿玛摸、捏、敲，触觉+视觉+听觉同步编码大脑。'},
+      {icon:'🧩',title:'客体永久性巩固',desc:'玩「藏玩具」游戏，让小鹿玛理解「看不见≠消失」，这是认知发展的核心里程碑。'}
+    ],
+    games:[
+      {day:'周一',name:'场景旁白聊天',cat:'lang',desc:'小鹿玛做什么你就描述什么，海量语言输入'},
+      {day:'周二',name:'杯子藏物记忆',cat:'mem',desc:'三个杯子藏玩具，问在哪里'},
+      {day:'周三',name:'假装游戏',cat:'soc',desc:'模仿做饭喂娃娃，激活镜像神经元'},
+      {day:'周四',name:'积木塔',cat:'fine',desc:'垒2-4块积木，推倒重来'},
+      {day:'周五',name:'材质触摸分辨',cat:'mem',desc:'摸毛巾积木勺子，感受软硬滑粗'},
+      {day:'周六',name:'泡泡追跑',cat:'motor',desc:'吹泡泡让小鹿玛追拍'},
+      {day:'周日',name:'家务变游戏',cat:'soc',desc:'一起收玩具扫地，轮流配合'}
+    ],
+    toys:[
+      {name:'叠叠杯',icon:'🥤',tag:'认知',desc:'从随意堆叠到按大小套杯，边玩边说「大的、小的」。',why:'练大小顺序、空间概念和双手配合。'},
+      {name:'大颗粒积木',icon:'🧱',tag:'精细动作',desc:'示范垒 2-4 块，让宝宝自己搭、推倒再重来。',why:'练手眼协调、腕部控制和因果关系。'},
+      {name:'推拉玩具',icon:'🚗',tag:'大运动',desc:'让宝宝推着小车或动物玩具走，尝试转弯和过门槛。',why:'练平衡、行走自信和方向控制。'},
+      {name:'敲击台',icon:'🔨',tag:'精细动作',desc:'小锤敲木钉，敲进去翻面继续敲。',why:'练手腕力量和视觉追踪。'},
+      {name:'厚页绘本',icon:'📖',tag:'语言',desc:'每天 5-10 分钟，手指画面说名称，让宝宝自己翻页。',why:'语言输入加翻页精细动作，一次都练到。'},
+      {name:'感官瓶',icon:'🧴',tag:'感官',desc:'密封瓶装米、亮片或水，摇晃看流动、听声音。',why:'多感官刺激，帮助安静专注。'}
+    ]
+  },
+  {
+    min:21,
+    desc:'21月龄是动作和语言快速升级期：跑得更稳、词汇量开始突破 50，进入两词句阶段。本周聚焦：<strong>动作协调 + 两词句启蒙 + 简单规则游戏</strong>，在玩里自然推进。',
+    focus:[
+      {icon:'🏃',title:'跑跳协调',desc:'追跑、踢球、倒退走，让小鹿玛练习身体控制，跌倒后鼓励自己站起来。'},
+      {icon:'🗣️',title:'两词句突破',desc:'接住「妈妈抱」这类短句，再用完整句重复一遍，不纠错、不加压，多给说话机会。'},
+      {icon:'🧩',title:'简单规则游戏',desc:'轮流收玩具、等待、听「轮到你了」，开始理解简单规则和合作。'},
+      {icon:'🧠',title:'记忆小任务',desc:'两步指令和藏物游戏，逐步扩展工作记忆容量，从 1 步到 2 步。'}
+    ],
+    games:[
+      {day:'周一',name:'踢球追跑',cat:'motor',desc:'边追球边喊名字，练习跑稳和转向'},
+      {day:'周二',name:'两步指令游戏',cat:'mem',desc:'「拿球放进盒子」，完成后再加第三步'},
+      {day:'周三',name:'假装喂娃娃',cat:'soc',desc:'喂娃娃、哄睡，练习角色扮演和共情'},
+      {day:'周四',name:'垒高积木塔',cat:'fine',desc:'垒5-6块积木，比谁的高，推倒重来'},
+      {day:'周五',name:'声音配对辨识',cat:'mem',desc:'敲瓶子碗盒，听声音找出对应物'},
+      {day:'周六',name:'户外追泡泡',cat:'motor',desc:'追拍泡泡，练习跑跳和手眼协调'},
+      {day:'周日',name:'家务轮流',cat:'soc',desc:'一起收玩具、放衣服，练习轮流和配合'}
+    ],
+    toys:[
+      {name:'形状配对盒',icon:'🔷',tag:'认知',desc:'圆形、方形、三角找洞放入，先示范再让宝宝自己试。',why:'形状配对是逻辑启蒙的第一步。'},
+      {name:'轨道推车',icon:'🚂',tag:'大运动',desc:'小车在斜坡或轨道上滑，宝宝追赶、放回去再滑。',why:'练因果关系和跑动协调。'},
+      {name:'大珠子串绳',icon:'📿',tag:'精细动作',desc:'直径 1cm 以上的大珠子，绳头包胶带当针，练习穿过去。',why:'练双手配合、专注和手指精细度。'},
+      {name:'扮演套装',icon:'🧑‍🍳',tag:'社交',desc:'碗勺、娃娃、电话一起玩，喂饭、打电话、做饭。',why:'角色扮演正好匹配语言爆发期。'},
+      {name:'蜡笔和大画纸',icon:'🖍️',tag:'精细动作',desc:'大纸铺在地上，让宝宝自由涂鸦，不纠正握笔。',why:'握笔前奏，保护创作自信。'},
+      {name:'泡泡水',icon:'🫧',tag:'大运动',desc:'吹泡泡让宝宝追、拍、踩。',why:'练跑跳协调和手眼配合。'}
+    ]
+  },
+  {
+    min:24,
+    desc:'24月龄是语言和自主意识双爆发期：三词句、颜色命名、什么都想「自己来」。本周聚焦：<strong>语言表达 + 自主尝试 + 情绪命名</strong>，把「我自己来」变成成长机会。',
+    focus:[
+      {icon:'🗣️',title:'三词句',desc:'用「宝宝要球」式短句回应，家长把句子扩展完整，不纠正发音，让表达更有信心。'},
+      {icon:'🎨',title:'颜色与形状命名',desc:'从配对进阶到说出名称：这是什么颜色、什么形状，把生活物品变成词汇游戏。'},
+      {icon:'💪',title:'自主性',desc:'自己穿衣、洗手、收玩具，允许慢和乱，完成后及时肯定，强化「我能行」。'},
+      {icon:'💛',title:'情绪命名',desc:'高兴、生气、害怕，帮小鹿玛说出感受，情绪有名字才更容易被调节。'}
+    ],
+    games:[
+      {day:'周一',name:'积木颜色说名',cat:'cog',desc:'拿红色积木问什么颜色，说对再换色'},
+      {day:'周二',name:'两步指令游戏',cat:'mem',desc:'两步指令加第三步，练工作记忆'},
+      {day:'周三',name:'假装做饭游戏',cat:'soc',desc:'做饭喂客人，练角色扮演和轮流'},
+      {day:'周四',name:'沿线剪纸',cat:'fine',desc:'短直线慢慢剪，练手部力量和控制'},
+      {day:'周五',name:'今天做了什么',cat:'mem',desc:'睡前聊今天，用语言把记忆串起来'},
+      {day:'周六',name:'气球与球拍',cat:'motor',desc:'拍气球不让落地，练协调和反应'},
+      {day:'周日',name:'情绪角色扮演',cat:'soc',desc:'娃娃开心/生气/害怕，说出并演绎情绪'}
+    ],
+    toys:[
+      {name:'2-4 片拼图',icon:'🧩',tag:'认知',desc:'从两片拼图开始，示范转方向，让宝宝自己放进凹槽。',why:'练观察力、记忆和解决问题。'},
+      {name:'分类玩具',icon:'🗂️',tag:'认知',desc:'把同色或同形状积木放进对应碗里，先 2 类再加到 3 类。',why:'分类是数学思维和语言命名的基础。'},
+      {name:'扮演厨房',icon:'🍳',tag:'社交',desc:'做饭、上菜、喂客人，配合对话和轮流。',why:'语言表达、想象力和社交规则一起练。'},
+      {name:'平衡车或三轮车',icon:'🛴',tag:'大运动',desc:'平地慢速练习，大人旁边护着，累了就休息。',why:'练腿部力量、平衡和空间判断。'},
+      {name:'安全剪刀和彩纸',icon:'✂️',tag:'精细动作',desc:'先剪短直线，再剪折线，大人握着宝宝的手练。',why:'练手部力量、双手配合和专注。'},
+      {name:'配对卡片',icon:'🃏',tag:'语言',desc:'动物或物品卡片两张一组，找出相同并说出名字。',why:'练短时记忆和词汇扩展。'}
+    ]
+  }
 ];
 
 var milestones={
@@ -389,28 +504,28 @@ var milestones={
 };
 
 var allGames=[
-  {name:'杯子藏物记忆',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'哈佛',mat:'3个杯子+3个小玩具',steps:'1.当孩子面把玩具藏杯下 2.问小车在哪里 3.孩子掀杯找 4.找对表扬，找错鼓励再试',time:'5-8分钟',principle:'哈佛儿童发展中心推荐。训练客体永久性与工作记忆，可增减杯子数量调难度。'},
-  {name:'假装游戏',age:'18月+',cat:'soc',catLabel:'社会情绪',src:'哈佛',mat:'安全日用品（碗/勺/扫帚/梳子）',steps:'1.孩子假装搅碗 2.你接话在做蛋糕吗好香 3.鼓励喂娃娃 4.给安全道具自由发挥',time:'10分钟',principle:'哈佛推荐。激活镜像神经元，模仿是18月最强学习通道，也是社交与同理心的生物学基础。'},
-  {name:'家务变游戏',age:'18月+',cat:'soc',catLabel:'社会情绪',src:'哈佛',mat:'扫帚/收纳篮/玩具',steps:'1.放音乐 2.一起收玩具入篮 3.把洗衣篮当篮筐投衣服 4.口头指令+示范',time:'10分钟',principle:'哈佛推荐。角色扮演练自主性与配合，轮流是社交启蒙，同时练精细与大运动。'},
-  {name:'手指谣与歌曲',age:'18月+',cat:'lang',catLabel:'语言',src:'哈佛',mat:'无（头肩膀膝盖脚趾/拍手歌）',steps:'1.唱慢版带动作 2.孩子模仿动作 3.加速变节奏 4.留惊喜环节等孩子反应',time:'5-10分钟',principle:'哈佛推荐。歌曲+动作训练工作记忆（记序列）与自控力，变节奏激活注意力系统。'},
-  {name:'颜色配对分类',age:'18月+',cat:'cog',catLabel:'认知',src:'哈佛',mat:'彩色纸+同色小物',steps:'1.地上铺红黄蓝纸 2.给孩子彩色积木 3.放到一样的颜色上 4.从2色开始渐增',time:'8分钟',principle:'哈佛推荐。18月开始理解相同/不同，先配对再命名，是颜色认知第一步。'},
-  {name:'材质触摸分辨',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'卫健委',mat:'毛巾/积木/硅胶勺/毛绒玩具',steps:'1.放面前自由摸2-3分钟 2.同步说软软的是毛巾硬硬的是积木 3.不强迫记忆 4.触摸瞬间配语言',time:'10分钟',principle:'卫健委指南。多感官同步输入让信息多通道编码，记忆效果远超单一通道。'},
-  {name:'声音配对辨识',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'卫健委',mat:'空瓶/不锈钢碗/纸盒/铃铛',steps:'1.分别敲击让孩子听 2.打乱再敲 3.引导找出对应物 4.反复几遍',time:'8分钟',principle:'卫健委指南。听觉刺激激活语言中枢韦尼克区，声音-材质关联记忆为认知发展打基础。'},
-  {name:'撕贴收纳',age:'18月+',cat:'fine',catLabel:'精细动作',src:'专家',mat:'抽纸/不干胶贴纸/空盒',steps:'1.自由撕纸巾成条碎片 2.撕贴纸贴卡片 3.引导捡碎纸入盒 4.不介意凌乱',time:'10分钟',principle:'撕纸练指尖力量与控制，贴纸练手眼协调，收纳培养秩序感（秩序敏感期1-3岁）。'},
-  {name:'瓶盖配对拧动',age:'18月+',cat:'fine',catLabel:'精细动作',src:'专家',mat:'不同大小瓶盖+对应空瓶',steps:'1.收集洗净瓶盖瓶子 2.孩子自主配对 3.尝试对准按压拧开拧紧 4.示范但不代劳',time:'10分钟',principle:'配对练认知，拧动练手腕旋转与手眼协调，同时培养解决问题的动手能力。'},
-  {name:'翻书找物',age:'18月+',cat:'fine',catLabel:'精细动作',src:'专家',mat:'厚页绘本+小贴纸',steps:'1.书页里藏贴纸 2.引导一页页翻找 3.找到表扬 4.练习翻页动作',time:'8分钟',principle:'翻页练精细操控，寻找练视觉追踪与专注力，18月可一次翻2-3页。'},
-  {name:'叠叠杯排序',age:'18月+',cat:'cog',catLabel:'认知',src:'专家',mat:'叠叠杯套杯',steps:'1.随意堆叠 2.引导按大小排列 3.套入收纳 4.说大的小的',time:'8分钟',principle:'建立大小/顺序/空间逻辑概念，锻炼思维条理性，是早期数学启蒙。'},
-  {name:'感官寻宝',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'专家',mat:'收纳盒+大米/豆子+安全小玩具',steps:'1.谷物里埋玩具 2.示范翻找说出名称触感 3.孩子自主翻找 4.全程看护防误食',time:'10分钟',principle:'多重触觉刺激加速感官发育，翻找过程练专注力与指令理解。⚠️全程看护防误食。'},
-  {name:'场景旁白沟通',age:'18月+',cat:'lang',catLabel:'语言',src:'卫健委',mat:'无（随时随地）',steps:'1.小鹿玛玩积木时说宝宝搭积木红色积木堆高高 2.吃饭时说米饭香香一口口吃 3.不提问不强迫模仿 4.每天坚持',time:'全天碎片化',principle:'卫健委指南。18月是语言爆发前奏，海量生活化输入比教说话更有效，大脑自动收纳词汇。'},
-  {name:'积木塔',age:'18月+',cat:'fine',catLabel:'精细动作',src:'知芽',mat:'积木若干',steps:'1.示范垒2块 2.鼓励加第3块 3.推倒重来 4.记录最高块数',time:'10分钟',principle:'垒叠练手眼协调与空间认知，标准2-4块。推倒重建培养抗挫力。'},
-  {name:'泡泡追跑',age:'18月+',cat:'motor',catLabel:'大运动',src:'知芽',mat:'泡泡液',steps:'1.吹泡泡 2.鼓励小鹿玛追拍 3.喊拍 4.轮流吹和追',time:'10分钟',principle:'追跑练平衡协调（18月跑还僵硬易摔），拍打练手眼协调，轮流是社交启蒙。'},
-  {name:'图卡寻宝',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'爱贝睿',mat:'5-8张图卡',steps:'1.铺开图卡 2.说找小猫 3.一分钟内找到 4.拉远距离加难度',time:'5分钟',principle:'爱贝睿2岁测评项。训练注意力广度，逐步拉距增难。'},
-  {name:'积木颜色说名',age:'2岁+',cat:'cog',catLabel:'认知',src:'爱贝睿',mat:'红黄蓝绿积木',steps:'1.拿红积木问什么颜色 2.等孩子说 3.说对表扬 4.换色',time:'5分钟',principle:'爱贝睿2岁测评项。从配对(1岁半)进阶到命名(2岁)。'},
-  {name:'两步指令游戏',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'爱贝睿',mat:'球和盒子',steps:'1.说拿球放盒子里 2.孩子执行 3.完成表扬 4.加到三步',time:'5分钟',principle:'爱贝睿2岁测评项。训练短时记忆，工作记忆从1步到多步扩展。'},
-  {name:'今天做了什么',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'爱贝睿',mat:'无（睡前聊天）',steps:'1.睡前问今天做了什么 2.引导回忆 3.补充细节 4.说明天我们...',time:'5分钟',principle:'爱贝睿2岁测评项。训练事件记忆，用语言提取巩固记忆。'},
-  {name:'够玩具',age:'2岁+',cat:'cog',catLabel:'认知',src:'爱贝睿',mat:'玩具+小棍子',steps:'1.玩具放远处 2.给棍子 3.观察如何够 4.鼓励尝试不同方式',time:'8分钟',principle:'爱贝睿2岁测评项。训练解决问题能力，观察是否用工具。'},
-  {name:'动作讲故事',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'爱贝睿',mat:'无',steps:'1.讲故事配动作 2.做兔子耳朵蹦跳 3.让孩子模仿 4.下次做动作',time:'10分钟',principle:'爱贝睿记忆理论。肢体动作+表情帮助记忆编码，比纯听有效。'},
-  {name:'西瓜多感官',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'爱贝睿',mat:'西瓜（或其他水果）',steps:'1.看说绿色 2.摸说滑滑的 3.切看红色 4.尝说甜的',time:'15分钟',principle:'爱贝睿记忆理论。视+听+触+味多感官同步输入，记忆最深刻。'}
+  {name:'杯子藏物记忆',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'哈佛',mat:'3个杯子+3个小玩具',steps:'1.把3个小玩具放在桌上，让宝宝先看清楚并摸一摸 2.当着宝宝的面，把一个玩具藏到其中一个杯子下面 3.问「小车在哪里？」观察宝宝会不会掀开杯子 4.找对就拍手说「找到了」，找错就掀开杯子再藏一次 5.熟练后玩具减到2个、杯子增到3个，逐步加难度',time:'5-8分钟',principle:'哈佛儿童发展中心推荐。训练客体永久性与工作记忆，可增减杯子数量调难度。'},
+  {name:'假装游戏',age:'18月+',cat:'soc',catLabel:'社会情绪',src:'哈佛',mat:'安全日用品（碗/勺/扫帚/梳子）',steps:'1.拿出安全日用品，先自己用勺子假装搅碗，边说「我在做蛋糕」 2.停下来，把勺子递给宝宝，看她会不会模仿 3.她搅碗时你接话「好香呀，蛋糕做好了吗？」 4.鼓励她喂娃娃、哄娃娃睡觉 5.宝宝玩够了就换新道具，让想象自然延伸',time:'10分钟',principle:'哈佛推荐。激活镜像神经元，模仿是18月最强学习通道，也是社交与同理心的生物学基础。'},
+  {name:'家务变游戏',age:'18月+',cat:'soc',catLabel:'社会情绪',src:'哈佛',mat:'扫帚/收纳篮/玩具',steps:'1.选一首节奏轻快的歌，先和宝宝一起跟着节奏拍手 2.把玩具倒在地上，示范把积木放进收纳篮 3.让宝宝自己捡，你在一旁说「积木回家啦」 4.把洗衣篮当篮筐，和宝宝轮流把衣服投进去 5.完成后一起拍手，说「我们一起收好了」',time:'10分钟',principle:'哈佛推荐。角色扮演练自主性与配合，轮流是社交启蒙，同时练精细与大运动。'},
+  {name:'手指谣与歌曲',age:'18月+',cat:'lang',catLabel:'语言',src:'哈佛',mat:'无（头肩膀膝盖脚趾/拍手歌）',steps:'1.选一首慢歌（如头肩膀膝盖脚趾），你边唱边做动作 2.动作放慢，给宝宝时间观察和模仿 3.她做对一步就笑一笑，不催不纠正 4.熟悉后加速或换节奏，制造一点惊喜 5.唱到关键动作时停顿，等宝宝反应再继续',time:'5-10分钟',principle:'哈佛推荐。歌曲+动作训练工作记忆（记序列）与自控力，变节奏激活注意力系统。'},
+  {name:'颜色配对分类',age:'18月+',cat:'cog',catLabel:'认知',src:'哈佛',mat:'彩色纸+同色小物',steps:'1.地上铺红黄蓝三张彩纸，每张放一个同色积木做样板 2.把其余积木混在一起，递给宝宝一个 3.问「这个积木该回哪个家？」先示范一次 4.宝宝放对就拍手，放错就牵着她的手一起放 5.熟悉2色后再加第3色，颜色名称等配对熟练后再教',time:'8分钟',principle:'哈佛推荐。18月开始理解相同/不同，先配对再命名，是颜色认知第一步。'},
+  {name:'材质触摸分辨',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'卫健委',mat:'毛巾/积木/硅胶勺/毛绒玩具',steps:'1.把毛巾、积木、硅胶勺、毛绒玩具放在托盘里 2.让宝宝自由摸2-3分钟，不打断 3.她摸到毛巾时说「软软的毛巾」，摸到积木时说「硬硬的积木」 4.每次只说当下那一个物品，不要求她记住 5.玩完问「哪个软软的？」看她会不会指',time:'10分钟',principle:'卫健委指南。多感官同步输入让信息多通道编码，记忆效果远超单一通道。'},
+  {name:'声音配对辨识',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'卫健委',mat:'空瓶/不锈钢碗/纸盒/铃铛',steps:'1.准备空瓶、不锈钢碗、纸盒、铃铛，先一样一样敲给宝宝听 2.每敲一样就说名字，比如「这是瓶子，咚咚咚」 3.打乱顺序，背对宝宝再敲一样 4.让宝宝转头找声音从哪里来 5.熟练后让她自己敲，家长猜，轮流玩',time:'8分钟',principle:'卫健委指南。听觉刺激激活语言中枢韦尼克区，声音-材质关联记忆为认知发展打基础。'},
+  {name:'撕贴收纳',age:'18月+',cat:'fine',catLabel:'精细动作',src:'专家',mat:'抽纸/不干胶贴纸/空盒',steps:'1.准备抽纸、不干胶贴纸和一个空盒 2.先示范把纸巾撕成小条，动作夸张一些 3.让宝宝自由撕，撕碎也不介意 4.引导她把撕好的纸片、贴纸贴到卡片上 5.最后一起把碎片捡进空盒，顺手练收纳',time:'10分钟',principle:'撕纸练指尖力量与控制，贴纸练手眼协调，收纳培养秩序感（秩序敏感期1-3岁）。'},
+  {name:'瓶盖配对拧动',age:'18月+',cat:'fine',catLabel:'精细动作',src:'专家',mat:'不同大小瓶盖+对应空瓶',steps:'1.收集3-4组洗净的大小瓶子和瓶盖，盖子和瓶子分开摆放 2.先示范拿起一个盖子，试几个瓶子找到合适的 3.让宝宝自己配，配好就拍手 4.再示范对准瓶口按压、拧开拧紧 5.不要代劳，多给时间让她自己想办法',time:'10分钟',principle:'配对练认知，拧动练手腕旋转与手眼协调，同时培养解决问题的动手能力。'},
+  {name:'翻书找物',age:'18月+',cat:'fine',catLabel:'精细动作',src:'专家',mat:'厚页绘本+小贴纸',steps:'1.选一本厚页绘本，在某一页用贴纸做标记 2.先示范翻页，一次翻2-3页，找到贴纸就开心地指出来 3.让宝宝自己翻，找到后一起拍手 4.换一页藏新贴纸，重复玩 5.翻页时多描述画面内容，顺便输入语言',time:'8分钟',principle:'翻页练精细操控，寻找练视觉追踪与专注力，18月可一次翻2-3页。'},
+  {name:'叠叠杯排序',age:'18月+',cat:'cog',catLabel:'认知',src:'专家',mat:'叠叠杯套杯',steps:'1.先把杯子散开，让宝宝随意堆、扣、套 2.你示范按大小排成一排，边排边说「大的、小的」 3.让宝宝试着把小的套进大的里面 4.套不进去就换一个方向，不急着纠正 5.最后一起把杯子按大小收起来，完成排序和收纳',time:'8分钟',principle:'建立大小/顺序/空间逻辑概念，锻炼思维条理性，是早期数学启蒙。'},
+  {name:'感官寻宝',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'专家',mat:'收纳盒+大米/豆子+安全小玩具',steps:'1.准备收纳盒，倒入大米或豆子，埋入几个安全小玩具 2.先示范用手翻找，找到后说出名称和触感 3.让宝宝自己翻找，找到什么就说什么 4.找不到时用语言提示位置，比如「左边还有一个」 5.全程看护，防止宝宝把豆子放进嘴里',time:'10分钟',principle:'多重触觉刺激加速感官发育，翻找过程练专注力与指令理解。⚠️全程看护防误食。'},
+  {name:'场景旁白沟通',age:'18月+',cat:'lang',catLabel:'语言',src:'卫健委',mat:'无（随时随地）',steps:'1.宝宝玩积木时，在旁边描述她正在做的事，比如「宝宝搭积木，红色积木堆高高」 2.吃饭时说「米饭香香，一口一口吃」 3.描述时用短句、慢一点，不提问 4.她发出声音或词就认真回应，不纠正发音 5.把旁白融入洗澡、散步、睡觉，每天坚持',time:'全天碎片化',principle:'卫健委指南。18月是语言爆发前奏，海量生活化输入比教说话更有效，大脑自动收纳词汇。'},
+  {name:'积木塔',age:'18月+',cat:'fine',catLabel:'精细动作',src:'知芽',mat:'积木若干',steps:'1.拿出积木，先示范垒2块，动作慢一点 2.鼓励宝宝加第3块，倒了也没关系 3.你数「1、2、3」帮她建立数量感 4.推倒时一起大笑，再重新开始 5.记录最高块数，下次超过就庆祝',time:'10分钟',principle:'垒叠练手眼协调与空间认知，标准2-4块。推倒重建培养抗挫力。'},
+  {name:'泡泡追跑',age:'18月+',cat:'motor',catLabel:'大运动',src:'知芽',mat:'泡泡液',steps:'1.先吹几个泡泡，让宝宝看泡泡飘落 2.鼓励她去追、拍、踩，你在一旁喊「拍到了」 3.她跑不稳时站在原地吹，让她走近拍 4.熟悉后轮流吹和追，一人吹一人拍 5.玩到出汗就休息，多喝水',time:'10分钟',principle:'追跑练平衡协调（18月跑还僵硬易摔），拍打练手眼协调，轮流是社交启蒙。'},
+  {name:'图卡寻宝',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'爱贝睿',mat:'5-8张图卡',steps:'1.把5-8张图卡铺开，让宝宝先看一遍 2.说「找小猫」，给她一点时间扫视 3.找到后让她指出来，你跟着说「这是小猫」 4.熟练后把卡放远一些，增加搜索难度 5.一次只找1-2张，保持轻松不催促',time:'5分钟',principle:'爱贝睿2岁测评项。训练注意力广度，逐步拉距增难。'},
+  {name:'积木颜色说名',age:'2岁+',cat:'cog',catLabel:'认知',src:'爱贝睿',mat:'红黄蓝绿积木',steps:'1.拿出红黄蓝绿四色积木，先只玩红色 2.拿起红色积木说「红色」，让宝宝重复或点头 3.换蓝色再问「这是什么颜色」，等她自己说 4.说对就表扬，说错就再说一遍，不纠正 5.每天5分钟，熟练一种颜色再加下一种',time:'5分钟',principle:'爱贝睿2岁测评项。从配对(1岁半)进阶到命名(2岁)。'},
+  {name:'两步指令游戏',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'爱贝睿',mat:'球和盒子',steps:'1.把球和盒子放在宝宝面前，先玩一步指令「拿球」 2.完成后再玩「把球放进盒子」 3.两步连起来说「先拿球，再放盒子」，等宝宝执行 4.完成后拍手，再说一遍你看到的事 5.熟练后加第三步「再关盒子」，慢慢扩展',time:'5分钟',principle:'爱贝睿2岁测评项。训练短时记忆，工作记忆从1步到多步扩展。'},
+  {name:'今天做了什么',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'爱贝睿',mat:'无（睡前聊天）',steps:'1.睡前和宝宝一起躺下，先问「今天我们去哪里了？」 2.她说不出来时给提示，比如「公园有大滑梯」 3.顺着她的话补充细节，比如「还看到小狗了」 4.用短句把今天串成一个小故事 5.最后说「明天我们还要去...」，给期待',time:'5分钟',principle:'爱贝睿2岁测评项。训练事件记忆，用语言提取巩固记忆。'},
+  {name:'够玩具',age:'2岁+',cat:'cog',catLabel:'认知',src:'爱贝睿',mat:'玩具+小棍子',steps:'1.把玩具放到宝宝够不到但看得见的地方 2.先递给她一根小棍子，看她自己怎么用 3.不示范，先观察，让她自己想办法 4.她够到后开心地肯定，问她「怎么够到的」 5.换一个更难的位置，鼓励尝试新方法',time:'8分钟',principle:'爱贝睿2岁测评项。训练解决问题能力，观察是否用工具。'},
+  {name:'动作讲故事',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'爱贝睿',mat:'无',steps:'1.选一个有小动物的故事，比如兔子蹦跳 2.讲到兔子时你站起来做耳朵和蹦跳动作 3.让宝宝跟着模仿，你放慢速度等她 4.下次讲到同一页只做动作不说词，看她能不能接 5.动作夸张一些，笑闹中把故事记住',time:'10分钟',principle:'爱贝睿记忆理论。肢体动作+表情帮助记忆编码，比纯听有效。'},
+  {name:'西瓜多感官',age:'2岁+',cat:'mem',catLabel:'记忆/感官',src:'爱贝睿',mat:'西瓜（或其他水果）',steps:'1.把整个西瓜抱出来，先让宝宝看，说「绿绿的西瓜」 2.让她摸一摸，说「滑滑的」 3.切开后看红色的瓤，说「红红的」 4.尝一口，说「甜甜的」，让她跟着说 5.整个过程不急着教，让每个感官都参与',time:'15分钟',principle:'爱贝睿记忆理论。视+听+触+味多感官同步输入，记忆最深刻。'}
 ,
 {name:'橡皮泥杯子蛋糕',age:'18月+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'纸杯+扣子+吸管+豆子+橡皮泥',steps:'纸杯+扣子+吸管+豆子+橡皮泥，让宝宝装饰杯子蛋糕',time:'5-10分钟',principle:''},
   {name:'橡皮泥的切割',age:'2岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'切割模具练切、滚、压等手指动作',steps:'切割模具练切、滚、压等手指动作',time:'10分钟',principle:''},
@@ -507,26 +622,26 @@ var allGames=[
   {name:'纸板相机',age:'3岁+',cat:'soc',catLabel:'社会情绪',src:'安潇·ima',mat:'纸板做相机假装游戏',steps:'纸板做相机假装游戏',time:'15分钟',principle:''},
   {name:'尼莫小剧场',age:'3岁+',cat:'lang',catLabel:'语言',src:'安潇·ima',mat:'纸箱剧场角色表演',steps:'纸箱剧场角色表演',time:'15分钟',principle:''},
   {name:'纸转盘',age:'3岁+',cat:'fine',catLabel:'精细动作',src:'安潇·ima',mat:'纸板圆形转盘拉绳旋转',steps:'纸板圆形转盘拉绳旋转',time:'15分钟',principle:''},
-  {name:'追泡泡+推行小车',age:'18月+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'吹泡泡追逐触碰',steps:'吹泡泡追逐触碰，配小推车练迈步（不用学步带）',time:'5-10分钟',principle:''},
-  {name:'居家障碍闯关',age:'18月+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'靠垫椅子搭通道',steps:'靠垫椅子搭通道，翻越钻爬绕行，家长鼓励',time:'5-10分钟',principle:''},
-  {name:'抛接球互动',age:'18月+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'软球/毛绒玩偶互相传递',steps:'软球/毛绒玩偶互相传递，完成投掷给正向反馈',time:'5-10分钟',principle:''},
-  {name:'多材质感官瓶',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'网络·权威',mat:'密封瓶装米/亮片/水',steps:'密封瓶装米/亮片/水，摇晃听声摸触感',time:'5-10分钟',principle:''},
-  {name:'实时物品命名',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'指身边物品清晰说名称特征',steps:'指身边物品清晰说名称特征，回应宝宝指认',time:'5-10分钟',principle:''},
-  {name:'厚页绘本共读',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'低幼厚纸绘本每天5-10分钟',steps:'低幼厚纸绘本每天5-10分钟，手指画面问答',time:'5-10分钟',principle:''},
-  {name:'简易配对',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'成对袜子/形状卡片配对',steps:'成对袜子/形状卡片配对，完成鼓掌',time:'5-10分钟',principle:''},
-  {name:'动作模仿游戏',age:'18月+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'互相模仿动作与表情',steps:'互相模仿动作与表情，缓解分离焦虑',time:'5-10分钟',principle:''},
-  {name:'吹棉花球',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'网络·权威',mat:'桌前吹棉球落地',steps:'桌前吹棉球落地，练圆唇口肌促发音',time:'5-10分钟',principle:''},
-  {name:'水果寻宝',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'按名称找水果放篮子',steps:'按名称找水果放篮子，进阶蒙眼摸闻猜',time:'5-10分钟',principle:''},
-  {name:'绒球钻山洞',age:'18月+',cat:'fine',catLabel:'精细动作',src:'网络·权威',mat:'纸筒固定桌面',steps:'纸筒固定桌面，绒球从一端送进另一端出来',time:'5-10分钟',principle:''},
-  {name:'撕彩纸贴贴乐',age:'18月+',cat:'fine',catLabel:'精细动作',src:'网络·权威',mat:'撕彩纸碎片贴胶区',steps:'撕彩纸碎片贴胶区，给小花穿花衣',time:'5-10分钟',principle:''},
-  {name:'障碍爬行大冒险',age:'18月+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'抱枕毯子搭隧道',steps:'抱枕毯子搭隧道，玩具引导爬行通过',time:'5-10分钟',principle:''},
-  {name:'简单指令互动',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:"发清晰指令'把球给妈妈'",steps:"发清晰指令'把球给妈妈'，完成即鼓励",time:'5-10分钟',principle:''},
-  {name:'趣味玩水探索',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'网络·权威',mat:'温水+杯勺漂浮玩具自由舀玩',steps:'温水+杯勺漂浮玩具自由舀玩，全程看护',time:'5-10分钟',principle:''},
-  {name:'颜色形状配对',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'积木/卡片按颜色形状分类配对',steps:'积木/卡片按颜色形状分类配对，认名称',time:'5-10分钟',principle:''},
-  {name:'小小家务能手',age:'18月+',cat:'soc',catLabel:'社会情绪',src:'网络·权威',mat:'引导叠袜子/收纳玩具/整理绘本',steps:'引导叠袜子/收纳玩具/整理绘本，建秩序感',time:'5-10分钟',principle:''},
-  {name:'看图说故事',age:'2岁+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'绘本卡片家长讲述',steps:'绘本卡片家长讲述，引导宝宝复述一两个字',time:'10分钟',principle:''},
-  {name:'绘本角色扮演',age:'2岁+',cat:'soc',catLabel:'社会情绪',src:'网络·权威',mat:'共读后模仿角色对话动作',steps:'共读后模仿角色对话动作，轻松互动',time:'10分钟',principle:''},
-  {name:'障碍跳跃游戏',age:'2岁+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'摆小障碍引导双脚并拢跳跨',steps:'摆小障碍引导双脚并拢跳跨，循序渐进',time:'10分钟',principle:''},
+  {name:'追泡泡+推行小车',age:'18月+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'吹泡泡追逐触碰',steps:'1.先吹几个泡泡，让宝宝伸手拍 2.把小推车放在她前面，鼓励她推着走 3.泡泡往哪飘，就让她推车追到哪 4.她迈步不稳时，你站她身后轻轻护着 5.每追到一个泡泡就一起欢呼，不催不赶',time:'5-10分钟',principle:''},
+  {name:'居家障碍闯关',age:'18月+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'靠垫椅子搭通道',steps:'1.用靠垫、椅子和毯子搭一条低矮通道 2.先示范钻过去、翻过去、绕过去 3.让宝宝自己选择先挑战哪一段 4.她卡住时用手势和语言提示，不直接抱 5.每完成一段就击掌，再增加一点难度',time:'5-10分钟',principle:''},
+  {name:'抛接球互动',age:'18月+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'软球/毛绒玩偶互相传递',steps:'1.面对面坐或站，距离半米左右 2.先把软球轻轻滚到宝宝面前 3.让她抱起来，再递还或丢给你 4.接到球就夸张地说「接到了」，给她正向反馈 5.熟练后慢慢拉开距离，让球轻轻抛起',time:'5-10分钟',principle:''},
+  {name:'多材质感官瓶',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'网络·权威',mat:'密封瓶装米/亮片/水',steps:'1.准备3个密封瓶，分别装米、亮片和水 2.先摇米瓶，说「沙沙沙」，让宝宝看米粒流动 3.再摇水瓶，看气泡和亮片慢慢飘 4.让宝宝自己选瓶子摇，家长说名称 5.瓶盖一定要拧紧，全程看着玩',time:'5-10分钟',principle:''},
+  {name:'实时物品命名',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'指身边物品清晰说名称特征',steps:'1.宝宝指着东西时，立刻说出名称，比如「这是水杯」 2.顺带说一两个特征，比如「蓝色的水杯」 3.她指错也没关系，按她指的回应 4.每天散步、吃饭、洗澡时都这样做 5.不考她「这是什么」，只说给她听',time:'5-10分钟',principle:''},
+  {name:'厚页绘本共读',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'低幼厚纸绘本每天5-10分钟',steps:'1.每天固定5-10分钟，选低幼厚纸绘本 2.用手指着画面说名称，慢一点 3.问简单问题，比如「小狗在哪？」等她指 4.她翻页就让她翻，不急着讲完 5.读到喜欢的地方重复几遍，建立熟悉感',time:'5-10分钟',principle:''},
+  {name:'简易配对',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'成对袜子/形状卡片配对',steps:'1.准备几双成对袜子或两套形状卡片 2.先拿出其中一双放在桌上做样板 3.把其他袜子打乱，递一只给宝宝 4.问「和哪只一样？」让她自己找 5.配好就鼓掌，再从2对增加到3对',time:'5-10分钟',principle:''},
+  {name:'动作模仿游戏',age:'18月+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'互相模仿动作与表情',steps:'1.你先做一个简单动作，比如拍手、点头 2.等宝宝看着你，再做一遍慢动作 3.她跟着做就笑一笑，不做就再示范 4.轮到她做动作，你来模仿 5.分离焦虑时先用这个游戏，再离开，让她有安全感',time:'5-10分钟',principle:''},
+  {name:'吹棉花球',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'网络·权威',mat:'桌前吹棉球落地',steps:'1.桌上放一颗轻棉花球，家长先吹，球滚出去 2.让宝宝学你撅嘴吹，不用使劲 3.可以放两个球比赛，看谁的先到终点 4.吹不动就调整位置，让她平视桌面 5.练圆唇口肌，每天几分钟就好',time:'5-10分钟',principle:''},
+  {name:'水果寻宝',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'按名称找水果放篮子',steps:'1.准备几种水果和一个篮子 2.说「把苹果放进篮子」，让她拿过来 3.找到就一起说「苹果」，放进篮子 4.熟练后蒙上眼睛，让她摸一摸、闻一闻再猜 5.全程由家长切配水果，防止误食小块',time:'5-10分钟',principle:''},
+  {name:'绒球钻山洞',age:'18月+',cat:'fine',catLabel:'精细动作',src:'网络·权威',mat:'纸筒固定桌面',steps:'1.把纸筒固定在桌面或纸盒上，斜放 2.先示范把一个绒球从这头放进，那头掉出来 3.让宝宝自己送绒球进洞，看它滚出来 4.换大小不同的绒球，观察哪个掉得快 5.纸筒边缘要平整，防止划伤',time:'5-10分钟',principle:''},
+  {name:'撕彩纸贴贴乐',age:'18月+',cat:'fine',catLabel:'精细动作',src:'网络·权威',mat:'撕彩纸碎片贴胶区',steps:'1.准备彩纸、胶水和一张画好小花轮廓的纸 2.先示范撕纸条，撕成小碎片 3.让宝宝撕，撕不齐也没关系 4.在花心上涂胶，让宝宝把碎片贴上去 5.完成后一起欣赏，说「小花穿上花衣服啦」',time:'5-10分钟',principle:''},
+  {name:'障碍爬行大冒险',age:'18月+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'抱枕毯子搭隧道',steps:'1.用抱枕和毯子搭一条矮隧道 2.把玩具放在隧道另一头 3.示范爬过去拿玩具，再爬回来 4.让宝宝跟着爬，你在对面接应 5.爬一圈就休息，保持兴趣不疲劳',time:'5-10分钟',principle:''},
+  {name:'简单指令互动',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:"发清晰指令'把球给妈妈'",steps:'1.面对面，用短句说「把球给妈妈」 2.宝宝照做后，立刻拍手说「好棒」 3.指令只含一个动作，别一次说太多 4.熟练后换「把杯子给爸爸」等新组合 5.每天穿插几次，不考试、不催促',time:'5-10分钟',principle:''},
+  {name:'趣味玩水探索',age:'18月+',cat:'mem',catLabel:'记忆/感官',src:'网络·权威',mat:'温水+杯勺漂浮玩具自由舀玩',steps:'1.盆里放温水，加杯子和几个漂浮玩具 2.先示范用杯子舀水倒水 3.让宝宝自己舀、倒、拍水 4.一边玩一边说「水哗啦啦」「杯子装满啦」 5.全程看护，水深不超过几厘米，结束后擦干换衣',time:'5-10分钟',principle:''},
+  {name:'颜色形状配对',age:'18月+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'积木/卡片按颜色形状分类配对',steps:'1.准备红黄蓝积木或形状卡片 2.先只玩颜色：把红色积木放红色纸片上 3.宝宝会了再玩形状：圆形放圆形卡位 4.一次只加一个维度，避免信息太多 5.配对时说名称，为以后命名打基础',time:'5-10分钟',principle:''},
+  {name:'小小家务能手',age:'18月+',cat:'soc',catLabel:'社会情绪',src:'网络·权威',mat:'引导叠袜子/收纳玩具/整理绘本',steps:'1.从叠袜子开始，先把一双袜子对折 2.让宝宝递袜子、放进抽屉 3.收玩具时一人一件轮流放回 4.整理绘本时让她竖着插回书架 5.完成后说「谢谢帮忙」，建立秩序感和成就感',time:'5-10分钟',principle:''},
+  {name:'看图说故事',age:'2岁+',cat:'cog',catLabel:'认知',src:'网络·权威',mat:'绘本卡片家长讲述',steps:'1.选一页画面简单的绘本 2.你先讲一遍，手指着关键角色 3.问「这是谁？」等她说出或指出 4.她只说出一个字也认真回应 5.第二天重读同一页，看她记得多少',time:'10分钟',principle:''},
+  {name:'绘本角色扮演',age:'2岁+',cat:'soc',catLabel:'社会情绪',src:'网络·权威',mat:'共读后模仿角色对话动作',steps:'1.共读后选一个角色，比如小熊 2.你扮演另一个角色，模仿对话 3.用玩具或手偶配合，动作夸张些 4.让宝宝决定谁说什么，跟着她走 5.玩得开心比讲得完整重要',time:'10分钟',principle:''},
+  {name:'障碍跳跃游戏',age:'2岁+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'摆小障碍引导双脚并拢跳跨',steps:'1.用纸胶带在地上贴一条线 2.先示范双脚并拢跳过线 3.让宝宝试，跳不过就迈过去 4.熟练后增加第二个障碍，间距拉开 5.每跳一次就数「1、2」，保持轻松',time:'10分钟',principle:''},
 ];
 
 var theories={
@@ -558,7 +673,7 @@ function showPage(id,btn){
   document.querySelectorAll('.nav button').forEach(function(b){b.classList.remove('active')});
   btn.classList.add('active');
   // 切页时按需渲染
-  if(id==='brain'){ renderObserve(); renderBrain(); }
+  if(id==='brain'){ renderObserve(); renderBrain(); renderDx(); }
 }
 function showBrainSub(sub,btn){
   document.querySelectorAll('.brain-subtabs button').forEach(function(b){b.classList.remove('active')});
@@ -566,16 +681,32 @@ function showBrainSub(sub,btn){
   document.querySelectorAll('.brain-sub').forEach(function(s){s.classList.remove('active')});
   document.getElementById('bsub-'+sub).classList.add('active');
   if(sub==='arch') renderBrain();
+  if(sub==='dx') renderDx();
 }
 
 var catMap={motor:['t-motor','🏃'],fine:['t-fine','✋'],lang:['t-lang','🗣️'],cog:['t-cog','🧠'],soc:['t-soc','💛'],mem:['t-mem','🧩']};
 var catLabel={motor:'大运动',fine:'精细',lang:'语言',cog:'认知',soc:'社交',mem:'记忆'};
 
-document.getElementById('weekGames').innerHTML=weekGames.map(function(g){
-  var cls=catMap[g.cat][0],ico=catMap[g.cat][1];
-  var weekend=['周六','周日'].indexOf(g.day)>=0?'weekend':'';
-  return '<div class="day-card '+weekend+'"><div class="day">'+g.day+'</div><div class="gname">'+ico+' '+g.name+'</div><div class="gdesc"><span class="tag '+cls+'">'+catLabel[g.cat]+'</span>'+g.desc+'</div></div>';
-}).join('');
+function renderHome(){
+  var tot=ageInfo().totM;
+  var band=homeBands[0];
+  homeBands.forEach(function(b){if(tot>=b.min)band=b;});
+  var ws=document.getElementById('welcomeSub');
+  if(ws)ws.innerHTML=band.desc;
+  var fg=document.getElementById('focusGrid');
+  if(fg)fg.innerHTML=band.focus.map(function(f){
+    return '<div class="focus-item"><div class="focus-icon">'+f.icon+'</div><h4>'+f.title+'</h4><p>'+f.desc+'</p></div>';
+  }).join('');
+  var tg=document.getElementById('toyGrid');
+  if(tg)tg.innerHTML=band.toys.map(function(t){
+    return '<div class="toy-item"><div class="toy-icon">'+t.icon+'</div><span class="toy-tag">'+t.tag+'</span><h4>'+t.name+'</h4><p>'+t.desc+'</p><p class="toy-why">为什么推荐：'+t.why+'</p></div>';
+  }).join('');
+  document.getElementById('weekGames').innerHTML=band.games.map(function(g){
+    var cls=catMap[g.cat][0],ico=catMap[g.cat][1];
+    var weekend=['周六','周日'].indexOf(g.day)>=0?'weekend':'';
+    return '<div class="day-card '+weekend+'"><div class="day">'+g.day.slice(1)+'</div><div class="gname">'+ico+' '+g.name+'</div><div class="gdesc"><span class="tag '+cls+'">'+catLabel[g.cat]+'</span>'+g.desc+'</div></div>';
+  }).join('');
+}
 
 function showMilestone(key,btn){
   document.querySelectorAll('#milestoneTabs button').forEach(function(b){b.classList.remove('active')});
@@ -594,6 +725,24 @@ function setF(btn,key,val){
   btn.classList.add('active');
   renderGames();
 }
+var HAZARD_WORDS=['豆','米','珠','币','扣子','吸管','牙签','剪刀','烤箱','麦圈','弹珠','小颗粒','玻璃','蜡烛','针'];
+function safetyNote(g){
+  var s=(g.name||'')+(g.mat||'')+(g.steps||'');
+  var hit=HAZARD_WORDS.some(function(w){return s.indexOf(w)>=0;});
+  return hit?'⚠️ 全程看护：防误食、防夹手、防烫伤':'';
+}
+function fmtSteps(g){
+  var s=(g.steps||'').trim();
+  if(/1\./.test(s)){
+    var lines=s.split(/(?=\d+\.)/g).map(function(x){return x.trim();}).filter(Boolean);
+    return lines.map(function(l){return '<div class="gc-step">'+esc(l)+'</div>';}).join('');
+  }
+  return '<div class="gc-step">1. 准备：'+esc(g.mat||'常用材料')+'，放在宝宝够得到的地方</div>'
+    +'<div class="gc-step">2. 示范：先做一遍「'+esc(s)+'」，动作放慢，边做边说</div>'
+    +'<div class="gc-step">3. 尝试：让小鹿玛自己试，做不好不急着纠正</div>'
+    +'<div class="gc-step">4. 对话：边玩边用短句说材料、颜色和动作</div>'
+    +'<div class="gc-step">5. 收尾：一起整理，说说刚才玩了什么</div>';
+}
 function renderGames(){
   var list=allGames.filter(function(g){
     if(fState.cat!=='all' && g.cat!==fState.cat) return false;
@@ -610,7 +759,8 @@ function renderGames(){
     var srcCls=srcMap[g.src]||'src-expert';
     var mat=g.mat?'<div class="gc-row"><span class="gc-label">材料</span><span class="gc-val">'+g.mat+'</span></div>':'';
     var pr=g.principle?'<div class="gc-principle">🧠 '+g.principle+'</div>':'';
-    return '<div class="game-card"><div class="gc-head"><h4>'+ico+' '+g.name+'</h4><span class="tag '+cls+'">'+g.catLabel+'</span><span class="tag" style="background:#F5F5F5;color:#616161">月龄:'+g.age+'</span><span class="source-badge '+srcCls+'">'+g.src+'</span></div><div class="gc-body">'+mat+'<div class="gc-row"><span class="gc-label">玩法</span><span class="gc-val">'+g.steps+'</span></div><div class="gc-row"><span class="gc-label">时长</span><span class="gc-val">'+g.time+'</span></div>'+pr+'</div></div>';
+    var sf=safetyNote(g)?'<div class="gc-safety">'+safetyNote(g)+'</div>':'';
+    return '<div class="game-card"><div class="gc-head"><h4>'+ico+' '+g.name+'</h4><span class="tag '+cls+'">'+g.catLabel+'</span><span class="tag" style="background:#F5F5F5;color:#616161">月龄:'+g.age+'</span><span class="source-badge '+srcCls+'">'+g.src+'</span></div><div class="gc-body">'+mat+'<div class="gc-steps"><div class="gc-steps-title">详细玩法</div>'+fmtSteps(g)+'</div><div class="gc-row"><span class="gc-label">时长</span><span class="gc-val">'+g.time+'</span></div>'+pr+sf+'</div></div>';
   }).join('');
 }
 renderGames();
@@ -643,6 +793,18 @@ var OBS_ITEMS=[
   {dim:'cre', text:'玩水/玩沙时自发探索不同的玩法'}
 ];
 var OBS_KEY='xlma_weeklyobs_v1';
+var DX_KEY='xlma_dx_v1';
+var DX_DIM_IDS=['cog','lang'];
+var DX_ITEMS=[
+  {dim:'cog', text:'玩「藏玩具」时主动掀开布找（客体永久性）'},
+  {dim:'cog', text:'按开关、按键后会观察结果并再次尝试（因果关系）'},
+  {dim:'cog', text:'能把圆形放进圆洞，或完成 2-3 片拼图（形状配对）'},
+  {dim:'cog', text:'听「先拿球，再放进盒子」能完成两步（指令理解）'},
+  {dim:'lang', text:'主动指着东西并说出名称（命名表达）'},
+  {dim:'lang', text:'能说出「妈妈抱」这类两个词短句（组合语言）'},
+  {dim:'lang', text:'听「拍手」「再见」等指令有正确反应（理解）'},
+  {dim:'lang', text:'愿意模仿你说话、唱歌或做动作（模仿学习）'}
+];
 
 /* ===== 自动备份（IndexedDB 双写 + 4周提醒导出）===== */
 var DB_NAME='xlma_db',DB_STORE='kv',EXPORT_KEY='xlma_last_export_ts';
@@ -659,20 +821,24 @@ function idbOpen(){
 }
 function idbSet(key,val){idbOpen().then(function(db){if(!db)return;try{var tx=db.transaction(DB_STORE,'readwrite');tx.objectStore(DB_STORE).put(val,key);}catch(e){}});}
 function idbGet(key){return new Promise(function(res){idbOpen().then(function(db){if(!db){res(null);return;}try{var tx=db.transaction(DB_STORE,'readonly');var rq=tx.objectStore(DB_STORE).get(key);rq.onsuccess=function(){res(rq.result);};rq.onerror=function(){res(null);};}catch(e){res(null);}});});}
-function autoBackup(arr){try{idbSet('obs_data',arr);idbSet('obs_backup_ts',Date.now());}catch(e){}}
+function autoBackup(){try{idbSet('obs_data',loadObs());idbSet('dx_data',loadDx());idbSet('obs_backup_ts',Date.now());}catch(e){}}
 function tryRestoreFromIDB(){
   return new Promise(function(resolve){
     try{
       var local=JSON.parse(localStorage.getItem(OBS_KEY)||'[]');
       if(local&&local.length){resolve(false);return;}
       idbGet('obs_data').then(function(backup){
-        if(backup&&Array.isArray(backup)&&backup.length){
-          if(confirm('💾 检测到本地数据为空，但发现 IndexedDB 中有 '+backup.length+' 条历史备份。\n\n是否恢复？\n（点取消则保持空白，重新开始记录）')){
-            localStorage.setItem(OBS_KEY,JSON.stringify(backup));
+        idbGet('dx_data').then(function(bdx){
+          var has=backup&&Array.isArray(backup)&&backup.length;
+          var hasDx=bdx&&Array.isArray(bdx)&&bdx.length;
+          if(!has&&!hasDx){resolve(false);return;}
+          if(confirm('💾 检测到本地数据为空，但发现 IndexedDB 中有 '+(has?backup.length:0)+' 条观察记录'+(hasDx?'、'+(bdx.length)+' 条深度诊断':'')+'。\n\n是否恢复？\n（点取消则保持空白，重新开始记录）')){
+            if(has)localStorage.setItem(OBS_KEY,JSON.stringify(backup));
+            if(hasDx)localStorage.setItem(DX_KEY,JSON.stringify(bdx));
             resolve(true);return;
           }
-        }
-        resolve(false);
+          resolve(false);
+        });
       });
     }catch(e){resolve(false);}
   });
@@ -687,8 +853,52 @@ function checkBackupReminder(){
   bar.querySelector('.backup-msg').textContent='⚠️ '+msg+'，建议导出一份 JSON 存到云盘/电脑，防止清缓存丢失';
 }
 
-function loadObs(){try{var r=JSON.parse(localStorage.getItem(OBS_KEY)||'[]');if(!r.length && localStorage.getItem(WK_KEY)){r=migrateOldObs();saveObs(r);}return r;}catch(e){return[];}}
-function saveObs(a){localStorage.setItem(OBS_KEY,JSON.stringify(a));autoBackup(a);}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function score01(v){var n=Number(v);if(!isFinite(n))return null;return Math.max(0,Math.min(5,Math.round(n*10)/10));}
+function scoreItem(v){var n=Number(v);return [1,3,5].indexOf(n)>=0?n:null;}
+function legacyDim(dim){return {emo:'soc',mov:'motor',cre:'fine'}[dim]||dim;}
+function normalizeObs(raw){
+  if(!Array.isArray(raw))return[];
+  var out=[],seen={};
+  raw.forEach(function(e){
+    if(!e||typeof e!=='object')return;
+    var wk=typeof e.wk==='string'?e.wk.trim():'';
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(wk))return;
+    var d=new Date(wk+'T00:00:00');
+    if(isNaN(d.getTime()))return;
+    if(seen[wk])return;seen[wk]=1;
+    var mon=mondayOf(d);
+    var items={};
+    OBS_ITEMS.forEach(function(_,i){
+      var v=scoreItem((e.items||{})['i'+i]);
+      if(v!==null)items['i'+i]=v;
+    });
+    var rawScores=e.scores||e.ratings||{};
+    var rawScore=function(dim){return score01(rawScores[dim])!=null?score01(rawScores[dim]):score01(rawScores[legacyDim(dim)]);};
+    var hasItems=Object.keys(items).length>0;
+    var scores={};
+    OBS_DIM_IDS.forEach(function(dim){
+      if(hasItems){
+        var vals=OBS_ITEMS.map(function(q,i){return q.dim===dim?items['i'+i]:undefined}).filter(function(x){return x!==undefined});
+        scores[dim]=vals.length?Math.round(vals.reduce(function(s,n){return s+n},0)/vals.length*10)/10:0;
+      }else{
+        scores[dim]=rawScore(dim)||0;
+      }
+    });
+    var note=typeof e.note==='string'?e.note.slice(0,2000):'';
+    note=note.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g,'').trim();
+    out.push({wk:wk,wkNum:birthWeekOf(d),monthKey:fmt(mon).slice(0,7),date:typeof e.date==='string'?e.date.slice(0,10):wk,items:items,scores:scores,note:note,ts:typeof e.ts==='number'?e.ts:(Date.parse(wk+'T00:00:00')||Date.now())});
+  });
+  return out;
+}
+function mergeObs(cur,inp){
+  var by={};
+  cur.forEach(function(e){if(e&&e.wk)by[e.wk]=e;});
+  inp.forEach(function(e){if(e&&e.wk)by[e.wk]=e;});
+  return Object.keys(by).sort().map(function(k){return by[k];});
+}
+function loadObs(){try{var r=JSON.parse(localStorage.getItem(OBS_KEY)||'[]');if(!r.length && localStorage.getItem(WK_KEY)){r=migrateOldObs();saveObs(r);}return normalizeObs(r);}catch(e){return[];}}
+function saveObs(a){localStorage.setItem(OBS_KEY,JSON.stringify(normalizeObs(a)));autoBackup();}
 function migrateOldObs(){
   try {
     var old=JSON.parse(localStorage.getItem(WK_KEY)||'[]');
@@ -698,12 +908,43 @@ function migrateOldObs(){
     });
   }catch(e){return[];}
 }
+function normalizeDx(raw){
+  if(!Array.isArray(raw))return[];
+  var out=[],seen={};
+  raw.forEach(function(e){
+    if(!e||typeof e!=='object')return;
+    var mk=typeof e.monthKey==='string'?e.monthKey.trim():'';
+    if(!/^\d{4}-\d{2}$/.test(mk))return;
+    if(seen[mk])return;seen[mk]=1;
+    var items={};
+    DX_ITEMS.forEach(function(_,i){
+      var v=scoreItem((e.items||{})['d'+i]);
+      if(v!==null)items['d'+i]=v;
+    });
+    var scores={cog:0,lang:0};
+    DX_DIM_IDS.forEach(function(dim){
+      var vals=DX_ITEMS.map(function(q,i){return q.dim===dim?items['d'+i]:undefined}).filter(function(x){return x!==undefined});
+      scores[dim]=vals.length?Math.round(vals.reduce(function(s,n){return s+n},0)/vals.length*10)/10:0;
+    });
+    out.push({monthKey:mk,date:typeof e.date==='string'?e.date.slice(0,10):mk+'-15',items:items,scores:scores,ts:typeof e.ts==='number'?e.ts:Date.now()});
+  });
+  return out;
+}
+function mergeDx(cur,inp){
+  var by={};
+  cur.forEach(function(e){if(e&&e.monthKey)by[e.monthKey]=e;});
+  inp.forEach(function(e){if(e&&e.monthKey)by[e.monthKey]=e;});
+  return Object.keys(by).sort().map(function(k){return by[k];});
+}
+function loadDx(){try{return normalizeDx(JSON.parse(localStorage.getItem(DX_KEY)||'[]'));}catch(e){return[];}}
+function saveDx(a){localStorage.setItem(DX_KEY,JSON.stringify(normalizeDx(a)));autoBackup();}
 function currentObsWeek(){
   var arr=loadObs();var key=thisWeekKey();
   var ex=arr.find(function(e){return e.wk===key;});
   if(ex)return ex;
-  var now=new Date();var info=isoWeek(now);
-  var rec={wk:key,wkNum:info.wk,monthKey:key.slice(0,7),date:fmt(now),items:{},scores:{},note:'',ts:Date.now()};
+  var now=new Date();
+  var wkNum=birthWeekOf(now);
+  var rec={wk:key,wkNum:wkNum,monthKey:key.slice(0,7),date:fmt(now),items:{},scores:{},note:'',ts:Date.now()};
   arr.push(rec);saveObs(arr);return rec;
 }
 function renderObserve(){
@@ -748,18 +989,24 @@ function renderObsSummary(rec){
   }
   var sc=rec.scores||{};
   var dims=OBS_DIM_IDS.slice();
-  var sorted=dims.map(function(d){return{d:d,s:sc[d]||0}}).filter(function(x){return x.s>0}).sort(function(a,b){return a.s-b.s;});
+  var observed=dims.filter(function(d){return (sc[d]||0)>0;});
+  var sorted=observed.map(function(d){return{d:d,s:sc[d]||0}}).sort(function(a,b){return a.s-b.s;});
   var weakest=sorted.length?sorted[0]:null;
   var bars=dims.map(function(d){
-    var s=sc[d]||0,pct=(s/5)*100;
+    var s=sc[d]||0;
     var cls=weakest&&weakest.d===d?' obs-sum-weak':'';
+    if(s<=0){
+      return '<div class="obs-sum-bar obs-sum-none"><span class="obs-sum-name">'+OBS_NAME[d]+'</span><div class="obs-sum-track"></div><span class="obs-sum-val">暂无</span></div>';
+    }
+    var pct=(s/5)*100;
     return '<div class="obs-sum-bar'+cls+'"><span class="obs-sum-name">'+OBS_NAME[d]+'</span><div class="obs-sum-track"><div class="obs-sum-fill" style="width:'+pct+'%;background:'+OBS_COLOR[d]+'"></div></div><span class="obs-sum-val">'+s.toFixed(1)+'</span></div>';
   }).join('');
   var recHtml='';
   if(weakest){
     recHtml='<div class="obs-sum-rec"><span>🎯 本周弱项：<b>'+OBS_NAME[weakest.d]+'</b>（'+weakest.s.toFixed(1)+'/5）</span><button class="obs-rec-btn" onclick="recommendGames(\''+weakest.d+'\')">📋 推荐游戏 →</button></div>';
+    if(observed.length===1)recHtml+='<div style="font-size:12px;color:var(--text-light);margin-top:6px">目前只观察到 1 个维度，弱项判断仅作参考。</div>';
   }
-  box.innerHTML='<div class="obs-sum-title">📊 本周五大脑概览</div>'+bars+recHtml;
+  box.innerHTML='<div class="obs-sum-title">📊 本周五大脑概览<span style="font-weight:400;color:var(--text-light);font-size:11px">（未观察维度不参与弱项判定）</span></div>'+bars+recHtml;
 }
 function recommendGames(dim){
   var cat=OBS_TO_GAME_CAT[dim]||'cog';
@@ -787,7 +1034,7 @@ function renderObsHistory(){
     var cn=Object.keys(e.items||{}).length;
     var sc=e.scores||{};var total=(sc.cog||0)+(sc.lang||0)+(sc.emo||0)+(sc.mov||0)+(sc.cre||0);
     var avg=total?Math.round(total/5*10)/5:0;
-    return '<div class="hrow"><span>第'+e.wkNum+'周 · '+e.wk+' 起</span><span><b>'+cn+'/'+OBS_ITEMS.length+'</b>项 · 均分 '+(avg*5).toFixed(1)+'</span></div>';
+    return '<div class="hrow"><span>第'+esc(e.wkNum)+'周 · '+esc(e.wk)+' 起</span><span><b>'+cn+'/'+OBS_ITEMS.length+'</b>项 · 均分 '+avg.toFixed(1)+'/5</span></div>';
   }).join('')+'</div>';
 }
 function renderBrain(){
@@ -800,6 +1047,98 @@ function renderBrain(){
   if(months.length && inp){if(!inp.value || months.indexOf(inp.value)<0)inp.value=months[0];}
 }
 
+/* ===== 深度诊断（认知/语言 8 项） ===== */
+function currentDxMonth(){return fmt(new Date()).slice(0,7);}
+function renderDx(){
+  var status=document.getElementById('dxStatus');if(!status)return;
+  var arr=loadDx();var mk=currentDxMonth();
+  var rec=arr.find(function(e){return e.monthKey===mk;})||{monthKey:mk,items:{},scores:{cog:0,lang:0}};
+  var done=Object.keys(rec.items||{}).length;
+  status.innerHTML='当月：'+esc(mk)+' · 共 8 项（认知 4 + 语言 4）· 已答 <b>'+done+'/8</b>';
+  var p=document.getElementById('dxProgress');if(p)p.style.width=(done/DX_ITEMS.length*100)+'%';
+  document.getElementById('dxList').innerHTML=DX_ITEMS.map(function(q,i){
+    var k='d'+i,v=rec.items[k];
+    var clsDone=v!==undefined?' done':'';
+    var btn=function(s,emoji,label){return '<div class="obs-btn'+(v===s?' active':'')+'" onclick="setDx(\''+k+'\','+s+')">'+emoji+'<br>'+label+'</div>';};
+    return '<div class="obs-item'+clsDone+'">'
+      +'<span class="obs-dim" style="background:'+OBS_COLOR[q.dim]+'22;color:'+OBS_COLOR[q.dim]+'">'+OBS_NAME[q.dim]+'</span>'
+      +'<div class="obs-text">'+esc(q.text)+'</div>'
+      +'<div class="obs-btns">'+btn(5,'✅','经常 5')+btn(3,'🟡','偶尔 3')+btn(1,'⚪','还没 1')+'</div>'
+      +'</div>';
+  }).join('');
+  renderDxResult(rec);
+  renderDxHistory();
+}
+function setDx(k,v){
+  var arr=loadDx();var mk=currentDxMonth();
+  var rec=arr.find(function(e){return e.monthKey===mk;});
+  if(!rec){rec={monthKey:mk,date:fmt(new Date()).slice(0,10),items:{},scores:{cog:0,lang:0},ts:Date.now()};arr.push(rec);}
+  rec.items[k]=v;
+  DX_DIM_IDS.forEach(function(dim){
+    var vals=DX_ITEMS.map(function(q,i){return q.dim===dim?rec.items['d'+i]:undefined}).filter(function(x){return x!==undefined});
+    rec.scores[dim]=vals.length?Math.round(vals.reduce(function(s,n){return s+n},0)/vals.length*10)/10:0;
+  });
+  rec.ts=Date.now();
+  saveDx(arr);
+  renderDx();
+}
+function renderDxResult(rec){
+  var box=document.getElementById('dxResult');if(!box)return;
+  var done=Object.keys(rec.items||{}).length;
+  if(!done){box.innerHTML='';return;}
+  var bars=DX_DIM_IDS.map(function(d){
+    var s=rec.scores[d]||0;
+    return '<div class="obs-sum-bar"><span class="obs-sum-name">'+OBS_NAME[d]+'</span><div class="obs-sum-track"><div class="obs-sum-fill" style="width:'+(s/5*100)+'%;background:'+OBS_COLOR[d]+'"></div></div><span class="obs-sum-val">'+s.toFixed(1)+'</span></div>';
+  }).join('');
+  var hint=done<2?'<div style="font-size:12px;color:var(--text-light);margin-top:6px">至少完成 2 项再看结果更可靠。</div>':'';
+  box.innerHTML='<div class="obs-sum-title">📊 本月深度诊断得分</div>'+bars+hint;
+}
+function renderDxHistory(){
+  var box=document.getElementById('dxHistory');if(!box)return;
+  var arr=loadDx().slice().sort(function(a,b){return a.monthKey<b.monthKey?-1:1}).slice(-6).reverse();
+  if(!arr.length){box.innerHTML='<div style="font-size:13px;color:var(--text-light)">还没有深度诊断记录。按需开启，结果会写入当月档案。</div>';return;}
+  box.innerHTML='<div class="wk-hist">'+arr.map(function(e){
+    var cn=Object.keys(e.items||{}).length;
+    var cs=(e.scores&&e.scores.cog)||0,ls=(e.scores&&e.scores.lang)||0;
+    return '<div class="hrow"><span>'+esc(e.monthKey)+'</span><span><b>'+cn+'/8</b>项 · 智力 '+cs.toFixed(1)+' · 语言 '+ls.toFixed(1)+'</span></div>';
+  }).join('')+'</div>';
+}
+
+/* ===== 月度趋势对比 ===== */
+var trendRadarChart=null,trendLineChart=null;
+function destroyTrend(){if(trendRadarChart){trendRadarChart.destroy();trendRadarChart=null;}if(trendLineChart){trendLineChart.destroy();trendLineChart=null;}}
+function renderTrend(){
+  var area=document.getElementById('trendArea');if(!area)return;
+  var arr=loadObs();
+  var months=[],seen={};
+  arr.forEach(function(e){if(e.monthKey&&!seen[e.monthKey]){seen[e.monthKey]=1;months.push(e.monthKey);}});
+  months.sort();
+  if(months.length<2){destroyTrend();area.innerHTML='<div class="arch-note">至少需要 2 个月的记录才能查看趋势。</div>';return;}
+  var last=months.slice(-6);
+  var monthly=last.map(function(m){
+    var vals=arr.filter(function(e){return e.monthKey===m;});
+    var avg={};
+    OBS_DIM_IDS.forEach(function(d){
+      var vs=vals.map(function(e){return e.scores&&e.scores[d]?e.scores[d]:0}).filter(function(v){return v>0});
+      avg[d]=vs.length?Math.round(vs.reduce(function(s,v){return s+v},0)/vs.length*10)/10:0;
+    });
+    return {m:m,avg:avg};
+  });
+  if(!window.Chart){destroyTrend();area.innerHTML='<div class="arch-note">图表组件未加载，无法显示趋势。</div>';return;}
+  destroyTrend();
+  area.innerHTML='<div class="assess-layout"><div class="chart-box"><h4>多月雷达图叠加</h4><canvas id="trendRadar" height="240"></canvas></div><div class="chart-box"><h4>五大脑月度走势</h4><canvas id="trendLine" height="240"></canvas></div></div>';
+  var labels=OBS_DIM_IDS.map(function(d){return OBS_NAME[d].slice(2);});
+  var palette=['#FFCA28','#4CAF50','#2196F3','#AB47BC','#EC407A','#FF9800'];
+  var rctx=document.getElementById('trendRadar').getContext('2d');
+  trendRadarChart=new window.Chart(rctx,{type:'radar',data:{labels:labels,datasets:monthly.map(function(mo,i){
+    return {label:mo.m,data:OBS_DIM_IDS.map(function(d){return mo.avg[d];}),borderColor:palette[i%palette.length],backgroundColor:palette[i%palette.length]+'22',pointRadius:3};
+  })},options:{responsive:true,scales:{r:{min:0,max:5,ticks:{stepSize:1,backdropColor:'transparent',font:{size:10}},pointLabels:{font:{size:13}}}},plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}}});
+  var lctx=document.getElementById('trendLine').getContext('2d');
+  trendLineChart=new window.Chart(lctx,{type:'line',data:{labels:monthly.map(function(mo){return mo.m;}),datasets:OBS_DIM_IDS.map(function(d){
+    return {label:OBS_NAME[d].slice(2),data:monthly.map(function(mo){return mo.avg[d];}),borderColor:OBS_COLOR[d],backgroundColor:OBS_COLOR[d]+'22',fill:false,tension:0.3,pointRadius:4};
+  })},options:{responsive:true,scales:{y:{min:0,max:5,ticks:{stepSize:1}}},plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}}});
+}
+
 /* ===== 工具函数 ===== */
 var BIRTH=new Date(2025,0,16); // 女儿出生 2025-01-16
 var WK_KEY='xlma_weekly_v1'; // 旧数据 key（保留用于兼容迁移）
@@ -807,8 +1146,7 @@ function daysBetween(a,b){return Math.floor((b-a)/86400000);}
 function addDays(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x;}
 function fmt(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function mondayOf(d){var x=new Date(d);var day=(x.getDay()+6)%7;return addDays(x,-day);}
-function isoWeek(d){var m=mondayOf(d);var yr=m.getFullYear();var firstMon=new Date(yr,0,1);var wk=Math.floor(daysBetween(firstMon,m)/7)+1;return {mon:m,wk:wk};}
-function nextMonday(d){return addDays(mondayOf(d),7);}
+function birthWeekOf(d){return Math.floor(daysBetween(BIRTH,mondayOf(d))/7)+1;}
 function ageInfo(){var now=new Date();var days=daysBetween(BIRTH,now);var weeks=Math.floor(days/7)+1;var totM=(now.getFullYear()-BIRTH.getFullYear())*12+(now.getMonth()-BIRTH.getMonth());if(now.getDate()<BIRTH.getDate())totM--;var y=Math.floor(totM/12),mo=totM%12;return {days:days,weeks:weeks,totM:totM,y:y,mo:mo};}
 function updateAge(){var a=ageInfo();var el=document.getElementById('babyAge');if(el)el.textContent='👶 小鹿玛 · '+a.y+'岁'+a.mo+'个月（'+a.totM+'个月）';var wm=document.getElementById('welcomeMonth');if(wm)wm.textContent=a.totM;}
 function thisWeekKey(){return fmt(mondayOf(new Date()));}
@@ -820,7 +1158,15 @@ function genArchive(){
   var y=+mv.slice(0,4),mo=+mv.slice(5,7);
   var arr=loadObs().filter(function(e){return e.monthKey===mv;});
   var area=document.getElementById('archiveArea');
-  if(!arr.length){area.innerHTML='<div class="arch-note">该月（'+y+'年'+mo+'月）暂无「每周观察」记录。<br>先去「<b>每周观察</b>」tab 日常陪娃时记录，月底即可汇总档案。</div>';if(archiveChart){archiveChart.destroy();archiveChart=null;}return;}
+  if(!arr.length){
+    var html0='<div class="arch-note">该月（'+y+'年'+mo+'月）暂无「每周观察」记录。<br>先去「<b>每周观察</b>」tab 日常陪娃时记录，月底即可汇总档案。</div>';
+    var dx0=loadDx().find(function(r){return r.monthKey===mv;});
+    if(dx0&&Object.keys(dx0.items||{}).length){
+      var c0=Object.keys(dx0.items).length;
+      html0+='<h4 style="margin:14px 0 6px">🧭 本月深度诊断（认知/语言）</h4><div class="arch-note">已答 '+c0+'/8 项 · 智力脑 '+((dx0.scores&&dx0.scores.cog)||0).toFixed(1)+'/5 · 语言脑 '+((dx0.scores&&dx0.scores.lang)||0).toFixed(1)+'/5</div>';
+    }
+    area.innerHTML=html0;if(archiveChart){archiveChart.destroy();archiveChart=null;}renderTrend();return;
+  }
   arr.sort(function(a,b){return a.wk<b.wk?-1:1;});
   var avg={};OBS_DIM_IDS.forEach(function(d){
     var vals=arr.map(function(e){return e.scores&&e.scores[d]?e.scores[d]:0}).filter(function(v){return v>0});
@@ -829,7 +1175,7 @@ function genArchive(){
   var mid=new Date(y,mo-1,15);var totM=(mid.getFullYear()-BIRTH.getFullYear())*12+(mid.getMonth()-BIRTH.getMonth());if(mid.getDate()<BIRTH.getDate())totM--;
   var html='';
   html+='<div class="arch-title">🗂️ 小鹿玛成长档案 · '+y+'年'+mo+'月</div>';
-  html+='<div style="font-size:14px;color:var(--text-mid);margin-bottom:10px">本月约 <b>'+totM+'</b> 个月 · 共 <b>'+arr.length+'</b> 周观察（第'+arr[0].wkNum+'–'+arr[arr.length-1].wkNum+'周）</div>';
+  html+='<div style="font-size:14px;color:var(--text-mid);margin-bottom:10px">本月约 <b>'+totM+'</b> 个月 · 共 <b>'+arr.length+'</b> 周观察（第'+esc(arr[0].wkNum)+'–'+esc(arr[arr.length-1].wkNum)+'周）</div>';
   html+='<div class="assess-layout"><div class="chart-box"><h4>五大脑月均雷达图</h4><canvas id="archiveRadar" height="240"></canvas></div>';
   html+='<div class="chart-box"><h4>各维度月均</h4><table class="arch-table"><tr><th>五大脑</th><th>月均</th><th>累计观察项</th></tr>'+OBS_DIM_IDS.map(function(d){
     var cnt=arr.reduce(function(s,e){var items=Object.keys(e.items||{}).map(function(k){var i=+k.slice(1);return OBS_ITEMS[i]&&OBS_ITEMS[i].dim===d?1:0});return s+items.reduce(function(a,b){return a+b},0)},0);
@@ -839,40 +1185,70 @@ function genArchive(){
   html+='<table class="arch-table"><tr><th>周次</th><th>周一起</th><th>观察项</th>'+OBS_DIM_IDS.map(function(d){return '<th style="color:'+OBS_COLOR[d]+'">'+OBS_NAME[d].slice(2)+'</th>';}).join('')+'</tr>'+arr.map(function(e){
     var cn=Object.keys(e.items||{}).length;
     var cells=OBS_DIM_IDS.map(function(d){return '<td>'+(e.scores&&e.scores[d]?e.scores[d]:'-')+'</td>';}).join('');
-    return '<tr><td>第'+e.wkNum+'周</td><td>'+e.wk+'</td><td><b>'+cn+'/'+OBS_ITEMS.length+'</b></td>'+cells+'</tr>';
+    return '<tr><td>第'+esc(e.wkNum)+'周</td><td>'+esc(e.wk)+'</td><td><b>'+cn+'/'+OBS_ITEMS.length+'</b></td>'+cells+'</tr>';
   }).join('')+'</table>';
-  var notes=arr.map(function(e){return '· 【第'+e.wkNum+'周】'+(e.note||'（无文字记录）');}).join('\n');
-  html+='<h4 style="margin:14px 0 6px">✨ 本月观察文字记录</h4><div class="arch-note">'+notes.replace(/</g,'&lt;')+'</div>';
+  var notes=arr.map(function(e){return '· 【第'+esc(e.wkNum)+'周】'+esc(e.note||'（无文字记录）');}).join('\n');
+  html+='<h4 style="margin:14px 0 6px">✨ 本月观察文字记录</h4><div class="arch-note">'+notes+'</div>';
+  var dx=loadDx().find(function(r){return r.monthKey===mv;});
+  if(dx&&Object.keys(dx.items||{}).length){
+    var cn=Object.keys(dx.items).length;
+    var cs=(dx.scores&&dx.scores.cog)||0,ls=(dx.scores&&dx.scores.lang)||0;
+    html+='<h4 style="margin:14px 0 6px">🧭 本月深度诊断（认知/语言）</h4><div class="arch-note">已答 '+cn+'/8 项 · 智力脑 '+cs.toFixed(1)+'/5 · 语言脑 '+ls.toFixed(1)+'/5</div>';
+  }
   area.innerHTML=html;
+  renderTrend();
+  if(!window.Chart)return;
   var pc=getComputedStyle(document.documentElement).getPropertyValue('--primary').trim()||'#F44336';
   var ctx=document.getElementById('archiveRadar').getContext('2d');
   if(archiveChart)archiveChart.destroy();
-  archiveChart=new Chart(ctx,{type:'radar',data:{labels:OBS_DIM_IDS.map(function(d){return OBS_NAME[d].slice(2);}),datasets:[{label:y+'年'+mo+'月均分',data:OBS_DIM_IDS.map(function(d){return avg[d];}),backgroundColor:pc+'33',borderColor:pc,pointBackgroundColor:pc,pointRadius:4}]},options:{responsive:true,scales:{r:{min:0,max:5,ticks:{stepSize:1,backdropColor:'transparent',font:{size:10}},pointLabels:{font:{size:13}},grid:{color:pc+'22'},angleLines:{color:pc+'22'}}},plugins:{legend:{position:'bottom',labels:{font:{size:12}}}}}});
+  archiveChart=new window.Chart(ctx,{type:'radar',data:{labels:OBS_DIM_IDS.map(function(d){return OBS_NAME[d].slice(2);}),datasets:[{label:y+'年'+mo+'月均分',data:OBS_DIM_IDS.map(function(d){return avg[d];}),backgroundColor:pc+'33',borderColor:pc,pointBackgroundColor:pc,pointRadius:4}]},options:{responsive:true,scales:{r:{min:0,max:5,ticks:{stepSize:1,backdropColor:'transparent',font:{size:10}},pointLabels:{font:{size:13}},grid:{color:pc+'22'},angleLines:{color:pc+'22'}}},plugins:{legend:{position:'bottom',labels:{font:{size:12}}}}}});
 }
 function exportData(){
   var now=new Date();
-  var data={birth:'2025-01-16',obs:loadObs(),exportedAt:fmt(now)+' '+String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0')};
+  var data={birth:'2025-01-16',obs:loadObs(),dx:loadDx(),exportedAt:fmt(now)+' '+String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0')};
   var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   var ts=fmt(now)+'_'+String(now.getHours()).padStart(2,'0')+String(now.getMinutes()).padStart(2,'0');
   var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='小鹿玛成长数据_'+ts+'.json';a.click();URL.revokeObjectURL(a.href);
   localStorage.setItem(EXPORT_KEY,Date.now()+'');
   var bar=document.getElementById('backupBar');if(bar)bar.style.display='none';
-  alert('✅ 已导出 '+loadObs().length+' 条观察记录\n建议存到云盘/电脑做长期备份');
+  alert('✅ 已导出 '+loadObs().length+' 条观察记录、'+loadDx().length+' 条深度诊断\n建议存到云盘/电脑做长期备份');
 }
 function importData(inp){
   var fl=inp.files[0];if(!fl)return;var r=new FileReader();
   r.onload=function(){try{
     var d=JSON.parse(r.result);
-    if(d.obs&&Array.isArray(d.obs)){saveObs(d.obs);renderObserve();if(document.getElementById('archiveMonth'))genArchive();localStorage.setItem(EXPORT_KEY,Date.now()+'');var bar=document.getElementById('backupBar');if(bar)bar.style.display='none';alert('✅ 已导入 '+d.obs.length+' 条每周观察记录');}
-    else if(d.weekly&&Array.isArray(d.weekly)){var migrated=migrateOldObs();saveObs(migrated);renderObserve();if(document.getElementById('archiveMonth'))genArchive();alert('✅ 已迁移旧版（兼容） '+d.weekly.length+' 条每周记录，新体系下维度已映射为五大脑');}
-    else alert('导入失败：文件不含 obs 或 weekly 数组');
-  }catch(e){alert('导入失败：文件格式不正确');}};
+    var obsArr=null,dxArr=null;
+    if(d.obs&&Array.isArray(d.obs)){obsArr=normalizeObs(d.obs);}
+    else if(d.weekly&&Array.isArray(d.weekly)){obsArr=normalizeObs(d.weekly);}
+    if(d.dx&&Array.isArray(d.dx)){dxArr=normalizeDx(d.dx);}
+    if(!obsArr&&!dxArr){alert('导入失败：文件里没有可识别的记录（obs / weekly / dx）');return;}
+    var merge=false;
+    var curObs=loadObs(),curDx=loadDx();
+    var hasIncoming=(obsArr&&obsArr.length)||(dxArr&&dxArr.length);
+    if(hasIncoming&&(curObs.length||curDx.length)){
+        if(confirm('当前已有本地记录。导入前是否先导出当前数据做备份？（确定=导出，取消=跳过）'))exportData();
+        merge=confirm('导入方式：确定=按周/月合并（推荐，相同记录以导入文件为准），取消=覆盖现有记录');
+        if(merge){
+          if(obsArr)obsArr=mergeObs(curObs,obsArr);
+          if(dxArr)dxArr=mergeDx(curDx,dxArr);
+        }
+    }
+    if(obsArr&&!obsArr.length&&curObs.length&&!confirm('文件里没有每周观察记录。确定要清空现有的 '+curObs.length+' 条观察记录吗？（取消=取消导入）'))return;
+    if(dxArr&&!dxArr.length&&curDx.length&&!confirm('文件里没有深度诊断记录。确定要清空现有的 '+curDx.length+' 条深度诊断吗？（取消=取消导入）'))return;
+    var msg=[];
+    if(obsArr){saveObs(obsArr);msg.push(obsArr.length+' 条每周观察');}
+    if(dxArr){saveDx(dxArr);msg.push(dxArr.length+' 条深度诊断');}
+    renderObserve();renderBrain();genArchive();renderDx();
+    localStorage.setItem(EXPORT_KEY,Date.now()+'');
+    var bar=document.getElementById('backupBar');if(bar)bar.style.display='none';
+    alert('✅ 已导入 '+msg.join('、')+(merge?'（合并）':'（覆盖）'));
+  }catch(e){console.error(e);alert('导入失败：文件格式不正确');}};
   r.readAsText(fl);inp.value='';
 }
 document.getElementById('archiveMonth').value=fmt(new Date()).slice(0,7);
-updateAge();renderObserve();renderBrain();
+updateAge();renderHome();renderObserve();renderBrain();renderDx();renderTrend();
 tryRestoreFromIDB().then(function(restored){
-  if(restored){renderObserve();renderBrain();alert('✅ 已从 IndexedDB 备份恢复 '+loadObs().length+' 条观察记录');}
+  if(restored){renderObserve();renderBrain();renderDx();renderTrend();alert('✅ 已从 IndexedDB 备份恢复 '+loadObs().length+' 条观察记录、'+loadDx().length+' 条深度诊断');}
 });
 checkBackupReminder();
 
