@@ -4,6 +4,10 @@ cd "$(dirname "$0")"
 
 html="育儿系统看板.html"
 [ -f "$html" ] || { echo "缺少入口文件 $html"; exit 1; }
+[ -f "index.html" ] || { echo "缺少 GitHub Pages 入口 index.html"; exit 1; }
+if ! grep -q "url=育儿系统看板.html" "index.html"; then
+  echo "index.html 没有跳转到 $html"; exit 1;
+fi
 [ -f "assets/chart.umd.min.js" ] || { echo "缺少本地图表库 assets/chart.umd.min.js"; exit 1; }
 if grep -q "cdn.jsdelivr" "$html"; then
   echo "页面仍引用远程 CDN，请改为本地 assets/chart.umd.min.js"; exit 1;
