@@ -42,6 +42,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .t-soc{background:#FFF3E0;color:#E65100}
 .t-mem{background:#FCE4EC;color:#AD1457}
 .welcome{background:linear-gradient(135deg,#FFF8E1,#FFECB3);border-radius:var(--radius);padding:20px;margin-bottom:14px}
+.wk-note-box{padding:0}
+.wk-note-t{font-size:16px;font-weight:600;color:var(--primary-dark);margin-bottom:4px}
+.wk-note-d{font-size:14px;color:var(--text);line-height:1.6;margin-bottom:8px}
+.wk-note-tip{display:flex;align-items:flex-start;gap:6px;padding:8px 12px;background:color-mix(in srgb,var(--primary) 8%,#fff);border-radius:8px;font-size:13px;color:var(--text-mid);line-height:1.5}
+.wk-note-tip b{color:var(--primary-dark);white-space:nowrap}
 .welcome h2{font-size:18px;color:var(--primary-dark);margin-bottom:6px}
 .welcome p{font-size:15px;color:var(--text-mid)}
 .focus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
@@ -238,6 +243,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
     <h2>本周育儿重点 · 第<span id="welcomeMonth">18</span>个月</h2>
     <p id="welcomeSub">小鹿玛正处于<strong>大脑爆发黄金期</strong>——据国家卫健委2025《婴幼儿早期发展服务指南》，18月龄大脑发育完成度接近成人80%，每秒生成700-1000个神经元连接。本周聚焦：<strong>多感官探索 + 模仿学习 + 语言输入</strong>，用生活化陪玩激活大脑神经通路。</p>
   </div>
+  <div class="card" id="weekNoteCard" style="display:none">
+    <div class="card-title"><span class="icon">🌱</span>本周宝宝变化</div>
+    <div id="weekNote"></div>
+  </div>
   <div class="card">
     <div class="card-title"><span class="icon">🎯</span>本周发展重点</div>
     <div class="focus-grid" id="focusGrid">
@@ -386,6 +395,40 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 <div class="footer">小鹿玛成长计划 · 知芽专家×爱贝睿×哈佛儿童发展中心 融合体系 · 为小鹿玛定制<br>1岁半内容基于卫健委2025指南+MedlinePlus+三甲儿科标准 · 2岁档接入爱贝睿原版</div>
 
 <script>
+var WEEK_NOTES={
+  80:{t:'词汇积累期',d:'这周可能新增 2-3 个有意义的词，注意听她说的每个新词并复述强化。',tip:'把她指的东西说出名字，强化词汇输入'},
+  81:{t:'指物更频繁',d:'用食指指物是语言前奏，她会指认更多东西要求你命名。',tip:'她指什么就说什么名字，不催她模仿'},
+  82:{t:'跑得更稳',d:'从僵硬小跑过渡到较稳的跑，跌倒次数减少。',tip:'跌倒不慌张，鼓励自己站起来'},
+  83:{t:'垒积木 3→4 块',d:'手眼协调进步，垒积木从 3 块尝试到 4 块。',tip:'推倒重来是正常，不阻止'},
+  84:{t:'语言爆发前奏',d:'19 月中，大脑语言中枢加速，词汇量即将从 20 涨到 50。',tip:'这周是海量语言输入的关键期'},
+  85:{t:'模仿动作增加',d:'开始模仿你扫地、打电话、擦嘴等日常动作。',tip:'示范家务动作，让她跟着做'},
+  86:{t:'「我的」萌芽',d:'物权意识萌芽，开始说"我的"或护玩具。',tip:'护玩具不强迫分享，尊重物权'},
+  87:{t:'情绪表达多样化',d:'从单一哭笑，到能表达生气、委屈、兴奋。',tip:'帮她命名情绪：你生气了/你好开心'},
+  88:{t:'认知跃迁',d:'20 月初，开始理解简单因果关系（按了会响）。',tip:'给按键玩具，让她探索因果'},
+  89:{t:'因果理解深化',d:'会主动重复按按键制造声音，建立"我按→它响"。',tip:'不代劳，让她自己探索'},
+  90:{t:'关注其他孩子',d:'开始留意其他小朋友，从各玩各到偶有目光交流。',tip:'约同龄玩伴，创造观察机会'},
+  91:{t:'尝试用勺子',d:'从用手抓饭到尝试拿勺子（会洒漏）。',tip:'不嫌脏乱，允许她自己吃'},
+  92:{t:'两词句前奏',d:'20 月中，词汇 50+，即将组合成"妈妈抱"两词句。',tip:'接住她的短句，用完整句重复'},
+  93:{t:'扶栏上楼梯',d:'开始扶栏杆上楼梯（两步一阶），下肢力量进步。',tip:'楼梯口装好安全门，护着练'},
+  94:{t:'客体永久性稳固',d:'藏起的东西能主动找并找对位置。',tip:'玩藏物游戏，增加难度'},
+  95:{t:'跑跳协调期',d:'21 月初，跑得稳，能踢球、倒退走几步。',tip:'户外追跑踢球，练协调'},
+  96:{t:'50 词积累期',d:'词汇量接近 50，理解远大于表达。',tip:'读绘本时多指认，扩展词汇'},
+  97:{t:'垒 5-6 块',d:'积木垒高从 4 块进到 5-6 块，手部控制更精细。',tip:'记录最高块数，看进步'},
+  98:{t:'分类萌芽',d:'开始能把同色/同形的东西放一起。',tip:'给分类玩具，从 2 类开始'},
+  99:{t:'规则理解',d:'21 月中，开始懂"轮流""等一下"等简单规则。',tip:'收玩具时说"轮到你了"'},
+  100:{t:'物权意识清晰',d:'明确说"我的""你的"，物权感强烈。',tip:'不强迫分享，先尊重再引导'},
+  101:{t:'双脚离地尝试',d:'开始尝试双脚同时离地跳（可能只离地一点）。',tip:'牵双手练跳，垫子保护'},
+  102:{t:'自主性爆发',d:'22 月，"我自己来"出现，什么都想自己试。',tip:'允许慢和乱，完成后肯定'},
+  103:{t:'两词句出现',d:'从单词到"妈妈抱""宝宝球"两词组合。',tip:'接住短句，用完整句重复不纠错'},
+  104:{t:'「我自己来」',d:'22 月中，穿衣、洗手、收玩具都要自己来。',tip:'给时间，不代劳，完成即肯定'},
+  105:{t:'综合跃迁',d:'23 月，语言+认知+运动全面进步，准备 2 岁跃迁。',tip:'多陪伴多对话，准备 2 岁测评'},
+  106:{t:'颜色命名萌芽',d:'开始尝试说颜色名（常先认红/黄）。',tip:'生活中多指认颜色'},
+  107:{t:'涂鸦有意图',d:'从乱戳到有意识地画圈圈、线条。',tip:'大纸铺地，蜡笔自由画'},
+  108:{t:'准备 2 岁',d:'23 月中，各项能力接近 2 岁标准。',tip:'观察是否达标，准备 2 岁档案'},
+  109:{t:'双脚跳出现',d:'能双脚同时离地跳起，大运动达标。',tip:'在软垫上练跳，鼓励'},
+  110:{t:'2 岁双爆发',d:'24 月，语言（三词句）+ 自主意识双爆发。',tip:'抓住语言黄金期，多对话多读绘本'}
+};
+
 var homeBands=[
   {
     min:18,
@@ -706,6 +749,27 @@ function renderHome(){
     var weekend=['周六','周日'].indexOf(g.day)>=0?'weekend':'';
     return '<div class="day-card '+weekend+'"><div class="day">'+g.day.slice(1)+'</div><div class="gname">'+ico+' '+g.name+'</div><div class="gdesc"><span class="tag '+cls+'">'+catLabel[g.cat]+'</span>'+g.desc+'</div></div>';
   }).join('');
+  renderWeekNote();
+}
+function renderWeekNote(){
+  var wk=birthWeekOf(new Date());
+  var n=WEEK_NOTES[wk];
+  var box=document.getElementById('weekNoteCard');
+  var inner=document.getElementById('weekNote');
+  if(!box||!inner)return;
+  if(!n){
+    var keys=Object.keys(WEEK_NOTES).map(Number).sort(function(a,b){return a-b;});
+    var closest=keys[0];
+    keys.forEach(function(k){if(k<=wk)closest=k;});
+    n=WEEK_NOTES[closest];
+    if(!n){box.style.display='none';return;}
+  }
+  box.style.display='block';
+  inner.innerHTML='<div class="wk-note-box">'
+    +'<div class="wk-note-t">第'+wk+'周 · '+n.t+'</div>'
+    +'<div class="wk-note-d">'+n.d+'</div>'
+    +'<div class="wk-note-tip"><b>💡 这么做：</b><span>'+n.tip+'</span></div>'
+    +'</div>';
 }
 
 function showMilestone(key,btn){
