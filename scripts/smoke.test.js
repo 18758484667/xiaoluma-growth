@@ -82,6 +82,7 @@ assert('每月发育要点数据完整',
 assert('每月生活准备数据完整',
   ctx.MONTH_DEV['19'].life.length === 3 && ctx.MONTH_DEV['24'].life.some((x) => x.name.includes('如厕训练包')),
   JSON.stringify(ctx.MONTH_DEV['24'].life));
+assert('每周重点可取', !!ctx.weekNoteFor(ctx.birthWeekOf(new Date()))?.t);
 
 const stepHtml = ctx.fmtSteps({ mat: '球', steps: '1.先拿球 2.放进盒子' });
 assert('详细玩法按步骤拆分', (stepHtml.match(/gc-step/g) || []).length === 2, stepHtml);

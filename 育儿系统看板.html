@@ -59,6 +59,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .md-col li{padding:4px 0 4px 18px;position:relative;line-height:1.6}
 .md-col li:before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
 .md-col.md-attention li:before{content:"!";color:#E65100}
+.wk-focus{background:linear-gradient(135deg,color-mix(in srgb,var(--primary) 12%,#fff),#FFF8E1);border:1px solid color-mix(in srgb,var(--primary) 22%,#fff);border-radius:12px;padding:12px;margin-bottom:12px}
+.wk-focus-t{font-size:15px;font-weight:600;color:var(--primary-dark);margin-bottom:4px}
+.wk-focus-d{font-size:14px;color:var(--text);line-height:1.6;margin-bottom:6px}
+.wk-focus-tip{font-size:13px;color:var(--text-mid);background:color-mix(in srgb,var(--primary) 8%,#fff);border-radius:8px;padding:6px 10px}
+.wk-focus-tip b{color:var(--primary-dark)}
 .life-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .life-item{background:color-mix(in srgb,var(--green) 5%,#fff);border:1px solid color-mix(in srgb,var(--green) 16%,#fff);border-radius:12px;padding:12px}
 .life-item .life-name{font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px}
@@ -796,6 +801,16 @@ function renderHome(){
   renderMonthDev();
   renderWeekNote();
 }
+function weekNoteFor(wk){
+  var n=WEEK_NOTES[wk];
+  if(!n){
+    var keys=Object.keys(WEEK_NOTES).map(Number).sort(function(a,b){return a-b;});
+    var closest=keys[0];
+    keys.forEach(function(k){if(k<=wk)closest=k;});
+    n=WEEK_NOTES[closest];
+  }
+  return n||null;
+}
 function renderMonthDev(){
   var box=document.getElementById('monthDev');if(!box)return;
   var m=ageInfo().totM;
@@ -803,7 +818,15 @@ function renderMonthDev(){
   var key=keys[0];
   keys.forEach(function(k){if(k<=m)key=k;});
   var dev=MONTH_DEV[key]||MONTH_DEV[keys[0]];
-  box.innerHTML='<div class="md-title">'+esc(dev.t)+'</div><div class="md-desc">'+esc(dev.d)+'</div>'
+  var wk=birthWeekOf(new Date());
+  var wn=weekNoteFor(wk);
+  var focusHtml='';
+  if(wn){
+    focusHtml='<div class="wk-focus"><div class="wk-focus-t">本周重点 · 第'+wk+'周：'+esc(wn.t)+'</div>'
+      +'<div class="wk-focus-d">'+esc(wn.d)+'</div>'
+      +'<div class="wk-focus-tip"><b>家长注意点：</b>'+esc(wn.tip)+'</div></div>';
+  }
+  box.innerHTML=focusHtml+'<div class="md-title">'+esc(dev.t)+'</div><div class="md-desc">'+esc(dev.d)+'</div>'
     +'<div class="md-cols"><div class="md-col"><div class="md-h">发育亮点</div><ul>'
     +dev.points.map(function(p){return '<li>'+esc(p)+'</li>';}).join('')+'</ul></div>'
     +'<div class="md-col md-attention"><div class="md-h">家长注意点</div><ul>'
@@ -815,17 +838,11 @@ function renderMonthDev(){
 }
 function renderWeekNote(){
   var wk=birthWeekOf(new Date());
-  var n=WEEK_NOTES[wk];
+  var n=weekNoteFor(wk);
   var box=document.getElementById('weekNoteCard');
   var inner=document.getElementById('weekNote');
   if(!box||!inner)return;
-  if(!n){
-    var keys=Object.keys(WEEK_NOTES).map(Number).sort(function(a,b){return a-b;});
-    var closest=keys[0];
-    keys.forEach(function(k){if(k<=wk)closest=k;});
-    n=WEEK_NOTES[closest];
-    if(!n){box.style.display='none';return;}
-  }
+  if(!n){box.style.display='none';return;}
   box.style.display='block';
   inner.innerHTML='<div class="wk-note-box">'
     +'<div class="wk-note-t">第'+wk+'周 · '+n.t+'</div>'
