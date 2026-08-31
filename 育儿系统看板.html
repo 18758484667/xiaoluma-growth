@@ -42,8 +42,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .t-soc{background:#FFF3E0;color:#E65100}
 .t-mem{background:#FCE4EC;color:#AD1457}
 .welcome{background:linear-gradient(135deg,#FFF8E1,#FFECB3);border-radius:var(--radius);padding:20px;margin-bottom:14px}
+.wk-note-box{padding:0}
+.wk-note-t{font-size:16px;font-weight:600;color:var(--primary-dark);margin-bottom:4px}
+.wk-note-d{font-size:14px;color:var(--text);line-height:1.6;margin-bottom:8px}
+.wk-note-tip{display:flex;align-items:flex-start;gap:6px;padding:8px 12px;background:color-mix(in srgb,var(--primary) 8%,#fff);border-radius:8px;font-size:13px;color:var(--text-mid);line-height:1.5}
+.wk-note-tip b{color:var(--primary-dark);white-space:nowrap}
 .welcome h2{font-size:18px;color:var(--primary-dark);margin-bottom:6px}
 .welcome p{font-size:15px;color:var(--text-mid)}
+.md-title{font-size:17px;font-weight:600;color:var(--primary-dark);margin-bottom:6px}
+.md-desc{font-size:14px;color:var(--text-mid);margin-bottom:12px;line-height:1.7}
+.md-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.md-cols{grid-template-columns:1fr}}
+.md-col{background:color-mix(in srgb,var(--primary) 6%,#fff);border-radius:12px;padding:12px}
+.md-h{font-size:14px;font-weight:600;color:var(--primary-dark);margin-bottom:6px}
+.md-col ul{list-style:none;font-size:14px;color:var(--text-mid)}
+.md-col li{padding:4px 0 4px 18px;position:relative;line-height:1.6}
+.md-col li:before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
+.md-col.md-attention li:before{content:"!";color:#E65100}
 .focus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .focus-item{background:color-mix(in srgb,var(--primary) 7%,#fff);border:1px solid color-mix(in srgb,var(--primary) 16%,#fff);border-radius:14px;padding:14px}
 .focus-item .focus-icon{width:36px;height:36px;border-radius:12px;background:#fff;border:1px solid color-mix(in srgb,var(--primary) 22%,#fff);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:8px}
@@ -238,6 +253,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
     <h2>本周育儿重点 · 第<span id="welcomeMonth">18</span>个月</h2>
     <p id="welcomeSub">小鹿玛正处于<strong>大脑爆发黄金期</strong>——据国家卫健委2025《婴幼儿早期发展服务指南》，18月龄大脑发育完成度接近成人80%，每秒生成700-1000个神经元连接。本周聚焦：<strong>多感官探索 + 模仿学习 + 语言输入</strong>，用生活化陪玩激活大脑神经通路。</p>
   </div>
+  <div class="card" id="monthDevCard">
+    <div class="card-title"><span class="icon">📋</span>本月发育要点</div>
+    <div id="monthDev"></div>
+  </div>
+  <div class="card" id="weekNoteCard" style="display:none">
+    <div class="card-title"><span class="icon">🌱</span>本周宝宝变化</div>
+    <div id="weekNote"></div>
+  </div>
   <div class="card">
     <div class="card-title"><span class="icon">🎯</span>本周发展重点</div>
     <div class="focus-grid" id="focusGrid">
@@ -386,6 +409,62 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 <div class="footer">小鹿玛成长计划 · 知芽专家×爱贝睿×哈佛儿童发展中心 融合体系 · 为小鹿玛定制<br>1岁半内容基于卫健委2025指南+MedlinePlus+三甲儿科标准 · 2岁档接入爱贝睿原版</div>
 
 <script>
+var WEEK_NOTES={
+  80:{t:'词汇积累期',d:'这周可能新增 2-3 个有意义的词，注意听她说的每个新词并复述强化。',tip:'把她指的东西说出名字，强化词汇输入'},
+  81:{t:'指物更频繁',d:'用食指指物是语言前奏，她会指认更多东西要求你命名。',tip:'她指什么就说什么名字，不催她模仿'},
+  82:{t:'跑得更稳',d:'从僵硬小跑过渡到较稳的跑，跌倒次数减少。',tip:'跌倒不慌张，鼓励自己站起来'},
+  83:{t:'垒积木 3→4 块',d:'手眼协调进步，垒积木从 3 块尝试到 4 块。',tip:'推倒重来是正常，不阻止'},
+  84:{t:'语言爆发前奏',d:'19 月中，大脑语言中枢加速，词汇量即将从 20 涨到 50。',tip:'这周是海量语言输入的关键期'},
+  85:{t:'模仿动作增加',d:'开始模仿你扫地、打电话、擦嘴等日常动作。',tip:'示范家务动作，让她跟着做'},
+  86:{t:'「我的」萌芽',d:'物权意识萌芽，开始说"我的"或护玩具。',tip:'护玩具不强迫分享，尊重物权'},
+  87:{t:'情绪表达多样化',d:'从单一哭笑，到能表达生气、委屈、兴奋。',tip:'帮她命名情绪：你生气了/你好开心'},
+  88:{t:'认知跃迁',d:'20 月初，开始理解简单因果关系（按了会响）。',tip:'给按键玩具，让她探索因果'},
+  89:{t:'因果理解深化',d:'会主动重复按按键制造声音，建立"我按→它响"。',tip:'不代劳，让她自己探索'},
+  90:{t:'关注其他孩子',d:'开始留意其他小朋友，从各玩各到偶有目光交流。',tip:'约同龄玩伴，创造观察机会'},
+  91:{t:'尝试用勺子',d:'从用手抓饭到尝试拿勺子（会洒漏）。',tip:'不嫌脏乱，允许她自己吃'},
+  92:{t:'两词句前奏',d:'20 月中，词汇 50+，即将组合成"妈妈抱"两词句。',tip:'接住她的短句，用完整句重复'},
+  93:{t:'扶栏上楼梯',d:'开始扶栏杆上楼梯（两步一阶），下肢力量进步。',tip:'楼梯口装好安全门，护着练'},
+  94:{t:'客体永久性稳固',d:'藏起的东西能主动找并找对位置。',tip:'玩藏物游戏，增加难度'},
+  95:{t:'跑跳协调期',d:'21 月初，跑得稳，能踢球、倒退走几步。',tip:'户外追跑踢球，练协调'},
+  96:{t:'50 词积累期',d:'词汇量接近 50，理解远大于表达。',tip:'读绘本时多指认，扩展词汇'},
+  97:{t:'垒 5-6 块',d:'积木垒高从 4 块进到 5-6 块，手部控制更精细。',tip:'记录最高块数，看进步'},
+  98:{t:'分类萌芽',d:'开始能把同色/同形的东西放一起。',tip:'给分类玩具，从 2 类开始'},
+  99:{t:'规则理解',d:'21 月中，开始懂"轮流""等一下"等简单规则。',tip:'收玩具时说"轮到你了"'},
+  100:{t:'物权意识清晰',d:'明确说"我的""你的"，物权感强烈。',tip:'不强迫分享，先尊重再引导'},
+  101:{t:'双脚离地尝试',d:'开始尝试双脚同时离地跳（可能只离地一点）。',tip:'牵双手练跳，垫子保护'},
+  102:{t:'自主性爆发',d:'22 月，"我自己来"出现，什么都想自己试。',tip:'允许慢和乱，完成后肯定'},
+  103:{t:'两词句出现',d:'从单词到"妈妈抱""宝宝球"两词组合。',tip:'接住短句，用完整句重复不纠错'},
+  104:{t:'「我自己来」',d:'22 月中，穿衣、洗手、收玩具都要自己来。',tip:'给时间，不代劳，完成即肯定'},
+  105:{t:'综合跃迁',d:'23 月，语言+认知+运动全面进步，准备 2 岁跃迁。',tip:'多陪伴多对话，准备 2 岁测评'},
+  106:{t:'颜色命名萌芽',d:'开始尝试说颜色名（常先认红/黄）。',tip:'生活中多指认颜色'},
+  107:{t:'涂鸦有意图',d:'从乱戳到有意识地画圈圈、线条。',tip:'大纸铺地，蜡笔自由画'},
+  108:{t:'准备 2 岁',d:'23 月中，各项能力接近 2 岁标准。',tip:'观察是否达标，准备 2 岁档案'},
+  109:{t:'双脚跳出现',d:'能双脚同时离地跳起，大运动达标。',tip:'在软垫上练跳，鼓励'},
+  110:{t:'2 岁双爆发',d:'24 月，语言（三词句）+ 自主意识双爆发。',tip:'抓住语言黄金期，多对话多读绘本'}
+};
+
+var MONTH_DEV={
+  '18':{t:'语言爆发铺垫期',d:'词汇进入快速增长前夜，理解远多于表达，模仿欲望很强。',points:['听懂一步指令（把球给我）','会指物或用声音表达需求','能说出 10-20 个有意义的词'],attention:['多用场景旁白，少考问“这是什么”','她开口就回应，不强迫模仿']},
+  '19':{t:'跑得更稳、词量悄悄涨',d:'跑动更稳、摔倒减少，词汇每周都在增加，模仿动作变多。',points:['能蹲下捡物再站起','每周都可能冒出新词','开始模仿扫地、打电话'],attention:['跌倒先安抚，鼓励自己站起来','听到新词就复述一遍强化']},
+  '20':{t:'两词句前奏',d:'词汇量向 50 冲刺，开始理解简单因果关系。',points:['指物更频繁，等你命名','按了会响，主动重复按键','尝试用勺子自己吃'],attention:['指令用短句慢说','让她自己吃，不怕洒漏']},
+  '21':{t:'两词句与跑跳协调',d:'跑得稳、能踢球，词汇接近 50 并开始组合短句。',points:['说“妈妈抱”式两词句','扶栏杆上楼梯','开始懂“轮流”“等一下”'],attention:['接住短句扩成完整句','不强迫分享，先尊重物权']},
+  '22':{t:'自主性爆发期',d:'“我自己来”出现，什么都想自己试，情绪也更丰富。',points:['自己穿鞋、洗手','拒绝大人帮忙','生气、委屈、兴奋表达更多'],attention:['给足时间，不代劳','帮她命名情绪：你生气了']},
+  '23':{t:'2 岁冲刺期',d:'语言、运动、认知全面升级，为 2 岁跃迁做准备。',points:['尝试双脚同时跳起','能完成两步指令','词汇继续快速增长'],attention:['软垫上练跳，多鼓励','指令一次只给两步']},
+  '24':{t:'2 岁双爆发',d:'三词句、颜色命名、自主意识一起爆发。',points:['说出两到三词短句','认识常见颜色','双脚离地跳'],attention:['多对话多读绘本','不拿“别人家孩子”比较']},
+  '25':{t:'语言小话痨',d:'表达欲变强，常问“这是什么”，能说出自己名字。',points:['说出自己的名字','开始用“我”表达','听懂两步指令'],attention:['认真回应每个问题','不急着纠正发音']},
+  '26':{t:'跑跳升级期',d:'跑得更快、会转弯，能扶着上下楼梯。',points:['跑时能避开障碍','单手扶栏下楼梯','双脚跳更稳'],attention:['每天保证户外大运动','家里楼梯口做好防护']},
+  '27':{t:'想象力萌芽',d:'假装游戏更丰富，会喂娃娃、打电话、给玩具起名字。',points:['扮演照顾者角色','给玩具起名字','自己编一点小情节'],attention:['陪她演，不纠正“对不对”','多给安全道具发挥']},
+  '28':{t:'手部精细期',d:'手指更灵活，会拧瓶盖、一页页翻书。',points:['一页页翻绘本','拧开大瓶盖','用勺更稳、洒漏变少'],attention:['多给手部小任务','她想自己做就等一等']},
+  '29':{t:'情绪小火山',d:'情绪表达强烈，发脾气变多，是前额叶发育的正常表现。',points:['会大喊“不要”','表达生气和委屈','坚持自己的想法'],attention:['先共情再讲道理','不打骂、不冷处理']},
+  '30':{t:'语言长句子',d:'能说三到四词短句，开始用“因为”“然后”。',points:['说较完整短句','开始问“为什么”','能唱几句短儿歌'],attention:['多聊“今天做了什么”','不嫌她话多，认真听']},
+  '31':{t:'社交萌芽期',d:'开始注意其他小朋友，愿意一起玩一会儿。',points:['从各玩各到有互动','会递玩具给别人','能等待短暂轮流'],attention:['创造小型社交机会','仍然不强迫分享']},
+  '32':{t:'平衡进阶期',d:'单脚尝试站立，能跳过低矮障碍。',points:['单脚站 1-2 秒','双脚跳得更远','能倒退走几步'],attention:['运动多鼓励','摔倒先安抚再继续']},
+  '33':{t:'分类与配对期',d:'会按颜色、形状、大小分类配对。',points:['同色配对','完成 2-3 片拼图','理解大和小'],attention:['从两类开始玩','配对时多说出名称']},
+  '34':{t:'自理小能手',d:'想自己穿脱衣服、洗手、收玩具。',points:['会脱简单外套','自己洗手擦手','把玩具放回原位'],attention:['慢一点没关系','完成后明确肯定']},
+  '35':{t:'故事表达期',d:'能复述短故事片段，喜欢问“然后呢”。',points:['复述两三个情节','指认更多颜色和形状','会接儿歌下一句'],attention:['每天固定时间读绘本','别让屏幕替代共读']},
+  '36':{t:'3 岁前冲刺',d:'各项能力接近 3 岁标准，语言、社交、运动都更独立。',points:['说较长句子','能和小朋友互动','完成简单分类任务'],attention:['多户外、多交流','记得安排 3 岁前健康检查']}
+};
+
 var homeBands=[
   {
     min:18,
@@ -706,6 +785,41 @@ function renderHome(){
     var weekend=['周六','周日'].indexOf(g.day)>=0?'weekend':'';
     return '<div class="day-card '+weekend+'"><div class="day">'+g.day.slice(1)+'</div><div class="gname">'+ico+' '+g.name+'</div><div class="gdesc"><span class="tag '+cls+'">'+catLabel[g.cat]+'</span>'+g.desc+'</div></div>';
   }).join('');
+  renderMonthDev();
+  renderWeekNote();
+}
+function renderMonthDev(){
+  var box=document.getElementById('monthDev');if(!box)return;
+  var m=ageInfo().totM;
+  var keys=Object.keys(MONTH_DEV).map(Number).sort(function(a,b){return a-b;});
+  var key=keys[0];
+  keys.forEach(function(k){if(k<=m)key=k;});
+  var dev=MONTH_DEV[key]||MONTH_DEV[keys[0]];
+  box.innerHTML='<div class="md-title">'+esc(dev.t)+'</div><div class="md-desc">'+esc(dev.d)+'</div>'
+    +'<div class="md-cols"><div class="md-col"><div class="md-h">发育亮点</div><ul>'
+    +dev.points.map(function(p){return '<li>'+esc(p)+'</li>';}).join('')+'</ul></div>'
+    +'<div class="md-col md-attention"><div class="md-h">家长注意点</div><ul>'
+    +dev.attention.map(function(p){return '<li>'+esc(p)+'</li>';}).join('')+'</ul></div></div>';
+}
+function renderWeekNote(){
+  var wk=birthWeekOf(new Date());
+  var n=WEEK_NOTES[wk];
+  var box=document.getElementById('weekNoteCard');
+  var inner=document.getElementById('weekNote');
+  if(!box||!inner)return;
+  if(!n){
+    var keys=Object.keys(WEEK_NOTES).map(Number).sort(function(a,b){return a-b;});
+    var closest=keys[0];
+    keys.forEach(function(k){if(k<=wk)closest=k;});
+    n=WEEK_NOTES[closest];
+    if(!n){box.style.display='none';return;}
+  }
+  box.style.display='block';
+  inner.innerHTML='<div class="wk-note-box">'
+    +'<div class="wk-note-t">第'+wk+'周 · '+n.t+'</div>'
+    +'<div class="wk-note-d">'+n.d+'</div>'
+    +'<div class="wk-note-tip"><b>💡 家长注意点：</b><span>'+n.tip+'</span></div>'
+    +'</div>';
 }
 
 function showMilestone(key,btn){
@@ -718,7 +832,24 @@ function showMilestone(key,btn){
 }
 showMilestone('motor',document.querySelector('#milestoneTabs button'));
 
-var fState={cat:'all',src:'all',age:'all'};
+function defaultAgeBand(){
+  var t=ageInfo().totM;
+  if(t>=48)return '4岁+';
+  if(t>=36)return '3岁+';
+  if(t>=24)return '2岁+';
+  return '18月+';
+}
+var BIRTH=new Date(2025,0,16); // 女儿出生 2025-01-16
+var fState={cat:'all',src:'all',age:defaultAgeBand()};
+function syncAgeButton(){
+  var filters=document.querySelectorAll('#page-games .game-filter');
+  if(filters.length<3)return;
+  var ageBtns=filters[2].querySelectorAll('button');
+  ageBtns.forEach(function(b){
+    var m=b.getAttribute('onclick').match(/'age','([^']+)'/);
+    b.classList.toggle('active',m&&m[1]===fState.age);
+  });
+}
 function setF(btn,key,val){
   fState[key]=val;
   btn.parentNode.querySelectorAll('button').forEach(function(b){b.classList.remove('active')});
@@ -763,6 +894,7 @@ function renderGames(){
     return '<div class="game-card"><div class="gc-head"><h4>'+ico+' '+g.name+'</h4><span class="tag '+cls+'">'+g.catLabel+'</span><span class="tag" style="background:#F5F5F5;color:#616161">月龄:'+g.age+'</span><span class="source-badge '+srcCls+'">'+g.src+'</span></div><div class="gc-body">'+mat+'<div class="gc-steps"><div class="gc-steps-title">详细玩法</div>'+fmtSteps(g)+'</div><div class="gc-row"><span class="gc-label">时长</span><span class="gc-val">'+g.time+'</span></div>'+pr+sf+'</div></div>';
   }).join('');
 }
+syncAgeButton();
 renderGames();
 
 function renderTheory(id,list,type){
@@ -780,18 +912,40 @@ var OBS_COLOR={cog:'#AB47BC',lang:'#42A5F5',emo:'#EC407A',mov:'#66BB6A',cre:'#FF
 var OBS_NAME={cog:'🧠 智力脑',lang:'🗣️ 语言脑',emo:'💛 情绪脑',mov:'🏃 运动脑',cre:'🎨 创意脑'};
 var OBS_DIM_IDS=['cog','lang','emo','mov','cre'];
 var OBS_TO_GAME_CAT={cog:'cog',lang:'lang',emo:'soc',mov:'motor',cre:'fine'};
-var OBS_ITEMS=[
-  {dim:'cog', text:'主动掀开布找藏起的玩具（客体永久性）'},
-  {dim:'cog', text:'能模仿你做的简单动作（拍手、点头）'},
-  {dim:'lang', text:'主动指着某物发出声音或词'},
-  {dim:'lang', text:'听到「拍手」「再见」等常用指令有反应'},
-  {dim:'emo', text:'陌生人面前有明显的表情变化'},
-  {dim:'emo', text:'玩具被拿走时明显表达不满'},
-  {dim:'mov', text:'能蹲下捡起地上的玩具再站起'},
-  {dim:'mov', text:'能用拇指+食指对捏起小物品'},
-  {dim:'cre', text:'用积木自由搭出不同的形状'},
-  {dim:'cre', text:'玩水/玩沙时自发探索不同的玩法'}
-];
+var OBS_ITEMS_BY_AGE={
+  18:[
+    {dim:'cog', text:'主动掀开布找藏起的玩具（客体永久性）'},
+    {dim:'cog', text:'能模仿你做的简单动作（拍手、点头）'},
+    {dim:'lang', text:'主动指着某物发出声音或词'},
+    {dim:'lang', text:'听到「拍手」「再见」等常用指令有反应'},
+    {dim:'emo', text:'陌生人面前有明显的表情变化'},
+    {dim:'emo', text:'玩具被拿走时明显表达不满'},
+    {dim:'mov', text:'能蹲下捡起地上的玩具再站起'},
+    {dim:'mov', text:'能用拇指+食指对捏起小物品'},
+    {dim:'cre', text:'用积木自由搭出不同的形状'},
+    {dim:'cre', text:'玩水/玩沙时自发探索不同的玩法'}
+  ],
+  24:[
+    {dim:'cog', text:'玩「藏玩具」时主动掀开布找，并找对位置（客体永久性稳固）'},
+    {dim:'cog', text:'理解「一样/不一样」，能把同色/同形积木归到一起'},
+    {dim:'lang', text:'能说 50+ 有意义的词，开始两词句（如「妈妈抱」「宝宝球」）'},
+    {dim:'lang', text:'听懂两步指令（如「把球放进盒子里」）并执行'},
+    {dim:'emo', text:'明确说「不」「我的」，物权意识清晰'},
+    {dim:'emo', text:'能说出至少 2 种情绪（开心/生气/害怕）'},
+    {dim:'mov', text:'能双脚同时离地跳起（哪怕只跳一点点）'},
+    {dim:'mov', text:'扶栏杆能上楼梯（两步一阶）'},
+    {dim:'cre', text:'玩假装游戏：做饭、喂娃娃、打电话，有简单情节'},
+    {dim:'cre', text:'用蜡笔在纸上自发涂鸦，不止是乱戳'}
+  ]
+};
+function getObsItems(){
+  var tot=ageInfo().totM;
+  var keys=Object.keys(OBS_ITEMS_BY_AGE).map(Number).sort(function(a,b){return a-b;});
+  var band=keys[0];
+  keys.forEach(function(k){if(tot>=k)band=k;});
+  return OBS_ITEMS_BY_AGE[band]||OBS_ITEMS_BY_AGE[18];
+}
+var OBS_ITEMS=OBS_ITEMS_BY_AGE[18]; // 兼容旧引用（renderObsHistory 等可能直接引用）
 var OBS_KEY='xlma_weeklyobs_v1';
 var DX_KEY='xlma_dx_v1';
 var DX_DIM_IDS=['cog','lang'];
@@ -950,10 +1104,12 @@ function currentObsWeek(){
 function renderObserve(){
   var rec=currentObsWeek();
   var a=ageInfo();
-  document.getElementById('obsStatus').innerHTML='自出生 <b>第'+a.weeks+'周</b> · '+rec.wk+' 起 · 共 <b>10</b> 个观察项（不需要一次填完）';
-  var done=0;OBS_ITEMS.forEach(function(_,i){if(rec.items['i'+i]!==undefined)done++});
-  document.getElementById('obsProgress').style.width=(done/OBS_ITEMS.length*100)+'%';
-  document.getElementById('obsList').innerHTML=OBS_ITEMS.map(function(q,i){
+  var items=getObsItems();
+  var bandLabel=a.totM>=24?'2岁档':(a.totM>=21?'21月档':'18月档');
+  document.getElementById('obsStatus').innerHTML='自出生 <b>第'+a.weeks+'周</b> · '+rec.wk+' 起 · 共 <b>'+items.length+'</b> 个观察项（'+bandLabel+'，不需要一次填完）';
+  var done=0;items.forEach(function(_,i){if(rec.items['i'+i]!==undefined)done++});
+  document.getElementById('obsProgress').style.width=(done/items.length*100)+'%';
+  document.getElementById('obsList').innerHTML=items.map(function(q,i){
     var k='i'+i,v=rec.items[k];
     var clsDone=v!==undefined?' done':'';
     var btn=function(s,emoji,label){return '<div class="obs-btn'+(v===s?' active':'')+'" onclick="setObs(\''+k+'\','+s+')">'+emoji+'<br>'+label+'</div>';};
@@ -970,8 +1126,9 @@ function renderObserve(){
 function setObs(k,v){
   var rec=currentObsWeek();
   rec.items[k]=v;
+  var items=getObsItems();
   OBS_DIM_IDS.forEach(function(d){
-    var arr=OBS_ITEMS.map(function(q,i){return q.dim===d?rec.items['i'+i]:undefined}).filter(function(x){return x!==undefined});
+    var arr=items.map(function(q,i){return q.dim===d?rec.items['i'+i]:undefined}).filter(function(x){return x!==undefined});
     rec.scores[d]=arr.length?Math.round(arr.reduce(function(s,n){return s+n},0)/arr.length*10)/10:0;
   });
   rec.ts=Date.now();
@@ -1010,7 +1167,7 @@ function renderObsSummary(rec){
 }
 function recommendGames(dim){
   var cat=OBS_TO_GAME_CAT[dim]||'cog';
-  fState.cat=cat;fState.src='all';fState.age='all';
+  fState.cat=cat;fState.src='all';fState.age=defaultAgeBand();
   var filters=document.querySelectorAll('#page-games .game-filter');
   if(filters.length>=3){
     filters[0].querySelectorAll('button').forEach(function(b){
@@ -1018,7 +1175,10 @@ function recommendGames(dim){
       b.classList.toggle('active',m&&m[1]===cat);
     });
     filters[1].querySelectorAll('button').forEach(function(b){b.classList.toggle('active',b.getAttribute('onclick').indexOf("'all'")>0);});
-    filters[2].querySelectorAll('button').forEach(function(b){b.classList.toggle('active',b.getAttribute('onclick').indexOf("'all'")>0);});
+    filters[2].querySelectorAll('button').forEach(function(b){
+      var m=b.getAttribute('onclick').match(/'age','([^']+)'/);
+      b.classList.toggle('active',m&&m[1]===fState.age);
+    });
   }
   renderGames();
   var navBtns=document.querySelectorAll('.nav button');
@@ -1034,7 +1194,7 @@ function renderObsHistory(){
     var cn=Object.keys(e.items||{}).length;
     var sc=e.scores||{};var total=(sc.cog||0)+(sc.lang||0)+(sc.emo||0)+(sc.mov||0)+(sc.cre||0);
     var avg=total?Math.round(total/5*10)/5:0;
-    return '<div class="hrow"><span>第'+esc(e.wkNum)+'周 · '+esc(e.wk)+' 起</span><span><b>'+cn+'/'+OBS_ITEMS.length+'</b>项 · 均分 '+avg.toFixed(1)+'/5</span></div>';
+    return '<div class="hrow"><span>第'+esc(e.wkNum)+'周 · '+esc(e.wk)+' 起</span><span><b>'+cn+'/'+getObsItems().length+'</b>项 · 均分 '+avg.toFixed(1)+'/5</span></div>';
   }).join('')+'</div>';
 }
 function renderBrain(){
@@ -1140,7 +1300,6 @@ function renderTrend(){
 }
 
 /* ===== 工具函数 ===== */
-var BIRTH=new Date(2025,0,16); // 女儿出生 2025-01-16
 var WK_KEY='xlma_weekly_v1'; // 旧数据 key（保留用于兼容迁移）
 function daysBetween(a,b){return Math.floor((b-a)/86400000);}
 function addDays(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x;}
@@ -1185,7 +1344,7 @@ function genArchive(){
   html+='<table class="arch-table"><tr><th>周次</th><th>周一起</th><th>观察项</th>'+OBS_DIM_IDS.map(function(d){return '<th style="color:'+OBS_COLOR[d]+'">'+OBS_NAME[d].slice(2)+'</th>';}).join('')+'</tr>'+arr.map(function(e){
     var cn=Object.keys(e.items||{}).length;
     var cells=OBS_DIM_IDS.map(function(d){return '<td>'+(e.scores&&e.scores[d]?e.scores[d]:'-')+'</td>';}).join('');
-    return '<tr><td>第'+esc(e.wkNum)+'周</td><td>'+esc(e.wk)+'</td><td><b>'+cn+'/'+OBS_ITEMS.length+'</b></td>'+cells+'</tr>';
+    return '<tr><td>第'+esc(e.wkNum)+'周</td><td>'+esc(e.wk)+'</td><td><b>'+cn+'/'+getObsItems().length+'</b></td>'+cells+'</tr>';
   }).join('')+'</table>';
   var notes=arr.map(function(e){return '· 【第'+esc(e.wkNum)+'周】'+esc(e.note||'（无文字记录）');}).join('\n');
   html+='<h4 style="margin:14px 0 6px">✨ 本月观察文字记录</h4><div class="arch-note">'+notes+'</div>';

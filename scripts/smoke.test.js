@@ -76,6 +76,10 @@ function assert(name, cond, extra) {
 
 assert('页面初始化无异常', true);
 
+assert('每月发育要点数据完整',
+  Object.keys(ctx.MONTH_DEV).length >= 19 && ctx.MONTH_DEV['19'].points.length === 3 && ctx.MONTH_DEV['19'].attention.length === 2,
+  JSON.stringify(Object.keys(ctx.MONTH_DEV)));
+
 const stepHtml = ctx.fmtSteps({ mat: '球', steps: '1.先拿球 2.放进盒子' });
 assert('详细玩法按步骤拆分', (stepHtml.match(/gc-step/g) || []).length === 2, stepHtml);
 const fallbackHtml = ctx.fmtSteps({ mat: '纸杯', steps: '贴纸装饰' });
