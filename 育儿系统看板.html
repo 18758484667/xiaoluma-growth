@@ -168,6 +168,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .wk-bar-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-dark));border-radius:5px;transition:width .4s}
 .wk-bar-val{width:42px;text-align:right;font-size:13px;color:var(--primary-dark);font-weight:600;flex-shrink:0}
 .wk-note{width:100%;box-sizing:border-box;min-height:64px;margin-top:10px;padding:10px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;resize:vertical}
+.obs-entry-grid{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;margin-top:10px}
+.obs-entry-grid label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--text-light)}
+.obs-entry-grid select{width:100%;background:#fff}
+.growth-profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:12px 0}
+.growth-dim-card{border:1px solid var(--border);border-radius:12px;padding:12px;background:#fff;cursor:pointer;text-align:left;font-family:inherit;color:var(--text)}
+.growth-dim-card:hover,.growth-dim-card.active{border-color:var(--primary);background:color-mix(in srgb,var(--primary) 6%,#fff)}
+.growth-state{display:inline-block;margin-top:6px;padding:2px 9px;border-radius:10px;font-size:12px;background:#F5F5F5;color:var(--text-mid)}
+.growth-evidence{display:inline-block;margin:6px 0 0 5px;font-size:11px;color:var(--text-light)}
+.growth-recent{font-size:11px;color:var(--text-light);margin-top:7px;line-height:1.45}
+.growth-detail{border-radius:12px;background:color-mix(in srgb,var(--primary) 6%,#fff);padding:14px;margin-top:12px}
+.growth-detail h4{font-size:15px;margin:10px 0 5px}.growth-detail ul{padding-left:20px;font-size:13px;color:var(--text-mid)}
+@media(max-width:700px){.obs-entry-grid{grid-template-columns:1fr}.obs-entry-grid .btn{width:100%}}
 
 /* 每周观察（爱贝睿式日常行为观察清单） */
 .obs-status{font-size:14px;color:var(--text-mid);margin-bottom:10px;line-height:1.7}
@@ -180,8 +192,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .obs-item.done{background:color-mix(in srgb,#FF9800 5%,transparent);border-radius:8px;padding:10px 12px 12px;margin:0 -8px}
 .obs-dim{font-size:12px;font-weight:600;display:inline-block;padding:2px 10px;border-radius:10px;margin-bottom:6px}
 .obs-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:8px;color:var(--text)}
-.obs-btns{display:flex;gap:6px}
-.obs-btn{flex:1;padding:10px 6px;border:1px solid var(--border);border-radius:8px;background:#FAFAFA;cursor:pointer;font-size:13px;text-align:center;transition:all .2s;line-height:1.4}
+.obs-btns{display:flex;gap:6px;flex-wrap:wrap}
+.obs-btn{flex:1;min-width:105px;padding:10px 6px;border:1px solid var(--border);border-radius:8px;background:#FAFAFA;cursor:pointer;font-size:13px;text-align:center;transition:all .2s;line-height:1.4;font-family:inherit;color:inherit}
 .obs-btn:hover{background:color-mix(in srgb,#FF9800 8%,#fff)}
 .obs-btn.active{background:color-mix(in srgb,#FF9800 16%,#fff);border-color:#FF9800;color:#E65100;font-weight:600}
 
@@ -201,6 +213,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .obs-sum-bar.obs-sum-none .obs-sum-track{background:#F5F5F5}
 .obs-sum-bar.obs-sum-none .obs-sum-val{color:#9E9E9E;font-weight:400}
 .gc-safety{margin-top:8px;padding:6px 10px;border-radius:8px;background:#FFF3E0;color:#E65100;font-size:12px;line-height:1.5}
+.today-hero{background:linear-gradient(135deg,#FFF8E1,#FFECB3);border-radius:var(--radius);padding:18px;margin-bottom:14px}
+.today-hero h2{font-size:21px;color:#8D5D00;margin-bottom:3px}.today-hero p{font-size:14px;color:var(--text-mid)}
+.today-card{border:1px solid color-mix(in srgb,var(--primary) 16%,#fff)}
+.today-observe{font-size:17px;font-weight:600;line-height:1.65;margin-bottom:8px}.today-gentle{font-size:13px;color:var(--text-mid);margin-bottom:12px}
+.today-actions,.today-chips,.feedback-row{display:flex;gap:7px;flex-wrap:wrap}
+.today-actions button,.today-chip,.feedback-row button{border:1px solid var(--border);background:#fff;border-radius:18px;padding:7px 11px;font-size:13px;cursor:pointer;color:var(--text-mid)}
+.today-actions button:hover,.today-chip:hover,.today-chip.active,.feedback-row button.active{border-color:var(--primary);background:color-mix(in srgb,var(--primary) 14%,#fff);color:var(--primary-dark)}
+.today-activity-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}@media(max-width:760px){.today-activity-grid{grid-template-columns:1fr}}
+.today-activity{border:1px solid var(--border);border-radius:14px;padding:14px;background:#fff;display:flex;flex-direction:column;gap:7px}
+.today-activity h3{font-size:17px;line-height:1.4}.today-slot{font-size:11px;color:#fff;background:var(--primary-dark);border-radius:9px;padding:1px 7px;align-self:flex-start}.today-meta{font-size:12px;color:var(--text-light)}
+.today-desc{font-size:14px;color:var(--text-mid);line-height:1.6}.today-why{font-size:12px;background:#F7F7F7;border-radius:8px;padding:8px;color:var(--text-mid);line-height:1.55}.today-why b{color:var(--text)}
+.today-detail summary{font-size:13px;color:var(--primary-dark);cursor:pointer}.today-detail ol{font-size:13px;color:var(--text-mid);padding-left:19px;margin:6px 0}.today-detail li{margin:3px 0}
+.observe-inline{background:#F3F8FF;border-radius:8px;padding:9px;font-size:13px;color:#315D7A}.observe-inline .today-actions{margin-top:7px}
+.feedback-box{border-top:1px dashed var(--border);padding-top:8px}.feedback-label{font-size:12px;color:var(--text-light);margin:4px 0}
+.life-opportunity{border-left:4px solid var(--green);background:#F4FBF4;border-radius:10px;padding:11px 13px;margin:8px 0}.life-opportunity b{font-size:15px}.life-opportunity p{font-size:13px;color:var(--text-mid)}
+.today-condition-dock{position:fixed;left:50%;bottom:calc(10px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:220;width:min(340px,calc(100% - 32px));height:50px;border:1px solid color-mix(in srgb,var(--primary) 28%,#ddd);border-radius:16px;background:rgba(255,255,255,.96);box-shadow:0 6px 24px rgba(62,39,35,.16);display:flex;align-items:center;padding:0 7px 0 15px;backdrop-filter:blur(12px)}
+.today-condition-dock button{width:100%;height:100%;border:0;background:none;display:flex;align-items:center;justify-content:space-between;gap:10px;font:inherit;cursor:pointer;color:var(--text)}
+.today-condition-summary{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.today-condition-adjust{font-size:13px;color:var(--primary-dark);font-weight:700;background:color-mix(in srgb,var(--primary) 13%,#fff);padding:5px 11px;border-radius:12px;flex-shrink:0}
+body.today-dock-visible .container{padding-bottom:calc(86px + env(safe-area-inset-bottom,0px))}
+.today-sheet-backdrop{position:fixed;inset:0;z-index:300;background:rgba(40,28,24,.38);display:none;align-items:flex-end;justify-content:center}.today-sheet-backdrop.open{display:flex}
+.today-sheet{width:min(680px,100%);max-height:min(82vh,720px);overflow-y:auto;overscroll-behavior:contain;background:#fff;border-radius:20px 20px 0 0;padding:8px 18px calc(18px + env(safe-area-inset-bottom,0px));box-shadow:0 -8px 30px rgba(0,0,0,.16)}
+.today-sheet-handle{width:38px;height:4px;background:#D7D2CF;border-radius:4px;margin:2px auto 10px}.today-sheet-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:4px}.today-sheet-head h3{font-size:18px}.today-sheet-close{border:0;background:#F3F3F3;border-radius:50%;width:32px;height:32px;font-size:18px;cursor:pointer;color:var(--text-mid)}
+.today-sheet-done{width:100%;margin-top:16px;border:0;border-radius:12px;background:var(--primary);color:#fff;font-size:16px;font-weight:600;padding:11px;cursor:pointer}
+.today-settings{font-size:14px}.setting-group{margin-top:14px}.setting-label{font-size:13px;color:var(--text-mid);font-weight:600;margin-bottom:6px}.interest-chip input{display:none}
+@media(min-width:760px){.today-condition-dock{bottom:18px}.today-sheet{margin-bottom:16px;border-radius:20px;max-height:76vh}.today-sheet-backdrop{align-items:flex-end}}
+.today-note{font-size:13px;color:var(--text-mid);background:#FFF8E1;border-radius:9px;padding:8px 11px;margin-bottom:10px}
+.saved-hint{font-size:12px;color:var(--green);min-height:18px;margin-top:5px}
 
 /* 脑计划内部子 tab */
 .brain-subtabs{display:flex;gap:8px;margin-bottom:14px;border-bottom:2px solid var(--border);padding-bottom:0}
@@ -247,70 +286,44 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
   <button class="backup-x" onclick="this.parentNode.style.display='none'" title="稍后提醒">✕</button>
 </div>
 <div class="nav">
-  <button class="active" style="--mc:#FFCA28" onclick="showPage('home',this)">本周看板</button>
+  <button class="active" style="--mc:#FFCA28" onclick="showPage('home',this)">今天</button>
   <button style="--mc:#4CAF50" onclick="showPage('milestone',this)">发展里程碑</button>
   <button style="--mc:#9C27B0" onclick="showPage('games',this)">游戏库</button>
   <button style="--mc:#2196F3" onclick="showPage('theory',this)">脑科学</button>
-  <button style="--mc:#F44336" onclick="showPage('brain',this)">脑计划</button>
+  <button style="--mc:#F44336" onclick="showPage('brain',this)">成长计划</button>
 </div>
 
 <div class="container">
 
 <!-- ===== 首页 ===== -->
 <div class="page active" id="page-home">
-  <div class="welcome">
-    <h2>本周育儿重点 · 第<span id="welcomeMonth">18</span>个月</h2>
-    <p id="welcomeSub">小鹿玛正处于<strong>大脑爆发黄金期</strong>——据国家卫健委2025《婴幼儿早期发展服务指南》，18月龄大脑发育完成度接近成人80%，每秒生成700-1000个神经元连接。本周聚焦：<strong>多感官探索 + 模仿学习 + 语言输入</strong>，用生活化陪玩激活大脑神经通路。</p>
-  </div>
-  <div class="card" id="monthDevCard">
-    <div class="card-title"><span class="icon">📋</span>本月发育要点</div>
-    <div id="monthDev"></div>
-  </div>
-  <div class="card" id="monthLifeCard">
-    <div class="card-title"><span class="icon">🧺</span>本月生活准备</div>
-    <div id="monthLife"></div>
-  </div>
-  <div class="card" id="weekNoteCard" style="display:none">
-    <div class="card-title"><span class="icon">🌱</span>本周宝宝变化</div>
-    <div id="weekNote"></div>
-  </div>
-  <div class="card">
-    <div class="card-title"><span class="icon">🎯</span>本周发展重点</div>
-    <div class="focus-grid" id="focusGrid">
-      <div class="focus-item"><h4>🗣️ 语言爆发铺垫</h4><p>18月是语言中枢黄金节点。用「场景旁白」——小鹿玛做什么你就描述什么，海量输入比教说话更有效。</p></div>
-      <div class="focus-item"><h4>🪞 模仿学习激活</h4><p>镜像神经元活跃期，模仿是此阶段最强学习通道。示范扫地、打电话、喂娃娃，让她跟着做。</p></div>
-      <div class="focus-item"><h4>🖐️ 多感官探索</h4><p>提供不同材质物品（毛巾/积木/勺子），让小鹿玛摸、捏、敲，触觉+视觉+听觉同步编码大脑。</p></div>
-      <div class="focus-item"><h4>🧩 客体永久性巩固</h4><p>玩「藏玩具」游戏，让小鹿玛理解「看不见≠消失」，这是认知发展的核心里程碑。</p></div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-title"><span class="icon">🧸</span>本月龄玩具推荐</div>
-    <div class="toy-grid" id="toyGrid"></div>
-  </div>
-  <div class="card">
-    <div class="card-title"><span class="icon">📅</span>每日游戏计划</div>
-    <div class="week-grid" id="weekGames"></div>
-  </div>
+  <div class="today-hero"><h2>小鹿玛 · <span id="welcomeMonth">20</span>个月</h2><p>今天不用做计划，从一个观察、三个游戏和一个生活小机会开始。</p></div>
+  <div class="card today-card"><div class="card-title"><span class="icon">👀</span>今天可以留意</div><div id="todayObservation"></div></div>
+  <div class="card today-card"><div class="card-title"><span class="icon">🎮</span>今天玩什么</div><div id="todayEnergyNote"></div><div class="today-activity-grid" id="todayActivities"></div></div>
+  <div class="card today-card"><div class="card-title"><span class="icon">🌱</span>今天的小生活机会</div><div id="todayLife"></div></div>
 </div>
 
-<!-- ===== 脑计划（每周观察 + 月度档案）===== -->
+<!-- ===== 成长计划（日常观察 + 月度成长评估 + 成长档案）===== -->
 <div class="page" id="page-brain">
   <div class="brain-subtabs">
-    <button class="active" id="subt-obs" onclick="showBrainSub('obs',this)">🔍 每周观察</button>
+    <button class="active" id="subt-obs" onclick="showBrainSub('obs',this)">🔍 成长观察</button>
     <button id="subt-arch" onclick="showBrainSub('arch',this)">🗂️ 月度档案</button>
-    <button id="subt-dx" onclick="showBrainSub('dx',this)">🧭 深度诊断</button>
+    <button id="subt-assess" onclick="showBrainSub('assess',this)">🧭 成长小评估</button>
   </div>
 
-  <!-- 子页：每周观察 -->
+  <!-- 子页：日常成长观察 -->
   <div class="brain-sub active" id="bsub-obs">
     <div class="card">
-      <div class="card-title"><span class="icon">🔍</span>本周行为观察</div>
+      <div class="card-title"><span class="icon">🔍</span>记录今天的小变化</div>
       <div class="obs-status" id="obsStatus"></div>
-      <div class="obs-progress"><div class="obs-progress-fill" id="obsProgress" style="width:0%"></div></div>
       <div id="obsSummary"></div>
-      <div id="obsList"></div>
-      <div style="margin-top:14px;text-align:center;color:var(--text-light);font-size:13px;line-height:1.6">💡 提示：日常陪娃时观察到任何一项，点对应按钮即可。<br>不需要一次填完，下次进入自动保留。一周观察完，月底可在「月度档案」自动汇总。</div>
-      <textarea class="wk-note" id="obsNote" placeholder="本周补充观察：比如「会说新词狗狗」「搭5块积木」「自己扶栏上楼」…" style="margin-top:14px"></textarea>
+      <textarea class="wk-note" id="obsNote" placeholder="例如：今天第一次说「妈妈抱」。" style="margin-top:12px"></textarea>
+      <div class="obs-entry-grid">
+        <label>可能相关领域<select id="obsDomain" class="wk-input"><option value="">暂不确定</option><option value="motor">大运动</option><option value="fine">精细动作</option><option value="lang">语言沟通</option><option value="cog">认知探索</option><option value="soc">社会交往 / 社会情绪</option></select></label>
+        <label>观察状态<select id="obsEvidenceStatus" class="wk-input"><option value="observed">已观察到</option><option value="emerging">正在出现</option><option value="unobserved">尚未观察</option><option value="not_yet">家长确认尚未出现</option><option value="concern">家长有担忧</option></select></label>
+        <button class="btn" onclick="addObservation()">保存观察</button>
+      </div>
+      <div style="margin-top:10px;color:var(--text-light);font-size:13px;line-height:1.6">记录会作为成长画像的辅助证据。一次记录不会自动把某个领域升级为“优秀”。</div>
     </div>
     <div class="card">
       <div class="card-title"><span class="icon">📚</span>观察历史</div>
@@ -321,39 +334,41 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
   <!-- 子页：月度档案 -->
   <div class="brain-sub" id="bsub-arch">
     <div class="card">
-      <div class="card-title"><span class="icon">🧠</span>脑计划·月评</div>
-      <p style="font-size:15px;color:var(--text-mid);margin-bottom:14px;line-height:1.8">月评 = <strong>每周观察数据自动汇总</strong>。日常陪娃时在「每周观察」勾选行为项，月末/月初点这里选月份，自动生成五大脑发育雷达图 + 成长档案，无需重新测评。</p>
-      <div style="background:color-mix(in srgb,#F44336 8%,#fff);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--text-mid);line-height:1.7">📖 测评逻辑：每周推送 10 条简单行为观察题（5 大脑各 2 条），家长日常陪娃时随手勾选<br>· <b>月评</b> = 当月所有周观察自动汇总（五大脑雷达图）<br>· <b>深度诊断</b>（认知/语言 8 项场景题）按需做，结果会写入当月档案</div>
+      <div class="card-title"><span class="icon">🌱</span>成长档案</div>
+      <p style="font-size:15px;color:var(--text-mid);margin-bottom:14px;line-height:1.8">汇总日常观察和每月成长小评估，展示五个发展领域的阶段性成长画像。它不是医学诊断，也不代替正规发育筛查。</p>
+      <div style="background:color-mix(in srgb,#F44336 8%,#fff);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--text-mid);line-height:1.7">数据来源：家长日常记录、已确认的行为证据、每月成长小评估。“尚未观察”不等于“不会”。如出现能力倒退或家长持续担忧，应咨询儿科/儿保专业人员。</div>
     </div>
     <div class="card" id="archiveCard">
       <div class="card-title"><span class="icon">🗂️</span>每月成长档案 <span class="no-print" style="float:right;font-size:13px;font-weight:400"><button class="mini-btn" onclick="exportData()">⬇ 导出全部</button> <button class="mini-btn" onclick="document.getElementById('importFile').click()">⬆ 导入</button><input type="file" id="importFile" accept="application/json" style="display:none" onchange="importData(this)"></span></div>
       <p style="font-size:14px;color:var(--text-mid);margin-bottom:12px">每月自动汇总「每周观察」记录，生成可打印的成长档案。选好月份后点生成（建议月底或次月初操作）。</p>
       <div class="no-print" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
         <label>月份：<input type="month" id="archiveMonth" class="wk-input"></label>
-        <button class="btn" onclick="genArchive()">🗂️ 生成成长档案</button>
-        <button class="btn" onclick="genArchive();setTimeout(function(){window.print()},150)">🖨️ 打印 / 导出PDF</button>
+        <button class="btn" onclick="genGrowthArchive()">🗂️ 生成成长档案</button>
+        <button class="btn" onclick="genGrowthArchive();setTimeout(function(){window.print()},150)">🖨️ 打印 / 导出PDF</button>
       </div>
       <div id="archiveArea"></div>
     </div>
     <div class="card">
-      <div class="card-title"><span class="icon">📈</span>月度趋势对比</div>
-      <p style="font-size:14px;color:var(--text-mid);margin-bottom:12px">至少两个月有记录后，自动生成多月雷达叠加和五大脑月度走势。</p>
+      <div class="card-title"><span class="icon">📈</span>月度成长状态记录</div>
+      <p style="font-size:14px;color:var(--text-mid);margin-bottom:12px">保留各月的阶段性状态与证据数量，不对不同月龄做伪精确分数比较。</p>
       <div id="trendArea"></div>
     </div>
   </div>
 
-  <!-- 子页：深度诊断 -->
-  <div class="brain-sub" id="bsub-dx">
+  <!-- 子页：每月成长小评估 -->
+  <div class="brain-sub" id="bsub-assess">
     <div class="card">
-      <div class="card-title"><span class="icon">🧭</span>深度诊断（认知 / 语言 8 项）</div>
-      <p style="font-size:15px;color:var(--text-mid);margin-bottom:14px;line-height:1.8">按需开启，不属于每月必做。用真实场景观察小鹿玛，选「经常 / 偶尔 / 还没」，结果会写入当月成长档案。</p>
+      <div class="card-title"><span class="icon">🧭</span>每月成长小评估</div>
+      <p style="font-size:15px;color:var(--text-mid);margin-bottom:14px;line-height:1.8">系统会根据当前月龄、上次结果、已稳定掌握能力和日常记录，选出这个月最值得了解的问题。通常约5–10分钟，不追求固定题数。</p>
+      <div class="arch-note" style="margin-bottom:12px"><b>与正规发育筛查分开：</b>这里是家庭自用的成长小评估，用于组织观察和生成陪伴建议。它不使用医学诊断名称、常模分数或标准化筛查结论。有持续担忧、能力倒退或专业人员建议时，应另行进行正规咨询或筛查。</div>
       <div class="obs-status" id="dxStatus"></div>
       <div class="obs-progress"><div class="obs-progress-fill" id="dxProgress" style="width:0%"></div></div>
       <div id="dxResult"></div>
       <div id="dxList"></div>
+      <button class="btn" id="finishAssessmentBtn" onclick="finishAssessment()" style="margin-top:14px;display:none">完成本月评估</button>
     </div>
     <div class="card">
-      <div class="card-title"><span class="icon">📚</span>诊断历史</div>
+      <div class="card-title"><span class="icon">🧩</span>五维成长画像</div>
       <div id="dxHistory"></div>
     </div>
   </div>
@@ -421,6 +436,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 <!-- ===== 脑计划·月评（旧独立页，已合并到上方 #page-brain）===== -->
 <div class="footer">小鹿玛成长计划 · 知芽专家×爱贝睿×哈佛儿童发展中心 融合体系 · 为小鹿玛定制<br>1岁半内容基于卫健委2025指南+MedlinePlus+三甲儿科标准 · 2岁档接入爱贝睿原版</div>
 
+<div class="today-condition-dock" id="todayConditionDock">
+  <button type="button" onclick="openTodaySettings()" aria-haspopup="dialog" aria-controls="todaySettingsSheet">
+    <span class="today-condition-summary" id="todayPrefsSummary">10–15分钟 · 家里 · 还好</span><span class="today-condition-adjust">调整</span>
+  </button>
+</div>
+<div class="today-sheet-backdrop" id="todaySettingsBackdrop" aria-hidden="true" onclick="if(event.target===this)closeTodaySettings()">
+  <section class="today-sheet" id="todaySettingsSheet" role="dialog" aria-modal="true" aria-labelledby="todaySettingsTitle">
+    <div class="today-sheet-handle"></div>
+    <div class="today-sheet-head"><h3 id="todaySettingsTitle">调整今日推荐</h3><button type="button" class="today-sheet-close" onclick="closeTodaySettings()" aria-label="关闭">×</button></div>
+    <div class="today-settings" id="todaySettings"></div>
+    <button type="button" class="today-sheet-done" onclick="closeTodaySettings()">完成</button>
+  </section>
+</div>
+
 <script>
 var WEEK_NOTES={
   80:{t:'词汇积累期',d:'这周可能新增 2-3 个有意义的词，注意听她说的每个新词并复述强化。',tip:'把她指的东西说出名字，强化词汇输入'},
@@ -462,17 +491,17 @@ var MONTH_DEV={
   '20':{t:'两词句前奏',d:'词汇量向 50 冲刺，开始理解简单因果关系。',points:['指物更频繁，等你命名','按了会响，主动重复按键','尝试用勺子自己吃'],attention:['指令用短句慢说','让她自己吃，不怕洒漏'],life:[{name:'抽屉锁和柜门扣',desc:'把危险物品锁起来，给她安全探索的空间。'},{name:'小马桶',desc:'先放在卫生间当玩具熟悉，不急着训练。'},{name:'安抚物',desc:'固定一个安抚巾或玩偶，帮助情绪和入睡。'}]},
   '21':{t:'两词句与跑跳协调',d:'跑得稳、能踢球，词汇接近 50 并开始组合短句。',points:['说“妈妈抱”式两词句','扶栏杆上楼梯','开始懂“轮流”“等一下”'],attention:['接住短句扩成完整句','不强迫分享，先尊重物权'],life:[{name:'小马桶或马桶圈',desc:'如厕意识萌芽，先让她坐一坐、看一看。'},{name:'训练裤和隔尿垫',desc:'白天尝试训练裤，床上铺隔尿垫，失败不批评。'},{name:'餐椅加高垫',desc:'调到能自己够到餐桌的高度，减少追喂。'}]},
   '22':{t:'自主性爆发期',d:'“我自己来”出现，什么都想自己试，情绪也更丰富。',points:['自己穿鞋、洗手','拒绝大人帮忙','生气、委屈、兴奋表达更多'],attention:['给足时间，不代劳','帮她命名情绪：你生气了'],life:[{name:'小马桶正式就位',desc:'每天固定时间让她坐一坐，不强迫尿出来。'},{name:'儿童牙刷牙膏',desc:'用儿童软毛牙刷和含氟牙膏，家长帮忙刷。'},{name:'洗手小凳',desc:'让她自己够到水龙头，养成饭前洗手。'}]},
-  '23':{t:'2 岁冲刺期',d:'语言、运动、认知全面升级，为 2 岁跃迁做准备。',points:['尝试双脚同时跳起','能完成两步指令','词汇继续快速增长'],attention:['软垫上练跳，多鼓励','指令一次只给两步'],life:[{name:'小内裤',desc:'如厕有意识后，白天尝试穿小内裤。'},{name:'如厕绘本',desc:'读“自己上厕所”主题绘本，建立概念。'},{name:'安全剪刀',desc:'圆头安全剪刀，在大人看护下开始剪。'}]},
+  '23':{t:'2 岁前的发展积累',d:'语言、运动和认知能力继续发展，重点是提供机会，不追求“冲刺达标”。',points:['尝试双脚同时跳起','开始理解简单的连续指令','词汇和表达方式继续增加'],attention:['软垫上练跳，不强求完成','指令用短句，根据她的反应调整'],life:[{name:'小内裤',desc:'如厕准备充分后，白天可尝试穿小内裤。'},{name:'如厕绘本',desc:'读“自己上厕所”主题绘本，建立概念。'},{name:'粗杆水洗蜡笔',desc:'用大纸和易抓握的粗杆蜡笔自由涂鸦。'}]},
   '24':{t:'2 岁双爆发',d:'三词句、颜色命名、自主意识一起爆发。',points:['说出两到三词短句','认识常见颜色','双脚离地跳'],attention:['多对话多读绘本','不拿“别人家孩子”比较'],life:[{name:'如厕训练包',desc:'小马桶、训练裤、湿巾和小奖励准备齐。'},{name:'多备小内裤',desc:'训练期容易尿湿，多准备几条方便换洗。'},{name:'儿童桌椅',desc:'低矮桌椅让她自己坐好、画画和吃饭。'}]},
   '25':{t:'语言小话痨',d:'表达欲变强，常问“这是什么”，能说出自己名字。',points:['说出自己的名字','开始用“我”表达','听懂两步指令'],attention:['认真回应每个问题','不急着纠正发音'],life:[{name:'小背包',desc:'让她背自己的小包，放水杯和手帕。'},{name:'刷牙计时器',desc:'用沙漏或儿歌帮助刷够两分钟。'},{name:'室内鞋',desc:'在家穿防滑室内鞋，外出换运动鞋。'}]},
   '26':{t:'跑跳升级期',d:'跑得更快、会转弯，能扶着上下楼梯。',points:['跑时能避开障碍','单手扶栏下楼梯','双脚跳更稳'],attention:['每天保证户外大运动','家里楼梯口做好防护'],life:[{name:'运动鞋',desc:'跑跳多了，选轻便、鞋头宽的运动鞋。'},{name:'头盔和护具',desc:'开始骑平衡车或三轮车时，头盔护具不能省。'},{name:'防晒帽和水壶',desc:'户外活动增多，防晒和补水准备好。'}]},
   '27':{t:'想象力萌芽',d:'假装游戏更丰富，会喂娃娃、打电话、给玩具起名字。',points:['扮演照顾者角色','给玩具起名字','自己编一点小情节'],attention:['陪她演，不纠正“对不对”','多给安全道具发挥'],life:[{name:'角色扮演道具',desc:'厨房、医生、超市玩具，让假装游戏更丰富。'},{name:'低矮收纳柜',desc:'玩具分层摆放，让她自己拿和收。'},{name:'儿童餐具套装',desc:'叉勺、碗盘选她自己好拿的。'}]},
-  '28':{t:'手部精细期',d:'手指更灵活，会拧瓶盖、一页页翻书。',points:['一页页翻绘本','拧开大瓶盖','用勺更稳、洒漏变少'],attention:['多给手部小任务','她想自己做就等一等'],life:[{name:'拼图小桌',desc:'固定一个小桌面，拼图、涂鸦更专注。'},{name:'儿童剪刀',desc:'圆头剪刀继续练，从短直线开始。'},{name:'洗手液泵头',desc:'放在她够得到的地方，练自己按和搓。'}]},
+  '28':{t:'手部精细期',d:'手指更灵活，会拧瓶盖、一页页翻书。',points:['一页页翻绘本','拧开大瓶盖','用勺更稳、洒漏变少'],attention:['多给手部小任务','她想自己做就等一等'],life:[{name:'拼图小桌',desc:'固定一个小桌面，拼图、涂鸦更专注。'},{name:'大块嵌板拼图',desc:'选无可脱落小部件的大块嵌板，练取放和旋转。'},{name:'洗手液泵头',desc:'放在她够得到的地方，练自己按和搓。'}]},
   '29':{t:'情绪小火山',d:'情绪表达强烈，发脾气变多，是前额叶发育的正常表现。',points:['会大喊“不要”','表达生气和委屈','坚持自己的想法'],attention:['先共情再讲道理','不打骂、不冷处理'],life:[{name:'情绪绘本',desc:'准备生气、开心、害怕主题绘本，帮她命名情绪。'},{name:'软垫和沙包',desc:'发脾气时给她安全出口，比如砸软垫或揉沙包。'},{name:'安全门',desc:'继续护好楼梯和危险区域，减少“不可以”。'}]},
   '30':{t:'语言长句子',d:'能说三到四词短句，开始用“因为”“然后”。',points:['说较完整短句','开始问“为什么”','能唱几句短儿歌'],attention:['多聊“今天做了什么”','不嫌她话多，认真听'],life:[{name:'如厕收尾物品',desc:'小内裤多备、湿巾随行，白天逐渐告别训练裤。'},{name:'儿童椅',desc:'固定餐椅，减少追喂，让她自己坐好吃。'},{name:'绘本架',desc:'低矮绘本架，让她自己选书、放回。'}]},
   '31':{t:'社交萌芽期',d:'开始注意其他小朋友，愿意一起玩一会儿。',points:['从各玩各到有互动','会递玩具给别人','能等待短暂轮流'],attention:['创造小型社交机会','仍然不强迫分享'],life:[{name:'外出小背包',desc:'装水杯、湿巾和备用裤，让她参与准备。'},{name:'防晒和驱蚊',desc:'户外社交多，防晒和驱蚊准备好。'},{name:'备用衣裤',desc:'如厕和玩水容易湿，出门多带一套。'}]},
   '32':{t:'平衡进阶期',d:'单脚尝试站立，能跳过低矮障碍。',points:['单脚站 1-2 秒','双脚跳得更远','能倒退走几步'],attention:['运动多鼓励','摔倒先安抚再继续'],life:[{name:'平衡车或三轮车',desc:'选尺寸合适的，配上头盔护膝护肘。'},{name:'运动水壶',desc:'运动前后补充水分，养成喝水习惯。'},{name:'防滑运动鞋',desc:'跑跳多，鞋底防滑更重要。'}]},
-  '33':{t:'分类与配对期',d:'会按颜色、形状、大小分类配对。',points:['同色配对','完成 2-3 片拼图','理解大和小'],attention:['从两类开始玩','配对时多说出名称'],life:[{name:'分类收纳箱',desc:'玩具按类收纳，陪她一起“送玩具回家”。'},{name:'进阶拼图',desc:'4-6 片拼图，锻炼观察和耐心。'},{name:'安全剪刀',desc:'继续沿线剪，线条从直线到折线。'}]},
+  '33':{t:'分类与配对期',d:'会按颜色、形状、大小分类配对。',points:['同色配对','完成 2-3 片拼图','理解大和小'],attention:['从两类开始玩','配对时多说出名称'],life:[{name:'分类收纳箱',desc:'玩具按类收纳，陪她一起“送玩具回家”。'},{name:'进阶拼图',desc:'4-6 片拼图，锻炼观察和耐心。'},{name:'可水洗画笔与大纸',desc:'画直线、圈和路径，练习控制手部动作。'}]},
   '34':{t:'自理小能手',d:'想自己穿脱衣服、洗手、收玩具。',points:['会脱简单外套','自己洗手擦手','把玩具放回原位'],attention:['慢一点没关系','完成后明确肯定'],life:[{name:'易穿脱衣物',desc:'选松紧腰、按扣外套，方便她自己穿脱。'},{name:'小挂钩',desc:'在低处挂衣服和书包，让她自己取放。'},{name:'儿童牙刷牙膏',desc:'继续帮忙刷牙，睡前刷牙固定成习惯。'}]},
   '35':{t:'故事表达期',d:'能复述短故事片段，喜欢问“然后呢”。',points:['复述两三个情节','指认更多颜色和形状','会接儿歌下一句'],attention:['每天固定时间读绘本','别让屏幕替代共读'],life:[{name:'入园小书包',desc:'如果准备入园，提前买书包和姓名贴。'},{name:'替换衣物',desc:'书包里放一套备用衣裤和袜子。'},{name:'名字水杯',desc:'贴上名字，让她练习自己管理水杯。'}]},
   '36':{t:'3 岁前冲刺',d:'各项能力接近 3 岁标准，语言、社交、运动都更独立。',points:['说较长句子','能和小朋友互动','完成简单分类任务'],attention:['多户外、多交流','记得安排 3 岁前健康检查'],life:[{name:'入园清单',desc:'书包、室内鞋、备用衣、姓名贴一次备齐。'},{name:'如厕独立',desc:'白天脱掉训练裤，自己上厕所、冲水、洗手。'},{name:'儿童牙刷牙膏',desc:'刷牙成为固定睡前流程，定期看牙医。'}]}
@@ -481,7 +510,7 @@ var MONTH_DEV={
 var homeBands=[
   {
     min:18,
-    desc:'小鹿玛正处于<strong>大脑爆发黄金期</strong>——据国家卫健委2025《婴幼儿早期发展服务指南》，18月龄大脑发育完成度接近成人80%，每秒生成700-1000个神经元连接。本周聚焦：<strong>多感官探索 + 模仿学习 + 语言输入</strong>，用生活化陪玩激活大脑神经通路。',
+    desc:'小鹿玛正处在语言、动作、认知和社会交往快速发展的阶段。本周从<strong>回应性互动、自由活动和生活中的学习机会</strong>出发，跟随她的兴趣，不把里程碑当成考试。',
     focus:[
       {icon:'🗣️',title:'语言爆发铺垫',desc:'18月是语言中枢黄金节点。用「场景旁白」——小鹿玛做什么你就描述什么，海量输入比教说话更有效。'},
       {icon:'🪞',title:'模仿学习激活',desc:'镜像神经元活跃期，模仿是此阶段最强学习通道。示范扫地、打电话、喂娃娃，让她跟着做。'},
@@ -503,7 +532,7 @@ var homeBands=[
       {name:'推拉玩具',icon:'🚗',tag:'大运动',desc:'让宝宝推着小车或动物玩具走，尝试转弯和过门槛。',why:'练平衡、行走自信和方向控制。'},
       {name:'敲击台',icon:'🔨',tag:'精细动作',desc:'小锤敲木钉，敲进去翻面继续敲。',why:'练手腕力量和视觉追踪。'},
       {name:'厚页绘本',icon:'📖',tag:'语言',desc:'每天 5-10 分钟，手指画面说名称，让宝宝自己翻页。',why:'语言输入加翻页精细动作，一次都练到。'},
-      {name:'感官瓶',icon:'🧴',tag:'感官',desc:'密封瓶装米、亮片或水，摇晃看流动、听声音。',why:'多感官刺激，帮助安静专注。'}
+      {name:'手鼓或安全敲击乐器',icon:'🥁',tag:'音乐',desc:'选一体成型、无可脱落小部件的低幼乐器，玩快慢和轮流敲击。',why:'练节奏模仿、双手配合和来回互动。'}
     ]
   },
   {
@@ -527,7 +556,7 @@ var homeBands=[
     toys:[
       {name:'形状配对盒',icon:'🔷',tag:'认知',desc:'圆形、方形、三角找洞放入，先示范再让宝宝自己试。',why:'形状配对是逻辑启蒙的第一步。'},
       {name:'轨道推车',icon:'🚂',tag:'大运动',desc:'小车在斜坡或轨道上滑，宝宝追赶、放回去再滑。',why:'练因果关系和跑动协调。'},
-      {name:'大珠子串绳',icon:'📿',tag:'精细动作',desc:'直径 1cm 以上的大珠子，绳头包胶带当针，练习穿过去。',why:'练双手配合、专注和手指精细度。'},
+      {name:'套筒或叠叠盒',icon:'📦',tag:'精细动作',desc:'用大尺寸、无可脱落部件的套筒或纸盒，练套入、叠高和收纳。',why:'练双手配合、大小关系和解决问题。'},
       {name:'扮演套装',icon:'🧑‍🍳',tag:'社交',desc:'碗勺、娃娃、电话一起玩，喂饭、打电话、做饭。',why:'角色扮演正好匹配语言爆发期。'},
       {name:'蜡笔和大画纸',icon:'🖍️',tag:'精细动作',desc:'大纸铺在地上，让宝宝自由涂鸦，不纠正握笔。',why:'握笔前奏，保护创作自信。'},
       {name:'泡泡水',icon:'🫧',tag:'大运动',desc:'吹泡泡让宝宝追、拍、踩。',why:'练跑跳协调和手眼配合。'}
@@ -556,7 +585,7 @@ var homeBands=[
       {name:'分类玩具',icon:'🗂️',tag:'认知',desc:'把同色或同形状积木放进对应碗里，先 2 类再加到 3 类。',why:'分类是数学思维和语言命名的基础。'},
       {name:'扮演厨房',icon:'🍳',tag:'社交',desc:'做饭、上菜、喂客人，配合对话和轮流。',why:'语言表达、想象力和社交规则一起练。'},
       {name:'平衡车或三轮车',icon:'🛴',tag:'大运动',desc:'平地慢速练习，大人旁边护着，累了就休息。',why:'练腿部力量、平衡和空间判断。'},
-      {name:'安全剪刀和彩纸',icon:'✂️',tag:'精细动作',desc:'先剪短直线，再剪折线，大人握着宝宝的手练。',why:'练手部力量、双手配合和专注。'},
+      {name:'大握把嵌板拼图',icon:'🧩',tag:'精细动作',desc:'选块面大、有大握把、无可脱落小部件的嵌板，练取放和转向。',why:'练手眼协调、双手配合和解决问题。'},
       {name:'配对卡片',icon:'🃏',tag:'语言',desc:'动物或物品卡片两张一组，找出相同并说出名字。',why:'练短时记忆和词汇扩展。'}
     ]
   }
@@ -736,6 +765,137 @@ var allGames=[
   {name:'障碍跳跃游戏',age:'2岁+',cat:'motor',catLabel:'大运动',src:'网络·权威',mat:'摆小障碍引导双脚并拢跳跨',steps:'1.用纸胶带在地上贴一条线 2.先示范双脚并拢跳过线 3.让宝宝试，跳不过就迈过去 4.熟练后增加第二个障碍，间距拉开 5.每跳一次就数「1、2」，保持轻松',time:'10分钟',principle:''},
 ];
 
+/* ===== Phase 2：今天 · 个性化行动助手 ===== */
+var TODAY_PREFS_KEY='xlma_today_prefs_v1',ACTIVITY_FEEDBACK_KEY='xlma_activity_feedback_v1',TODAY_OBS_HISTORY_KEY='xlma_today_observation_history_v1',TODAY_PLAN_KEY='xlma_today_plan_v1';
+var TODAY_DEFAULTS={duration:'10_15',context:'home',energy:'medium',interests:[]};
+var INTEREST_LABELS={water:'玩水',music:'音乐',animals:'动物',vehicles:'车',books:'绘本',balls:'球',pretend_play:'假装游戏',climbing:'爬与跨越',sorting:'配对分类',drawing:'涂鸦'};
+var ACTIVITY_OVERRIDES={
+  '手指谣与歌曲':{location:['indoor','on_the_go'],prep_level:'none',cleanup_level:'none',noise_level:'low',caregiver_energy:'low',interest_tags:['music'],slot:'zero',description:'坐着唱一首熟悉的儿歌，动作放慢，等她跟着动。',observation_prompts:[{capability_id:'lang_request',text:'她会不会用动作、声音或词让你继续？'}]},
+  '场景旁白沟通':{location:['indoor','on_the_go','mealtime','bath'],prep_level:'none',cleanup_level:'none',noise_level:'low',caregiver_energy:'low',interest_tags:[],slot:'zero',description:'她在做什么，你就用一句短话说出来，不考她。',observation_prompts:[{capability_id:'lang_request',text:'她想要东西时，会不会主动表达？'}]},
+  '动作模仿游戏':{location:['indoor','outdoor','on_the_go'],prep_level:'none',cleanup_level:'none',noise_level:'low',caregiver_energy:'low',interest_tags:['music'],slot:'zero',description:'你做拍手、点头或踏脚，轮到她做时你也来模仿。',observation_prompts:[{capability_id:'lang_request',text:'她会不会主动用动作让你跟着做？'}]},
+  '杯子藏物记忆':{location:['indoor'],prep_level:'low',cleanup_level:'none',noise_level:'low',caregiver_energy:'low',interest_tags:['vehicles'],slot:'small',description:'当着她的面用杯子盖住一个玩具，让她找一找。',observation_prompts:[{capability_id:'cog_object_use',text:'她会不会主动掀开杯子找玩具？'}]},
+  '翻书找物':{location:['indoor','on_the_go'],prep_level:'low',cleanup_level:'none',noise_level:'low',caregiver_energy:'low',interest_tags:['books','animals'],slot:'small',description:'让她自己翻页，一起找书里熟悉的动物或物品。',observation_prompts:[{capability_id:'fine_pages',text:'她会不会尝试一页一页地翻书？'}]},
+  '假装游戏':{location:['indoor'],prep_level:'low',cleanup_level:'low',noise_level:'low',caregiver_energy:'low',interest_tags:['pretend_play'],slot:'small',description:'用娃娃、空碗和大勺子玩做饭或喂饭，跟着她的想法走。',observation_prompts:[{capability_id:'cog_pretend',text:'她会不会用娃娃或安全日用品玩简单假装游戏？'}]},
+  '厚页绘本共读':{location:['indoor','on_the_go'],prep_level:'low',cleanup_level:'none',noise_level:'low',caregiver_energy:'low',interest_tags:['books','animals'],slot:'small',description:'读她自己选的一本厚页书，她想翻就让她翻。',observation_prompts:[{capability_id:'fine_pages',text:'她会不会尝试一页一页地翻书？'}]},
+  '抛接球互动':{location:['indoor','outdoor'],prep_level:'low',cleanup_level:'none',noise_level:'low',caregiver_energy:'medium',caregiver_effort:'low',interest_tags:['balls'],slot:'scene',description:'家长可以坐着，面对面把大软球轻轻滚给她，等她再送回来。',observation_prompts:[{capability_id:'soc_ball',text:'她会不会把球再送回给你，形成一来一回？'}]},
+  '泡泡追跑':{location:['outdoor'],prep_level:'low',cleanup_level:'none',noise_level:'medium',caregiver_energy:'high',interest_tags:['climbing'],slot:'scene',description:'在平坦空地吹泡泡，让她自己追和碰，不催速度。',observation_prompts:[{capability_id:'motor_run',text:'她追泡泡时会不会尝试跑起来？'}]},
+  '追泡泡+推行小车':{location:['outdoor'],prep_level:'low',cleanup_level:'none',noise_level:'medium',caregiver_energy:'medium',interest_tags:['vehicles','climbing'],slot:'scene',description:'让她推着稳固的小车追泡泡，你在身后看护。',observation_prompts:[{capability_id:'motor_run',text:'她会不会主动加快脚步去追？'}]},
+  '实时物品命名':{location:['indoor','outdoor','on_the_go','mealtime'],prep_level:'none',cleanup_level:'none',noise_level:'low',caregiver_energy:'low',interest_tags:['animals','vehicles'],slot:'scene',description:'散步或等车时，她指到什么，你就简短说出名称。',observation_prompts:[{capability_id:'lang_request',text:'她会不会主动指给你看，或用声音表达？'}]},
+  '水果寻宝':{location:['mealtime','indoor'],prep_level:'low',cleanup_level:'low',noise_level:'low',caregiver_energy:'medium',caregiver_effort:'low',interest_tags:['sorting'],slot:'scene',description:'吃水果前让她把整个大水果递给你，你坐着回应就可以。',observation_prompts:[{capability_id:'cog_object_use',text:'听到水果名称时，她会不会找到对应的水果？'}]},
+  '趣味玩水探索':{location:['bath'],prep_level:'low',cleanup_level:'medium',noise_level:'low',caregiver_energy:'medium',interest_tags:['water'],slot:'scene',description:'洗澡时用大杯子舀水和倒水，水深保持很浅并全程看护。',observation_prompts:[]},
+  '小小家务能手':{location:['indoor'],prep_level:'none',cleanup_level:'none',noise_level:'low',caregiver_energy:'low',interest_tags:['sorting'],slot:'scene',description:'收衣服或玩具时，让她帮忙递一件、放一件。',observation_prompts:[{capability_id:'soc_ball',text:'她会不会等你放好一件，再继续递下一件？'}]},
+  '藏猫猫':{location:['indoor','outdoor'],prep_level:'none',cleanup_level:'none',noise_level:'low',caregiver_energy:'medium',caregiver_effort:'medium',interest_tags:['climbing'],slot:'zero',description:'在安全范围内轮流藏和找，找到就笑一笑。',observation_prompts:[]},
+  '叠叠杯排序':{location:['indoor'],prep_level:'low',cleanup_level:'low',noise_level:'low',caregiver_energy:'low',caregiver_effort:'low',interest_tags:['sorting'],slot:'small',description:'家长坐在旁边，让她自己叠、拆和排列叠叠杯。',observation_prompts:[]},
+  '简单指令互动':{location:['indoor','on_the_go'],prep_level:'none',cleanup_level:'none',noise_level:'low',caregiver_energy:'low',caregiver_effort:'low',interest_tags:['balls'],slot:'zero',description:'家长可以坐着说一个简短指令，完成后就停，不连续考她。',observation_prompts:[]},
+  '居家障碍闯关':{location:['indoor'],prep_level:'low',cleanup_level:'low',noise_level:'medium',caregiver_energy:'high',caregiver_effort:'high',interest_tags:['climbing'],slot:'small',description:'需要家长搭建路线、全程跟随保护并反复调整障碍。',observation_prompts:[]},
+  '靠垫桥':{location:['indoor'],prep_level:'low',cleanup_level:'low',noise_level:'medium',caregiver_energy:'high',caregiver_effort:'high',interest_tags:['climbing'],slot:'small',description:'需要家长搭好靠垫路线，在旁边跟随保护她跨越。',observation_prompts:[]},
+  '家务变游戏':{location:['indoor'],prep_level:'low',cleanup_level:'low',noise_level:'medium',caregiver_energy:'medium',caregiver_effort:'medium',interest_tags:['sorting'],slot:'scene',description:'需要家长持续示范、轮流并带着完成整理。',observation_prompts:[]},
+  '和爸爸乱弹吉他':{location:['indoor'],prep_level:'low',cleanup_level:'low',noise_level:'medium',caregiver_energy:'medium',caregiver_effort:'medium',interest_tags:['music'],slot:'small',description:'抱着或坐在乐器旁边，让她自由拨弦，家长用简单节奏回应。',observation_prompts:[]},
+  '撕贴收纳':{location:['indoor'],prep_level:'low',cleanup_level:'low',noise_level:'low',caregiver_energy:'low',caregiver_effort:'low',interest_tags:['drawing'],slot:'small',description:'用大张安全纸材撕一撕、贴一贴，不要求做出固定图案。',observation_prompts:[]}
+};
+function durationMaxMinutes(s){var nums=String(s||'').match(/\d+/g);if(!nums||!nums.length)return 10;return Math.max.apply(null,nums.map(Number));}
+function durationMinMinutes(s){var nums=String(s||'').match(/\d+/g);if(!nums||!nums.length)return 5;return Math.min.apply(null,nums.map(Number));}
+function activityId(name,index){return 'act_'+index+'_'+String(name||'activity').replace(/[^\w\u4e00-\u9fa5]+/g,'_');}
+function normalizeActivity(g,index){
+  var o=ACTIVITY_OVERRIDES[g.name]||{},min=ageMinMonths(g.age),max=min>=36?min+23:min+17,dmax=durationMaxMinutes(g.time),dmin=durationMinMinutes(g.time),slot=o.slot||(dmax<=5?'zero':'small');
+  var duration=o.duration||(slot==='zero'?{min:Math.min(dmin,3),max:5,label:'3-5分钟'}:{min:dmin,max:dmax,label:g.time||'5-10分钟'});
+  return {activity_id:activityId(g.name,index),title:g.name,min_age_months:min,max_age_months:max,domains:[g.cat==='mem'?'cog':g.cat],duration:duration,location:o.location||['indoor'],materials:g.mat||'无',prep_level:o.prep_level||((g.mat||'').indexOf('无')>=0?'none':'low'),cleanup_level:o.cleanup_level||'low',noise_level:o.noise_level||'low',caregiver_energy:o.caregiver_energy||'medium',caregiver_effort:o.caregiver_effort||o.caregiver_energy||'medium',interest_tags:o.interest_tags||[],safety_level:unsafeForAge(g)?'blocked':'standard',safety_notes:unsafeForAge(g)?'不适合3岁以下儿童':'使用适龄、完好的大尺寸材料，全程保持在身边',source:g.src||'现有活动库',source_type:g.src?'reference_content':'product_content',description:o.description||('用'+(g.mat||'家中常见物品')+'轻松玩一会儿。'),steps:String(g.steps||'').split(/\s+(?=\d+[.\u3001])/).map(function(x){return x.replace(/^\d+[.\u3001]?/,'').trim();}).filter(Boolean),observation_prompts:o.observation_prompts||[],slot:slot,legacy:g};
+}
+function activityCatalog(){return allGames.map(normalizeActivity);}
+function loadTodayPrefs(){try{var p=JSON.parse(localStorage.getItem(TODAY_PREFS_KEY)||'{}');return {duration:['5','10_15','20_plus'].indexOf(p.duration)>=0?p.duration:TODAY_DEFAULTS.duration,context:['home','outdoor','on_the_go'].indexOf(p.context)>=0?p.context:TODAY_DEFAULTS.context,energy:['low','medium','high'].indexOf(p.energy)>=0?p.energy:TODAY_DEFAULTS.energy,interests:Array.isArray(p.interests)?p.interests.filter(function(x){return INTEREST_LABELS[x];}):[]};}catch(e){return Object.assign({},TODAY_DEFAULTS);}}
+function saveTodayPrefs(p){localStorage.setItem(TODAY_PREFS_KEY,JSON.stringify(p));}
+function loadActivityFeedback(){return safeJsonArray(ACTIVITY_FEEDBACK_KEY);}
+function saveActivityFeedbackRows(a){localStorage.setItem(ACTIVITY_FEEDBACK_KEY,JSON.stringify(a));autoBackup();}
+function contextLocations(c){return c==='outdoor'?['outdoor']:c==='on_the_go'?['on_the_go','outdoor']:['indoor','bath','mealtime'];}
+function durationLimit(v){return v==='5'?5:v==='20_plus'?999:15;}
+function eligibleActivities(age,prefs){
+  var locs=contextLocations(prefs.context),limit=durationLimit(prefs.duration);
+  return activityCatalog().filter(function(a){return age>=a.min_age_months&&age<=a.max_age_months;}).filter(function(a){return a.safety_level!=='blocked';}).filter(function(a){return a.location.some(function(x){return locs.indexOf(x)>=0;});}).filter(function(a){return a.duration.max<=limit;});
+}
+function energyCandidatePool(candidates,prefs){
+  if(prefs.energy==='high')return candidates.slice();
+  if(prefs.energy==='medium'){
+    var normal=candidates.filter(function(a){return a.caregiver_effort!=='high';});return normal.length>=3?normal:candidates.slice();
+  }
+  var strictLow=candidates.filter(function(a){return a.caregiver_effort==='low'&&['none','low'].indexOf(a.prep_level)>=0&&['none','low'].indexOf(a.cleanup_level)>=0&&a.duration.max<=10;});
+  if(strictLow.length>=3)return strictLow;
+  var relaxedLow=candidates.filter(function(a){return a.caregiver_effort==='low'&&['none','low'].indexOf(a.prep_level)>=0&&['none','low'].indexOf(a.cleanup_level)>=0;});
+  var lightMedium=candidates.filter(function(a){return a.caregiver_effort==='medium'&&['none','low'].indexOf(a.prep_level)>=0&&['none','low'].indexOf(a.cleanup_level)>=0&&a.duration.max<=10;});
+  var out=[];relaxedLow.concat(lightMedium).forEach(function(a){if(out.indexOf(a)<0)out.push(a);});
+  if(out.length<3)candidates.filter(function(a){return a.caregiver_effort==='medium';}).forEach(function(a){if(out.indexOf(a)<0)out.push(a);});
+  return out;
+}
+function dayDistance(a,b){return Math.abs(daysBetween(new Date(a+'T00:00:00'),new Date(b+'T00:00:00')));}
+function feedbackSummary(id,referenceDate){var rows=loadActivityFeedback().filter(function(x){return x.activity_id===id;}),prior=rows.filter(function(x){return x.date<referenceDate;}),recent=prior.filter(function(x){return dayDistance(x.date,referenceDate)<=3;}),liked=prior.filter(function(x){return x.enjoyment==='love';}).length,disliked=prior.filter(function(x){return x.enjoyment==='no_interest'&&dayDistance(x.date,referenceDate)<=14;}).length,simple=prior.filter(function(x){return x.difficulty==='easy'&&dayDistance(x.date,referenceDate)<=14;}).length;return {rows:rows,recent:recent.length,liked:liked,disliked:disliked,simple:simple};}
+function learnedInterestTags(referenceDate){var byId={};activityCatalog().forEach(function(a){byId[a.activity_id]=a;});var counts={};loadActivityFeedback().filter(function(x){return x.enjoyment==='love'&&(!referenceDate||x.date<referenceDate);}).forEach(function(x){var a=byId[x.activity_id];if(a)a.interest_tags.forEach(function(t){counts[t]=(counts[t]||0)+1;});});return Object.keys(counts).filter(function(t){return counts[t]>=2;});}
+function recentDomainEvidence(domain,referenceDate){return loadEvidence().filter(function(e){return e.domains.indexOf(domain)>=0&&dayDistance(e.date,referenceDate)<=21;});}
+function activityScore(a,age,prefs,states,referenceDate){
+  var s=30-Math.abs(age-a.min_age_months),why=['适合'+age+'个月左右'];
+  if(a.location.some(function(x){return contextLocations(prefs.context).indexOf(x)>=0;})){s+=12;why.push('符合当前场景');}
+  if(prefs.energy==='low'){if(a.caregiver_effort==='low'){s+=20;why.push('大人可以坐着或原地陪伴');}if(a.prep_level==='none'&&a.cleanup_level==='none'){s+=8;why.push('不用准备、也好收拾');}}
+  else if(prefs.energy==='medium'&&a.caregiver_effort==='medium')s+=6;
+  else if(prefs.energy==='high'){if(a.caregiver_effort==='high'){s+=18;why.push('今天有精力，可以多一些身体参与');}else if(a.caregiver_effort==='medium')s+=8;if(a.domains.indexOf('motor')>=0)s+=6;if(a.prep_level==='low')s+=3;}
+  var learned=learnedInterestTags(referenceDate),interests=(prefs.interests||[]).filter(function(t){return a.interest_tags.indexOf(t)>=0;}),learnedHit=learned.filter(function(t){return a.interest_tags.indexOf(t)>=0;});if(interests.length){s+=24+Math.min(6,(interests.length-1)*3);why.push('优先匹配你选的兴趣');}else if(learnedHit.length){s+=5;why.push('近期同类活动玩得很开心');}
+  var domain=a.domains[0],st=states&&states[domain],recentEvidence=recentDomainEvidence(domain,referenceDate);if(st&&st.key==='unknown'&&st.evidenceLevel==='low'&&a.observation_prompts.length){s+=5;why.push('最近'+DOMAIN_META[domain].name.slice(2)+'方面记录较少，可以顺便留意');}else if(recentEvidence.some(function(e){return e.evidence_type==='emerging';})){s+=6;why.push('最近这方面有正在出现的表现');}
+  var f=feedbackSummary(a.activity_id,referenceDate);if(f.recent){s-=30*f.recent;why.push('最近玩过，今天降低重复');}if(f.liked){s+=Math.min(8,f.liked*3);why.push('之前很喜欢');}if(f.disliked)s-=18;if(f.simple)s-=10;
+  return {score:s,reasons:why};
+}
+function recommendActivities(prefs,age,referenceDate,states){
+  prefs=prefs||loadTodayPrefs();age=age==null?ageInfo().totM:age;referenceDate=referenceDate||fmt(new Date());states=states||currentDomainStates();
+  var ranked=energyCandidatePool(eligibleActivities(age,prefs),prefs).map(function(a){var r=activityScore(a,age,prefs,states,referenceDate);a._score=r.score;a._reasons=r.reasons;return a;}).sort(function(a,b){return b._score-a._score||a.activity_id.localeCompare(b.activity_id);}),out=[];
+  ['zero','small','scene'].forEach(function(slot){var x=ranked.find(function(a){return a.slot===slot&&out.indexOf(a)<0;});if(x)out.push(x);});
+  ranked.forEach(function(a){if(out.length<3&&out.indexOf(a)<0)out.push(a);});return out.slice(0,3);
+}
+function todayPlanSignature(prefs,age){return JSON.stringify({age:age,duration:prefs.duration,context:prefs.context,energy:prefs.energy,interests:(prefs.interests||[]).slice().sort()});}
+function todayRecommendations(prefs,age,referenceDate,states){
+  var signature=todayPlanSignature(prefs,age),plan=null;try{plan=JSON.parse(localStorage.getItem(TODAY_PLAN_KEY)||'null');}catch(e){}
+  var eligible={};energyCandidatePool(eligibleActivities(age,prefs),prefs).forEach(function(a){eligible[a.activity_id]=a;});
+  if(plan&&plan.date===referenceDate&&plan.signature===signature&&Array.isArray(plan.activity_ids)&&plan.activity_ids.length&&plan.activity_ids.every(function(id){return eligible[id];})){
+    return plan.activity_ids.map(function(id){var a=eligible[id],r=activityScore(a,age,prefs,states,referenceDate);a._score=r.score;a._reasons=r.reasons;return a;});
+  }
+  var items=recommendActivities(prefs,age,referenceDate,states);localStorage.setItem(TODAY_PLAN_KEY,JSON.stringify({date:referenceDate,signature:signature,activity_ids:items.map(function(a){return a.activity_id;})}));return items;
+}
+function currentDomainStates(){var x={};DOMAIN_IDS.forEach(function(d){x[d]=domainState(d);});return x;}
+function activityById(id){return activityCatalog().find(function(a){return a.activity_id===id;})||null;}
+function updateActivityFeedback(id,field,value){var rows=loadActivityFeedback(),date=fmt(new Date()),r=rows.find(function(x){return x.activity_id===id&&x.date===date;});if(!r){r={feedback_id:'af_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),activity_id:id,date:date,enjoyment:null,difficulty:null,duration_minutes:null,context:loadTodayPrefs().context,createdAt:Date.now()};rows.push(r);}r[field]=value;r.updatedAt=Date.now();saveActivityFeedbackRows(rows);renderTodayActivities();}
+function recordActivityObservation(activityId,capabilityId,status){var a=activityById(activityId),c=capabilityById(capabilityId);if(!a||!c||['observed','emerging','unobserved'].indexOf(status)<0)return;var ev=loadEvidence();ev.push({observation_id:'game_'+Date.now()+'_'+Math.random().toString(36).slice(2,6),date:fmt(new Date()),raw_record:'玩「'+a.title+'」时：'+c.label,domains:[c.domain],capability_ids:[c.capability_id],evidence_strength:1,evidence_type:status,source:'game_feedback',confirmed:true,createdAt:Date.now()});saveEvidence(ev);renderTodayActivities();renderBrain();}
+function todayObservationCandidates(age){var stable=stableCapabilityIds(),ev=loadEvidence();return CAPABILITIES.filter(function(c){if(c.source_type==='product_observation'||stable[c.capability_id])return false;var p=capabilityPhase(c,age);return p==='current'||(p==='future'&&typeof c.min_age_months==='number'&&c.min_age_months<=age+3);}).map(function(c){var s=summarizeCapabilityEvidence(c,ev,age);return {capability:c,summary:s,priority:s.emerging>0?0:(s.observed+s.notYet===0?1:2)};});}
+function selectTodayObservation(age,referenceDate){age=age==null?ageInfo().totM:age;referenceDate=referenceDate||fmt(new Date());var history=safeJsonArray(TODAY_OBS_HISTORY_KEY),recent=history.filter(function(x){return dayDistance(x.date,referenceDate)<=4;}).map(function(x){return x.capability_id;}),domainOrder=DOMAIN_IDS.slice(),seed=daysBetween(new Date('2026-01-01T00:00:00'),new Date(referenceDate+'T00:00:00'));domainOrder=domainOrder.slice(seed%5).concat(domainOrder.slice(0,seed%5));var pool=todayObservationCandidates(age).sort(function(a,b){var pr=a.priority-b.priority;if(pr)return pr;var ar=recent.indexOf(a.capability.capability_id)>=0?1:0,br=recent.indexOf(b.capability.capability_id)>=0?1:0;if(ar!==br)return ar-br;return domainOrder.indexOf(a.capability.domain)-domainOrder.indexOf(b.capability.domain);});return pool.length?pool[0]:null;}
+function respondTodayObservation(capabilityId,status){if(['observed','emerging','unobserved','concern'].indexOf(status)<0)return;var c=capabilityById(capabilityId);if(!c)return;var date=fmt(new Date()),ev=loadEvidence();ev.push({observation_id:'today_'+Date.now()+'_'+Math.random().toString(36).slice(2,6),date:date,raw_record:'今日留意：'+c.label,domains:[c.domain],capability_ids:[c.capability_id],evidence_strength:1,evidence_type:status,source:'parent_record',confirmed:true,createdAt:Date.now()});saveEvidence(ev);var h=safeJsonArray(TODAY_OBS_HISTORY_KEY);h.push({date:date,capability_id:c.capability_id,status:status});localStorage.setItem(TODAY_OBS_HISTORY_KEY,JSON.stringify(h));renderTodayObservation();renderBrain();}
+var LIFE_OPPORTUNITIES=[
+  {contexts:['home'],title:'吃饭时，让她自己用勺子吃几口',text:'不需要吃得干净，重点是给她一个自己尝试的机会。'},
+  {contexts:['home'],title:'收衣服时，请她递一件衣物',text:'她放错了也没关系，让她参与就好。'},
+  {contexts:['home'],title:'洗澡时顺便说身体部位',text:'可以试试问“小脚在哪里”，不指也没关系。'},
+  {contexts:['outdoor','on_the_go'],title:'路上把她注意到的东西说出来',text:'看到车、狗或树叶时说一句简短的话，跟着她的兴趣就好。'},
+  {contexts:['outdoor'],title:'走一段小坡或不同路面',text:'让她自己调整脚步，你在旁边保护，不需要催。'},
+  {contexts:['on_the_go'],title:'等候时让她从两样东西里选一样',text:'给简单选择，让她用指、声音或词告诉你。'}
+];
+function lifeRecommendations(prefs,referenceDate){var a=LIFE_OPPORTUNITIES.filter(function(x){return x.contexts.indexOf(prefs.context)>=0;}),seed=daysBetween(new Date('2026-01-01T00:00:00'),new Date((referenceDate||fmt(new Date()))+'T00:00:00'));if(!a.length)a=LIFE_OPPORTUNITIES.filter(function(x){return x.contexts.indexOf('home')>=0;});return [a[seed%a.length],a[(seed+1)%a.length]].filter(function(x,i,r){return r.indexOf(x)===i;}).slice(0,2);}
+function renderTodayPrefsSummary(p){var el=document.getElementById('todayPrefsSummary');if(!el)return;p=p||loadTodayPrefs();var duration={'5':'5分钟','10_15':'10–15分钟','20_plus':'20分钟+'}[p.duration],context={home:'家里',outdoor:'户外',on_the_go:'出门中'}[p.context],energy={low:'很累',medium:'还好',high:'有精力'}[p.energy];el.textContent=duration+' · '+context+' · '+energy;}
+var todaySettingsScrollY=0,todayBodyLockStyle=null;
+function openTodaySettings(){
+  var backdrop=document.getElementById('todaySettingsBackdrop');if(!backdrop||backdrop.classList.contains('open'))return;
+  renderTodaySettings();todaySettingsScrollY=window.scrollY||window.pageYOffset||0;
+  backdrop.classList.add('open');backdrop.setAttribute('aria-hidden','false');
+  if(document.body){todayBodyLockStyle={position:document.body.style.position||'',top:document.body.style.top||'',width:document.body.style.width||'',overflow:document.body.style.overflow||''};document.body.style.position='fixed';document.body.style.top='-'+todaySettingsScrollY+'px';document.body.style.width='100%';document.body.style.overflow='hidden';}
+}
+function closeTodaySettings(){
+  var backdrop=document.getElementById('todaySettingsBackdrop');if(!backdrop||!backdrop.classList.contains('open'))return;
+  backdrop.classList.remove('open');backdrop.setAttribute('aria-hidden','true');
+  if(document.body&&todayBodyLockStyle){document.body.style.position=todayBodyLockStyle.position;document.body.style.top=todayBodyLockStyle.top;document.body.style.width=todayBodyLockStyle.width;document.body.style.overflow=todayBodyLockStyle.overflow;todayBodyLockStyle=null;}
+  if(window.scrollTo)window.scrollTo(0,todaySettingsScrollY);
+}
+function setTodayDockVisibility(visible){var dock=document.getElementById('todayConditionDock');if(dock)dock.style.display=visible?'flex':'none';if(document.body)document.body.classList.toggle('today-dock-visible',visible);if(!visible)closeTodaySettings();}
+function setTodayPreference(field,value,btn){var p=loadTodayPrefs();p[field]=value;saveTodayPrefs(p);localStorage.removeItem(TODAY_PLAN_KEY);if(btn&&btn.parentNode){btn.parentNode.querySelectorAll('.today-chip').forEach(function(x){x.classList.remove('active');});btn.classList.add('active');}else renderTodaySettings();renderTodayPrefsSummary(p);renderTodayActivities();if(field==='context')renderTodayLife();}
+function toggleTodayInterest(tag,btn){var p=loadTodayPrefs(),i=p.interests.indexOf(tag),selected=i<0;if(selected)p.interests.push(tag);else p.interests.splice(i,1);saveTodayPrefs(p);localStorage.removeItem(TODAY_PLAN_KEY);if(btn){btn.classList.toggle('active',selected);btn.setAttribute('aria-pressed',selected?'true':'false');}else renderTodaySettings();renderTodayPrefsSummary(p);renderTodayActivities();}
+function renderTodayObservation(){var box=document.getElementById('todayObservation');if(!box)return;var pick=selectTodayObservation(),c=pick&&pick.capability;if(!c){box.innerHTML='<div class="today-gentle">今天没有需要特别留意的项目，跟着她玩就好。</div>';return;}var future=capabilityPhase(c,ageInfo().totM)==='future';box.innerHTML='<div class="today-observe">'+esc(c.label)+'？</div><div class="today-gentle">'+(future?'这只是提前自然留意，不代表现在应该会。':'不需要刻意考她，吃饭、玩或出门时顺便看看就可以。')+'</div><div class="today-actions"><button onclick="respondTodayObservation(\''+c.capability_id+'\',\'observed\')">看到了</button><button onclick="respondTodayObservation(\''+c.capability_id+'\',\'emerging\')">正在出现</button><button onclick="respondTodayObservation(\''+c.capability_id+'\',\'unobserved\')">今天没注意到</button><button onclick="respondTodayObservation(\''+c.capability_id+'\',\'concern\')">我有点担心</button></div>';
+}
+function activityStepsHtml(a){return (a.steps.length?a.steps:['跟着孩子的兴趣开始，玩5–10分钟就可以。']).map(function(x){return '<li>'+esc(x)+'</li>';}).join('');}
+function renderTodayActivities(){var box=document.getElementById('todayActivities');if(!box)return;var p=loadTodayPrefs(),today=fmt(new Date()),items=todayRecommendations(p,ageInfo().totM,today,currentDomainStates()),fb=loadActivityFeedback();document.getElementById('todayEnergyNote').innerHTML=p.energy==='low'?'<div class="today-note">今天给你选了几个尽量不用准备、也不太费大人的活动。</div>':'';if(!items.length){box.innerHTML='<div class="today-gentle">当前条件下没有合适的安全活动，可以放宽时间或切换场景。</div>';return;}var slots={zero:'A · 零准备',small:'B · 小活动',scene:'C · 生活/户外'};box.innerHTML=items.map(function(a){var row=fb.find(function(x){return x.activity_id===a.activity_id&&x.date===today;})||{},op=a.observation_prompts[0],why=a._reasons.filter(function(x){return x.indexOf('最近玩过')<0;}).slice(0,4).join(' · ');return '<article class="today-activity"><span class="today-slot">'+(slots[a.slot]||'今日活动')+'</span><h3>'+esc(a.title)+'</h3><div class="today-meta">'+esc(a.duration.label)+' · '+(a.prep_level==='none'?'不用准备':'少量准备')+' · '+esc(catLabel[a.legacy.cat]||'综合')+'</div><div class="today-desc">'+esc(a.description)+'</div><div class="today-why"><b>为什么今天推荐：</b>'+esc(why)+'</div><details class="today-detail"><summary>查看玩法与安全提示</summary><ol>'+activityStepsHtml(a)+'</ol><div class="gc-safety">'+esc(a.safety_notes)+'</div></details>'+(op?'<div class="observe-inline"><b>顺便可以留意</b><br>'+esc(op.text)+'<div class="today-actions"><button onclick="recordActivityObservation(\''+a.activity_id+'\',\''+op.capability_id+'\',\'observed\')">看到了</button><button onclick="recordActivityObservation(\''+a.activity_id+'\',\''+op.capability_id+'\',\'emerging\')">正在出现</button><button onclick="recordActivityObservation(\''+a.activity_id+'\',\''+op.capability_id+'\',\'unobserved\')">没注意到</button></div></div>':'')+'<div class="feedback-box"><div class="feedback-label">她玩得怎么样？</div><div class="feedback-row"><button class="'+(row.enjoyment==='love'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'enjoyment\',\'love\')">❤️ 很喜欢</button><button class="'+(row.enjoyment==='okay'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'enjoyment\',\'okay\')">🙂 还可以</button><button class="'+(row.enjoyment==='no_interest'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'enjoyment\',\'no_interest\')">😐 没兴趣</button></div><div class="feedback-label">难度呢？</div><div class="feedback-row"><button class="'+(row.difficulty==='easy'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'difficulty\',\'easy\')">太简单</button><button class="'+(row.difficulty==='just_right'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'difficulty\',\'just_right\')">刚刚好</button><button class="'+(row.difficulty==='hard'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'difficulty\',\'hard\')">有点难</button></div></div></article>';}).join('');}
+function renderTodayLife(){var box=document.getElementById('todayLife');if(!box)return;box.innerHTML=lifeRecommendations(loadTodayPrefs()).map(function(x){return '<div class="life-opportunity"><b>'+esc(x.title)+'</b><p>'+esc(x.text)+'</p></div>';}).join('');}
+function renderTodaySettings(){var box=document.getElementById('todaySettings');if(!box)return;var p=loadTodayPrefs();renderTodayPrefsSummary(p);function chips(field,items){return '<div class="today-chips">'+items.map(function(x){return '<button type="button" class="today-chip '+(p[field]===x[0]?'active':'')+'" onclick="setTodayPreference(\''+field+'\',\''+x[0]+'\',this)">'+x[1]+'</button>';}).join('')+'</div>';}box.innerHTML='<div class="setting-group"><div class="setting-label">我现在有多久？</div>'+chips('duration',[['5','5分钟'],['10_15','10–15分钟'],['20_plus','20分钟以上']])+'</div><div class="setting-group"><div class="setting-label">现在在哪里？</div>'+chips('context',[['home','家里'],['outdoor','户外'],['on_the_go','出门中']])+'</div><div class="setting-group"><div class="setting-label">我今天的精力</div>'+chips('energy',[['low','很累'],['medium','还好'],['high','有精力']])+'</div><div class="setting-group"><div class="setting-label">她最近感兴趣（可多选）</div><div class="today-chips">'+Object.keys(INTEREST_LABELS).map(function(t){return '<button type="button" class="today-chip '+(p.interests.indexOf(t)>=0?'active':'')+'" aria-pressed="'+(p.interests.indexOf(t)>=0?'true':'false')+'" onclick="toggleTodayInterest(\''+t+'\',this)">'+INTEREST_LABELS[t]+'</button>';}).join('')+'</div></div>';}
+function renderToday(){renderTodayObservation();renderTodayActivities();renderTodayLife();renderTodaySettings();}
+
 var theories={
   brain:[
     {title:'突触爆发期（0-3岁峰值）',src:'卫健委',metaphor:'大脑像在建的高速公路网，每秒铺设700-1000条新路。3岁时路网密度是成人的2倍——但之后没车走的路会被拆除，这叫「用进废退」。',scene:'小鹿玛每次摸新材质、听新词、尝试新动作，大脑就在修新路。你陪她玩10分钟积木，她大脑可能新建了上千个突触连接。相反，如果整天对着屏幕，大脑只被动接收，很多路修了却没车跑，最后被拆掉。',why:'这个窗口错过就补不回来。但别焦虑——不是要报早教班，而是在日常生活中提供丰富的感官和语言刺激。哈佛研究证实：高质量日常互动比结构化课程更有效。',action:'每天保证3类刺激：①身体活动（走跑爬钻）②语言输入（场景旁白）③感官探索（摸不同材质）。20分钟专注陪玩胜过1小时心不在焉。玩具不超5个同时出现，按周轮换。'},
@@ -764,8 +924,10 @@ function showPage(id,btn){
   document.getElementById('page-'+id).classList.add('active');
   document.querySelectorAll('.nav button').forEach(function(b){b.classList.remove('active')});
   btn.classList.add('active');
+  setTodayDockVisibility(id==='home');
   // 切页时按需渲染
-  if(id==='brain'){ renderObserve(); renderBrain(); renderDx(); }
+  if(id==='home')renderToday();
+  if(id==='brain'){ renderObserve(); renderBrain(); renderAssessment(); }
 }
 function showBrainSub(sub,btn){
   document.querySelectorAll('.brain-subtabs button').forEach(function(b){b.classList.remove('active')});
@@ -773,33 +935,14 @@ function showBrainSub(sub,btn){
   document.querySelectorAll('.brain-sub').forEach(function(s){s.classList.remove('active')});
   document.getElementById('bsub-'+sub).classList.add('active');
   if(sub==='arch') renderBrain();
-  if(sub==='dx') renderDx();
+  if(sub==='assess') renderAssessment();
 }
 
 var catMap={motor:['t-motor','🏃'],fine:['t-fine','✋'],lang:['t-lang','🗣️'],cog:['t-cog','🧠'],soc:['t-soc','💛'],mem:['t-mem','🧩']};
 var catLabel={motor:'大运动',fine:'精细',lang:'语言',cog:'认知',soc:'社交',mem:'记忆'};
 
 function renderHome(){
-  var tot=ageInfo().totM;
-  var band=homeBands[0];
-  homeBands.forEach(function(b){if(tot>=b.min)band=b;});
-  var ws=document.getElementById('welcomeSub');
-  if(ws)ws.innerHTML=band.desc;
-  var fg=document.getElementById('focusGrid');
-  if(fg)fg.innerHTML=band.focus.map(function(f){
-    return '<div class="focus-item"><div class="focus-icon">'+f.icon+'</div><h4>'+f.title+'</h4><p>'+f.desc+'</p></div>';
-  }).join('');
-  var tg=document.getElementById('toyGrid');
-  if(tg)tg.innerHTML=band.toys.map(function(t){
-    return '<div class="toy-item"><div class="toy-icon">'+t.icon+'</div><span class="toy-tag">'+t.tag+'</span><h4>'+t.name+'</h4><p>'+t.desc+'</p><p class="toy-why">为什么推荐：'+t.why+'</p></div>';
-  }).join('');
-  document.getElementById('weekGames').innerHTML=band.games.map(function(g){
-    var cls=catMap[g.cat][0],ico=catMap[g.cat][1];
-    var weekend=['周六','周日'].indexOf(g.day)>=0?'weekend':'';
-    return '<div class="day-card '+weekend+'"><div class="day">'+g.day.slice(1)+'</div><div class="gname">'+ico+' '+g.name+'</div><div class="gdesc"><span class="tag '+cls+'">'+catLabel[g.cat]+'</span>'+g.desc+'</div></div>';
-  }).join('');
-  renderMonthDev();
-  renderWeekNote();
+  renderToday();
 }
 function weekNoteFor(wk){
   var n=WEEK_NOTES[wk];
@@ -886,6 +1029,13 @@ function setF(btn,key,val){
   renderGames();
 }
 var HAZARD_WORDS=['豆','米','珠','币','扣子','吸管','牙签','剪刀','烤箱','麦圈','弹珠','小颗粒','玻璃','蜡烛','针'];
+var BLOCKED_UNDER3_WORDS=['豆','米粒','小玩具','珠','硬币','扣子','吸管','牙签','剪刀','麦圈','弹珠','小颗粒','宝石贴','溜溜眼','绒球','棉花球'];
+function ageMinMonths(label){var m=String(label||'').match(/(\d+)月/);if(m)return +m[1];var y=String(label||'').match(/(\d+)岁/);return y?+y[1]*12:0;}
+function unsafeForAge(g){
+  var s=(g.name||'')+(g.mat||'')+(g.steps||'');
+  if(s.indexOf('磁力')>=0)return true;
+  return ageMinMonths(g.age)<36&&BLOCKED_UNDER3_WORDS.some(function(w){return s.indexOf(w)>=0;});
+}
 function safetyNote(g){
   var s=(g.name||'')+(g.mat||'')+(g.steps||'');
   var hit=HAZARD_WORDS.some(function(w){return s.indexOf(w)>=0;});
@@ -904,13 +1054,15 @@ function fmtSteps(g){
     +'<div class="gc-step">5. 收尾：一起整理，说说刚才玩了什么</div>';
 }
 function renderGames(){
+  var selectedMax=fState.age==='all'?ageInfo().totM:ageMinMonths(fState.age);
   var list=allGames.filter(function(g){
+    if(unsafeForAge(g))return false;
     if(fState.cat!=='all' && g.cat!==fState.cat) return false;
     if(fState.src!=='all'){
       if(fState.src==='core'){ if(['哈佛','卫健委','知芽','爱贝睿','专家'].indexOf(g.src)<0) return false; }
       else if(g.src!==fState.src) return false;
     }
-    if(fState.age!=='all' && g.age!==fState.age) return false;
+    if(selectedMax && ageMinMonths(g.age)>selectedMax) return false;
     return true;
   });
   document.getElementById('gameGrid').innerHTML=list.map(function(g){
@@ -953,6 +1105,18 @@ var OBS_ITEMS_BY_AGE={
     {dim:'mov', text:'能用拇指+食指对捏起小物品'},
     {dim:'cre', text:'用积木自由搭出不同的形状'},
     {dim:'cre', text:'玩水/玩沙时自发探索不同的玩法'}
+  ],
+  21:[
+    {dim:'cog', text:'能将相同颜色或形状的物品放在一起'},
+    {dim:'cog', text:'会尝试自己想办法拿到够不到的物品'},
+    {dim:'lang', text:'会主动用词语或手势表达需求'},
+    {dim:'lang', text:'偶尔出现两词组合（如「妈妈抱」）'},
+    {dim:'emo', text:'能用表情、动作或词语表达多种情绪'},
+    {dim:'emo', text:'会注意并尝试靠近其他小朋友'},
+    {dim:'mov', text:'跑动时能尝试转向或绕开障碍'},
+    {dim:'mov', text:'能扶着栏杆上楼梯'},
+    {dim:'cre', text:'会喂娃娃、假装打电话等简单假装游戏'},
+    {dim:'cre', text:'涂鸦或搭建时会尝试不同做法'}
   ],
   24:[
     {dim:'cog', text:'玩「藏玩具」时主动掀开布找，并找对位置（客体永久性稳固）'},
@@ -1004,27 +1168,18 @@ function idbOpen(){
 }
 function idbSet(key,val){idbOpen().then(function(db){if(!db)return;try{var tx=db.transaction(DB_STORE,'readwrite');tx.objectStore(DB_STORE).put(val,key);}catch(e){}});}
 function idbGet(key){return new Promise(function(res){idbOpen().then(function(db){if(!db){res(null);return;}try{var tx=db.transaction(DB_STORE,'readonly');var rq=tx.objectStore(DB_STORE).get(key);rq.onsuccess=function(){res(rq.result);};rq.onerror=function(){res(null);};}catch(e){res(null);}});});}
-function autoBackup(){try{idbSet('obs_data',loadObs());idbSet('dx_data',loadDx());idbSet('obs_backup_ts',Date.now());}catch(e){}}
+function autoBackup(){try{idbSet('obs_data',loadObs());idbSet('dx_data',loadDx());idbSet('growth_evidence_v2',safeJsonArray(typeof EVIDENCE_KEY==='undefined'?'xlma_growth_evidence_v2':EVIDENCE_KEY));idbSet('growth_assessments_v2',safeJsonArray(typeof ASSESSMENT_KEY==='undefined'?'xlma_growth_assessments_v2':ASSESSMENT_KEY));idbSet('activity_feedback_v1',safeJsonArray(ACTIVITY_FEEDBACK_KEY));idbSet('today_observation_history_v1',safeJsonArray(TODAY_OBS_HISTORY_KEY));idbSet('today_prefs_v1',loadTodayPrefs());idbSet('obs_backup_ts',Date.now());}catch(e){}}
 function tryRestoreFromIDB(){
-  return new Promise(function(resolve){
+  return Promise.all([idbGet('obs_data'),idbGet('dx_data'),idbGet('growth_evidence_v2'),idbGet('growth_assessments_v2'),idbGet('activity_feedback_v1'),idbGet('today_observation_history_v1'),idbGet('today_prefs_v1')]).then(function(all){
     try{
-      var local=JSON.parse(localStorage.getItem(OBS_KEY)||'[]');
-      if(local&&local.length){resolve(false);return;}
-      idbGet('obs_data').then(function(backup){
-        idbGet('dx_data').then(function(bdx){
-          var has=backup&&Array.isArray(backup)&&backup.length;
-          var hasDx=bdx&&Array.isArray(bdx)&&bdx.length;
-          if(!has&&!hasDx){resolve(false);return;}
-          if(confirm('💾 检测到本地数据为空，但发现 IndexedDB 中有 '+(has?backup.length:0)+' 条观察记录'+(hasDx?'、'+(bdx.length)+' 条深度诊断':'')+'。\n\n是否恢复？\n（点取消则保持空白，重新开始记录）')){
-            if(has)localStorage.setItem(OBS_KEY,JSON.stringify(backup));
-            if(hasDx)localStorage.setItem(DX_KEY,JSON.stringify(bdx));
-            resolve(true);return;
-          }
-          resolve(false);
-        });
-      });
-    }catch(e){resolve(false);}
-  });
+      var keys=[OBS_KEY,DX_KEY,'xlma_growth_evidence_v2','xlma_growth_assessments_v2',ACTIVITY_FEEDBACK_KEY,TODAY_OBS_HISTORY_KEY,TODAY_PREFS_KEY],labels=['旧版观察','旧版评估','成长证据','月度成长评估','活动反馈','今日观察','今日设置'],restore=[];
+      all.forEach(function(backup,i){var empty=i===6?!localStorage.getItem(keys[i]):!safeJsonArray(keys[i]).length;if(empty&&backup&&(Array.isArray(backup)?backup.length:true))restore.push({key:keys[i],label:labels[i],data:backup});});
+      if(!restore.length)return false;
+      var summary=restore.map(function(x){return x.data.length+' 条'+x.label;}).join('、');
+      if(!confirm('💾 检测到本地数据为空，但 IndexedDB 中有 '+summary+'。\n\n是否恢复？'))return false;
+      restore.forEach(function(x){localStorage.setItem(x.key,JSON.stringify(x.data));});return true;
+    }catch(e){return false;}
+  }).catch(function(){return false;});
 }
 function checkBackupReminder(){
   var last=+localStorage.getItem(EXPORT_KEY)||0;
@@ -1039,6 +1194,7 @@ function checkBackupReminder(){
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 function score01(v){var n=Number(v);if(!isFinite(n))return null;return Math.max(0,Math.min(5,Math.round(n*10)/10));}
 function scoreItem(v){var n=Number(v);return [1,3,5].indexOf(n)>=0?n:null;}
+function averageObservedScores(sc){var vals=OBS_DIM_IDS.map(function(d){return +(sc&&sc[d])||0;}).filter(function(v){return v>0;});return vals.length?Math.round(vals.reduce(function(s,v){return s+v;},0)/vals.length*10)/10:0;}
 function legacyDim(dim){return {emo:'soc',mov:'motor',cre:'fine'}[dim]||dim;}
 function normalizeObs(raw){
   if(!Array.isArray(raw))return[];
@@ -1221,8 +1377,7 @@ function renderObsHistory(){
   var sorted=arr.slice().sort(function(a,b){return a.wk<b.wk?-1:1}).slice(-6).reverse();
   box.innerHTML='<div class="wk-hist">'+sorted.map(function(e){
     var cn=Object.keys(e.items||{}).length;
-    var sc=e.scores||{};var total=(sc.cog||0)+(sc.lang||0)+(sc.emo||0)+(sc.mov||0)+(sc.cre||0);
-    var avg=total?Math.round(total/5*10)/5:0;
+    var sc=e.scores||{};var avg=averageObservedScores(sc);
     return '<div class="hrow"><span>第'+esc(e.wkNum)+'周 · '+esc(e.wk)+' 起</span><span><b>'+cn+'/'+getObsItems().length+'</b>项 · 均分 '+avg.toFixed(1)+'/5</span></div>';
   }).join('')+'</div>';
 }
@@ -1293,6 +1448,207 @@ function renderDxHistory(){
   }).join('')+'</div>';
 }
 
+/* ===== 成长评估 v2：证据、动态选题与五维成长画像 ===== */
+var EVIDENCE_KEY='xlma_growth_evidence_v2';
+var ASSESSMENT_KEY='xlma_growth_assessments_v2';
+var GROWTH_MIGRATION_KEY='xlma_growth_v2_migrated';
+var DOMAIN_IDS=['motor','fine','lang','cog','soc'];
+var DOMAIN_META={
+  motor:{name:'🏃 大运动',color:'#66BB6A'},fine:{name:'✋ 精细动作',color:'#42A5F5'},
+  lang:{name:'🗣️ 语言沟通',color:'#AB47BC'},cog:{name:'🧠 认知探索',color:'#FFA726'},
+  soc:{name:'💛 社会交往 / 社会情绪',color:'#EC407A'}
+};
+var EVIDENCE_STATUS={observed:'已观察到',emerging:'正在出现',unobserved:'尚未观察',not_yet:'尚未出现',concern:'家长有担忧'};
+var EVIDENCE_SOURCE={parent_record:'家长记录',game_feedback:'游戏反馈',monthly_assessment:'月度成长评估',legacy_parent_note:'旧版家长记录',legacy_weekly_observation:'旧版每周观察',legacy_assessment:'旧版评估'};
+var GROWTH_STATE={rich:'表现较丰富',on_track:'符合当前阶段',emerging:'正在发展',watch:'建议继续观察',concern:'建议关注',unknown:'暂无法判断'};
+var EVIDENCE_LEVEL={high:'证据较充分',medium:'证据一般',low:'证据较少'};
+var CAPABILITY_GRACE_MONTHS=4;
+var CAPABILITIES=[
+  {capability_id:'motor_stairs',domain:'motor',label:'扶着墙或栏杆上楼梯',min_age_months:15,typical_age_start:15,typical_age_end:18,importance:'key',source:'国家卫健委《婴幼儿早期发展服务指南（试行）》18月龄标志',source_type:'official_anchor',keywords:['上楼','楼梯']},
+  {capability_id:'motor_run',domain:'motor',label:'会跑',min_age_months:20,typical_age_start:20,typical_age_end:24,importance:'key',source:'CDC Learn the Signs. Act Early. 2 years: Runs',source_type:'official_anchor',keywords:['会跑','跑起来','追跑']},
+  {capability_id:'motor_jump',domain:'motor',label:'尝试双脚同时离地跳起',min_age_months:20,typical_age_start:20,typical_age_end:24,importance:'key',source:'国家卫健委《婴幼儿早期发展服务指南（试行）》24月龄标志',source_type:'official_anchor',keywords:['双脚','跳']},
+  {capability_id:'fine_lid',domain:'fine',label:'会用手拧开大瓶盖或操作旋转物',min_age_months:15,typical_age_start:15,typical_age_end:18,importance:'key',source:'国家卫健委《婴幼儿早期发展服务指南（试行）》18月龄标志',source_type:'official_anchor',keywords:['拧','瓶盖']},
+  {capability_id:'fine_spoon',domain:'fine',label:'尝试使用勺子进食',min_age_months:15,typical_age_start:15,typical_age_end:18,importance:'normal',source:'CDC Learn the Signs. Act Early. 18 months: Tries to use a spoon',source_type:'official_anchor',keywords:['尝试使用勺子','尝试用勺子']},
+  {capability_id:'fine_spoon_eat',domain:'fine',label:'会用勺子吃饭',min_age_months:20,typical_age_start:20,typical_age_end:24,importance:'normal',source:'CDC Learn the Signs. Act Early. 2 years: Eats with a spoon',source_type:'official_anchor',keywords:['用勺子吃','自己用勺','勺子自己吃']},
+  {capability_id:'fine_pages',domain:'fine',label:'能一页页翻书',min_age_months:20,typical_age_start:20,typical_age_end:24,importance:'key',source:'国家卫健委《婴幼儿早期发展服务指南（试行）》24月龄标志',source_type:'official_anchor',keywords:['翻书','翻页']},
+  {capability_id:'lang_words',domain:'lang',label:'能说出至少3个有意义的词',min_age_months:15,typical_age_start:15,typical_age_end:18,importance:'key',source:'国家卫健委《婴幼儿早期发展服务指南（试行）》18月龄标志',source_type:'official_anchor',keywords:['新词','会说','叫']},
+  {capability_id:'lang_request',domain:'lang',label:'会用手势、声音或词语主动表达需求',min_age_months:null,typical_age_start:null,typical_age_end:null,importance:'normal',source:'产品观察项；可关联指物、手势、有意义词汇和两词组合',source_type:'product_observation',keywords:['想要','主动指','表达需求']},
+  {capability_id:'lang_two_words',domain:'lang',label:'能把至少两个词组合在一起',min_age_months:20,typical_age_start:20,typical_age_end:24,importance:'key',source:'CDC Learn the Signs. Act Early. 2 years: Says at least two words together',source_type:'official_anchor',keywords:['妈妈抱','两词','短句']},
+  {capability_id:'cog_object_use',domain:'cog',label:'知道梳子、勺子、电话等常用物品的用途',min_age_months:15,typical_age_start:15,typical_age_end:18,importance:'key',source:'国家卫健委《婴幼儿早期发展服务指南（试行）》18月龄标志',source_type:'official_anchor',keywords:['梳子','打电话','用途']},
+  {capability_id:'cog_sort',domain:'cog',label:'尝试按特征进行简单配对或分类',min_age_months:null,typical_age_start:null,typical_age_end:null,importance:'normal',source:'产品认知探索观察项；暂无足够依据设定严格月龄窗口',source_type:'product_observation',keywords:['分类','配对','找一样']},
+  {capability_id:'cog_color_one',domain:'cog',label:'知道至少一种颜色',min_age_months:30,typical_age_start:30,typical_age_end:30,importance:'normal',source:'CDC Learn the Signs. Act Early. 30 months: Shows he knows at least one color',source_type:'official_anchor',keywords:['一种颜色','认识颜色','哪个是红色']},
+  {capability_id:'cog_pretend',domain:'cog',label:'会用娃娃或安全日用品玩简单假装游戏',min_age_months:20,typical_age_start:20,typical_age_end:24,importance:'key',source:'根据国家卫健委指南24月龄「可玩装扮游戏」做家庭场景化表述',source_type:'adapted_anchor',keywords:['娃娃','假装','装扮游戏']},
+  {capability_id:'soc_ball',domain:'soc',label:'能和家人玩来回传球等互动游戏',min_age_months:15,typical_age_start:15,typical_age_end:18,importance:'key',source:'国家卫健委《婴幼儿早期发展服务指南（试行）》18月龄标志',source_type:'official_anchor',keywords:['传球','轮流','互动']},
+  {capability_id:'soc_emotion',domain:'soc',label:'会用表情、动作或词语表达高兴、生气等情绪',min_age_months:null,typical_age_start:null,typical_age_end:null,importance:'normal',source:'产品社会情绪观察项；不设精确官方月龄窗口',source_type:'product_observation',keywords:['生气','高兴','害怕','情绪','表达不满']},
+  {capability_id:'soc_peers',domain:'soc',label:'会在其他小朋友旁边玩，有时也会一起玩',min_age_months:30,typical_age_start:30,typical_age_end:30,importance:'normal',source:'CDC Learn the Signs. Act Early. 30 months: Plays next to other children and sometimes plays with them',source_type:'official_anchor',keywords:['和小朋友一起玩','同伴互动','小朋友旁边玩']}
+];
+function uid(prefix){return prefix+'_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8);}
+function safeJsonArray(key){try{var v=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(v)?v:[];}catch(e){return[];}}
+function normalizeEvidence(raw){return (Array.isArray(raw)?raw:[]).map(function(e){
+  if(!e||!e.observation_id||!/^\d{4}-\d{2}-\d{2}$/.test(e.date||''))return null;
+  var status=EVIDENCE_STATUS[e.evidence_type]?e.evidence_type:'unobserved';
+  var domains=Array.isArray(e.domains)?e.domains.filter(function(d){return DOMAIN_IDS.indexOf(d)>=0;}):[],rawRecord=String(e.raw_record||'').slice(0,2000),source=String(e.source||'parent_record');
+  if(source==='legacy_weekly_observation'&&/拇指.*食指.*对捏/.test(rawRecord))domains=['fine'];
+  if(source==='legacy_weekly_observation'&&/玩水.*玩沙.*探索/.test(rawRecord))domains=['cog'];
+  var capabilityIds=Array.isArray(e.capability_ids)?e.capability_ids.map(String):[];
+  if((source==='legacy_weekly_observation'||source==='legacy_assessment')&&domains.length)capabilityIds=inferCapabilityIds(rawRecord,domains[0]);
+  return {observation_id:String(e.observation_id),date:e.date,raw_record:String(e.raw_record||'').slice(0,2000),domains:domains,
+    capability_ids:capabilityIds,evidence_strength:Math.max(0,Math.min(3,+e.evidence_strength||0)),
+    evidence_type:status,source:source,confirmed:e.confirmed===true,createdAt:+e.createdAt||Date.now()};
+}).filter(Boolean);}
+function loadEvidence(){return normalizeEvidence(safeJsonArray(EVIDENCE_KEY));}
+function saveEvidence(a){localStorage.setItem(EVIDENCE_KEY,JSON.stringify(normalizeEvidence(a)));autoBackup();}
+function loadAssessments(){return safeJsonArray(ASSESSMENT_KEY).filter(function(a){return a&&a.assessment_id&&/^\d{4}-\d{2}$/.test(a.monthKey||'');});}
+function saveAssessments(a){localStorage.setItem(ASSESSMENT_KEY,JSON.stringify(a));autoBackup();}
+function inferCapabilityIds(text,domain){var t=String(text||'');return CAPABILITIES.filter(function(c){return (!domain||c.domain===domain)&&c.keywords.some(function(k){return t.indexOf(k)>=0;});}).map(function(c){return c.capability_id;}).slice(0,2);}
+function migrateGrowthV2(){
+  if(localStorage.getItem(GROWTH_MIGRATION_KEY))return;
+  var ev=loadEvidence();
+  loadObs().forEach(function(r){
+    if(r.note)ev.push({observation_id:'legacy_note_'+r.wk,date:r.date||r.wk,raw_record:r.note,domains:[],capability_ids:[],evidence_strength:1,evidence_type:'observed',source:'legacy_parent_note',confirmed:true,createdAt:r.ts||Date.now()});
+    Object.keys(r.items||{}).forEach(function(k){var i=+k.slice(1),q=OBS_ITEMS[i];if(!q)return;var map={cog:'cog',lang:'lang',emo:'soc',mov:'motor',cre:'fine'};var st=r.items[k]===5?'observed':(r.items[k]===3?'emerging':'not_yet');ev.push({observation_id:'legacy_week_'+r.wk+'_'+k,date:r.date||r.wk,raw_record:q.text,domains:[map[q.dim]],capability_ids:inferCapabilityIds(q.text,map[q.dim]),evidence_strength:1,evidence_type:st,source:'legacy_weekly_observation',confirmed:true,createdAt:r.ts||Date.now()});});
+  });
+  loadDx().forEach(function(r){Object.keys(r.items||{}).forEach(function(k){var i=+k.slice(1),q=DX_ITEMS[i];if(!q)return;var map={cog:'cog',lang:'lang'};var st=r.items[k]===5?'observed':(r.items[k]===3?'emerging':'not_yet');ev.push({observation_id:'legacy_assess_'+r.monthKey+'_'+k,date:r.date||r.monthKey+'-15',raw_record:q.text,domains:[map[q.dim]],capability_ids:inferCapabilityIds(q.text,map[q.dim]),evidence_strength:1,evidence_type:st,source:'legacy_assessment',confirmed:true,createdAt:r.ts||Date.now()});});});
+  var by={};ev.forEach(function(e){by[e.observation_id]=e;});saveEvidence(Object.keys(by).map(function(k){return by[k];}));
+  localStorage.setItem(GROWTH_MIGRATION_KEY,'1');
+}
+function addObservation(){
+  var input=document.getElementById('obsNote'),raw=(input.value||'').trim();if(!raw){alert('请先写下一条具体观察');return;}
+  var domain=document.getElementById('obsDomain').value,status=document.getElementById('obsEvidenceStatus').value;
+  var ev=loadEvidence();ev.push({observation_id:uid('obs'),date:fmt(new Date()),raw_record:raw,domains:domain?[domain]:[],capability_ids:inferCapabilityIds(raw,domain),evidence_strength:1,evidence_type:status,source:'parent_record',confirmed:true,createdAt:Date.now()});saveEvidence(ev);
+  input.value='';document.getElementById('obsDomain').value='';document.getElementById('obsEvidenceStatus').value='observed';renderObserve();renderGrowthProfile();
+}
+function renderObserve(){
+  var a=ageInfo(),month=fmt(new Date()).slice(0,7),ev=loadEvidence().filter(function(e){return e.date.slice(0,7)===month;});
+  document.getElementById('obsStatus').innerHTML='小鹿玛当前约 <b>'+a.totM+'个月</b> · 本月已记录 <b>'+ev.length+'</b> 条成长证据';
+  document.getElementById('obsSummary').innerHTML='<div class="arch-note">记录事实，不急着给结论。“尚未观察”不会被当成“不会”；只有家长明确选择“尚未出现”或“有担忧”时才会记入对应状态。</div>';
+  renderObsHistory();
+}
+function renderObsHistory(){
+  var box=document.getElementById('obsHistory'),arr=loadEvidence().slice().sort(function(a,b){return b.createdAt-a.createdAt;}).slice(0,20);
+  if(!arr.length){box.innerHTML='<div style="font-size:13px;color:var(--text-light)">还没有观察记录。可以从今天的一个新动作、新词或解决问题的小瞬间开始。</div>';return;}
+  box.innerHTML='<div class="wk-hist">'+arr.map(function(e){var ds=e.domains.map(function(d){return DOMAIN_META[d].name;}).join('、')||'暂未归类';return '<div class="hrow" style="cursor:default"><span>'+esc(e.date)+' · '+esc(e.raw_record)+'</span><span>'+esc(EVIDENCE_STATUS[e.evidence_type])+'<br>'+esc(ds)+'</span></div>';}).join('')+'</div>';
+}
+function stableCapabilityIds(){
+  var dates={};loadEvidence().filter(function(e){return e.confirmed&&e.evidence_type==='observed';}).forEach(function(e){e.capability_ids.forEach(function(id){if(!dates[id])dates[id]={};dates[id][e.date]=1;});});
+  var out={};Object.keys(dates).forEach(function(id){if(Object.keys(dates[id]).length>=2)out[id]=1;});return out;
+}
+function capabilityPriority(c,age){
+  var ev=loadEvidence().filter(function(e){return e.capability_ids.indexOf(c.capability_id)>=0;}).sort(function(a,b){return b.createdAt-a.createdAt;}),score=Math.abs(c.typical_age_start-age)*10;
+  if(!ev.length)score-=30;
+  var latest=ev[0];
+  if(latest&&(latest.evidence_type==='emerging'||latest.evidence_type==='not_yet'||latest.evidence_type==='concern'))score-=50;
+  else if(latest&&latest.evidence_type==='observed')score-=20;
+  else if(latest&&latest.evidence_type==='unobserved')score-=35;
+  return score;
+}
+function assessmentQuestionSet(age){
+  var stable=stableCapabilityIds(),pool=CAPABILITIES.filter(function(c){return !stable[c.capability_id]&&c.min_age_months<=age+3&&c.typical_age_end+CAPABILITY_GRACE_MONTHS>=age;});
+  var chosen=[];DOMAIN_IDS.forEach(function(d){var p=pool.filter(function(c){return c.domain===d;}).sort(function(a,b){return capabilityPriority(a,age)-capabilityPriority(b,age);});if(p[0])chosen.push(p[0]);});
+  pool.sort(function(a,b){return capabilityPriority(a,age)-capabilityPriority(b,age);}).forEach(function(c){if(chosen.length<10&&chosen.indexOf(c)<0)chosen.push(c);});return chosen;
+}
+function currentAssessment(){var mk=fmt(new Date()).slice(0,7);return loadAssessments().find(function(a){return a.monthKey===mk;})||null;}
+function assessmentDraft(){var ex=currentAssessment();if(ex)return ex;var a=ageInfo();return {assessment_id:uid('assess'),schemaVersion:2,monthKey:fmt(new Date()).slice(0,7),ageMonths:a.totM,selectedCapabilityIds:assessmentQuestionSet(a.totM).map(function(c){return c.capability_id;}),answers:{},startedAt:Date.now(),completedAt:null};}
+function renderAssessment(){
+  var a=assessmentDraft(),caps=a.selectedCapabilityIds.map(function(id){return CAPABILITIES.find(function(c){return c.capability_id===id;});}).filter(Boolean),done=Object.keys(a.answers||{}).length;
+  document.getElementById('dxStatus').innerHTML=(a.completedAt?'本月已完成':'本月待了解')+' · 根据当前证据动态选出 <b>'+caps.length+'</b> 项 · 已回答 <b>'+done+'</b> 项';
+  document.getElementById('dxProgress').style.width=(caps.length?done/caps.length*100:0)+'%';
+  document.getElementById('dxList').innerHTML=a.completedAt?'<div class="arch-note">已完成本月成长小评估。已稳定掌握的低阶能力将不再重复询问。</div>':caps.map(function(c){var v=(a.answers[c.capability_id]||{}).status;var btn=function(st,label){return '<button class="obs-btn'+(v===st?' active':'')+'" onclick="setAssessmentAnswer(\''+c.capability_id+'\',\''+st+'\')">'+label+'</button>';};return '<div class="obs-item'+(v?' done':'')+'"><span class="obs-dim" style="background:'+DOMAIN_META[c.domain].color+'22;color:'+DOMAIN_META[c.domain].color+'">'+DOMAIN_META[c.domain].name+'</span><div class="obs-text">'+esc(c.label)+'</div><div style="font-size:11px;color:var(--text-light);margin-bottom:7px">依据：'+esc(c.source)+'</div><div class="obs-btns">'+btn('observed','已观察到')+btn('emerging','正在出现')+btn('unobserved','尚未观察')+btn('not_yet','尚未出现')+btn('concern','有担忧')+'</div></div>';}).join('');
+  var finish=document.getElementById('finishAssessmentBtn');finish.style.display=!a.completedAt&&caps.length?'inline-block':'none';
+  renderAssessmentResult(a);renderAssessmentHistory();
+}
+function setAssessmentAnswer(capId,status){
+  var arr=loadAssessments(),a=currentAssessment();if(!a){a=assessmentDraft();arr.push(a);}a.answers=a.answers||{};a.answers[capId]={status:status,confirmed:true,answeredAt:Date.now()};saveAssessments(arr);renderAssessment();
+}
+function finishAssessment(){
+  var arr=loadAssessments(),a=currentAssessment();if(!a){alert('请先回答评估问题');return;}var missing=a.selectedCapabilityIds.filter(function(id){return !a.answers[id];});if(missing.length){alert('还有 '+missing.length+' 项未回答。如果当下没有注意过，请选「尚未观察」，它不会被视为不会。');return;}
+  a.completedAt=Date.now();var ev=loadEvidence();a.selectedCapabilityIds.forEach(function(id){var c=CAPABILITIES.find(function(x){return x.capability_id===id;}),ans=a.answers[id];ev.push({observation_id:'assess_'+a.assessment_id+'_'+id,date:fmt(new Date()),raw_record:c.label,domains:[c.domain],capability_ids:[id],evidence_strength:2,evidence_type:ans.status,source:'monthly_assessment',confirmed:true,createdAt:a.completedAt});});saveEvidence(ev);saveAssessments(arr);renderAssessment();renderBrain();
+}
+function capabilityById(id){return CAPABILITIES.find(function(c){return c.capability_id===id;})||null;}
+function capabilityPhase(c,age){
+  if(!c||typeof c.typical_age_start!=='number'||typeof c.typical_age_end!=='number'||typeof c.min_age_months!=='number'||!isFinite(c.typical_age_start)||!isFinite(c.typical_age_end)||!isFinite(c.min_age_months))return 'unknown';
+  if(age<c.min_age_months||age<c.typical_age_start)return 'future';
+  if(age<=c.typical_age_end)return 'current';
+  if(age<=c.typical_age_end+CAPABILITY_GRACE_MONTHS)return 'grace';
+  return 'overdue';
+}
+function isRegressionEvidence(e){return /(倒退|退步|原来会.*现在不会|以前会.*不再|不再会)/.test(String(e.raw_record||''));}
+function uniqueValues(arr){var seen={};return arr.filter(function(v){if(seen[v])return false;seen[v]=1;return true;});}
+function evidenceSufficiency(ev,age,referenceDate){
+  var meaningful=ev.filter(function(e){if(!e.confirmed||e.evidence_type==='unobserved')return false;if(e.evidence_type==='concern')return true;return e.capability_ids.some(function(id){var c=capabilityById(id);return !!c&&!(e.evidence_type==='not_yet'&&capabilityPhase(c,age)==='future');});});
+  var caps=uniqueValues([].concat.apply([],meaningful.map(function(e){return e.capability_ids.filter(function(id){return !!capabilityById(id);});}))),dates=uniqueValues(meaningful.map(function(e){return e.date;}));
+  var sourceGroups=uniqueValues(meaningful.map(function(e){return e.source==='monthly_assessment'?'assessment':'daily';}));
+  var ref=new Date((referenceDate||fmt(new Date()))+'T12:00:00'),recent=meaningful.some(function(e){return (ref-new Date(e.date+'T12:00:00'))/86400000<=45;});
+  var key=(caps.length>=3&&dates.length>=2&&sourceGroups.length>=2&&recent)?'high':((meaningful.length>=2&&(caps.length>=2||dates.length>=2))?'medium':'low');
+  return {key:key,label:EVIDENCE_LEVEL[key],records:meaningful.length,capabilities:caps.length,dates:dates.length,sources:sourceGroups.length,recent:recent};
+}
+function summarizeCapabilityEvidence(cap,ev,age){
+  var rows=ev.filter(function(e){return e.capability_ids.indexOf(cap.capability_id)>=0&&e.evidence_type!=='unobserved';}).sort(function(a,b){return a.date===b.date?b.createdAt-a.createdAt:(a.date<b.date?1:-1);});
+  var dates=function(type){return uniqueValues(rows.filter(function(e){return e.evidence_type===type;}).map(function(e){return e.date;}));};
+  var observed=dates('observed'),emerging=dates('emerging'),notYet=dates('not_yet'),types=uniqueValues(rows.map(function(e){return e.evidence_type;}));
+  var latest=rows[0]?rows[0].evidence_type:null;
+  return {capability:cap,phase:capabilityPhase(cap,age),rows:rows,status:latest,observedDates:observed,emergingDates:emerging,notYetDates:notYet,repeatedNotYet:notYet.length>=2,stableObserved:observed.length>=2,conflict:types.indexOf('observed')>=0&&types.indexOf('not_yet')>=0};
+}
+function stateLevel(key){return {concern:1,watch:2,emerging:3,on_track:4,rich:5}[key]||null;}
+function evaluateDomainState(domain,age,rawEvidence,referenceDate){
+  var ev=normalizeEvidence(rawEvidence).filter(function(e){return e.confirmed&&e.domains.indexOf(domain)>=0;}),suff=evidenceSufficiency(ev,age,referenceDate);
+  var caps=CAPABILITIES.filter(function(c){return c.domain===domain;}),summaries=caps.map(function(c){return summarizeCapabilityEvidence(c,ev,age);});
+  var current=summaries.filter(function(s){return s.phase==='current';}),grace=summaries.filter(function(s){return s.phase==='grace';}),overdue=summaries.filter(function(s){return s.phase==='overdue';});
+  var positive=summaries.filter(function(s){return s.status==='observed'||s.status==='emerging';});
+  var currentPositive=current.filter(function(s){return s.status==='observed'||s.status==='emerging';}),currentObserved=current.filter(function(s){return s.status==='observed';});
+  var currentNotYet=current.filter(function(s){return s.status==='not_yet';}),overdueKeyNotYet=overdue.filter(function(s){return s.status==='not_yet'&&(s.capability.importance==='key'||s.capability.importance==='red_flag_related');});
+  var repeatedOverdueKey=overdueKeyNotYet.filter(function(s){return s.repeatedNotYet;}),repeatedOverdueRedFlag=repeatedOverdueKey.filter(function(s){return s.capability.importance==='red_flag_related';});
+  var conflicts=summaries.filter(function(s){return s.conflict&&(s.phase==='current'||s.phase==='grace'||s.phase==='overdue');});
+  var directConcern=ev.some(function(e){return e.evidence_type==='concern'||isRegressionEvidence(e);});
+  var positiveDates=uniqueValues([].concat.apply([],positive.map(function(s){return s.rows.filter(function(e){return e.evidence_type==='observed'||e.evidence_type==='emerging';}).map(function(e){return e.date;});})));
+  var higherPositive=positive.filter(function(s){return s.phase==='future'||(s.phase==='current'&&(s.capability.typical_age_start>=age-1||s.capability.typical_age_end>=age+2));});
+  var officialPositive=positive.some(function(s){return s.capability.source_type==='official_anchor'||s.capability.source_type==='adapted_anchor';});
+  var key='unknown';
+  if(directConcern||repeatedOverdueRedFlag.length||overdueKeyNotYet.length>=2)key='concern';
+  else if(repeatedOverdueKey.length||overdueKeyNotYet.length||currentNotYet.filter(function(s){return s.capability.importance==='key';}).length>=2||conflicts.length)key='watch';
+  else if(suff.key==='high'&&positive.length>=3&&currentPositive.length>=2&&higherPositive.length>=1&&positiveDates.length>=2&&!currentNotYet.length)key='rich';
+  else if(positive.length>=2&&currentObserved.length>=1&&officialPositive)key='on_track';
+  else if(currentPositive.length||positive.some(function(s){return s.phase==='future';})||currentNotYet.length)key='emerging';
+  var counts={current:current.length,observed:current.filter(function(s){return s.status==='observed';}).length,emerging:current.filter(function(s){return s.status==='emerging';}).length,not_yet:currentNotYet.length,unobserved:current.filter(function(s){return !s.status;}).length,overdue_key_not_yet:overdueKeyNotYet.length};
+  var why='';
+  if(key==='unknown')why='当前阶段相关的 '+current.length+' 个能力点中，还没有足够的真实记录可供判断。没有记录不等于不会。';
+  else if(key==='concern')why=directConcern?'近期记录中有家长明确担忧或能力倒退信号，因此优先标记为「建议关注」。':'有多项关键能力在超过典型阶段与 '+CAPABILITY_GRACE_MONTHS+' 个月缓冲期后仍被明确记录为尚未出现。';
+  else if(key==='watch')why='当前阶段 '+current.length+' 个能力点中，已观察到 '+counts.observed+' 项、正在出现 '+counts.emerging+' 项、明确尚未出现 '+counts.not_yet+' 项。'+(counts.overdue_key_not_yet?'另有 '+counts.overdue_key_not_yet+' 项超过缓冲期的关键能力需要继续观察。':(conflicts.length?'近期记录中存在不一致的描述，需要在自然场景中再观察。':'当前的关键能力记录还需要继续观察。'));
+  else why='当前阶段相关的 '+current.length+' 个能力点中，已观察到 '+counts.observed+' 项、正在出现 '+counts.emerging+' 项、明确尚未出现 '+counts.not_yet+' 项。'+(key==='rich'?'同时有跨日期、跨来源的多能力证据，并已出现当前较高层级或下一阶段表现。':'未记录到需要升级关注的信号。');
+  return {key:key,label:GROWTH_STATE[key],level:stateLevel(key),evidenceLevel:suff.key,evidenceLabel:suff.label,evidenceSummary:suff,evidence:ev,capabilities:summaries,counts:counts,why:why};
+}
+function domainState(domain){
+  var since=Date.now()-120*86400000,ev=loadEvidence().filter(function(e){return e.confirmed&&e.domains.indexOf(domain)>=0&&e.createdAt>=since;});
+  return evaluateDomainState(domain,ageInfo().totM,ev,fmt(new Date()));
+}
+function radarValueForState(st){return st&&st.key!=='unknown'?st.level:null;}
+function growthRecentText(st){
+  var stable=st.capabilities.find(function(s){return s.stableObserved;}),emerging=st.capabilities.find(function(s){return s.status==='emerging';}),watch=st.capabilities.find(function(s){return (s.phase==='current'||s.phase==='grace')&&!s.status;});
+  if(stable)return '已稳定：'+stable.capability.label;
+  if(emerging)return '开始出现：'+emerging.capability.label;
+  if(watch)return '接下来留意：'+watch.capability.label;
+  return '接下来留意：在自然生活中继续记录';
+}
+function observationSuggestions(st){
+  var ranked=st.capabilities.filter(function(s){return s.phase!=='overdue'&&(s.status!=='observed'||!s.stableObserved);}).sort(function(a,b){var pa=(a.phase==='current'?0:(a.phase==='grace'?1:2))+(a.capability.importance==='key'?0:1),pb=(b.phase==='current'?0:(b.phase==='grace'?1:2))+(b.capability.importance==='key'?0:1);return pa-pb;}).slice(0,3);
+  var out=ranked.map(function(s){if(s.status==='emerging')return '留意「'+s.capability.label+'」是否在不同场景中再次自然出现。';if(s.status==='not_yet')return '接下来可留意是否开始出现「'+s.capability.label+'」；先观察，不需反复测试。';return '可留意她是否会自然表现出「'+s.capability.label+'」。';});
+  if(!out.length)out.push('继续在自然生活中观察和记录，无需额外考试。');return out;
+}
+var growthChart=null;
+function renderGrowthProfile(){
+  var box=document.getElementById('dxHistory');if(!box)return;var states={};DOMAIN_IDS.forEach(function(d){states[d]=domainState(d);});
+  box.innerHTML='<div class="arch-note">发展状态会结合当前月龄、能力点阶段、缓冲期与真实证据判断；证据充分度只表示信息支撑程度，不代表能力高低。这不是医学诊断或标准化常模分数。</div><div class="assess-layout"><div class="chart-box"><h4>当前五维成长画像</h4><canvas id="growthRadar" height="240"></canvas><div style="font-size:11px;color:var(--text-light);text-align:center">暂无法判断的维度在图中留空，不绘制成低能力点。</div></div><div><div class="growth-profile-grid">'+DOMAIN_IDS.map(function(d){return '<button class="growth-dim-card" onclick="showGrowthDetail(\''+d+'\',this)"><b>'+DOMAIN_META[d].name+'</b><br><span class="growth-state">'+states[d].label+'</span><span class="growth-evidence">'+states[d].evidenceLabel+'</span><div class="growth-recent">'+esc(growthRecentText(states[d]))+'</div></button>';}).join('')+'</div><div id="growthProfileDetail"></div></div></div>';
+  if(window.Chart){if(growthChart)growthChart.destroy();growthChart=new window.Chart(document.getElementById('growthRadar').getContext('2d'),{type:'radar',data:{labels:DOMAIN_IDS.map(function(d){return DOMAIN_META[d].name.slice(2);}),datasets:[{label:'阶段性成长画像',data:DOMAIN_IDS.map(function(d){return radarValueForState(states[d]);}),spanGaps:false,backgroundColor:'#F4433622',borderColor:'#F44336',pointBackgroundColor:DOMAIN_IDS.map(function(d){return states[d].key==='unknown'?'#BDBDBD':DOMAIN_META[d].color;}),pointRadius:DOMAIN_IDS.map(function(d){return states[d].key==='unknown'?0:4;})}]},options:{scales:{r:{min:0,max:5,ticks:{display:false},pointLabels:{font:{size:13}}}},plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){var st=states[DOMAIN_IDS[ctx.dataIndex]];return st.label+' · '+st.evidenceLabel;}}}}}});}
+  showGrowthDetail(DOMAIN_IDS[0]);
+}
+function showGrowthDetail(domain,btn){
+  document.querySelectorAll('.growth-dim-card').forEach(function(b){b.classList.remove('active');});if(btn)btn.classList.add('active');var st=domainState(domain),suggestions=observationSuggestions(st);
+  var evidence=st.evidence.slice().sort(function(a,b){return b.createdAt-a.createdAt;}).slice(0,5),care=st.key==='concern'?'<div class="arch-note" style="margin-top:10px">如果你对语言、互动、动作、听力、视力或能力倒退有持续担忧，可以在儿保或就医时主动和医生讨论。</div>':'';document.getElementById('growthProfileDetail').innerHTML='<div class="growth-detail"><b>'+DOMAIN_META[domain].name+' ｜ '+st.label+'</b><span class="growth-evidence">'+st.evidenceLabel+'</span><h4>为什么这样判断？</h4><p style="font-size:13px;color:var(--text-mid)">'+st.why+'</p><ul>'+(evidence.length?evidence.map(function(e){return '<li>'+esc(e.date)+' · '+esc(EVIDENCE_SOURCE[e.source]||e.source)+' · '+esc(EVIDENCE_STATUS[e.evidence_type])+' · '+esc(e.raw_record)+'</li>';}).join(''):'<li>暂无可展示的明确证据</li>')+'</ul><h4>接下来该留意什么？</h4><ul>'+suggestions.map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ul>'+care+'</div>';
+}
+function renderAssessmentResult(a){var box=document.getElementById('dxResult');if(!box)return;if(!Object.keys(a.answers||{}).length){box.innerHTML='';return;}var states={};DOMAIN_IDS.forEach(function(d){states[d]=domainState(d);});box.innerHTML='<div class="obs-sum-title">📊 当前发展状态（非分数）</div><div class="growth-profile-grid">'+DOMAIN_IDS.map(function(d){return '<div class="growth-dim-card" style="cursor:default"><b>'+DOMAIN_META[d].name+'</b><br><span class="growth-state">'+states[d].label+'</span><span class="growth-evidence">'+states[d].evidenceLabel+'</span></div>';}).join('')+'</div>';}
+function renderAssessmentHistory(){renderGrowthProfile();}
+function renderBrain(){renderGrowthProfile();}
+
 /* ===== 月度趋势对比 ===== */
 var trendRadarChart=null,trendLineChart=null;
 function destroyTrend(){if(trendRadarChart){trendRadarChart.destroy();trendRadarChart=null;}if(trendLineChart){trendLineChart.destroy();trendLineChart=null;}}
@@ -1341,7 +1697,7 @@ function thisWeekKey(){return fmt(mondayOf(new Date()));}
 
 /* ===== 脑计划·月评（每周观察数据自动汇总） ===== */
 var archiveChart=null;
-function genArchive(){
+function genLegacyArchive(){
   var mv=document.getElementById('archiveMonth').value;if(!mv){alert('请先选择月份');return;}
   var y=+mv.slice(0,4),mo=+mv.slice(5,7);
   var arr=loadObs().filter(function(e){return e.monthKey===mv;});
@@ -1391,42 +1747,71 @@ function genArchive(){
   if(archiveChart)archiveChart.destroy();
   archiveChart=new window.Chart(ctx,{type:'radar',data:{labels:OBS_DIM_IDS.map(function(d){return OBS_NAME[d].slice(2);}),datasets:[{label:y+'年'+mo+'月均分',data:OBS_DIM_IDS.map(function(d){return avg[d];}),backgroundColor:pc+'33',borderColor:pc,pointBackgroundColor:pc,pointRadius:4}]},options:{responsive:true,scales:{r:{min:0,max:5,ticks:{stepSize:1,backdropColor:'transparent',font:{size:10}},pointLabels:{font:{size:13}},grid:{color:pc+'22'},angleLines:{color:pc+'22'}}},plugins:{legend:{position:'bottom',labels:{font:{size:12}}}}}});
 }
+function stateFromEvidenceList(ev,domain,age,referenceDate){return evaluateDomainState(domain,age,ev,referenceDate);}
+function genGrowthArchive(){
+  var mv=document.getElementById('archiveMonth').value;if(!mv){alert('请先选择月份');return;}var y=+mv.slice(0,4),mo=+mv.slice(5,7),mid=new Date(y,mo-1,15),totM=(mid.getFullYear()-BIRTH.getFullYear())*12+(mid.getMonth()-BIRTH.getMonth());if(mid.getDate()<BIRTH.getDate())totM--;
+  var ev=loadEvidence().filter(function(e){return e.date.slice(0,7)===mv;}),assess=loadAssessments().find(function(a){return a.monthKey===mv&&a.completedAt;});var states={};DOMAIN_IDS.forEach(function(d){states[d]=stateFromEvidenceList(ev.filter(function(e){return e.domains.indexOf(d)>=0;}),d,totM,mv+'-28');});
+  var html='<div class="arch-title">🗂️ 小鹿玛成长档案 · '+y+'年'+mo+'月</div><div style="font-size:14px;color:var(--text-mid);margin-bottom:10px">本月约 <b>'+totM+'</b> 个月 · <b>'+ev.length+'</b> 条证据 · '+(assess?'已完成成长小评估':'未完成成长小评估')+'</div><div class="growth-profile-grid">'+DOMAIN_IDS.map(function(d){return '<div class="growth-dim-card" style="cursor:default"><b>'+DOMAIN_META[d].name+'</b><br><span class="growth-state">'+states[d].label+'</span><span class="growth-evidence">'+states[d].evidenceLabel+'</span><div style="font-size:11px;color:var(--text-light);margin-top:5px">'+ev.filter(function(e){return e.domains.indexOf(d)>=0;}).length+' 条本月证据</div></div>';}).join('')+'</div>';
+  html+='<h4 style="margin:14px 0 6px">📋 本月真实依据</h4><div class="arch-note">'+(ev.length?ev.slice().sort(function(a,b){return a.date<b.date?-1:1;}).map(function(e){return '· '+esc(e.date)+'｜'+esc(EVIDENCE_STATUS[e.evidence_type])+'｜'+esc(e.raw_record);}).join('\n'):'本月暂无记录。没有记录不等于不会。')+'</div><div class="arch-note" style="margin-top:12px">本档案为家庭成长观察，不是医学诊断或标准化发育筛查。如孩子出现已有能力倒退，或家长持续有担忧，请咨询儿科/儿保专业人员。</div>';
+  document.getElementById('archiveArea').innerHTML=html;renderGrowthTrend();
+}
+function renderGrowthTrend(){
+  var area=document.getElementById('trendArea');if(!area)return;var months=loadAssessments().filter(function(a){return a.completedAt;}).map(function(a){return a.monthKey;}).filter(function(m,i,a){return a.indexOf(m)===i;}).sort().slice(-6);
+  if(!months.length){area.innerHTML='<div class="arch-note">完成第一次每月成长小评估后，这里会保留当月的状态记录。</div>';return;}
+  area.innerHTML='<table class="arch-table"><tr><th>月份</th>'+DOMAIN_IDS.map(function(d){return '<th>'+DOMAIN_META[d].name.slice(2)+'</th>';}).join('')+'</tr>'+months.map(function(m){var ev=loadEvidence().filter(function(e){return e.date.slice(0,7)===m;}),mid=new Date(+m.slice(0,4),+m.slice(5,7)-1,15),age=(mid.getFullYear()-BIRTH.getFullYear())*12+(mid.getMonth()-BIRTH.getMonth());if(mid.getDate()<BIRTH.getDate())age--;return '<tr><td>'+esc(m)+'</td>'+DOMAIN_IDS.map(function(d){var st=stateFromEvidenceList(ev.filter(function(e){return e.domains.indexOf(d)>=0;}),d,age,m+'-28');return '<td>'+st.label+'<br><span style="font-size:10px;color:var(--text-light)">'+st.evidenceLabel+'</span></td>';}).join('')+'</tr>';}).join('')+'</table>';
+}
 function exportData(){
   var now=new Date();
-  var data={birth:'2025-01-16',obs:loadObs(),dx:loadDx(),exportedAt:fmt(now)+' '+String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0')};
+  var data={schemaVersion:3,birth:'2025-01-16',evidence:loadEvidence(),assessments:loadAssessments(),activityFeedback:loadActivityFeedback(),todayPreferences:loadTodayPrefs(),todayObservationHistory:safeJsonArray(TODAY_OBS_HISTORY_KEY),legacy:{obs:loadObs(),dx:loadDx()},exportedAt:fmt(now)+' '+String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0')};
   var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   var ts=fmt(now)+'_'+String(now.getHours()).padStart(2,'0')+String(now.getMinutes()).padStart(2,'0');
   var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='小鹿玛成长数据_'+ts+'.json';a.click();URL.revokeObjectURL(a.href);
   localStorage.setItem(EXPORT_KEY,Date.now()+'');
   var bar=document.getElementById('backupBar');if(bar)bar.style.display='none';
-  alert('✅ 已导出 '+loadObs().length+' 条观察记录、'+loadDx().length+' 条深度诊断\n建议存到云盘/电脑做长期备份');
+  alert('✅ 已导出 '+loadEvidence().length+' 条成长证据、'+loadAssessments().length+' 个月度评估\n建议存到安全的个人位置做长期备份');
 }
 function importData(inp){
   var fl=inp.files[0];if(!fl)return;var r=new FileReader();
   r.onload=function(){try{
     var d=JSON.parse(r.result);
-    var obsArr=null,dxArr=null;
-    if(d.obs&&Array.isArray(d.obs)){obsArr=normalizeObs(d.obs);}
-    else if(d.weekly&&Array.isArray(d.weekly)){obsArr=normalizeObs(d.weekly);}
-    if(d.dx&&Array.isArray(d.dx)){dxArr=normalizeDx(d.dx);}
-    if(!obsArr&&!dxArr){alert('导入失败：文件里没有可识别的记录（obs / weekly / dx）');return;}
+    var obsArr=null,dxArr=null,evArr=null,assessArr=null,feedbackArr=null,todayPrefs=null,todayHistory=null;
+    if(d.evidence&&Array.isArray(d.evidence))evArr=normalizeEvidence(d.evidence);
+    if(d.assessments&&Array.isArray(d.assessments))assessArr=d.assessments.filter(function(a){return a&&a.assessment_id&&/^\d{4}-\d{2}$/.test(a.monthKey||'');});
+    if(d.activityFeedback&&Array.isArray(d.activityFeedback))feedbackArr=d.activityFeedback.filter(function(x){return x&&x.feedback_id&&x.activity_id&&/^\d{4}-\d{2}-\d{2}$/.test(x.date||'');});
+    if(d.todayPreferences&&typeof d.todayPreferences==='object')todayPrefs=d.todayPreferences;
+    if(d.todayObservationHistory&&Array.isArray(d.todayObservationHistory))todayHistory=d.todayObservationHistory.filter(function(x){return x&&x.capability_id&&/^\d{4}-\d{2}-\d{2}$/.test(x.date||'');});
+    var legacy=d.legacy||d;
+    if(legacy.obs&&Array.isArray(legacy.obs)){obsArr=normalizeObs(legacy.obs);}
+    else if(legacy.weekly&&Array.isArray(legacy.weekly)){obsArr=normalizeObs(legacy.weekly);}
+    if(legacy.dx&&Array.isArray(legacy.dx)){dxArr=normalizeDx(legacy.dx);}
+    if(!obsArr&&!dxArr&&!evArr&&!assessArr&&!feedbackArr&&!todayPrefs&&!todayHistory){alert('导入失败：文件里没有可识别的成长或今日助手数据');return;}
     var merge=false;
     var curObs=loadObs(),curDx=loadDx();
-    var hasIncoming=(obsArr&&obsArr.length)||(dxArr&&dxArr.length);
-    if(hasIncoming&&(curObs.length||curDx.length)){
+    var hasIncoming=(obsArr&&obsArr.length)||(dxArr&&dxArr.length)||(evArr&&evArr.length)||(assessArr&&assessArr.length)||(feedbackArr&&feedbackArr.length)||todayPrefs||(todayHistory&&todayHistory.length);
+    if(hasIncoming&&(curObs.length||curDx.length||loadEvidence().length||loadAssessments().length||loadActivityFeedback().length)){
         if(confirm('当前已有本地记录。导入前是否先导出当前数据做备份？（确定=导出，取消=跳过）'))exportData();
         merge=confirm('导入方式：确定=按周/月合并（推荐，相同记录以导入文件为准），取消=覆盖现有记录');
         if(merge){
           if(obsArr)obsArr=mergeObs(curObs,obsArr);
           if(dxArr)dxArr=mergeDx(curDx,dxArr);
+          if(evArr){var eb={};loadEvidence().concat(evArr).forEach(function(e){eb[e.observation_id]=e;});evArr=Object.keys(eb).map(function(k){return eb[k];});}
+          if(assessArr){var ab={};loadAssessments().concat(assessArr).forEach(function(a){ab[a.assessment_id]=a;});assessArr=Object.keys(ab).map(function(k){return ab[k];});}
+          if(feedbackArr){var fb={};loadActivityFeedback().concat(feedbackArr).forEach(function(x){fb[x.feedback_id]=x;});feedbackArr=Object.keys(fb).map(function(k){return fb[k];});}
+          if(todayHistory){todayHistory=safeJsonArray(TODAY_OBS_HISTORY_KEY).concat(todayHistory);}
         }
     }
     if(obsArr&&!obsArr.length&&curObs.length&&!confirm('文件里没有每周观察记录。确定要清空现有的 '+curObs.length+' 条观察记录吗？（取消=取消导入）'))return;
     if(dxArr&&!dxArr.length&&curDx.length&&!confirm('文件里没有深度诊断记录。确定要清空现有的 '+curDx.length+' 条深度诊断吗？（取消=取消导入）'))return;
     var msg=[];
     if(obsArr){saveObs(obsArr);msg.push(obsArr.length+' 条每周观察');}
-    if(dxArr){saveDx(dxArr);msg.push(dxArr.length+' 条深度诊断');}
-    renderObserve();renderBrain();genArchive();renderDx();
+    if(dxArr){saveDx(dxArr);msg.push(dxArr.length+' 条旧版评估');}
+    if(evArr){saveEvidence(evArr);msg.push(evArr.length+' 条成长证据');}
+    if(assessArr){saveAssessments(assessArr);msg.push(assessArr.length+' 个月度评估');}
+    if(feedbackArr){saveActivityFeedbackRows(feedbackArr);msg.push(feedbackArr.length+' 条活动反馈');}
+    if(todayPrefs){localStorage.setItem(TODAY_PREFS_KEY,JSON.stringify(todayPrefs));msg.push('今日设置');}
+    if(todayHistory){localStorage.setItem(TODAY_OBS_HISTORY_KEY,JSON.stringify(todayHistory));msg.push(todayHistory.length+' 条今日观察历史');}
+    if(obsArr||dxArr){localStorage.removeItem(GROWTH_MIGRATION_KEY);migrateGrowthV2();}
+    renderObserve();renderBrain();renderAssessment();renderToday();
     localStorage.setItem(EXPORT_KEY,Date.now()+'');
     var bar=document.getElementById('backupBar');if(bar)bar.style.display='none';
     alert('✅ 已导入 '+msg.join('、')+(merge?'（合并）':'（覆盖）'));
@@ -1434,9 +1819,9 @@ function importData(inp){
   r.readAsText(fl);inp.value='';
 }
 document.getElementById('archiveMonth').value=fmt(new Date()).slice(0,7);
-updateAge();renderHome();renderObserve();renderBrain();renderDx();renderTrend();
+migrateGrowthV2();updateAge();renderHome();setTodayDockVisibility(true);renderObserve();renderBrain();renderAssessment();renderGrowthTrend();
 tryRestoreFromIDB().then(function(restored){
-  if(restored){renderObserve();renderBrain();renderDx();renderTrend();alert('✅ 已从 IndexedDB 备份恢复 '+loadObs().length+' 条观察记录、'+loadDx().length+' 条深度诊断');}
+  if(restored){migrateGrowthV2();renderObserve();renderBrain();renderAssessment();renderGrowthTrend();renderToday();alert('✅ 已从 IndexedDB 备份恢复历史数据');}
 });
 checkBackupReminder();
 
