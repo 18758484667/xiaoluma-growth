@@ -305,7 +305,7 @@ assert('五维全部 unknown 仍正常推荐', defaultToday.length === 3, JSON.s
 assert('默认推荐覆盖零准备、小活动和生活场景三类', new Set(defaultToday.map((a) => a.slot)).size === 3, JSON.stringify(defaultToday.map((a) => a.slot)));
 assert('unknown 不被解释为能力弱', defaultToday.every((a) => !a._reasons.join('').includes('弱') && !a._reasons.join('').includes('落后')), JSON.stringify(defaultToday.map((a) => a._reasons)));
 const catalog = ctx.activityCatalog();
-assert('137个旧游戏均通过兼容层生成结构化字段', catalog.length === 137 && catalog.every((a) => a.activity_id && a.title && Number.isFinite(a.min_age_months) && Number.isFinite(a.max_age_months) && Array.isArray(a.domains) && a.duration && Array.isArray(a.location) && a.prep_level && a.cleanup_level && a.caregiver_energy && a.caregiver_effort && a.safety_level && Array.isArray(a.observation_prompts)));
+assert('137个旧游戏与18个新大运动游戏均具备结构化字段', ctx.allGames.length === 137 && catalog.length === 155 && catalog.every((a) => a.activity_id && a.title && Number.isFinite(a.min_age_months) && Number.isFinite(a.max_age_months) && Array.isArray(a.domains) && a.duration && Array.isArray(a.location) && a.materials && a.prep_level && a.cleanup_level && a.caregiver_energy && a.caregiver_effort && Array.isArray(a.interest_tags) && a.safety_level && a.safety_notes && a.description && Array.isArray(a.steps) && Array.isArray(a.observation_prompts)));
 
 const tiredPrefs = { duration: '10_15', context: 'home', energy: 'low', interests: [] };
 const tiredToday = ctx.recommendActivities(tiredPrefs, 20, '2026-10-09', unknownStates);
@@ -322,6 +322,49 @@ const energeticPrefs = { duration: '10_15', context: 'home', energy: 'high', int
 const energeticToday = ctx.recommendActivities(energeticPrefs, 20, '2026-10-09', unknownStates);
 assert('有精力时可正常出现更高参与度活动', energeticToday.some((a) => ['medium','high'].includes(a.caregiver_effort)), JSON.stringify(energeticToday.map((a) => ({t:a.title,e:a.caregiver_effort}))));
 assert('只切换精力时推荐结果有肉眼可感知差异', JSON.stringify(tiredToday.map((a) => a.activity_id)) !== JSON.stringify(energeticToday.map((a) => a.activity_id)), JSON.stringify({low:tiredToday.map((a) => a.title),high:energeticToday.map((a) => a.title)}));
+
+const tiredMotor = tiredToday.filter((a) => a.domains.includes('motor'));
+assert('很累时也能推荐至少1项大运动', tiredMotor.length >= 1, JSON.stringify(tiredToday.map((a) => ({t:a.title,d:a.domains}))));
+assert('low-energy 大运动不要求家长持续跑动', tiredMotor.every((a) => a.caregiver_effort === 'low' && !/\u5bb6长持续跟随|\u5927人跟着跑|\u5c0f范围追逐/.test(a.description)), JSON.stringify(tiredMotor.map((a) => ({t:a.title,e:a.caregiver_effort,d:a.description}))));
+assert('low-energy 大运动准备和收拾不高于low', tiredMotor.every((a) => ['none','low'].includes(a.prep_level) && ['none','low'].includes(a.cleanup_level)), JSON.stringify(tiredMotor.map((a) => ({t:a.title,p:a.prep_level,c:a.cleanup_level}))));
+const mediumBall = ctx.recommendActivities({duration:'10_15',context:'home',energy:'medium',interests:['balls']},20,'2026-10-09',unknownStates);
+const mediumVehicle = ctx.recommendActivities({duration:'10_15',context:'home',energy:'medium',interests:['vehicles']},20,'2026-10-09',unknownStates);
+const mediumOutdoor = ctx.recommendActivities({duration:'10_15',context:'outdoor',energy:'medium',interests:['climbing']},20,'2026-10-09',unknownStates);
+assert('medium 能正常出现追球、推拉和户外走动', mediumBall.some((a) => a.activity_id === 'gm_chase_kick_ball') && mediumVehicle.some((a) => a.activity_id === 'gm_push_pull_walk') && mediumOutdoor.some((a) => a.activity_id === 'gm_gentle_slope'), JSON.stringify({ball:mediumBall.map((a)=>a.title),vehicle:mediumVehicle.map((a)=>a.title),outdoor:mediumOutdoor.map((a)=>a.title)}));
+assert('持续跟随保护的障碍活动只在high候选池出现', !ctx.energyCandidatePool(ctx.eligibleActivities(20,{duration:'20_plus',context:'home',energy:'medium',interests:[]}),{energy:'medium'}).some((a) => a.activity_id === 'gm_low_soft_course') && ctx.energyCandidatePool(ctx.eligibleActivities(20,{duration:'20_plus',context:'home',energy:'high',interests:[]}),{energy:'high'}).some((a) => a.activity_id === 'gm_low_soft_course'));
+const motorCatalog = catalog.filter((a) => a.domains.includes('motor'));
+assert('危险家具攀爬内容不进入大运动推荐数据', motorCatalog.every((a) => !/\u9760垫\u6905子|\u4e0d稳定凳子|\u5bb6具堆叠|\u9ad8床跳下/.test(a.materials+' '+a.description+' '+a.steps.join(' '))), JSON.stringify(motorCatalog.filter((a) => /\u9760垫\u6905子|\u4e0d稳定凳子|\u5bb6具堆叠|\u9ad8床跳下/.test(a.materials+' '+a.description+' '+a.steps.join(' '))).map((a)=>a.title)));
+const strollerWalk = catalog.find((a) => a.activity_id === 'gm_walk_from_stroller');
+assert('推车只是交通工具，下车自己走才标记主动大运动', strollerWalk.active_movement === true && strollerWalk.description.includes('从推车下来') && !motorCatalog.some((a) => a.active_movement && /\u5750推车|\u5750在推车/.test(a.title+a.description)));
+ctx.localStorage.removeItem(ctx.EVIDENCE_KEY);
+ctx.localStorage.removeItem(ctx.ACTIVITY_FEEDBACK_KEY);
+ctx.updateActivityFeedback('gm_roll_fetch','enjoyment','love');
+assert('大运动游戏“玩过”不会自动生成 observed', ctx.loadEvidence().length === 0);
+ctx.recordActivityObservation('gm_roll_fetch','motor_run','observed');
+assert('只有主动观察确认才写入大运动 growth evidence', ctx.loadEvidence().length === 1 && ctx.loadEvidence()[0].source === 'game_feedback' && ctx.loadEvidence()[0].domains.includes('motor') && ctx.loadEvidence()[0].evidence_type === 'observed', JSON.stringify(ctx.loadEvidence()));
+ctx.localStorage.removeItem(ctx.EVIDENCE_KEY);
+ctx.localStorage.removeItem(ctx.ACTIVITY_FEEDBACK_KEY);
+
+assert('首页今日游戏提供换一换入口', html.includes('onclick="refreshTodayActivities()"') && html.includes('🔄 换一换'));
+assert('换一换不再显示多余的成功提示', !html.includes('已按当前条件换了一批') && !html.includes('id="todayRefreshHint"'));
+assert('通用推荐理由不再展示给家长', html.includes('.today-why{display:none}') && html.includes('<summary>查看玩法与安全提示</summary>') && !html.includes('查看玩法、推荐理由与安全提示'));
+assert('移动端正文与操作文字保持可读字号', html.includes('/* 阅读字号校准：手机上正文不低于 15–16px') && html.includes('.today-actions button,.today-chip,.feedback-row button{\n  font-size:15px;') && html.includes('.today-desc{line-height:1.7}'));
+ctx.localStorage.removeItem(ctx.TODAY_PLAN_KEY);
+const shufflePrefs = {duration:'10_15',context:'home',energy:'low',interests:[]};
+ctx.saveTodayPrefs(shufflePrefs);
+const shuffleBefore = ctx.todayRecommendations(shufflePrefs,20,'2026-10-10',unknownStates);
+const prefsBeforeShuffle = JSON.stringify(ctx.loadTodayPrefs());
+const shuffleAfter = ctx.refreshTodayActivityBatch(shufflePrefs,20,'2026-10-10',unknownStates);
+const shufflePersisted = ctx.todayRecommendations(shufflePrefs,20,'2026-10-10',unknownStates);
+const allowedAfterShuffle = new Set(ctx.energyCandidatePool(ctx.eligibleActivities(20,shufflePrefs),shufflePrefs).map((a) => a.activity_id));
+assert('同一设置下换一换会生成不同的三个游戏', shuffleAfter.length === 3 && JSON.stringify(shuffleBefore.map((a)=>a.activity_id)) !== JSON.stringify(shuffleAfter.map((a)=>a.activity_id)), JSON.stringify({before:shuffleBefore.map((a)=>a.title),after:shuffleAfter.map((a)=>a.title)}));
+assert('换一换不修改时间、场景、精力和兴趣', JSON.stringify(ctx.loadTodayPrefs()) === prefsBeforeShuffle, JSON.stringify(ctx.loadTodayPrefs()));
+assert('换一换仍遵守年龄、安全、场景、时长和精力过滤', shuffleAfter.every((a) => allowedAfterShuffle.has(a.activity_id) && a.min_age_months <= 20 && a.max_age_months >= 20 && a.safety_level !== 'blocked' && a.location.some((x)=>ctx.contextLocations('home').includes(x)) && a.duration.max <= 15 && a.caregiver_effort === 'low'), JSON.stringify(shuffleAfter.map((a)=>({t:a.title,e:a.caregiver_effort,l:a.location,d:a.duration.max}))));
+assert('换一换结果刷新页面后仍保留', JSON.stringify(shuffleAfter.map((a)=>a.activity_id)) === JSON.stringify(shufflePersisted.map((a)=>a.activity_id)));
+assert('换一换本身不写游戏历史或成长证据', ctx.loadActivityFeedback().length === 0 && ctx.loadEvidence().length === 0);
+const shuffleAgain = ctx.refreshTodayActivityBatch(shufflePrefs,20,'2026-10-10',unknownStates);
+assert('连续换一换优先避免立即重复上一批', shuffleAgain.every((a) => !shuffleAfter.some((b) => b.activity_id === a.activity_id)), JSON.stringify({previous:shuffleAfter.map((a)=>a.title),next:shuffleAgain.map((a)=>a.title)}));
+ctx.localStorage.removeItem(ctx.TODAY_PLAN_KEY);
 
 const fiveMin = ctx.recommendActivities({ duration: '5', context: 'home', energy: 'medium', interests: [] }, 20, '2026-10-09', unknownStates);
 assert('5分钟不推荐20分钟活动', fiveMin.length > 0 && fiveMin.every((a) => a.duration.max <= 5), JSON.stringify(fiveMin.map((a) => a.duration)));

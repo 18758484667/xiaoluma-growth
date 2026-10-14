@@ -216,6 +216,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .today-hero{background:linear-gradient(135deg,#FFF8E1,#FFECB3);border-radius:var(--radius);padding:18px;margin-bottom:14px}
 .today-hero h2{font-size:21px;color:#8D5D00;margin-bottom:3px}.today-hero p{font-size:14px;color:var(--text-mid)}
 .today-card{border:1px solid color-mix(in srgb,var(--primary) 16%,#fff)}
+.today-card-title{justify-content:space-between}.today-card-title-main{display:flex;align-items:center;gap:8px}.today-refresh{border:1px solid color-mix(in srgb,var(--primary) 35%,var(--border));background:#fff;color:var(--primary-dark);border-radius:16px;padding:5px 10px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}.today-refresh:hover,.today-refresh:active{background:color-mix(in srgb,var(--primary) 12%,#fff)}
 .today-observe{font-size:17px;font-weight:600;line-height:1.65;margin-bottom:8px}.today-gentle{font-size:13px;color:var(--text-mid);margin-bottom:12px}
 .today-actions,.today-chips,.feedback-row{display:flex;gap:7px;flex-wrap:wrap}
 .today-actions button,.today-chip,.feedback-row button{border:1px solid var(--border);background:#fff;border-radius:18px;padding:7px 11px;font-size:13px;cursor:pointer;color:var(--text-mid)}
@@ -223,7 +224,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .today-activity-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}@media(max-width:760px){.today-activity-grid{grid-template-columns:1fr}}
 .today-activity{border:1px solid var(--border);border-radius:14px;padding:14px;background:#fff;display:flex;flex-direction:column;gap:7px}
 .today-activity h3{font-size:17px;line-height:1.4}.today-slot{font-size:11px;color:#fff;background:var(--primary-dark);border-radius:9px;padding:1px 7px;align-self:flex-start}.today-meta{font-size:12px;color:var(--text-light)}
-.today-desc{font-size:14px;color:var(--text-mid);line-height:1.6}.today-why{font-size:12px;background:#F7F7F7;border-radius:8px;padding:8px;color:var(--text-mid);line-height:1.55}.today-why b{color:var(--text)}
+.today-desc{font-size:14px;color:var(--text-mid);line-height:1.6}.today-why{display:none}
 .today-detail summary{font-size:13px;color:var(--primary-dark);cursor:pointer}.today-detail ol{font-size:13px;color:var(--text-mid);padding-left:19px;margin:6px 0}.today-detail li{margin:3px 0}
 .observe-inline{background:#F3F8FF;border-radius:8px;padding:9px;font-size:13px;color:#315D7A}.observe-inline .today-actions{margin-top:7px}
 .feedback-box{border-top:1px dashed var(--border);padding-top:8px}.feedback-label{font-size:12px;color:var(--text-light);margin:4px 0}
@@ -260,6 +261,46 @@ body.today-dock-visible .container{padding-bottom:calc(86px + env(safe-area-inse
 .arch-table th{background:color-mix(in srgb,var(--primary) 16%,#fff);color:var(--primary-dark)}
 .arch-note{font-size:14px;color:var(--text-mid);background:color-mix(in srgb,var(--primary) 8%,#fff);border-radius:10px;padding:10px 12px;margin-top:8px;white-space:pre-wrap}
 .arch-title{font-size:18px;font-weight:600;color:var(--primary-dark);margin:6px 0 2px}
+
+/* 阅读字号校准：手机上正文不低于 15–16px，紧凑徽标也保持可辨认 */
+.backup-bar,.wk-note-tip,.wk-focus-tip,.life-item .life-desc,
+.toy-item p,.day-card .gdesc,.game-card .gc-steps-title,
+.game-card .gc-principle,.history-note,.footer,.wk-bar-val,
+.obs-entry-grid label,.growth-detail ul,.obs-dim,.obs-sum-rec,
+.gc-safety,.today-gentle,.today-refresh,.today-detail summary,
+.today-detail ol,.observe-inline,.feedback-label,.life-opportunity p,
+.today-note,.saved-hint,.mini-btn,.wk-hist .hrow,.arch-table{
+  font-size:15px;
+}
+.wk-note-d,.md-desc,.md-h,.md-col ul,.wk-focus-d,
+.focus-item p,.game-card .gc-label,.game-card .gc-step,
+.qa-block .qa-scene,.score-table th,.wk-status,.wk-result-title,
+.wk-result-avg,.wk-bar-name,.wk-note,.obs-status,.obs-sum-title,
+.today-hero p,.today-desc,.today-settings,.setting-label,.arch-note{
+  font-size:16px;
+}
+.tag,.toy-tag,.source-badge,.day-card .day,.growth-state,
+.growth-evidence,.growth-recent,.obs-sum-name,.obs-sum-val,
+.today-slot,.today-meta{
+  font-size:13px;
+}
+.backup-bar .backup-btn,.obs-rec-btn{font-size:14px}
+.toy-item .toy-why{font-size:14px}
+.growth-detail h4,.obs-text,.life-opportunity b{font-size:16px}
+.growth-detail p{font-size:15px!important}
+.obs-btn,.today-actions button,.today-chip,.feedback-row button{
+  font-size:15px;
+  line-height:1.45;
+}
+.today-condition-summary,.today-condition-adjust{font-size:14px}
+
+@media(max-width:760px){
+  .card{padding:16px}
+  .today-activity{gap:9px;padding:16px}
+  .today-activity h3{font-size:18px}
+  .today-desc{line-height:1.7}
+  .today-actions button,.today-chip,.feedback-row button{padding:8px 12px}
+}
 @media print{
   .header,.nav,.footer,.no-print,.brain-subtabs{display:none!important}
   #page-brain{display:block!important}
@@ -299,7 +340,7 @@ body.today-dock-visible .container{padding-bottom:calc(86px + env(safe-area-inse
 <div class="page active" id="page-home">
   <div class="today-hero"><h2>小鹿玛 · <span id="welcomeMonth">20</span>个月</h2><p>今天不用做计划，从一个观察、三个游戏和一个生活小机会开始。</p></div>
   <div class="card today-card"><div class="card-title"><span class="icon">👀</span>今天可以留意</div><div id="todayObservation"></div></div>
-  <div class="card today-card"><div class="card-title"><span class="icon">🎮</span>今天玩什么</div><div id="todayEnergyNote"></div><div class="today-activity-grid" id="todayActivities"></div></div>
+  <div class="card today-card"><div class="card-title today-card-title"><span class="today-card-title-main"><span class="icon">🎮</span>今天玩什么</span><button type="button" class="today-refresh" onclick="refreshTodayActivities()" aria-label="在当前条件下换一批游戏">🔄 换一换</button></div><div id="todayEnergyNote"></div><div class="today-activity-grid" id="todayActivities"></div></div>
   <div class="card today-card"><div class="card-title"><span class="icon">🌱</span>今天的小生活机会</div><div id="todayLife"></div></div>
 </div>
 
@@ -787,21 +828,49 @@ var ACTIVITY_OVERRIDES={
   '藏猫猫':{location:['indoor','outdoor'],prep_level:'none',cleanup_level:'none',noise_level:'low',caregiver_energy:'medium',caregiver_effort:'medium',interest_tags:['climbing'],slot:'zero',description:'在安全范围内轮流藏和找，找到就笑一笑。',observation_prompts:[]},
   '叠叠杯排序':{location:['indoor'],prep_level:'low',cleanup_level:'low',noise_level:'low',caregiver_energy:'low',caregiver_effort:'low',interest_tags:['sorting'],slot:'small',description:'家长坐在旁边，让她自己叠、拆和排列叠叠杯。',observation_prompts:[]},
   '简单指令互动':{location:['indoor','on_the_go'],prep_level:'none',cleanup_level:'none',noise_level:'low',caregiver_energy:'low',caregiver_effort:'low',interest_tags:['balls'],slot:'zero',description:'家长可以坐着说一个简短指令，完成后就停，不连续考她。',observation_prompts:[]},
-  '居家障碍闯关':{location:['indoor'],prep_level:'low',cleanup_level:'low',noise_level:'medium',caregiver_energy:'high',caregiver_effort:'high',interest_tags:['climbing'],slot:'small',description:'需要家长搭建路线、全程跟随保护并反复调整障碍。',observation_prompts:[]},
-  '靠垫桥':{location:['indoor'],prep_level:'low',cleanup_level:'low',noise_level:'medium',caregiver_energy:'high',caregiver_effort:'high',interest_tags:['climbing'],slot:'small',description:'需要家长搭好靠垫路线，在旁边跟随保护她跨越。',observation_prompts:[]},
+  '居家障碍闯关':{location:['indoor'],materials:'地面胶带、单层防滑软垫',prep_level:'low',cleanup_level:'low',noise_level:'medium',caregiver_energy:'high',caregiver_effort:'high',interest_tags:['climbing'],slot:'small',description:'只在地面设置绕行线和单层软垫，家长全程近距离跟随保护。',steps:['清空地面，用胶带贴出绕行线','只放一块不会滑动的薄软垫','让她绕过线、跨过软垫，不要跳','大人始终在一臂距离内保护'],safety_notes:'不使用桌椅、凳子、床或叠放家具；只做地面低矮路线。',observation_prompts:[]},
+  '靠垫桥':{location:['indoor'],materials:'防滑地垫、单层稳固软垫',prep_level:'low',cleanup_level:'low',noise_level:'medium',caregiver_energy:'high',caregiver_effort:'high',interest_tags:['climbing'],slot:'small',description:'在地面铺一块稳固软垫，让她走上、走下或跨过，家长近距离保护。',steps:['把单层软垫铺在防滑地面','先扶她试一次走上和走下','稳定后再让她自己跨过','大人不离开，不鼓励跑或跳'],safety_notes:'软垫必须单层、防滑、远离桌角和台阶；不堆高。',observation_prompts:[]},
+  '障碍爬行大冒险':{location:['indoor'],materials:'地面毯子、稳固纸箱通道',prep_level:'low',cleanup_level:'low',noise_level:'medium',caregiver_energy:'high',caregiver_effort:'high',interest_tags:['climbing'],slot:'small',description:'只在地面爬过毯子或宽大稳固的纸箱通道，需要家长全程跟随。',safety_notes:'通道必须宽敞透气、无订书钉和硬边；不使用家具搭建。',observation_prompts:[]},
+  '障碍跳跃游戏':{location:['indoor'],materials:'地面胶带线',prep_level:'low',cleanup_level:'low',noise_level:'medium',caregiver_energy:'high',caregiver_effort:'high',interest_tags:['climbing'],slot:'small',description:'24个月后可在平坦地面尝试跨线，她主动跳时再近距离保护，不要催。',safety_notes:'只用平面标记，不放立体障碍，不从高处往下跳。',observation_prompts:[{capability_id:'motor_jump',text:'她会不会主动尝试双脚同时离地？'}]},
   '家务变游戏':{location:['indoor'],prep_level:'low',cleanup_level:'low',noise_level:'medium',caregiver_energy:'medium',caregiver_effort:'medium',interest_tags:['sorting'],slot:'scene',description:'需要家长持续示范、轮流并带着完成整理。',observation_prompts:[]},
   '和爸爸乱弹吉他':{location:['indoor'],prep_level:'low',cleanup_level:'low',noise_level:'medium',caregiver_energy:'medium',caregiver_effort:'medium',interest_tags:['music'],slot:'small',description:'抱着或坐在乐器旁边，让她自由拨弦，家长用简单节奏回应。',observation_prompts:[]},
   '撕贴收纳':{location:['indoor'],prep_level:'low',cleanup_level:'low',noise_level:'low',caregiver_energy:'low',caregiver_effort:'low',interest_tags:['drawing'],slot:'small',description:'用大张安全纸材撕一撕、贴一贴，不要求做出固定图案。',observation_prompts:[]}
 };
+function grossMotorActivity(x){
+  var a=Object.assign({min_age_months:20,max_age_months:30,domains:['motor'],duration:{min:5,max:10,label:'5-10分钟'},location:['indoor'],materials:'无',prep_level:'none',cleanup_level:'none',noise_level:'low',caregiver_effort:'low',interest_tags:[],safety_level:'standard',safety_notes:'选择平整、防滑、无车辆与尖角的空间，大人保持可及距离。',description:'',steps:[],observation_prompts:[],slot:'small',source:'Phase 2 家庭活动内容补充',source_type:'product_content',active_movement:true},x);
+  a.caregiver_energy=a.caregiver_effort;
+  a.legacy={cat:'motor',mat:a.materials,steps:a.steps.join(' '),time:a.duration.label};
+  return a;
+}
+var GROSS_MOTOR_ACTIVITIES=[
+  grossMotorActivity({activity_id:'gm_roll_fetch',title:'球滚远了，捡回来',duration:{min:3,max:5,label:'3-5分钟'},materials:'大软球',interest_tags:['balls'],slot:'zero',description:'你坐着把大软球滚到不同方向，让她自己走去、蹲下捡起再带回来。',steps:['大人坐在地垫或沙发边','把软球滚到2–3米内的空地','等她自己走去捡球并回来','换一个方向，玩3–5轮就可以'],observation_prompts:[{capability_id:'motor_run',text:'球滚远时，她会不会主动加快脚步或小跑？'}]}),
+  grossMotorActivity({activity_id:'gm_soft_toy_delivery',title:'软玩具搬运站',min_age_months:18,materials:'轻篮子、大号软玩具',prep_level:'low',cleanup_level:'low',interest_tags:['animals'],description:'把几个轻软玩具从一个篮子搬到另一个位置，宝宝负责走和搬，大人坐着收货。',steps:['两个位置相距2–3米','一次只搬一件轻软物品','让她自己选先搬哪一件','搬3–5件即可结束'],safety_notes:'只用轻软、无小部件的物品，不搬重物、玻璃或装满东西的篮子。'}),
+  grossMotorActivity({activity_id:'gm_squat_basket',title:'蹲下捡进篮子',min_age_months:18,materials:'大号软玩具、轻篮子',prep_level:'low',cleanup_level:'low',interest_tags:['sorting'],description:'把几个大软玩具分散放在地面，让她走、蹲、捡、站起并放进篮子。',steps:['把3–5个大软玩具放在附近地面','大人坐着指一个目标','等她自己捡起并放进篮子','不求快，随时可以停'],safety_notes:'物品必须大于误吞尺寸、轻软无硬角；地面保持防滑。'}),
+  grossMotorActivity({activity_id:'gm_find_bear_return',title:'找到小熊送回来',min_age_months:18,materials:'熟悉的大号软玩具',interest_tags:['animals'],slot:'scene',description:'你坐着说“去把小熊拿来”，让她自己走去找、拿起、再走回来。',steps:['把熟悉玩具放在她看得到的安全位置','只说一个简短任务','等她自己走完往返','换一件物品再玩一次'],safety_notes:'物品放在地面或低处，不放到需要攀爬才能拿到的地方。'}),
+  grossMotorActivity({activity_id:'gm_seated_soft_kick',title:'坐着陪她踢软球',min_age_months:18,materials:'大软球',interest_tags:['balls'],description:'你坐在固定位置把软球轻轻滚过去，让她尝试踢、走去找球，你不需要跟着跑。',steps:['在空旷地面相距1–2米','将大软球慢慢滚到她脚边','等她自己尝试踢或推','球停下后让她捡回来'],safety_notes:'使用轻软大球，远离楼梯、玻璃和家具尖角。'}),
+  grossMotorActivity({activity_id:'gm_seated_body_copy',title:'坐着做身体动作',min_age_months:18,duration:{min:3,max:5,label:'3-5分钟'},interest_tags:['music'],slot:'zero',description:'大人可以坐着做举手、拍腿、踩脚和转身，让她站着自由模仿，不做复杂口令。',steps:['先做一个简单动作','等她看和尝试','再换一个动作','她想自己创作时就跟着她做']}),
+  grossMotorActivity({activity_id:'gm_music_walk_stop',title:'音乐走走停停',min_age_months:18,duration:{min:3,max:5,label:'3-5分钟'},materials:'短音乐',interest_tags:['music'],slot:'zero',description:'播放一小段音乐，让她自由走、摆动和拍手；音乐停时顺便停一下，不要求遵守规则。',steps:['清出一小块安全空地','播放30–60秒熟悉音乐','大人坐着拍手回应','停顿一下再继续，玩3轮即可']}),
+  grossMotorActivity({activity_id:'gm_push_empty_box',title:'推空纸箱送货',min_age_months:18,materials:'稳固的空纸箱',prep_level:'low',interest_tags:['vehicles'],description:'在平地上让她推一个轻的空纸箱前进，大人坐着指向终点即可。',steps:['检查纸箱无订书钉和硬边','纸箱保持空的，放在防滑地面','让她推到2–3米外的终点','推一两趟就可以'],safety_notes:'只用空、轻、无金属钉和破损边缘的纸箱；不让孩子坐进纸箱推拉。'}),
+  grossMotorActivity({activity_id:'gm_walk_from_stroller',title:'到安全处自己走一段',min_age_months:18,location:['outdoor','on_the_go'],slot:'scene',description:'到车辆隔离的平坦区域后，可以让她从推车下来自己走一小段，累了再坐车。',steps:['先选平坦、无车辆的安全区域','让她自己决定走快或走慢','大人在身边同速跟随','累了或不想走就回推车'],safety_notes:'必须远离车道、停车场、水边和楼梯；不把“坐推车”计作主动运动。'}),
+  grossMotorActivity({activity_id:'gm_walk_to_tree',title:'找一棵树走过去',min_age_months:18,location:['outdoor'],slot:'scene',description:'在安全空地选一棵不远的树当目标，让她自己走过去看一看，再走回来。',steps:['选择5–10米内、路面平坦的目标','指一指树，不连续催促','让她按自己的速度走过去','到达后摸摸树干再返回']}),
+  grossMotorActivity({activity_id:'gm_leaf_collect',title:'走走捡两三片大树叶',min_age_months:18,location:['outdoor'],materials:'地面上的大片落叶',cleanup_level:'low',interest_tags:['sorting'],slot:'scene',description:'让她在干净平坦的小范围里自己走、蹲下捡两三片大树叶，大人原地等她送回来。',steps:['选择干净、无车辆的草地或小路','只捡完整的大树叶','让她每次捡一片再送回来','捡两三片就结束，之后洗手'],safety_notes:'不捡果实、种子、蘑菇、带刺植物或动物粪便附近物品，不放入嘴里。'}),
+  grossMotorActivity({activity_id:'gm_garden_loop',title:'绕安全花坛走一圈',min_age_months:18,location:['outdoor'],slot:'scene',description:'选一个与车道隔离、边缘平整的花坛，让她按自己的节奏绕一小圈。',steps:['先检查路面和花坛边缘','大人在内侧慢慢跟随','让她自己决定停下或继续','只走一圈，不求速度'],safety_notes:'不选临近车道、有高台阶或带刺植物的花坛。'}),
+  grossMotorActivity({activity_id:'gm_chase_kick_ball',title:'追球再踢回来',caregiver_effort:'medium',location:['indoor','outdoor'],materials:'大软球',interest_tags:['balls'],slot:'scene',description:'大人在小范围内和她轮流踢或滚大软球，让她自己追球和踢回来。',steps:['在3–5米内的平坦空地开始','轻轻踢或滚球，不追求方向','跟着她移动，轮到时再把球送回','玩5–10分钟或她想停时结束'],observation_prompts:[{capability_id:'motor_run',text:'追球时，她会不会尝试跑起来？'}]}),
+  grossMotorActivity({activity_id:'gm_push_pull_walk',title:'推拉玩具散步',caregiver_effort:'medium',min_age_months:18,location:['indoor','outdoor'],materials:'稳固的适龄推拉玩具',interest_tags:['vehicles'],slot:'scene',description:'让她推着或拉着稳固的适龄玩具走一小段，大人在旁边同速跟随。',steps:['检查轮子、手柄和拉带完好','先在平坦地面慢走','让她自己转向和停下','走一个小往返即可'],safety_notes:'仅使用稳固适龄产品；拉带要短且在大人看护下使用，不缠绕颈部。'}),
+  grossMotorActivity({activity_id:'gm_gentle_slope',title:'小坡走上走下',caregiver_effort:'medium',location:['outdoor'],materials:'缓坡',interest_tags:['climbing'],slot:'scene',description:'在干燥、平缓、远离车辆的小坡上走上去再走下来，大人保持一臂距离。',steps:['选择短而缓的干燥坡面','先牵手走一次','她站稳后可松手在旁边保护','往返1–2次就结束'],safety_notes:'不选湿滑、陡峭、临近车道或下方有台阶的坡面。'}),
+  grossMotorActivity({activity_id:'gm_low_soft_course',title:'地面低矮软垫路线',caregiver_effort:'high',duration:{min:10,max:15,label:'10-15分钟'},materials:'地面胶带、单层防滑软垫',prep_level:'low',cleanup_level:'low',interest_tags:['climbing'],description:'在地面设一条绕线、跨单层软垫、走到终点的短路线，需要家长持续跟随保护。',steps:['清空地面上的硬物和杂物','用胶带标一条路线，加一块单层软垫','全程在她身边跟随','玩2–3轮就收起来'],safety_notes:'只用地面标记和单层防滑软垫；严禁桌椅、凳子、床、家具堆叠或高处跳下。'}),
+  grossMotorActivity({activity_id:'gm_multi_step_delivery',title:'多步骤软玩具搬运',caregiver_effort:'high',duration:{min:10,max:15,label:'10-15分钟'},materials:'轻篮子、大号软玩具',prep_level:'low',cleanup_level:'low',interest_tags:['animals','sorting'],description:'家长设置两个安全停靠点，陪她把软玩具分步送到终点，全程跟着走和调整任务。',steps:['只选轻软的大号玩具','设置起点、中转篮子和终点','和她一起完成搬、放、再搬','完成3件就结束'],safety_notes:'不搬重物、尖锐物、易碎物或含小部件的物品。'}),
+  grossMotorActivity({activity_id:'gm_low_step_up_down',title:'稳固低台阶上下',caregiver_effort:'high',location:['indoor','outdoor'],materials:'底层稳固台阶与扶手',interest_tags:['climbing'],slot:'scene',description:'在有牢固扶手的最低一级台阶练习上一阶、下一阶，家长近距离保护并及时停止。',steps:['只选最低一级、干燥防滑的台阶','让她扶牢固扶手或握住大人的手','一次只上一阶再下一阶','完成2–3次就结束'],safety_notes:'必须一对一近距离保护；不使用凳子、箱子或家具代替台阶，不连续爬高。',observation_prompts:[{capability_id:'motor_stairs',text:'扶好后，她会不会主动尝试迈上最低一级台阶？'}]})
+];
 function durationMaxMinutes(s){var nums=String(s||'').match(/\d+/g);if(!nums||!nums.length)return 10;return Math.max.apply(null,nums.map(Number));}
 function durationMinMinutes(s){var nums=String(s||'').match(/\d+/g);if(!nums||!nums.length)return 5;return Math.min.apply(null,nums.map(Number));}
 function activityId(name,index){return 'act_'+index+'_'+String(name||'activity').replace(/[^\w\u4e00-\u9fa5]+/g,'_');}
 function normalizeActivity(g,index){
   var o=ACTIVITY_OVERRIDES[g.name]||{},min=ageMinMonths(g.age),max=min>=36?min+23:min+17,dmax=durationMaxMinutes(g.time),dmin=durationMinMinutes(g.time),slot=o.slot||(dmax<=5?'zero':'small');
   var duration=o.duration||(slot==='zero'?{min:Math.min(dmin,3),max:5,label:'3-5分钟'}:{min:dmin,max:dmax,label:g.time||'5-10分钟'});
-  return {activity_id:activityId(g.name,index),title:g.name,min_age_months:min,max_age_months:max,domains:[g.cat==='mem'?'cog':g.cat],duration:duration,location:o.location||['indoor'],materials:g.mat||'无',prep_level:o.prep_level||((g.mat||'').indexOf('无')>=0?'none':'low'),cleanup_level:o.cleanup_level||'low',noise_level:o.noise_level||'low',caregiver_energy:o.caregiver_energy||'medium',caregiver_effort:o.caregiver_effort||o.caregiver_energy||'medium',interest_tags:o.interest_tags||[],safety_level:unsafeForAge(g)?'blocked':'standard',safety_notes:unsafeForAge(g)?'不适合3岁以下儿童':'使用适龄、完好的大尺寸材料，全程保持在身边',source:g.src||'现有活动库',source_type:g.src?'reference_content':'product_content',description:o.description||('用'+(g.mat||'家中常见物品')+'轻松玩一会儿。'),steps:String(g.steps||'').split(/\s+(?=\d+[.\u3001])/).map(function(x){return x.replace(/^\d+[.\u3001]?/,'').trim();}).filter(Boolean),observation_prompts:o.observation_prompts||[],slot:slot,legacy:g};
+  return {activity_id:activityId(g.name,index),title:g.name,min_age_months:min,max_age_months:max,domains:[g.cat==='mem'?'cog':g.cat],duration:duration,location:o.location||['indoor'],materials:o.materials||g.mat||'无',prep_level:o.prep_level||((g.mat||'').indexOf('无')>=0?'none':'low'),cleanup_level:o.cleanup_level||'low',noise_level:o.noise_level||'low',caregiver_energy:o.caregiver_energy||'medium',caregiver_effort:o.caregiver_effort||o.caregiver_energy||'medium',interest_tags:o.interest_tags||[],safety_level:o.safety_level||(unsafeForAge(g)?'blocked':'standard'),safety_notes:o.safety_notes||(unsafeForAge(g)?'不适合3岁以下儿童':'使用适龄、完好的大尺寸材料，全程保持在身边'),source:g.src||'现有活动库',source_type:g.src?'reference_content':'product_content',description:o.description||('用'+(g.mat||'家中常见物品')+'轻松玩一会儿。'),steps:o.steps||String(g.steps||'').split(/\s+(?=\d+[.\u3001])/).map(function(x){return x.replace(/^\d+[.\u3001]?/,'').trim();}).filter(Boolean),observation_prompts:o.observation_prompts||[],slot:slot,active_movement:g.cat==='motor',legacy:g};
 }
-function activityCatalog(){return allGames.map(normalizeActivity);}
+function activityCatalog(){return allGames.map(normalizeActivity).concat(GROSS_MOTOR_ACTIVITIES.map(function(a){return Object.assign({},a,{duration:Object.assign({},a.duration),location:a.location.slice(),domains:a.domains.slice(),interest_tags:a.interest_tags.slice(),steps:a.steps.slice(),observation_prompts:a.observation_prompts.slice(),legacy:Object.assign({},a.legacy)});}));}
 function loadTodayPrefs(){try{var p=JSON.parse(localStorage.getItem(TODAY_PREFS_KEY)||'{}');return {duration:['5','10_15','20_plus'].indexOf(p.duration)>=0?p.duration:TODAY_DEFAULTS.duration,context:['home','outdoor','on_the_go'].indexOf(p.context)>=0?p.context:TODAY_DEFAULTS.context,energy:['low','medium','high'].indexOf(p.energy)>=0?p.energy:TODAY_DEFAULTS.energy,interests:Array.isArray(p.interests)?p.interests.filter(function(x){return INTEREST_LABELS[x];}):[]};}catch(e){return Object.assign({},TODAY_DEFAULTS);}}
 function saveTodayPrefs(p){localStorage.setItem(TODAY_PREFS_KEY,JSON.stringify(p));}
 function loadActivityFeedback(){return safeJsonArray(ACTIVITY_FEEDBACK_KEY);}
@@ -836,13 +905,22 @@ function activityScore(a,age,prefs,states,referenceDate){
   else if(prefs.energy==='medium'&&a.caregiver_effort==='medium')s+=6;
   else if(prefs.energy==='high'){if(a.caregiver_effort==='high'){s+=18;why.push('今天有精力，可以多一些身体参与');}else if(a.caregiver_effort==='medium')s+=8;if(a.domains.indexOf('motor')>=0)s+=6;if(a.prep_level==='low')s+=3;}
   var learned=learnedInterestTags(referenceDate),interests=(prefs.interests||[]).filter(function(t){return a.interest_tags.indexOf(t)>=0;}),learnedHit=learned.filter(function(t){return a.interest_tags.indexOf(t)>=0;});if(interests.length){s+=24+Math.min(6,(interests.length-1)*3);why.push('优先匹配你选的兴趣');}else if(learnedHit.length){s+=5;why.push('近期同类活动玩得很开心');}
-  var domain=a.domains[0],st=states&&states[domain],recentEvidence=recentDomainEvidence(domain,referenceDate);if(st&&st.key==='unknown'&&st.evidenceLevel==='low'&&a.observation_prompts.length){s+=5;why.push('最近'+DOMAIN_META[domain].name.slice(2)+'方面记录较少，可以顺便留意');}else if(recentEvidence.some(function(e){return e.evidence_type==='emerging';})){s+=6;why.push('最近这方面有正在出现的表现');}
+  var domain=a.domains[0],st=states&&states[domain],recentEvidence=recentDomainEvidence(domain,referenceDate);if(st&&st.key==='unknown'&&st.evidenceLevel==='low'&&a.observation_prompts.length){s+=5;why.push('最近'+DOMAIN_META[domain].name.slice(2).trim()+'方面记录较少，可以顺便留意');}else if(recentEvidence.some(function(e){return e.evidence_type==='emerging';})){s+=6;why.push('最近这方面有正在出现的表现');}
   var f=feedbackSummary(a.activity_id,referenceDate);if(f.recent){s-=30*f.recent;why.push('最近玩过，今天降低重复');}if(f.liked){s+=Math.min(8,f.liked*3);why.push('之前很喜欢');}if(f.disliked)s-=18;if(f.simple)s-=10;
   return {score:s,reasons:why};
 }
-function recommendActivities(prefs,age,referenceDate,states){
+function rankedActivityCandidates(prefs,age,referenceDate,states){
   prefs=prefs||loadTodayPrefs();age=age==null?ageInfo().totM:age;referenceDate=referenceDate||fmt(new Date());states=states||currentDomainStates();
-  var ranked=energyCandidatePool(eligibleActivities(age,prefs),prefs).map(function(a){var r=activityScore(a,age,prefs,states,referenceDate);a._score=r.score;a._reasons=r.reasons;return a;}).sort(function(a,b){return b._score-a._score||a.activity_id.localeCompare(b.activity_id);}),out=[];
+  return energyCandidatePool(eligibleActivities(age,prefs),prefs).map(function(a){var r=activityScore(a,age,prefs,states,referenceDate);a._score=r.score;a._reasons=r.reasons;return a;}).sort(function(a,b){return b._score-a._score||a.activity_id.localeCompare(b.activity_id);});
+}
+function selectActivityBatch(ranked,excludedIds){
+  var excluded={};(excludedIds||[]).forEach(function(id){excluded[id]=true;});var available=ranked.filter(function(a){return !excluded[a.activity_id];}),out=[];
+  ['zero','small','scene'].forEach(function(slot){var x=available.find(function(a){return a.slot===slot&&out.indexOf(a)<0;});if(x)out.push(x);});
+  available.forEach(function(a){if(out.length<3&&out.indexOf(a)<0)out.push(a);});return out.slice(0,3);
+}
+function recommendActivities(prefs,age,referenceDate,states){
+  var ranked=rankedActivityCandidates(prefs,age,referenceDate,states);
+  var out=[];
   ['zero','small','scene'].forEach(function(slot){var x=ranked.find(function(a){return a.slot===slot&&out.indexOf(a)<0;});if(x)out.push(x);});
   ranked.forEach(function(a){if(out.length<3&&out.indexOf(a)<0)out.push(a);});return out.slice(0,3);
 }
@@ -853,7 +931,19 @@ function todayRecommendations(prefs,age,referenceDate,states){
   if(plan&&plan.date===referenceDate&&plan.signature===signature&&Array.isArray(plan.activity_ids)&&plan.activity_ids.length&&plan.activity_ids.every(function(id){return eligible[id];})){
     return plan.activity_ids.map(function(id){var a=eligible[id],r=activityScore(a,age,prefs,states,referenceDate);a._score=r.score;a._reasons=r.reasons;return a;});
   }
-  var items=recommendActivities(prefs,age,referenceDate,states);localStorage.setItem(TODAY_PLAN_KEY,JSON.stringify({date:referenceDate,signature:signature,activity_ids:items.map(function(a){return a.activity_id;})}));return items;
+  var items=recommendActivities(prefs,age,referenceDate,states),ids=items.map(function(a){return a.activity_id;});localStorage.setItem(TODAY_PLAN_KEY,JSON.stringify({date:referenceDate,signature:signature,activity_ids:ids,seen_activity_ids:ids.slice()}));return items;
+}
+function refreshTodayActivityBatch(prefs,age,referenceDate,states){
+  prefs=prefs||loadTodayPrefs();age=age==null?ageInfo().totM:age;referenceDate=referenceDate||fmt(new Date());states=states||currentDomainStates();
+  var current=todayRecommendations(prefs,age,referenceDate,states),currentIds=current.map(function(a){return a.activity_id;}),signature=todayPlanSignature(prefs,age),plan=null;try{plan=JSON.parse(localStorage.getItem(TODAY_PLAN_KEY)||'null');}catch(e){}
+  var seen=plan&&plan.date===referenceDate&&plan.signature===signature&&Array.isArray(plan.seen_activity_ids)?plan.seen_activity_ids.slice():currentIds.slice(),ranked=rankedActivityCandidates(prefs,age,referenceDate,states),next=selectActivityBatch(ranked,seen);
+  if(next.length<3){seen=currentIds.slice();next=selectActivityBatch(ranked,currentIds);}
+  if(!next.length)return current;
+  ranked.forEach(function(a){if(next.length<3&&next.indexOf(a)<0)next.push(a);});next=next.slice(0,3);
+  var nextIds=next.map(function(a){return a.activity_id;});nextIds.forEach(function(id){if(seen.indexOf(id)<0)seen.push(id);});localStorage.setItem(TODAY_PLAN_KEY,JSON.stringify({date:referenceDate,signature:signature,activity_ids:nextIds,seen_activity_ids:seen,refreshedAt:Date.now()}));return next;
+}
+function refreshTodayActivities(){
+  refreshTodayActivityBatch();renderTodayActivities();
 }
 function currentDomainStates(){var x={};DOMAIN_IDS.forEach(function(d){x[d]=domainState(d);});return x;}
 function activityById(id){return activityCatalog().find(function(a){return a.activity_id===id;})||null;}
@@ -891,7 +981,7 @@ function toggleTodayInterest(tag,btn){var p=loadTodayPrefs(),i=p.interests.index
 function renderTodayObservation(){var box=document.getElementById('todayObservation');if(!box)return;var pick=selectTodayObservation(),c=pick&&pick.capability;if(!c){box.innerHTML='<div class="today-gentle">今天没有需要特别留意的项目，跟着她玩就好。</div>';return;}var future=capabilityPhase(c,ageInfo().totM)==='future';box.innerHTML='<div class="today-observe">'+esc(c.label)+'？</div><div class="today-gentle">'+(future?'这只是提前自然留意，不代表现在应该会。':'不需要刻意考她，吃饭、玩或出门时顺便看看就可以。')+'</div><div class="today-actions"><button onclick="respondTodayObservation(\''+c.capability_id+'\',\'observed\')">看到了</button><button onclick="respondTodayObservation(\''+c.capability_id+'\',\'emerging\')">正在出现</button><button onclick="respondTodayObservation(\''+c.capability_id+'\',\'unobserved\')">今天没注意到</button><button onclick="respondTodayObservation(\''+c.capability_id+'\',\'concern\')">我有点担心</button></div>';
 }
 function activityStepsHtml(a){return (a.steps.length?a.steps:['跟着孩子的兴趣开始，玩5–10分钟就可以。']).map(function(x){return '<li>'+esc(x)+'</li>';}).join('');}
-function renderTodayActivities(){var box=document.getElementById('todayActivities');if(!box)return;var p=loadTodayPrefs(),today=fmt(new Date()),items=todayRecommendations(p,ageInfo().totM,today,currentDomainStates()),fb=loadActivityFeedback();document.getElementById('todayEnergyNote').innerHTML=p.energy==='low'?'<div class="today-note">今天给你选了几个尽量不用准备、也不太费大人的活动。</div>':'';if(!items.length){box.innerHTML='<div class="today-gentle">当前条件下没有合适的安全活动，可以放宽时间或切换场景。</div>';return;}var slots={zero:'A · 零准备',small:'B · 小活动',scene:'C · 生活/户外'};box.innerHTML=items.map(function(a){var row=fb.find(function(x){return x.activity_id===a.activity_id&&x.date===today;})||{},op=a.observation_prompts[0],why=a._reasons.filter(function(x){return x.indexOf('最近玩过')<0;}).slice(0,4).join(' · ');return '<article class="today-activity"><span class="today-slot">'+(slots[a.slot]||'今日活动')+'</span><h3>'+esc(a.title)+'</h3><div class="today-meta">'+esc(a.duration.label)+' · '+(a.prep_level==='none'?'不用准备':'少量准备')+' · '+esc(catLabel[a.legacy.cat]||'综合')+'</div><div class="today-desc">'+esc(a.description)+'</div><div class="today-why"><b>为什么今天推荐：</b>'+esc(why)+'</div><details class="today-detail"><summary>查看玩法与安全提示</summary><ol>'+activityStepsHtml(a)+'</ol><div class="gc-safety">'+esc(a.safety_notes)+'</div></details>'+(op?'<div class="observe-inline"><b>顺便可以留意</b><br>'+esc(op.text)+'<div class="today-actions"><button onclick="recordActivityObservation(\''+a.activity_id+'\',\''+op.capability_id+'\',\'observed\')">看到了</button><button onclick="recordActivityObservation(\''+a.activity_id+'\',\''+op.capability_id+'\',\'emerging\')">正在出现</button><button onclick="recordActivityObservation(\''+a.activity_id+'\',\''+op.capability_id+'\',\'unobserved\')">没注意到</button></div></div>':'')+'<div class="feedback-box"><div class="feedback-label">她玩得怎么样？</div><div class="feedback-row"><button class="'+(row.enjoyment==='love'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'enjoyment\',\'love\')">❤️ 很喜欢</button><button class="'+(row.enjoyment==='okay'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'enjoyment\',\'okay\')">🙂 还可以</button><button class="'+(row.enjoyment==='no_interest'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'enjoyment\',\'no_interest\')">😐 没兴趣</button></div><div class="feedback-label">难度呢？</div><div class="feedback-row"><button class="'+(row.difficulty==='easy'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'difficulty\',\'easy\')">太简单</button><button class="'+(row.difficulty==='just_right'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'difficulty\',\'just_right\')">刚刚好</button><button class="'+(row.difficulty==='hard'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'difficulty\',\'hard\')">有点难</button></div></div></article>';}).join('');}
+function renderTodayActivities(){var box=document.getElementById('todayActivities');if(!box)return;var refreshHint=document.getElementById('todayRefreshHint');if(refreshHint)refreshHint.textContent='';var p=loadTodayPrefs(),today=fmt(new Date()),items=todayRecommendations(p,ageInfo().totM,today,currentDomainStates()),fb=loadActivityFeedback();document.getElementById('todayEnergyNote').innerHTML=p.energy==='low'?'<div class="today-note">今天给你选了几个尽量不用准备、也不太费大人的活动。</div>':'';if(!items.length){box.innerHTML='<div class="today-gentle">当前条件下没有合适的安全活动，可以放宽时间或切换场景。</div>';return;}var slots={zero:'A · 零准备',small:'B · 小活动',scene:'C · 生活/户外'};box.innerHTML=items.map(function(a){var row=fb.find(function(x){return x.activity_id===a.activity_id&&x.date===today;})||{},op=a.observation_prompts[0],why=a._reasons.filter(function(x){return x.indexOf('最近玩过')<0;}).slice(0,4).join(' · ');return '<article class="today-activity"><span class="today-slot">'+(slots[a.slot]||'今日活动')+'</span><h3>'+esc(a.title)+'</h3><div class="today-meta">'+esc(a.duration.label)+' · '+(a.prep_level==='none'?'不用准备':'少量准备')+' · '+esc(catLabel[a.legacy.cat]||'综合')+'</div><div class="today-desc">'+esc(a.description)+'</div><div class="today-why"><b>为什么今天推荐：</b>'+esc(why)+'</div><details class="today-detail"><summary>查看玩法与安全提示</summary><ol>'+activityStepsHtml(a)+'</ol><div class="gc-safety">'+esc(a.safety_notes)+'</div></details>'+(op?'<div class="observe-inline"><b>顺便可以留意</b><br>'+esc(op.text)+'<div class="today-actions"><button onclick="recordActivityObservation(\''+a.activity_id+'\',\''+op.capability_id+'\',\'observed\')">看到了</button><button onclick="recordActivityObservation(\''+a.activity_id+'\',\''+op.capability_id+'\',\'emerging\')">正在出现</button><button onclick="recordActivityObservation(\''+a.activity_id+'\',\''+op.capability_id+'\',\'unobserved\')">没注意到</button></div></div>':'')+'<div class="feedback-box"><div class="feedback-label">她玩得怎么样？</div><div class="feedback-row"><button class="'+(row.enjoyment==='love'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'enjoyment\',\'love\')">❤️ 很喜欢</button><button class="'+(row.enjoyment==='okay'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'enjoyment\',\'okay\')">🙂 还可以</button><button class="'+(row.enjoyment==='no_interest'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'enjoyment\',\'no_interest\')">😐 没兴趣</button></div><div class="feedback-label">难度呢？</div><div class="feedback-row"><button class="'+(row.difficulty==='easy'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'difficulty\',\'easy\')">太简单</button><button class="'+(row.difficulty==='just_right'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'difficulty\',\'just_right\')">刚刚好</button><button class="'+(row.difficulty==='hard'?'active':'')+'" onclick="updateActivityFeedback(\''+a.activity_id+'\',\'difficulty\',\'hard\')">有点难</button></div></div></article>';}).join('');}
 function renderTodayLife(){var box=document.getElementById('todayLife');if(!box)return;box.innerHTML=lifeRecommendations(loadTodayPrefs()).map(function(x){return '<div class="life-opportunity"><b>'+esc(x.title)+'</b><p>'+esc(x.text)+'</p></div>';}).join('');}
 function renderTodaySettings(){var box=document.getElementById('todaySettings');if(!box)return;var p=loadTodayPrefs();renderTodayPrefsSummary(p);function chips(field,items){return '<div class="today-chips">'+items.map(function(x){return '<button type="button" class="today-chip '+(p[field]===x[0]?'active':'')+'" onclick="setTodayPreference(\''+field+'\',\''+x[0]+'\',this)">'+x[1]+'</button>';}).join('')+'</div>';}box.innerHTML='<div class="setting-group"><div class="setting-label">我现在有多久？</div>'+chips('duration',[['5','5分钟'],['10_15','10–15分钟'],['20_plus','20分钟以上']])+'</div><div class="setting-group"><div class="setting-label">现在在哪里？</div>'+chips('context',[['home','家里'],['outdoor','户外'],['on_the_go','出门中']])+'</div><div class="setting-group"><div class="setting-label">我今天的精力</div>'+chips('energy',[['low','很累'],['medium','还好'],['high','有精力']])+'</div><div class="setting-group"><div class="setting-label">她最近感兴趣（可多选）</div><div class="today-chips">'+Object.keys(INTEREST_LABELS).map(function(t){return '<button type="button" class="today-chip '+(p.interests.indexOf(t)>=0?'active':'')+'" aria-pressed="'+(p.interests.indexOf(t)>=0?'true':'false')+'" onclick="toggleTodayInterest(\''+t+'\',this)">'+INTEREST_LABELS[t]+'</button>';}).join('')+'</div></div>';}
 function renderToday(){renderTodayObservation();renderTodayActivities();renderTodayLife();renderTodaySettings();}
@@ -1029,7 +1119,7 @@ function setF(btn,key,val){
   renderGames();
 }
 var HAZARD_WORDS=['豆','米','珠','币','扣子','吸管','牙签','剪刀','烤箱','麦圈','弹珠','小颗粒','玻璃','蜡烛','针'];
-var BLOCKED_UNDER3_WORDS=['豆','米粒','小玩具','珠','硬币','扣子','吸管','牙签','剪刀','麦圈','弹珠','小颗粒','宝石贴','溜溜眼','绒球','棉花球'];
+var BLOCKED_UNDER3_WORDS=['豆','米粒','小玩具','珠','硬币','扣子','吸管','牙签','剪刀','麦圈','弹珠','小颗粒','宝石贴','溜溜眼','绒球','棉花球','泡泡包装'];
 function ageMinMonths(label){var m=String(label||'').match(/(\d+)月/);if(m)return +m[1];var y=String(label||'').match(/(\d+)岁/);return y?+y[1]*12:0;}
 function unsafeForAge(g){
   var s=(g.name||'')+(g.mat||'')+(g.steps||'');
