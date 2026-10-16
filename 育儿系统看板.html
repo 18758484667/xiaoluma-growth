@@ -13,20 +13,21 @@
   --radius:16px; --shadow:0 2px 12px rgba(0,0,0,0.06);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:17px}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:17px;padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}
 .header{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 100%);color:#fff;padding:10px 20px;text-align:center}
 .header h1{font-size:22px;margin-bottom:4px;letter-spacing:1px}
 .header .baby-info{font-size:15px;opacity:.92;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
 .header .baby-info span{background:rgba(255,255,255,.2);padding:2px 12px;border-radius:20px}
-.nav{background:var(--card);display:flex;overflow-x:auto;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(255,193,7,0.08)}
+.nav{background:rgba(255,255,255,.97);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed;left:0;right:0;bottom:0;z-index:250;height:calc(64px + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);border-top:1px solid var(--border);box-shadow:0 -4px 18px rgba(62,39,35,.1);backdrop-filter:blur(14px)}
 .backup-bar{display:flex;align-items:center;gap:10px;padding:8px 12px;background:#FFF3E0;border-bottom:1px solid #FFB74D;font-size:13px;color:#E65100}
 .backup-bar .backup-msg{flex:1;line-height:1.4}
 .backup-bar .backup-btn{padding:4px 12px;background:#FF9800;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;flex-shrink:0}
 .backup-bar .backup-btn:hover{background:#E65100}
 .backup-bar .backup-x{background:none;border:none;font-size:16px;color:#E65100;cursor:pointer;padding:0 4px;flex-shrink:0;line-height:1}
-.nav button{flex:1;min-width:78px;padding:14px 6px;border:none;background:none;font-size:15px;color:var(--text-mid);cursor:pointer;border-bottom:3px solid var(--mc,transparent);white-space:nowrap;transition:all .2s}
-.nav button.active{color:var(--mc);border-bottom-color:var(--mc);border-bottom-width:4px;font-weight:600}
+.nav button{min-width:0;padding:6px 2px 5px;border:none;border-top:3px solid transparent;background:none;font-family:inherit;font-size:13px;line-height:1.15;color:var(--text-mid);cursor:pointer;white-space:nowrap;transition:background .2s,color .2s,border-color .2s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+.nav button.active{color:var(--primary-dark);border-top-color:var(--mc);font-weight:700;background:color-mix(in srgb,var(--mc) 8%,#fff)}
 .nav button:hover{background:color-mix(in srgb,var(--primary) 12%,#fff)}
+.nav-icon{font-size:21px;line-height:1}.nav-label{display:block}
 .container{max-width:1100px;margin:0 auto;padding:16px}
 .page{display:none;animation:fade .3s}
 .page.active{display:block}
@@ -232,13 +233,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .today-condition-dock{position:fixed;left:50%;bottom:calc(10px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:220;width:min(340px,calc(100% - 32px));height:50px;border:1px solid color-mix(in srgb,var(--primary) 28%,#ddd);border-radius:16px;background:rgba(255,255,255,.96);box-shadow:0 6px 24px rgba(62,39,35,.16);display:flex;align-items:center;padding:0 7px 0 15px;backdrop-filter:blur(12px)}
 .today-condition-dock button{width:100%;height:100%;border:0;background:none;display:flex;align-items:center;justify-content:space-between;gap:10px;font:inherit;cursor:pointer;color:var(--text)}
 .today-condition-summary{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.today-condition-adjust{font-size:13px;color:var(--primary-dark);font-weight:700;background:color-mix(in srgb,var(--primary) 13%,#fff);padding:5px 11px;border-radius:12px;flex-shrink:0}
-body.today-dock-visible .container{padding-bottom:calc(86px + env(safe-area-inset-bottom,0px))}
+body.today-dock-visible .container{padding-bottom:calc(148px + env(safe-area-inset-bottom,0px))}
 .today-sheet-backdrop{position:fixed;inset:0;z-index:300;background:rgba(40,28,24,.38);display:none;align-items:flex-end;justify-content:center}.today-sheet-backdrop.open{display:flex}
 .today-sheet{width:min(680px,100%);max-height:min(82vh,720px);overflow-y:auto;overscroll-behavior:contain;background:#fff;border-radius:20px 20px 0 0;padding:8px 18px calc(18px + env(safe-area-inset-bottom,0px));box-shadow:0 -8px 30px rgba(0,0,0,.16)}
 .today-sheet-handle{width:38px;height:4px;background:#D7D2CF;border-radius:4px;margin:2px auto 10px}.today-sheet-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:4px}.today-sheet-head h3{font-size:18px}.today-sheet-close{border:0;background:#F3F3F3;border-radius:50%;width:32px;height:32px;font-size:18px;cursor:pointer;color:var(--text-mid)}
 .today-sheet-done{width:100%;margin-top:16px;border:0;border-radius:12px;background:var(--primary);color:#fff;font-size:16px;font-weight:600;padding:11px;cursor:pointer}
 .today-settings{font-size:14px}.setting-group{margin-top:14px}.setting-label{font-size:13px;color:var(--text-mid);font-weight:600;margin-bottom:6px}.interest-chip input{display:none}
-@media(min-width:760px){.today-condition-dock{bottom:18px}.today-sheet{margin-bottom:16px;border-radius:20px;max-height:76vh}.today-sheet-backdrop{align-items:flex-end}}
+@media(min-width:760px){.today-sheet{margin-bottom:16px;border-radius:20px;max-height:76vh}.today-sheet-backdrop{align-items:flex-end}}
 .today-note{font-size:13px;color:var(--text-mid);background:#FFF8E1;border-radius:9px;padding:8px 11px;margin-bottom:10px}
 .saved-hint{font-size:12px;color:var(--green);min-height:18px;margin-top:5px}
 
@@ -301,6 +302,18 @@ body.today-dock-visible .container{padding-bottom:calc(86px + env(safe-area-inse
   .today-desc{line-height:1.7}
   .today-actions button,.today-chip,.feedback-row button{padding:8px 12px}
 }
+@media(max-width:899px){
+  .today-condition-dock{bottom:calc(74px + env(safe-area-inset-bottom,0px))}
+}
+@media(min-width:900px){
+  body{padding:0 0 0 112px}
+  .nav{top:0;bottom:0;right:auto;width:112px;height:100dvh;padding:16px 8px;grid-template-columns:1fr;grid-template-rows:repeat(5,minmax(72px,auto));align-content:start;border-top:0;border-right:1px solid var(--border);box-shadow:4px 0 18px rgba(62,39,35,.07)}
+  .nav button{font-size:14px;line-height:1.25;padding:10px 5px;border-top:0;border-left:4px solid transparent;border-radius:12px;white-space:normal}
+  .nav button.active{border-left-color:var(--mc);border-top-color:transparent}
+  .nav-icon{font-size:24px}
+  .today-condition-dock{left:calc(50% + 56px);bottom:18px}
+  body.today-dock-visible .container{padding-bottom:86px}
+}
 @media print{
   .header,.nav,.footer,.no-print,.brain-subtabs{display:none!important}
   #page-brain{display:block!important}
@@ -308,7 +321,7 @@ body.today-dock-visible .container{padding-bottom:calc(86px + env(safe-area-inse
   #bsub-arch{display:block!important}
   #page-home,#page-milestone,#page-games,#page-theory{display:none!important}
   .card{box-shadow:none!important;border:1px solid #ddd}
-  body{background:#fff}
+  body{background:#fff;padding:0}
 }
 </style>
 </head>
@@ -326,13 +339,13 @@ body.today-dock-visible .container{padding-bottom:calc(86px + env(safe-area-inse
   <button class="backup-btn" onclick="exportData()">⬇ 立即导出</button>
   <button class="backup-x" onclick="this.parentNode.style.display='none'" title="稍后提醒">✕</button>
 </div>
-<div class="nav">
-  <button class="active" style="--mc:#FFCA28" onclick="showPage('home',this)">今天</button>
-  <button style="--mc:#4CAF50" onclick="showPage('milestone',this)">发展里程碑</button>
-  <button style="--mc:#9C27B0" onclick="showPage('games',this)">游戏库</button>
-  <button style="--mc:#2196F3" onclick="showPage('theory',this)">脑科学</button>
-  <button style="--mc:#F44336" onclick="showPage('brain',this)">成长计划</button>
-</div>
+<nav class="nav" aria-label="主要导航">
+  <button class="active" aria-current="page" aria-label="今天" style="--mc:#FFCA28" onclick="showPage('home',this)"><span class="nav-icon" aria-hidden="true">☀️</span><span class="nav-label">今天</span></button>
+  <button aria-label="发展里程碑" style="--mc:#4CAF50" onclick="showPage('milestone',this)"><span class="nav-icon" aria-hidden="true">🌱</span><span class="nav-label">里程碑</span></button>
+  <button aria-label="游戏库" style="--mc:#9C27B0" onclick="showPage('games',this)"><span class="nav-icon" aria-hidden="true">🎲</span><span class="nav-label">游戏库</span></button>
+  <button aria-label="脑科学" style="--mc:#2196F3" onclick="showPage('theory',this)"><span class="nav-icon" aria-hidden="true">🧠</span><span class="nav-label">脑科学</span></button>
+  <button aria-label="成长计划" style="--mc:#F44336" onclick="showPage('brain',this)"><span class="nav-icon" aria-hidden="true">📈</span><span class="nav-label">成长计划</span></button>
+</nav>
 
 <div class="container">
 
@@ -1012,8 +1025,9 @@ function showPage(id,btn){
   document.documentElement.style.setProperty('--primary-dark',th[1]);
   document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
   document.getElementById('page-'+id).classList.add('active');
-  document.querySelectorAll('.nav button').forEach(function(b){b.classList.remove('active')});
+  document.querySelectorAll('.nav button').forEach(function(b){b.classList.remove('active');b.removeAttribute('aria-current')});
   btn.classList.add('active');
+  btn.setAttribute('aria-current','page');
   setTodayDockVisibility(id==='home');
   // 切页时按需渲染
   if(id==='home')renderToday();
