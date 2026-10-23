@@ -1293,10 +1293,10 @@ function tryRestoreFromIDB(){
   return Promise.all([idbGet('obs_data'),idbGet('dx_data'),idbGet('growth_evidence_v2'),idbGet('growth_assessments_v2'),idbGet('activity_feedback_v1'),idbGet('today_observation_history_v1'),idbGet('today_prefs_v1')]).then(function(all){
     try{
       var keys=[OBS_KEY,DX_KEY,'xlma_growth_evidence_v2','xlma_growth_assessments_v2',ACTIVITY_FEEDBACK_KEY,TODAY_OBS_HISTORY_KEY,TODAY_PREFS_KEY],labels=['旧版观察','旧版评估','成长证据','月度成长评估','活动反馈','今日观察','今日设置'],restore=[];
-      all.forEach(function(backup,i){var empty=i===6?!localStorage.getItem(keys[i]):!safeJsonArray(keys[i]).length;if(empty&&backup&&(Array.isArray(backup)?backup.length:true))restore.push({key:keys[i],label:labels[i],data:backup});});
+      all.forEach(function(backup,i){var empty=i===6?!localStorage.getItem(keys[i]):!safeJsonArray(keys[i]).length;var useful=i===6?backup&&JSON.stringify(backup)!==JSON.stringify(loadTodayPrefs()):Array.isArray(backup)&&backup.length;if(empty&&useful)restore.push({key:keys[i],label:labels[i],data:backup});});
       if(!restore.length)return false;
-      var summary=restore.map(function(x){return x.data.length+' 条'+x.label;}).join('、');
-      if(!confirm('💾 检测到本地数据为空，但 IndexedDB 中有 '+summary+'。\n\n是否恢复？'))return false;
+      var summary=restore.map(function(x){return Array.isArray(x.data)?x.data.length+' 条'+x.label:x.label;}).join('、');
+      if(!confirm('💾 检测到此浏览器有备份：'+summary+'。\n\n是否恢复到当前浏览器？'))return false;
       restore.forEach(function(x){localStorage.setItem(x.key,JSON.stringify(x.data));});return true;
     }catch(e){return false;}
   }).catch(function(){return false;});
@@ -1641,7 +1641,7 @@ function migrateGrowthV2(){
     Object.keys(r.items||{}).forEach(function(k){var i=+k.slice(1),q=OBS_ITEMS[i];if(!q)return;var map={cog:'cog',lang:'lang',emo:'soc',mov:'motor',cre:'fine'};var st=r.items[k]===5?'observed':(r.items[k]===3?'emerging':'not_yet');ev.push({observation_id:'legacy_week_'+r.wk+'_'+k,date:r.date||r.wk,raw_record:q.text,domains:[map[q.dim]],capability_ids:inferCapabilityIds(q.text,map[q.dim]),evidence_strength:1,evidence_type:st,source:'legacy_weekly_observation',confirmed:true,createdAt:r.ts||Date.now()});});
   });
   loadDx().forEach(function(r){Object.keys(r.items||{}).forEach(function(k){var i=+k.slice(1),q=DX_ITEMS[i];if(!q)return;var map={cog:'cog',lang:'lang'};var st=r.items[k]===5?'observed':(r.items[k]===3?'emerging':'not_yet');ev.push({observation_id:'legacy_assess_'+r.monthKey+'_'+k,date:r.date||r.monthKey+'-15',raw_record:q.text,domains:[map[q.dim]],capability_ids:inferCapabilityIds(q.text,map[q.dim]),evidence_strength:1,evidence_type:st,source:'legacy_assessment',confirmed:true,createdAt:r.ts||Date.now()});});});
-  var by={};ev.forEach(function(e){by[e.observation_id]=e;});saveEvidence(Object.keys(by).map(function(k){return by[k];}));
+  if(ev.length){var by={};ev.forEach(function(e){by[e.observation_id]=e;});saveEvidence(Object.keys(by).map(function(k){return by[k];}));}
   localStorage.setItem(GROWTH_MIGRATION_KEY,'1');
 }
 function addObservation(){

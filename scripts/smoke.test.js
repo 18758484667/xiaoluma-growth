@@ -85,6 +85,10 @@ function assert(name, cond, extra) {
 }
 
 assert('页面初始化无异常', true);
+ctx.localStorage.removeItem(ctx.GROWTH_MIGRATION_KEY);
+const originalMigrationSave=ctx.saveEvidence;let emptyMigrationWrites=0;
+ctx.saveEvidence=()=>{emptyMigrationWrites++;};ctx.migrateGrowthV2();ctx.saveEvidence=originalMigrationSave;
+assert('空数据首次迁移不覆盖 IndexedDB 成长备份', emptyMigrationWrites===0);
 
 assert('每月发育要点数据完整',
   Object.keys(ctx.MONTH_DEV).length >= 19 && ctx.MONTH_DEV['19'].points.length === 3 && ctx.MONTH_DEV['19'].attention.length === 2,
