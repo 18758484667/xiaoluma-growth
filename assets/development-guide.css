@@ -1,0 +1,44 @@
+/* Phase 1.9：成长手册页签中的通用月龄指南，沿用天空蓝设计 token。 */
+.development-guide-section{margin:0 0 var(--ds-space-5);color:var(--ds-text);min-width:0;overflow-wrap:anywhere}
+.guide-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--ds-space-3);padding:var(--ds-space-4);border-radius:var(--ds-radius-hero);background:var(--ds-sky-pale);min-width:0}
+.guide-heading>div{min-width:0}.guide-eyebrow{display:block;color:var(--ds-sky-strong);font-size:var(--ds-font-support);font-weight:700;margin-bottom:var(--ds-space-1)}
+.guide-heading h2{font-size:var(--ds-font-page);line-height:1.3;margin:0 0 var(--ds-space-1)}
+.guide-heading p{font-size:var(--ds-font-body);line-height:1.6;color:var(--ds-text-secondary);margin:0}
+.guide-heading-art{font-size:64px;line-height:1;color:#a9d9f4;flex:0 0 auto}
+.guide-stage-context{margin:var(--ds-space-2) var(--ds-space-1) var(--ds-space-4);font-size:var(--ds-font-support);line-height:1.65;color:var(--ds-text-secondary)}
+.guide-block{margin-bottom:var(--ds-space-5)}
+.guide-block h3{font-size:var(--ds-font-section);line-height:1.35;margin:0 0 var(--ds-space-2)}
+.guide-intro{font-size:var(--ds-font-support);line-height:1.6;color:var(--ds-text-secondary);margin:0 0 var(--ds-space-3)}
+.guide-domains{background:var(--ds-surface);border:1px solid var(--ds-border);border-radius:var(--ds-radius-card);padding:var(--ds-space-4)}
+.guide-domain-row{display:grid;grid-template-columns:120px minmax(0,1fr);gap:var(--ds-space-2);padding:var(--ds-space-3) 0;border-top:1px solid var(--ds-border)}
+.guide-domain-row h4{font-size:var(--ds-font-body);margin:0;color:var(--ds-text)}
+.guide-domain-row p{font-size:var(--ds-font-body);line-height:1.65;color:var(--ds-text-secondary);margin:0 0 var(--ds-space-1)}
+.guide-domain-row p:last-child{margin-bottom:0}
+.guide-personal-mark{display:inline-block;margin-left:var(--ds-space-1);color:var(--ds-sky-strong);font-size:var(--ds-font-support);font-weight:650;white-space:nowrap}
+.guide-personal-mark::before{content:'· ';color:var(--ds-sky)}
+.guide-opportunities{border-radius:var(--ds-radius-card);background:var(--ds-cream);padding:var(--ds-space-4)}
+.guide-opportunities>ul,.guide-life ul,.guide-observe ul{padding-left:1.35em;margin:0}
+.guide-opportunities>ul li,.guide-life li,.guide-observe li{font-size:var(--ds-font-body);line-height:1.7;padding:2px 0 6px}
+.guide-related{margin-top:var(--ds-space-3);padding-top:var(--ds-space-3);border-top:1px solid rgba(139,113,64,.2)}
+.guide-related h4,.guide-toy-group h4{font-size:var(--ds-font-card);margin:0 0 var(--ds-space-2)}
+.guide-game-list{display:flex;gap:var(--ds-space-2);flex-wrap:wrap}
+.guide-game{flex:1 1 190px;min-width:0;border-radius:var(--ds-radius-small);background:rgba(255,255,255,.8);padding:var(--ds-space-2)}
+.guide-game summary{display:flex;justify-content:space-between;gap:var(--ds-space-1);cursor:pointer;font-size:var(--ds-font-body);font-weight:650;color:var(--ds-text)}
+.guide-game summary span{font-size:var(--ds-font-support);font-weight:400;color:var(--ds-text-secondary);white-space:nowrap}
+.guide-game p,.guide-game li{font-size:var(--ds-font-support);line-height:1.6;color:var(--ds-text-secondary)}
+.guide-game ol{padding-left:1.35em;margin:var(--ds-space-1) 0}.guide-game-safety{border-top:1px solid var(--ds-border);padding-top:var(--ds-space-1)}
+.guide-toys{padding:0 var(--ds-space-1)}
+.guide-toy-group{margin-top:var(--ds-space-4)}.guide-toy-group>p{font-size:var(--ds-font-support);color:var(--ds-text-secondary);line-height:1.6;margin:0 0 var(--ds-space-2)}
+.guide-toy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:var(--ds-space-2)}
+.guide-toy-card{display:flex;flex-direction:column;gap:4px;min-width:0;min-height:145px;padding:var(--ds-space-3);border-radius:var(--ds-radius-small);background:var(--ds-sky-pale)}
+.guide-toy-consider .guide-toy-card{background:var(--ds-peach)}.guide-toy-no_buy .guide-toy-card{background:var(--ds-green)}
+.guide-toy-art{width:36px;height:36px;border-radius:50%;background:rgba(85,169,221,.22);position:relative;margin-bottom:var(--ds-space-1)}
+.guide-toy-art::after{content:'';position:absolute;inset:11px;border:2px solid #6fb8e2;border-radius:5px;transform:rotate(-12deg)}
+.guide-toy-card strong{font-size:var(--ds-font-body);line-height:1.35}.guide-toy-card small,.guide-toy-replace{font-size:var(--ds-font-support);line-height:1.45;color:var(--ds-text-secondary)}
+.guide-safety-note{font-size:var(--ds-font-support);line-height:1.6;color:var(--ds-text-secondary);margin:var(--ds-space-3) 0 0}
+.guide-life{background:var(--ds-green);border-radius:var(--ds-radius-card);padding:var(--ds-space-4)}
+.guide-observe{padding:var(--ds-space-3) var(--ds-space-4);border-left:3px solid #f5b99c;background:#fff8f3;border-radius:0 var(--ds-radius-small) var(--ds-radius-small) 0}
+.guide-sources{margin-top:var(--ds-space-4);border-top:1px solid var(--ds-border);padding-top:var(--ds-space-2);color:var(--ds-text-secondary)}
+.guide-sources summary{font-size:var(--ds-font-support);cursor:pointer;color:var(--ds-sky-strong);font-weight:600}
+.guide-sources p,.guide-sources li,.guide-outside{font-size:var(--ds-font-support);line-height:1.6}.guide-sources ul{padding-left:1.35em}
+@media(max-width:700px){.guide-heading,.guide-domains,.guide-opportunities,.guide-life{padding:var(--ds-space-3)}.guide-heading h2{font-size:26px}.guide-heading-art{font-size:42px}.guide-domain-row{grid-template-columns:1fr;gap:4px}.guide-domain-row h4{color:var(--ds-sky-strong)}.guide-toy-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.guide-toy-card{min-height:135px;padding:var(--ds-space-2)}.guide-observe{padding:var(--ds-space-3)}}
