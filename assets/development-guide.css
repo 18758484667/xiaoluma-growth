@@ -42,3 +42,9 @@
 .guide-sources summary{font-size:var(--ds-font-support);cursor:pointer;color:var(--ds-sky-strong);font-weight:600}
 .guide-sources p,.guide-sources li,.guide-outside{font-size:var(--ds-font-support);line-height:1.6}.guide-sources ul{padding-left:1.35em}
 @media(max-width:700px){.guide-heading,.guide-domains,.guide-opportunities,.guide-life{padding:var(--ds-space-3)}.guide-heading h2{font-size:26px}.guide-heading-art{font-size:42px}.guide-domain-row{grid-template-columns:1fr;gap:4px}.guide-domain-row h4{color:var(--ds-sky-strong)}.guide-toy-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.guide-toy-card{min-height:135px;padding:var(--ds-space-2)}.guide-observe{padding:var(--ds-space-3)}}
+.guide-expanded{border-top:1px solid var(--ds-border);border-bottom:1px solid var(--ds-border)}
+.guide-expanded>summary{display:flex;align-items:center;justify-content:space-between;gap:var(--ds-space-2);min-height:52px;list-style:none;cursor:pointer;color:var(--ds-sky-strong);font-size:var(--ds-font-body);font-weight:650}
+.guide-expanded>summary::-webkit-details-marker{display:none}
+.guide-expanded>summary span{font-size:20px;line-height:1;transition:transform .2s}
+.guide-expanded[open]>summary span{transform:rotate(180deg)}
+.guide-expanded-body{padding-top:var(--ds-space-3)}

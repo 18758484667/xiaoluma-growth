@@ -1,0 +1,771 @@
+{
+  "version": "0.1.0-batch2-reviewed",
+  "age_basis": "21个月，正式能力只用18–23月 active_observation",
+  "review_provenance": "候选清单先行；Codex逐项内容审核，用户或专业人工最终验收待完成",
+  "mappings": [
+    {
+      "activity_id": "act_3_手指谣与歌曲",
+      "candidate_source_id": "act_3_手指谣与歌曲",
+      "play_basis": "坐着唱一首熟悉的儿歌，动作放慢，等她跟着动。",
+      "mechanism_ids": [
+        "imitation"
+      ],
+      "primary_ability_ids": [
+        "emo_social_cognition"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "emo_social_cognition": "成人缓慢做动作，孩子有机会注意成人动作并自愿模仿。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "可确认看成人动作再回应；歌声本身不支持语言理解/表达。",
+      "review_checks": {
+        "social_cognition": {
+          "other_person_behavior": "成人边唱边做缓慢动作",
+          "child_contingent_response": "孩子观察后自愿模仿动作"
+        }
+      }
+    },
+    {
+      "activity_id": "act_5_材质触摸分辨",
+      "candidate_source_id": "act_5_材质触摸分辨",
+      "play_basis": "用毛巾/积木/硅胶勺/毛绒玩具轻松玩一会儿。",
+      "mechanism_ids": [
+        "sensory_exploration"
+      ],
+      "primary_ability_ids": [],
+      "secondary_ability_ids": [],
+      "mapping_reason": {},
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "unmapped",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "触摸不同完整材料的机制明确；没有足够具体的注意或手部能力要求，保持未映射。",
+      "unmapped_reason": "触摸不同完整材料的机制明确；没有足够具体的注意或手部能力要求，保持未映射。"
+    },
+    {
+      "activity_id": "act_10_叠叠杯排序",
+      "candidate_source_id": "act_10_叠叠杯排序",
+      "play_basis": "家长坐在旁边，让她自己叠、拆和排列叠叠杯。",
+      "mechanism_ids": [
+        "hands_on_action"
+      ],
+      "primary_ability_ids": [
+        "mov_fine_motor"
+      ],
+      "secondary_ability_ids": [
+        "int_problem_solving"
+      ],
+      "mapping_reason": {
+        "mov_fine_motor": "孩子自己拿、叠、拆和套完整大杯，是明确手部操作。",
+        "int_problem_solving": "尝试把小杯套进大杯可能需要比较尺寸与试放，但现有步骤没有明确失败后调整过程。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "revised",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "主体验明确；问题解决只留 revised 候选，不能计入 approved 覆盖。",
+      "review_checks": {
+        "problem_solving": {
+          "goal": "把小杯放进大杯",
+          "independent_attempt": "步骤写让孩子尝试套入",
+          "feedback_or_adjustment": null
+        }
+      }
+    },
+    {
+      "activity_id": "act_13_积木塔",
+      "candidate_source_id": "act_13_积木塔",
+      "play_basis": "用积木若干轻松玩一会儿。",
+      "mechanism_ids": [
+        "hands_on_action"
+      ],
+      "primary_ability_ids": [
+        "mov_fine_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_fine_motor": "孩子亲手把大积木放上塔，提供手部定位与放置经验。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "倒塌后没有明确重试路径，不挂问题解决。"
+    },
+    {
+      "activity_id": "act_25_乐高大颗粒娃娃屋",
+      "candidate_source_id": "act_25_乐高大颗粒娃娃屋",
+      "play_basis": "用适龄大块积木搭矮屋角，让娃娃进出。",
+      "mechanism_ids": [
+        "pretend_play",
+        "hands_on_action"
+      ],
+      "primary_ability_ids": [],
+      "secondary_ability_ids": [],
+      "mapping_reason": {},
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "unmapped",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "娃娃进出矮屋是简单假装前身；大块积木由成人搭屋角，不能把搭建能力归给孩子。",
+      "unmapped_reason": "娃娃进出矮屋是简单假装前身；大块积木由成人搭屋角，不能把搭建能力归给孩子。",
+      "precursor_experiences": [
+        {
+          "brain_id": "creativity",
+          "label": "简单假装",
+          "reason": "娃娃进出矮屋属于适龄假装情境，不对应21个月创意脑完整构念。"
+        }
+      ]
+    },
+    {
+      "activity_id": "act_80_靠垫桥",
+      "candidate_source_id": "act_80_靠垫桥",
+      "play_basis": "在地面铺一块稳固软垫，让她走上、走下或跨过，家长近距离保护。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "在成人保护下自愿走上、走下或跨过单层地面软垫，是身体移动与平衡经验。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "只读现有安全修订后的低矮地面玩法，不推断体适能。"
+    },
+    {
+      "activity_id": "act_89_靠垫房屋",
+      "candidate_source_id": "act_89_靠垫房屋",
+      "play_basis": "在地面单层靠垫上坐一坐、走下来，或给大软玩具找位置。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "孩子坐到单层地面靠垫并自己走下来，是低强度身体位置转换。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "仅依据坐上和走下的真实步骤；给玩具找位置不自动推断寻找能力。"
+    },
+    {
+      "activity_id": "act_105_和爸爸乱弹吉他",
+      "candidate_source_id": "act_105_和爸爸乱弹吉他",
+      "play_basis": "成人抱稳乐器，和孩子轮流拨一下、听一下。",
+      "mechanism_ids": [
+        "turn_taking",
+        "hands_on_action"
+      ],
+      "primary_ability_ids": [
+        "emo_social_relationships"
+      ],
+      "secondary_ability_ids": [
+        "mov_fine_motor"
+      ],
+      "mapping_reason": {
+        "emo_social_relationships": "成人稳稳抱住乐器，孩子和成人轻拨后交替回应，形成真实来回互动。",
+        "mov_fine_motor": "孩子用手指轻拨琴弦，是明确的细小手部动作机会。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "两人交替为主，手指拨弦为次；只使用现有成人持琴安全前提。",
+      "review_checks": {
+        "social_relationships": {
+          "reciprocal_interaction": "孩子轻拨琴弦、成人用短节奏回应，再等孩子拨"
+        }
+      }
+    },
+    {
+      "activity_id": "act_119_抛接球互动",
+      "candidate_source_id": "act_119_抛接球互动",
+      "play_basis": "家长可以坐着，面对面把大软球轻轻滚给她，等她再送回来。",
+      "mechanism_ids": [
+        "turn_taking"
+      ],
+      "primary_ability_ids": [
+        "emo_social_relationships"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "emo_social_relationships": "面对面滚球、孩子再递还或滚回，明确形成双方来回。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "这里主要是滚球往返；不因球的存在挂粗大运动。",
+      "review_checks": {
+        "social_relationships": {
+          "reciprocal_interaction": "成人滚球给孩子，孩子抱起后递还或滚回"
+        }
+      }
+    },
+    {
+      "activity_id": "act_124_动作模仿游戏",
+      "candidate_source_id": "act_124_动作模仿游戏",
+      "play_basis": "你做拍手、点头或踏脚，轮到她做时你也来模仿。",
+      "mechanism_ids": [
+        "imitation"
+      ],
+      "primary_ability_ids": [
+        "emo_social_cognition"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "emo_social_cognition": "孩子先看成人拍手/点头，再自愿做相应动作；随后成人可模仿孩子。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "仅限注意他人动作并回应的基础社会认知，不推断成熟观点采择。",
+      "review_checks": {
+        "social_cognition": {
+          "other_person_behavior": "成人做拍手或点头动作",
+          "child_contingent_response": "孩子观察后跟做，随后成人可模仿孩子"
+        }
+      }
+    },
+    {
+      "activity_id": "act_129_障碍爬行大冒险",
+      "candidate_source_id": "act_129_障碍爬行大冒险",
+      "play_basis": "只在地面爬过毯子或宽大稳固的纸箱通道，需要家长全程跟随。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "孩子自愿从地面宽敞通道爬过，核心是全身移动。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "成人清空地面并全程接应；没有孩子自行解决路线障碍的步骤。"
+    },
+    {
+      "activity_id": "gm_soft_toy_delivery",
+      "candidate_source_id": "gm_soft_toy_delivery",
+      "play_basis": "把几个轻软玩具从一个篮子搬到另一个位置，宝宝负责走和搬，大人坐着收货。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "孩子自己走过2–3米并一次搬运一件轻软玩具。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "选择搬哪件不等于明确语言表达或执行功能目标。"
+    },
+    {
+      "activity_id": "gm_squat_basket",
+      "candidate_source_id": "gm_squat_basket",
+      "play_basis": "把几个大软玩具分散放在地面，让她走、蹲、捡、站起并放进篮子。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "孩子走、蹲、捡、站起并把大软玩具放入篮中，核心是全身移动。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "成人指出目标，不推断独立寻找或问题解决。"
+    },
+    {
+      "activity_id": "gm_find_bear_return",
+      "candidate_source_id": "gm_find_bear_return",
+      "play_basis": "你坐着说“去把小熊拿来”，让她自己走去找、拿起、再走回来。",
+      "mechanism_ids": [
+        "active_movement",
+        "wait_for_response"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [
+        "lang_comprehension"
+      ],
+      "mapping_reason": {
+        "mov_gross_motor": "孩子自己走到可见的小熊位置、拿起并走回来，是主要移动体验。",
+        "lang_comprehension": "成人只说一次熟悉的“把小熊拿来”，孩子有机会根据词语找到并拿来对应玩具。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "小熊全程可见；不挂记忆学习。语言理解是由具体词语与拿来动作连接的次要机会。",
+      "review_checks": {
+        "language_comprehension": {
+          "spoken_cue": "去把小熊拿来",
+          "child_response": "孩子有机会根据熟悉词语拿来可见小熊"
+        }
+      }
+    },
+    {
+      "activity_id": "gm_seated_soft_kick",
+      "candidate_source_id": "gm_seated_soft_kick",
+      "play_basis": "你坐在固定位置把软球轻轻滚过去，让她尝试踢、走去找球，你不需要跟着跑。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "孩子自己尝试踢或推大软球、再走去找球，是明确身体动作。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "成人坐着参与不等于孩子与成人有明确轮流规则。"
+    },
+    {
+      "activity_id": "gm_music_walk_stop",
+      "candidate_source_id": "gm_music_walk_stop",
+      "play_basis": "播放一小段音乐，让她自由走、摆动和拍手；音乐停时顺便停一下，不要求遵守规则。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "孩子随音乐自由走、摆动并可停一停，是主动身体移动。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "步骤明确不要求遵守停走规则，因此不挂执行功能。"
+    },
+    {
+      "activity_id": "gm_push_empty_box",
+      "candidate_source_id": "gm_push_empty_box",
+      "play_basis": "在平地上让她推一个轻的空纸箱前进，大人坐着指向终点即可。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "孩子在平坦地面自己推轻空纸箱前进到近处。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "成人指终点，没有孩子自行寻找路径或调整办法的步骤。"
+    },
+    {
+      "activity_id": "gm_walk_from_stroller",
+      "candidate_source_id": "gm_walk_from_stroller",
+      "play_basis": "到车辆隔离的平坦区域后，可以让她从推车下来自己走一小段，累了再坐车。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "在隔离车辆的安全平地上让孩子自己走一小段，保留自主速度。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "作为移动经验，不推断体适能或自控能力。"
+    },
+    {
+      "activity_id": "gm_walk_to_tree",
+      "candidate_source_id": "gm_walk_to_tree",
+      "play_basis": "在安全空地选一棵不远的树当目标，让她自己走过去看一看，再走回来。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "孩子按自己的速度走到5–10米内可见目标并返回。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "树始终可见，不能当成寻找/记忆任务。"
+    },
+    {
+      "activity_id": "gm_leaf_collect",
+      "candidate_source_id": "gm_leaf_collect",
+      "play_basis": "让她在干净平坦的小范围里自己走、蹲下捡两三片大树叶，大人原地等她送回来。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "孩子在安全小范围自己走、蹲、捡完整大树叶并送回。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "具体身体移动为核心；不因“找叶子”标题外延记忆或问题解决。"
+    },
+    {
+      "activity_id": "gm_gentle_slope",
+      "candidate_source_id": "gm_gentle_slope",
+      "play_basis": "在干燥、平缓、远离车辆的小坡上走上去再走下来，大人保持一臂距离。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "在成人一臂距离保护下走上、走下干燥缓坡，体验地面变化。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 20,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "现有安全条件必须继续生效；不把活动映射成体适能评估。"
+    },
+    {
+      "activity_id": "gm_low_soft_course",
+      "candidate_source_id": "gm_low_soft_course",
+      "play_basis": "在地面设一条绕线、跨单层软垫、走到终点的短路线，需要家长持续跟随保护。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "孩子在成人全程跟随下绕线、跨单层地面软垫、走到终点。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "路线由成人设置且引导，不挂问题解决。"
+    },
+    {
+      "activity_id": "gm_low_step_up_down",
+      "candidate_source_id": "gm_low_step_up_down",
+      "play_basis": "在有牢固扶手的最低一级台阶练习上一阶、下一阶，家长近距离保护并及时停止。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "在牢固扶手或成人手部保护下，只上一阶和下一阶稳定低台阶。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 20,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "只映射受保护的身体移动经验，不把它当成达标练习。"
+    },
+    {
+      "activity_id": "gap_sound_reply",
+      "candidate_source_id": "gap_sound_reply",
+      "play_basis": "成人发一个熟悉的动物或车辆声音，留出空隙让孩子自由回应。",
+      "mechanism_ids": [
+        "wait_for_response",
+        "imitation"
+      ],
+      "primary_ability_ids": [
+        "lang_expression"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "lang_expression": "成人发熟悉声音后停两秒，孩子可用看、动作、声音回应，成人再模仿她的回应。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "表达方式不限定口语；仅成人模仿孩子不足以给孩子挂成熟社会认知。",
+      "review_checks": {
+        "language_expression": {
+          "child_expression": "孩子可用动作、声音或目光主动回应成人声音"
+        }
+      }
+    },
+    {
+      "activity_id": "gap_parallel_play",
+      "candidate_source_id": "gap_parallel_play",
+      "play_basis": "遇到其他孩子时，两人在附近各玩相似材料，成人照看，不要求分享或合作。",
+      "mechanism_ids": [],
+      "primary_ability_ids": [],
+      "secondary_ability_ids": [],
+      "mapping_reason": {},
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "unmapped",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "两个孩子各自玩相似材料但不要求来回互动；现有机制缺 parallel_play，且不能仅因成人在场挂社会关系。",
+      "unmapped_reason": "两个孩子各自玩相似材料但不要求来回互动；现有机制缺 parallel_play，且不能仅因成人在场挂社会关系。"
+    },
+    {
+      "activity_id": "gap_carry_together",
+      "candidate_source_id": "gap_carry_together",
+      "play_basis": "成人和孩子各扶空篮一侧，慢慢把它移到近处。",
+      "mechanism_ids": [],
+      "primary_ability_ids": [],
+      "secondary_ability_ids": [],
+      "mapping_reason": {},
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "unmapped",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "成人和孩子共扶空篮并移动是真实协同动作，现有机制缺 cooperative_action；不为覆盖强塞轮流或共同注意。",
+      "unmapped_reason": "成人和孩子共扶空篮并移动是真实协同动作，现有机制缺 cooperative_action；不为覆盖强塞轮流或共同注意。"
+    },
+    {
+      "activity_id": "gap_greeting_reply",
+      "candidate_source_id": "gap_greeting_reply",
+      "play_basis": "在真实见面或离开时成人先挥手，给孩子自由回应的机会。",
+      "mechanism_ids": [
+        "turn_taking"
+      ],
+      "primary_ability_ids": [
+        "emo_social_relationships"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "emo_social_relationships": "熟人见面时成人挥手，孩子可看、挥手或发声，对方简单回应，构成真实来回。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "不要求孩子必须打招呼；不从一次回应推断成熟社会认知。",
+      "review_checks": {
+        "social_relationships": {
+          "reciprocal_interaction": "成人挥手、孩子自由回应、对方简单回应"
+        }
+      }
+    },
+    {
+      "activity_id": "gap_big_footprints",
+      "candidate_source_id": "gap_big_footprints",
+      "play_basis": "成人坐在旁边，孩子在平地上踩两张相隔很近的大纸。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "孩子自愿在平坦地面踩两张相隔一步的大纸并往返，是实际身体移动。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "成人坐在旁边，不将听指令或认识图形作为能力目标。"
+    },
+    {
+      "activity_id": "gap_reach_big_cloth",
+      "candidate_source_id": "gap_reach_big_cloth",
+      "play_basis": "成人坐着拿完整大布片，孩子站着伸手轻碰不同位置。",
+      "mechanism_ids": [],
+      "primary_ability_ids": [],
+      "secondary_ability_ids": [],
+      "mapping_reason": {},
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "unmapped",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "站立伸手触碰布片既非现有 active_movement 的走追搬，也不是明确的 hands_on_action 操作；记录 reaching_balance taxonomy gap，不强贴能力。",
+      "unmapped_reason": "站立伸手触碰布片既非现有 active_movement 的走追搬，也不是明确的 hands_on_action 操作；记录 reaching_balance taxonomy gap，不强贴能力。"
+    },
+    {
+      "activity_id": "gap_turn_to_picture",
+      "candidate_source_id": "gap_turn_to_picture",
+      "play_basis": "成人坐在原地，孩子站在平地转身看看大图片的位置。",
+      "mechanism_ids": [
+        "joint_attention"
+      ],
+      "primary_ability_ids": [
+        "int_perceptual_attention"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "int_perceptual_attention": "成人在左右侧呈现大图，孩子自愿转身看或走近，核心是跟随图像位置注意。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "没有比较、隐藏或记忆步骤；不加问题解决/记忆。"
+    }
+  ]
+}

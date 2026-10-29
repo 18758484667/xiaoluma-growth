@@ -1,0 +1,757 @@
+{
+  "version": "0.1.0",
+  "age_months": 21,
+  "selection_basis": "21个月适龄、安全准入、canonical且未在首批试点；清晰玩法与场景/精力多样性",
+  "candidates": [
+    {
+      "activity_id": "act_3_手指谣与歌曲",
+      "title": "手指谣与歌曲",
+      "description": "坐着唱一首熟悉的儿歌，动作放慢，等她跟着动。",
+      "steps": [
+        "选一首慢歌（如头肩膀膝盖脚趾），你边唱边做动作",
+        "动作放慢，给宝宝时间观察和模仿",
+        "她做对一步就笑一笑，不催不纠正",
+        "熟悉后加速或换节奏，制造一点惊喜",
+        "唱到关键动作时停顿，等宝宝反应再继续"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "low",
+      "location": [
+        "indoor",
+        "on_the_go"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "act_5_材质触摸分辨",
+      "title": "材质触摸分辨",
+      "description": "用毛巾/积木/硅胶勺/毛绒玩具轻松玩一会儿。",
+      "steps": [
+        "把毛巾、积木、硅胶勺、毛绒玩具放在托盘里",
+        "让宝宝自由摸2-3分钟，不打断",
+        "她摸到毛巾时说「软软的毛巾」，摸到积木时说「硬硬的积木」",
+        "每次只说当下那一个物品，不要求她记住",
+        "玩完问「哪个软软的？」看她会不会指"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "medium",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "act_10_叠叠杯排序",
+      "title": "叠叠杯排序",
+      "description": "家长坐在旁边，让她自己叠、拆和排列叠叠杯。",
+      "steps": [
+        "先把杯子散开，让宝宝随意堆、扣、套",
+        "你示范按大小排成一排，边排边说「大的、小的」",
+        "让宝宝试着把小的套进大的里面",
+        "套不进去就换一个方向，不急着纠正",
+        "最后一起把杯子按大小收起来，完成排序和收纳"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "low",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "act_13_积木塔",
+      "title": "积木塔",
+      "description": "用积木若干轻松玩一会儿。",
+      "steps": [
+        "拿出积木，先示范垒2块，动作慢一点",
+        "鼓励宝宝加第3块，倒了也没关系",
+        "你数「1、2、3」帮她建立数量感",
+        "推倒时一起大笑，再重新开始",
+        "记录最高块数，下次超过就庆祝"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "medium",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "act_25_乐高大颗粒娃娃屋",
+      "title": "乐高大颗粒娃娃屋",
+      "description": "用适龄大块积木搭矮屋角，让娃娃进出。",
+      "steps": [
+        "只用适龄完整的大块积木搭一个矮矮的屋角",
+        "让孩子把完整布娃娃放进去、再拿出来",
+        "跟着孩子编一句小故事，玩约5分钟后一起收好"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "medium",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "act_80_靠垫桥",
+      "title": "靠垫桥",
+      "description": "在地面铺一块稳固软垫，让她走上、走下或跨过，家长近距离保护。",
+      "steps": [
+        "把一块单层软垫铺在防滑地面",
+        "扶孩子试一次走上和走下",
+        "稳定后再让她自己跨过，玩两三轮就结束"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "high",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "act_89_靠垫房屋",
+      "title": "地面靠垫小角落",
+      "description": "在地面单层靠垫上坐一坐、走下来，或给大软玩具找位置。",
+      "steps": [
+        "在地面平铺一块靠垫，旁边留出敞开空间",
+        "孩子坐上、走下或把大软玩具放上去",
+        "约5分钟后把靠垫放回原处"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "medium",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "act_105_和爸爸乱弹吉他",
+      "title": "和爸爸乱弹吉他",
+      "description": "成人抱稳乐器，和孩子轮流拨一下、听一下。",
+      "steps": [
+        "成人稳稳抱住乐器，孩子用手轻轻拨一下弦",
+        "成人回应一个短短的节奏，等孩子再拨",
+        "玩约5分钟，孩子不想继续就收起乐器"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "medium",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "act_119_抛接球互动",
+      "title": "抛接球互动",
+      "description": "家长可以坐着，面对面把大软球轻轻滚给她，等她再送回来。",
+      "steps": [
+        "面对面坐或站，距离半米左右",
+        "先把软球轻轻滚到宝宝面前",
+        "让她抱起来，再递还或丢给你",
+        "接到球就夸张地说「接到了」，给她正向反馈",
+        "熟练后慢慢拉开距离，让球轻轻抛起"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "low",
+      "location": [
+        "indoor",
+        "outdoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "act_124_动作模仿游戏",
+      "title": "你做我也做",
+      "description": "你做拍手、点头或踏脚，轮到她做时你也来模仿。",
+      "steps": [
+        "你先做一个简单动作，比如拍手、点头",
+        "等宝宝看着你，再做一遍慢动作",
+        "她跟着做就笑一笑，不做就再示范",
+        "轮到她做动作，你来模仿",
+        "分离焦虑时先用这个游戏，再离开，让她有安全感"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "low",
+      "location": [
+        "indoor",
+        "outdoor",
+        "on_the_go"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "act_129_障碍爬行大冒险",
+      "title": "障碍爬行大冒险",
+      "description": "只在地面爬过毯子或宽大稳固的纸箱通道，需要家长全程跟随。",
+      "steps": [
+        "成人清空地面并检查纸箱无钉子和硬边",
+        "把纸箱两端敞开，放在地垫上",
+        "孩子自愿从宽敞通道爬过，成人在旁接应，玩两轮就结束"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "high",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gm_soft_toy_delivery",
+      "title": "软玩具搬运站",
+      "description": "把几个轻软玩具从一个篮子搬到另一个位置，宝宝负责走和搬，大人坐着收货。",
+      "steps": [
+        "两个位置相距2–3米",
+        "一次只搬一件轻软物品",
+        "让她自己选先搬哪一件",
+        "搬3–5件即可结束"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 30
+      },
+      "caregiver_effort": "low",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gm_squat_basket",
+      "title": "蹲下捡进篮子",
+      "description": "把几个大软玩具分散放在地面，让她走、蹲、捡、站起并放进篮子。",
+      "steps": [
+        "把3–5个大软玩具放在附近地面",
+        "大人坐着指一个目标",
+        "等她自己捡起并放进篮子",
+        "不求快，随时可以停"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 30
+      },
+      "caregiver_effort": "low",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gm_find_bear_return",
+      "title": "找到小熊送回来",
+      "description": "你坐着说“去把小熊拿来”，让她自己走去找、拿起、再走回来。",
+      "steps": [
+        "把熟悉玩具放在她看得到的安全位置",
+        "只说一个简短任务",
+        "等她自己走完往返",
+        "换一件物品再玩一次"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 30
+      },
+      "caregiver_effort": "low",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gm_seated_soft_kick",
+      "title": "坐着陪她踢软球",
+      "description": "你坐在固定位置把软球轻轻滚过去，让她尝试踢、走去找球，你不需要跟着跑。",
+      "steps": [
+        "在空旷地面相距1–2米",
+        "将大软球慢慢滚到她脚边",
+        "等她自己尝试踢或推",
+        "球停下后让她捡回来"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 30
+      },
+      "caregiver_effort": "low",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gm_music_walk_stop",
+      "title": "音乐走走停停",
+      "description": "播放一小段音乐，让她自由走、摆动和拍手；音乐停时顺便停一下，不要求遵守规则。",
+      "steps": [
+        "清出一小块安全空地",
+        "播放30–60秒熟悉音乐",
+        "大人坐着拍手回应",
+        "停顿一下再继续，玩3轮即可"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 30
+      },
+      "caregiver_effort": "low",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gm_push_empty_box",
+      "title": "推空纸箱送货",
+      "description": "在平地上让她推一个轻的空纸箱前进，大人坐着指向终点即可。",
+      "steps": [
+        "检查纸箱无订书钉和硬边",
+        "纸箱保持空的，放在防滑地面",
+        "让她推到2–3米外的终点",
+        "推一两趟就可以"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 30
+      },
+      "caregiver_effort": "low",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gm_walk_from_stroller",
+      "title": "到安全处自己走一段",
+      "description": "到车辆隔离的平坦区域后，可以让她从推车下来自己走一小段，累了再坐车。",
+      "steps": [
+        "先选平坦、无车辆的安全区域",
+        "让她自己决定走快或走慢",
+        "大人在身边同速跟随",
+        "累了或不想走就回推车"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 30
+      },
+      "caregiver_effort": "medium",
+      "location": [
+        "outdoor",
+        "on_the_go"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gm_walk_to_tree",
+      "title": "走到那边看看",
+      "description": "在安全空地选一棵不远的树当目标，让她自己走过去看一看，再走回来。",
+      "steps": [
+        "选择5–10米内、路面平坦的目标",
+        "指一指树，不连续催促",
+        "让她按自己的速度走过去",
+        "到达后摸摸树干再返回"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 30
+      },
+      "caregiver_effort": "medium",
+      "location": [
+        "outdoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gm_leaf_collect",
+      "title": "走走捡两三片大树叶",
+      "description": "让她在干净平坦的小范围里自己走、蹲下捡两三片大树叶，大人原地等她送回来。",
+      "steps": [
+        "选择干净、无车辆的草地或小路",
+        "只捡完整的大树叶",
+        "让她每次捡一片再送回来",
+        "捡两三片就结束，之后洗手"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 30
+      },
+      "caregiver_effort": "medium",
+      "location": [
+        "outdoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gm_gentle_slope",
+      "title": "小坡走上走下",
+      "description": "在干燥、平缓、远离车辆的小坡上走上去再走下来，大人保持一臂距离。",
+      "steps": [
+        "选择短而缓的干燥坡面",
+        "先牵手走一次",
+        "她站稳后可松手在旁边保护",
+        "往返1–2次就结束"
+      ],
+      "age_range": {
+        "min_months": 20,
+        "max_months": 30
+      },
+      "caregiver_effort": "medium",
+      "location": [
+        "outdoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gm_low_soft_course",
+      "title": "地面低矮软垫路线",
+      "description": "在地面设一条绕线、跨单层软垫、走到终点的短路线，需要家长持续跟随保护。",
+      "steps": [
+        "清空地面上的硬物和杂物",
+        "用胶带标一条路线，加一块单层软垫",
+        "全程在她身边跟随",
+        "玩2–3轮就收起来"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "high",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gm_low_step_up_down",
+      "title": "稳固低台阶上下",
+      "description": "在有牢固扶手的最低一级台阶练习上一阶、下一阶，家长近距离保护并及时停止。",
+      "steps": [
+        "只选最低一级、干燥防滑的台阶",
+        "让她扶牢固扶手或握住大人的手",
+        "一次只上一阶再下一阶",
+        "完成2–3次就结束"
+      ],
+      "age_range": {
+        "min_months": 20,
+        "max_months": 30
+      },
+      "caregiver_effort": "high",
+      "location": [
+        "indoor",
+        "outdoor"
+      ],
+      "activity_context_type": null,
+      "source_fields": {
+        "core_play": null,
+        "play_type": null
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gap_sound_reply",
+      "title": "声音你来我来",
+      "description": "成人发一个熟悉的动物或车辆声音，留出空隙让孩子自由回应。",
+      "steps": [
+        "成人拿完整大号动物玩具，轻声说“汪汪”",
+        "停两秒，等孩子看、笑、动或发声",
+        "成人模仿她的回应，再玩两三轮就结束"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 30
+      },
+      "caregiver_effort": "low",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": "play",
+      "source_fields": {
+        "core_play": "成人发一个熟悉的动物或车辆声音，留出空隙让孩子自由回应。",
+        "play_type": "sound_imitation"
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gap_parallel_play",
+      "title": "在旁边各玩一份",
+      "description": "遇到其他孩子时，两人在附近各玩相似材料，成人照看，不要求分享或合作。",
+      "steps": [
+        "在安全地垫上给两个孩子各放几块大积木",
+        "让他们各自搭，成人描述“你在放一块”即可",
+        "玩约5分钟，任何一方不想玩就结束"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 30
+      },
+      "caregiver_effort": "medium",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": "play",
+      "source_fields": {
+        "core_play": "遇到其他孩子时，两人在附近各玩相似材料，成人照看，不要求分享或合作。",
+        "play_type": "parallel_play"
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gap_carry_together",
+      "title": "一起抬空篮子",
+      "description": "成人和孩子各扶空篮一侧，慢慢把它移到近处。",
+      "steps": [
+        "成人把空轻篮放在平坦地面，邀请孩子扶一侧",
+        "成人扶另一侧，慢慢移到一两步外的地垫",
+        "到达后放下，重复一次就结束"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 30
+      },
+      "caregiver_effort": "medium",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": "daily_life",
+      "source_fields": {
+        "core_play": "成人和孩子各扶空篮一侧，慢慢把它移到近处。",
+        "play_type": "cooperation"
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gap_greeting_reply",
+      "title": "门口打个招呼",
+      "description": "在真实见面或离开时成人先挥手，给孩子自由回应的机会。",
+      "steps": [
+        "见到熟悉家人时，成人先挥手说“你好”",
+        "停两秒，接受孩子看、挥手或发声",
+        "对方简单回应后就自然继续，不重复要求"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 30
+      },
+      "caregiver_effort": "low",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": "transition",
+      "source_fields": {
+        "core_play": "在真实见面或离开时成人先挥手，给孩子自由回应的机会。",
+        "play_type": "greeting"
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gap_big_footprints",
+      "title": "踩大脚印走两步",
+      "description": "成人坐在旁边，孩子在平地上踩两张相隔很近的大纸。",
+      "steps": [
+        "成人把两张大纸贴平在无障碍地面，相距约一步",
+        "坐在旁边指一张，让孩子自愿踩上、再踩下一张",
+        "往返两轮就结束，纸边翘起立即收起"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 30
+      },
+      "caregiver_effort": "low",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": "play",
+      "source_fields": {
+        "core_play": "成人坐在旁边，孩子在平地上踩两张相隔很近的大纸。",
+        "play_type": "target_stepping"
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gap_reach_big_cloth",
+      "title": "碰一碰大布片",
+      "description": "成人坐着拿完整大布片，孩子站着伸手轻碰不同位置。",
+      "steps": [
+        "成人坐着把大布片拿在孩子胸口高度的左侧",
+        "等她自然伸手碰到，再换到右侧",
+        "左右各两次就结束；不让她失去平衡"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 30
+      },
+      "caregiver_effort": "low",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": "play",
+      "source_fields": {
+        "core_play": "成人坐着拿完整大布片，孩子站着伸手轻碰不同位置。",
+        "play_type": "reach_balance"
+      },
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gap_turn_to_picture",
+      "title": "转身找大图",
+      "description": "成人坐在原地，孩子站在平地转身看看大图片的位置。",
+      "steps": [
+        "成人坐着把大图片拿在孩子左侧稍远处",
+        "等她自己转身看或走近一点",
+        "再换右侧一次就结束"
+      ],
+      "age_range": {
+        "min_months": 18,
+        "max_months": 30
+      },
+      "caregiver_effort": "low",
+      "location": [
+        "indoor"
+      ],
+      "activity_context_type": "play",
+      "source_fields": {
+        "core_play": "成人坐在原地，孩子站在平地转身看看大图片的位置。",
+        "play_type": "pivot_orientation"
+      },
+      "candidate_status": "candidate"
+    }
+  ]
+}

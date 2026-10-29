@@ -1,0 +1,51 @@
+{
+  "version": "3.3E2-shadow-2026-10-29",
+  "mode": "read_only_reviewed_candidate",
+  "themes": [
+    {
+      "theme_id": "move_self",
+      "display_name": "自己动起来",
+      "primary_mechanism_ids": ["active_movement"],
+      "secondary_mechanism_ids": [],
+      "description": "孩子在安全空间里自己走、追、搬或改变位置。",
+      "review_status": "reviewed",
+      "review_note": "主动移动是目前唯一足够稳定的上位机制；平衡、推拉、搬运暂作为具体玩法变化，不为增加数量另造机制。"
+    },
+    {
+      "theme_id": "do_it_self",
+      "display_name": "自己动手完成",
+      "primary_mechanism_ids": ["hands_on_action"],
+      "secondary_mechanism_ids": [],
+      "description": "孩子自己拿、放、装、舀、开合或操作适龄完整物品。",
+      "review_status": "reviewed",
+      "review_note": "模仿、触摸不一定意味着自己完成操作，因此不自动桥接。"
+    },
+    {
+      "theme_id": "express_ideas",
+      "display_name": "把想法说出来",
+      "primary_mechanism_ids": ["language_expansion", "self_choice", "wait_for_response"],
+      "secondary_mechanism_ids": [],
+      "description": "孩子有机会用声音、词、动作或指向表达需要、选择和回应；成人接住表达。",
+      "review_status": "reviewed",
+      "review_note": "仅在具体游戏已有 approved 机制映射时解释；成人单向说话不等于支持孩子表达。"
+    },
+    {
+      "theme_id": "search_where",
+      "display_name": "找一找，看看在哪里",
+      "primary_mechanism_ids": ["search_and_find"],
+      "secondary_mechanism_ids": ["simple_matching"],
+      "description": "孩子寻找、定位目标，或在明确的相同关系中做简单配对。",
+      "review_status": "reviewed",
+      "review_note": "简单配对只作次级桥接；普通看东西、触感探索和成人指出答案都不能自动算寻找。"
+    },
+    {
+      "theme_id": "take_turns",
+      "display_name": "我和你轮流来",
+      "primary_mechanism_ids": ["turn_taking"],
+      "secondary_mechanism_ids": [],
+      "description": "成人和孩子围绕同一玩法交替行动，并给对方回应的机会。",
+      "review_status": "reviewed",
+      "review_note": "共同注意、即时模仿、成人在场不必然是轮流，因此不自动桥接。"
+    }
+  ]
+}

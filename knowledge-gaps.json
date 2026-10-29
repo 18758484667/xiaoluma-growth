@@ -1,0 +1,38 @@
+[
+  {
+    "gap_id": "gap_active_movement_21m",
+    "mechanism_id": "active_movement",
+    "question": "为什么给21个月孩子更多主动移动的自然机会？",
+    "priority": "high",
+    "related_theme": ["自己动起来"],
+    "related_activity_ids": ["gm_roll_fetch", "gm_walk_to_tree"],
+    "status": "open"
+  },
+  {
+    "gap_id": "gap_search_and_find_21m",
+    "mechanism_id": "search_and_find",
+    "question": "为什么藏找和寻找值得在日常游戏中体验？",
+    "priority": "high",
+    "related_theme": ["找一找，看看在哪里"],
+    "related_activity_ids": ["act_75_藏猫猫"],
+    "status": "open"
+  },
+  {
+    "gap_id": "gap_simple_matching_21m",
+    "mechanism_id": "simple_matching",
+    "question": "怎样解释简单配对的陪伴价值，并保持适龄？",
+    "priority": "medium",
+    "related_theme": ["找一找，看看在哪里"],
+    "related_activity_ids": [],
+    "status": "open"
+  },
+  {
+    "gap_id": "gap_no_training_21m",
+    "mechanism_id": null,
+    "question": "为什么自然陪玩不需要变成能力训练或测试？",
+    "priority": "high",
+    "related_theme": ["自己动起来", "找一找，看看在哪里"],
+    "related_activity_ids": [],
+    "status": "open"
+  }
+]

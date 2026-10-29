@@ -1,0 +1,204 @@
+{
+  "version": "0.1.0-final-remaining-21-month-review",
+  "age_basis": "21个月；24月新增适龄活动不纳入本轮",
+  "review_provenance": "仅审此前未审的9个21月适龄canonical游戏；Codex逐项审核，用户或专业人工最终验收待完成",
+  "mappings": [
+    {
+      "activity_id": "act_4_颜色配对分类",
+      "candidate_source_id": "act_4_颜色配对分类",
+      "play_basis": "用彩色纸+同色小物轻松玩一会儿。",
+      "mechanism_ids": [
+        "simple_matching"
+      ],
+      "primary_ability_ids": [
+        "int_perceptual_attention"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "int_perceptual_attention": "孩子从几个同色样板中比较颜色并尝试给手中的物品找对应位置，提供具体视觉比较机会。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "revised",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "玩法有视觉比较，但材料仍写“同色小物”，与通用大尺寸安全说明不够一致；暂不批准，不能为补注意覆盖放宽材料审核。成人牵手放对也不能支持问题解决。",
+      "review_hold": "材料写“同色小物”，需与大尺寸安全要求对齐"
+    },
+    {
+      "activity_id": "act_6_声音配对辨识",
+      "candidate_source_id": "act_6_声音配对辨识",
+      "play_basis": "用空瓶/不锈钢碗/纸盒/铃铛轻松玩一会儿。",
+      "mechanism_ids": [],
+      "primary_ability_ids": [],
+      "secondary_ability_ids": [],
+      "mapping_reason": {},
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "unmapped",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "背对孩子敲物并让她转头找声源，有真实听觉定位机会，但现有12种机制没有准确的 sound_localization；铃铛零件风险也需内容复核。没有时间间隔，不能挂记忆学习。",
+      "unmapped_reason": "背对孩子敲物并让她转头找声源，有真实听觉定位机会，但现有12种机制没有准确的 sound_localization；铃铛零件风险也需内容复核。没有时间间隔，不能挂记忆学习。",
+      "review_hold": "声源机制未覆盖，铃铛零件安全需复核"
+    },
+    {
+      "activity_id": "act_7_撕贴收纳",
+      "candidate_source_id": "act_7_撕贴收纳",
+      "play_basis": "用大张安全纸材撕一撕、贴一贴，不要求做出固定图案。",
+      "mechanism_ids": [],
+      "primary_ability_ids": [],
+      "secondary_ability_ids": [],
+      "mapping_reason": {},
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "rejected",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "撕碎纸巾、小贴纸与碎片收纳是现有明确步骤；对3岁以下存在可入口小碎片风险，不能仅靠通用大尺寸安全句批准精细动作映射。",
+      "rejection_reason": "现有玩法步骤与材料存在小碎片/贴纸安全冲突；在内容安全复核前拒绝五脑映射。",
+      "review_hold": "碎纸和贴纸入口风险"
+    },
+    {
+      "activity_id": "act_8_瓶盖配对拧动",
+      "candidate_source_id": "act_8_瓶盖配对拧动",
+      "play_basis": "用不同大小瓶盖+对应空瓶轻松玩一会儿。",
+      "mechanism_ids": [],
+      "primary_ability_ids": [],
+      "secondary_ability_ids": [],
+      "mapping_reason": {},
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "rejected",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "3–4组不同大小的可拆卸瓶盖是核心材料，即使步骤含自行试配，当前安全风险不能因问题解决覆盖缺口而忽略。",
+      "rejection_reason": "可拆卸小瓶盖有误入口风险；在安全材料替代或正式复核前拒绝能力映射。",
+      "review_hold": "可拆卸瓶盖入口风险"
+    },
+    {
+      "activity_id": "act_9_翻书找物",
+      "candidate_source_id": "act_9_翻书找物",
+      "play_basis": "让她自己翻页，一起找书里熟悉的动物或物品。",
+      "mechanism_ids": [],
+      "primary_ability_ids": [],
+      "secondary_ability_ids": [],
+      "mapping_reason": {},
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "rejected",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "步骤使用小贴纸作标记并反复换页；贴纸脱落风险未由具体安全说明解决。即便有翻页与视觉寻找，也不批准。",
+      "rejection_reason": "小贴纸作为核心道具，3岁以下安全边界未明确；在内容复核前拒绝五脑映射。",
+      "review_hold": "小贴纸脱落入口风险"
+    },
+    {
+      "activity_id": "act_72_胶带迷宫",
+      "candidate_source_id": "act_72_胶带迷宫",
+      "play_basis": "用彩色胶带贴地板迷宫行走不踩线轻松玩一会儿。",
+      "mechanism_ids": [],
+      "primary_ability_ids": [],
+      "secondary_ability_ids": [],
+      "mapping_reason": {},
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "unmapped",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "只有一句“贴地板迷宫行走不踩线”，未交代路线选择、独立尝试或失败调整；胶带防滑与脱落也未具体说明。不能挂问题解决或粗大运动审核通过。",
+      "unmapped_reason": "只有一句“贴地板迷宫行走不踩线”，未交代路线选择、独立尝试或失败调整；胶带防滑与脱落也未具体说明。不能挂问题解决或粗大运动审核通过。",
+      "review_hold": "步骤过简且胶带防滑/脱落条件不足"
+    },
+    {
+      "activity_id": "act_131_趣味玩水探索",
+      "candidate_source_id": "act_131_趣味玩水探索",
+      "play_basis": "在成人伸手可及处，用大杯把浅盘里的少量水舀起再倒回。",
+      "mechanism_ids": [
+        "hands_on_action"
+      ],
+      "primary_ability_ids": [
+        "mov_fine_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_fine_motor": "孩子在成人伸手可及处用完整大杯舀起浅盘中少量水再倒回，是明确的抓握、舀与倒的双手操作经验。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "只依据清理后浅盘少量温水、成人全程伸手可及和结束倒空的正式步骤批准手部操作；不推断因果问题解决。高精力与涉水限制保留。"
+    },
+    {
+      "activity_id": "act_132_颜色形状配对",
+      "candidate_source_id": "act_132_颜色形状配对",
+      "play_basis": "用积木/卡片按颜色形状分类配对轻松玩一会儿。",
+      "mechanism_ids": [
+        "simple_matching"
+      ],
+      "primary_ability_ids": [
+        "int_perceptual_attention"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "int_perceptual_attention": "先用适龄大积木或大卡片比较颜色，再比较明显形状，孩子需要留意候选与目标的可见相同处。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "批准仅依据现有通用“大尺寸、完好材料”安全约束下的视觉配对。步骤先给出放置方法，不能把完成配对提升为问题解决或记忆。"
+    },
+    {
+      "activity_id": "gm_multi_step_delivery",
+      "candidate_source_id": "gm_multi_step_delivery",
+      "play_basis": "家长设置两个安全停靠点，陪她把软玩具分步送到终点，全程跟着走和调整任务。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "孩子在成人陪同下把一件轻软大玩具从起点搬到中转篮再搬到终点，核心是持续走动与搬运。"
+      },
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 20,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "reviewed_by": "codex_content_review",
+      "review_note": "步骤由成人设点并一起完成；不要求孩子自己记住顺序或解决路径，故不挂记忆学习、问题解决或执行功能。"
+    }
+  ]
+}

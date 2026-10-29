@@ -1,0 +1,515 @@
+{
+  "version": "0.2.0-reviewed-pilot",
+  "age_basis": "21个月；只使用18–23月产品观察基线，24月后仍待审核",
+  "review_status": "pilot_reviewed_not_connected",
+  "mappings": [
+    {
+      "activity_id": "gm_chase_kick_ball",
+      "play_basis": "成人和孩子在小范围轮流踢或滚大软球，孩子自己追球、踢回来。",
+      "mechanism_ids": [
+        "active_movement",
+        "turn_taking"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [
+        "emo_social_relationships"
+      ],
+      "mapping_reason": {
+        "mov_gross_motor": "孩子主动追、走、踢球，是具体身体移动机会。",
+        "emo_social_relationships": "玩法写明成人和孩子轮流踢或滚，提供来回互动机会。"
+      },
+      "experience_tags": [
+        "自己动起来",
+        "轮流玩"
+      ],
+      "age_window": {
+        "min_months": 20,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "review_note": "核对主玩法：孩子在平坦小范围追球、踢回；轮流互动明确存在。粗大运动为主，社会关系仅为次要互动机会。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "act_14_泡泡追跑",
+      "play_basis": "在平坦空地吹泡泡，让孩子自己追和碰；仅以主玩法建立主游戏映射。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "主玩法让孩子自己走、追、碰泡泡，提供主动移动经验；其他语言变体不另建主映射。"
+      },
+      "experience_tags": [
+        "自己动起来"
+      ],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "review_note": "只依据追、走、碰泡泡的主玩法映射粗大运动；看泡泡、说大小等变体不计入主映射。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "act_33_室内沙粒盒",
+      "play_basis": "清理后的实际玩法是从敞口箱取完整大布片、摸不同触感。",
+      "mechanism_ids": [
+        "sensory_exploration"
+      ],
+      "primary_ability_ids": [],
+      "secondary_ability_ids": [],
+      "mapping_reason": {},
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "unmapped",
+      "unmapped_reason": "核心是安全材料的触感探索；现有十种机制没有准确的触感探索项，不能仅因拿布片就强挂手部能力。",
+      "reviewed_at": "2026-10-28",
+      "review_note": "已核对清理后为完整大布片触摸；新增触感探索机制仅描述玩法，没有足够具体的能力表现目标，继续 unmapped。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "act_38_感官游戏大混战",
+      "play_basis": "清理后的玩法是触摸完整大物件，再放入碗中。",
+      "mechanism_ids": [
+        "sensory_exploration"
+      ],
+      "primary_ability_ids": [],
+      "secondary_ability_ids": [],
+      "mapping_reason": {},
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "unmapped",
+      "unmapped_reason": "主要价值是不同触感体验；现有机制不能准确表达，暂不推断注意或精细动作能力。",
+      "reviewed_at": "2026-10-28",
+      "review_note": "已核对清理后为大物件触摸托盘；新增触感探索机制不自动推出注意或精细动作能力，继续 unmapped。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "act_130_简单指令互动",
+      "play_basis": "成人面对面说一个简短动作邀请，等孩子愿意时行动，不连续考问。",
+      "mechanism_ids": [
+        "wait_for_response"
+      ],
+      "primary_ability_ids": [
+        "lang_comprehension"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "lang_comprehension": "活动给孩子听到熟悉简短话语并以动作回应的机会；游戏展示或参与不证明她已经理解。"
+      },
+      "experience_tags": [
+        "听懂再行动"
+      ],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "review_note": "一条熟悉短句后留时间让孩子愿意用动作回应，属于语言理解机会；不能将参加或没回应当成能力证据。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "act_1_假装游戏",
+      "play_basis": "成人用大勺假装搅碗，孩子愿意时模仿或喂娃娃。",
+      "mechanism_ids": [
+        "imitation",
+        "pretend_play"
+      ],
+      "primary_ability_ids": [],
+      "secondary_ability_ids": [],
+      "mapping_reason": {},
+      "precursor_experiences": [
+        {
+          "brain_id": "creativity",
+          "label": "简单假装",
+          "reason": "当前只是安全日用品的假装玩法，不对应21个月创意脑三项完整构念。"
+        }
+      ],
+      "experience_tags": [
+        "试试不同玩法"
+      ],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "unmapped",
+      "unmapped_reason": "模仿机制可辨认，但创意脑完整能力均为 future；不为填满能力列表而硬挂别的子能力。",
+      "reviewed_at": "2026-10-28",
+      "review_note": "新增简单假装机制描述勺、碗、娃娃的代表性动作；21个月创意脑完整能力仍 future，因此只保留前身体验，正式能力继续 unmapped。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "gm_push_pull_walk",
+      "play_basis": "孩子推或拉稳定玩具走一小段，成人同速跟随。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "走动、推拉和调整身体位置是本玩法的核心主动移动经验。"
+      },
+      "experience_tags": [
+        "自己动起来"
+      ],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "review_note": "稳定推拉玩具上的走动、转向与停下构成主动移动；不额外推断执行功能或体适能。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "act_75_藏猫猫",
+      "play_basis": "成人在看得见、找得到的范围藏起并发声，孩子寻找；随后交换藏与找。",
+      "mechanism_ids": [
+        "search_and_find",
+        "turn_taking"
+      ],
+      "primary_ability_ids": [
+        "int_perceptual_attention"
+      ],
+      "secondary_ability_ids": [
+        "emo_social_relationships"
+      ],
+      "mapping_reason": {
+        "int_perceptual_attention": "玩法提供跟随声音和可见线索寻找人的注意机会。",
+        "emo_social_relationships": "双方交换藏与找，提供熟人间来回互动机会。"
+      },
+      "experience_tags": [
+        "找一找",
+        "轮流玩"
+      ],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "exclusion_note": "没有要求孩子隔时记住隐藏位置，不挂记忆学习。",
+      "review_note": "可见或可听线索的寻找足以支持感知注意体验；角色交换提供社会互动。没有隔时回忆要求，不挂记忆学习。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "act_113_橡皮泥杯子蛋糕_2_",
+      "play_basis": "当前仅有‘用橡皮泥动手塑形’的简短描述，步骤没有具体互动过程。",
+      "mechanism_ids": [],
+      "primary_ability_ids": [],
+      "secondary_ability_ids": [],
+      "mapping_reason": {},
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "unmapped",
+      "unmapped_reason": "玩法过于笼统，无法确认具体陪伴机制或主能力体验。",
+      "reviewed_at": "2026-10-28",
+      "review_note": "现有步骤只有一句塑形，无法确认具体机制与安全操作方式，继续 unmapped。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "act_2_家务变游戏",
+      "play_basis": "孩子递衣物、放玩具；成人示范并轮流收拾。",
+      "mechanism_ids": [
+        "hands_on_action",
+        "turn_taking"
+      ],
+      "primary_ability_ids": [
+        "emo_social_relationships"
+      ],
+      "secondary_ability_ids": [
+        "mov_fine_motor"
+      ],
+      "mapping_reason": {
+        "emo_social_relationships": "成人与孩子在收拾中一起行动、轮流放物品，是主玩法明确提供的来回互动机会。",
+        "mov_fine_motor": "拿起并放置完整衣物或大玩具提供实际手部操作，但不是这项活动的主体验。"
+      },
+      "experience_tags": [
+        "轮流玩",
+        "自己动手"
+      ],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "revised",
+      "reviewed_at": "2026-10-28",
+      "review_note": "修订：主玩法是成人与孩子一起/轮流收拾，社会关系比精细动作更贴近核心；拿放完整物品保留为次要手部操作机会。先保留 revised，不进入 approved 读取。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "gm_roll_fetch",
+      "play_basis": "成人坐着把大软球滚到近处，孩子自己走去、蹲下、捡起再回来。",
+      "mechanism_ids": [
+        "active_movement"
+      ],
+      "primary_ability_ids": [
+        "mov_gross_motor"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "mov_gross_motor": "自己走、蹲起并把球带回来，核心是安全空间内的身体移动。"
+      },
+      "experience_tags": [
+        "自己动起来"
+      ],
+      "age_window": {
+        "min_months": 20,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "exclusion_note": "轮流与请求只在可选 variant 中明确出现，主映射不假定每次都采用该变体。",
+      "review_note": "孩子自己走、蹲、拿球、走回为主；没有明确藏找过程，不附加感知注意。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "act_128_撕彩纸贴贴乐",
+      "play_basis": "玩法包含撕成小碎片并使用胶水贴画。",
+      "mechanism_ids": [],
+      "primary_ability_ids": [],
+      "secondary_ability_ids": [],
+      "mapping_reason": {},
+      "experience_tags": [],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "unmapped",
+      "unmapped_reason": "当前步骤涉及小纸碎片和胶水，先留给内容安全复核；映射不改变原安全标注。",
+      "reviewed_at": "2026-10-28",
+      "review_note": "小纸碎片和胶水操作仍待内容安全复核，不因可能有手部操作而批准能力映射，继续 unmapped。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "act_126_水果寻宝",
+      "play_basis": "成人说出完整大水果名称，孩子指一指或拿来放篮子。",
+      "mechanism_ids": [
+        "wait_for_response",
+        "hands_on_action"
+      ],
+      "primary_ability_ids": [
+        "lang_comprehension"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "lang_comprehension": "听到熟悉水果名称后有机会指向或拿来相应物品；这是理解机会而非理解已被证明。"
+      },
+      "experience_tags": [
+        "听懂再行动",
+        "自己动手"
+      ],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "review_note": "虽名为寻宝，实际步骤是成人说名称后孩子指/拿完整水果；只挂语言理解，不挂寻找或记忆。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "act_12_场景旁白沟通",
+      "play_basis": "成人跟随孩子正在做的事说短句，不要求孩子回答。",
+      "mechanism_ids": [
+        "joint_attention"
+      ],
+      "primary_ability_ids": [],
+      "secondary_ability_ids": [],
+      "mapping_reason": {},
+      "experience_tags": [
+        "一起看看"
+      ],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "unmapped",
+      "unmapped_reason": "共同关注机制存在，但仅成人旁白不能证明或明确要求孩子理解、表达，因此暂不挂语言子能力。",
+      "reviewed_at": "2026-10-28",
+      "review_note": "主要是成人旁白；没有要求孩子作可辨识语言回应，不能挂语言理解或表达，继续 unmapped。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "gap_choose_two",
+      "play_basis": "成人给两个真实可选项，等孩子看、指、拿或说出选择。",
+      "mechanism_ids": [
+        "self_choice"
+      ],
+      "primary_ability_ids": [
+        "lang_expression"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "lang_expression": "孩子有机会用动作、声音或词表达选择；不要求一定开口，也不推断语言理解。"
+      },
+      "experience_tags": [
+        "把想法说出来"
+      ],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "review_note": "孩子主动看、指、拿或说出选择，符合语言表达的多模态表达；若成人代选则不成立，映射只适用于现有写明的等待孩子选择玩法。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "gap_drum_turn",
+      "play_basis": "成人和孩子一人拍稳固大盆一下，短暂交替两三轮。",
+      "mechanism_ids": [
+        "turn_taking"
+      ],
+      "primary_ability_ids": [
+        "emo_social_relationships"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "emo_social_relationships": "同一动作由双方来回接续，提供熟人间轮流互动。"
+      },
+      "experience_tags": [
+        "轮流玩"
+      ],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "revised",
+      "reviewed_at": "2026-10-28",
+      "review_note": "修订：明确的短轮流足以支持社会关系；成人说轮到你不证明孩子理解轮流规则，移除社会认知次要映射，先保留 revised。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "gap_expand_one_word",
+      "play_basis": "孩子主动说一个词时，成人接住并自然说一句稍长的话，不要求复述。",
+      "mechanism_ids": [
+        "language_expansion"
+      ],
+      "primary_ability_ids": [
+        "lang_expression"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "lang_expression": "玩法从孩子自发词语开始，成人扩展原意，提供继续表达的机会。"
+      },
+      "experience_tags": [
+        "把想法说出来"
+      ],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "review_note": "玩法以孩子自发一个词为起点，成人扩展原意；语言表达机会成立，不要求复述或推断两词组合已出现。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "gap_request_again",
+      "play_basis": "成人在愉快互动中停两秒，等孩子用眼神、动作、声音或词表示继续。",
+      "mechanism_ids": [
+        "wait_for_response"
+      ],
+      "primary_ability_ids": [
+        "lang_expression"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "lang_expression": "短暂停顿提供孩子表达‘再来’的机会，手势和声音也算表达，不要求说词。"
+      },
+      "experience_tags": [
+        "把想法说出来"
+      ],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "review_note": "停两秒后接受孩子眼神、动作、声音或词表达继续；语言表达为机会，不限定口语。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "act_123_简易配对",
+      "play_basis": "先拿出成对袜子作样板，再从混合的袜子里找相同一只。",
+      "mechanism_ids": [
+        "simple_matching"
+      ],
+      "primary_ability_ids": [
+        "int_perceptual_attention"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "int_perceptual_attention": "孩子需要关注样板与候选袜子的可见相似处。"
+      },
+      "experience_tags": [
+        "找一找"
+      ],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "revised",
+      "reviewed_at": "2026-10-28",
+      "exclusion_note": "步骤没有要求隔时记住位置或规则，不挂记忆学习。",
+      "review_note": "修订：比较样板与袜子可支持感知注意；目前步骤偏成人递给一只再询问，尚不足以确认孩子独立尝试或纠正，移除问题解决次要映射，先保留 revised。",
+      "reviewed_by": "codex_content_review"
+    },
+    {
+      "activity_id": "act_122_厚页绘本共读",
+      "play_basis": "成人指着厚页图画说名称，并在问‘小狗在哪’后等待孩子自愿指图。",
+      "mechanism_ids": [
+        "joint_attention",
+        "wait_for_response"
+      ],
+      "primary_ability_ids": [
+        "lang_comprehension"
+      ],
+      "secondary_ability_ids": [],
+      "mapping_reason": {
+        "lang_comprehension": "听到熟悉名称后指向相应图画，是本玩法提供的理解与回应机会；不能从共读本身推断已理解。"
+      },
+      "early_experience_candidates": [
+        {
+          "ability_id": "lang_reading_readiness",
+          "age_status_at_21": "early_signal_only",
+          "reason": "共同看图与自愿翻厚页只是阅读相关前身参与，不是阅读能力目标。"
+        }
+      ],
+      "experience_tags": [
+        "一起看书",
+        "听懂再行动"
+      ],
+      "age_window": {
+        "min_months": 18,
+        "max_months": 23
+      },
+      "mapping_status": "approved",
+      "reviewed_at": "2026-10-28",
+      "review_note": "成人说名称后等待孩子自愿指图，支持语言理解机会；阅读准备仅作为 early 候选，不是成熟能力目标。",
+      "reviewed_by": "codex_content_review"
+    }
+  ],
+  "review_provenance": "Codex逐项内容审核；用户或专业人工最终验收仍待完成"
+}

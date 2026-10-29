@@ -1,0 +1,57 @@
+const fs=require('fs'),path=require('path'),Module=require('module');
+const smokeFile=path.join(__dirname,'smoke.test.js'),bootstrap=fs.readFileSync(smokeFile,'utf8').split('let pass = 0;')[0];
+const loader=new Module(smokeFile,module);loader.filename=smokeFile;loader.paths=Module._nodeModulePaths(__dirname);
+loader._compile(bootstrap+'\nmodule.exports={ctx,storage};',smokeFile);
+const {ctx,storage}=loader.exports;
+let pass=0,fail=0;
+function check(label,ok){if(ok){pass++;console.log('PASS',label);}else{fail++;console.error('FAIL',label);}}
+function clear(){[ctx.WEEKLY_PLAN_KEY,ctx.EVIDENCE_KEY,ctx.ASSESSMENT_KEY,ctx.ACTIVITY_FEEDBACK_KEY,ctx.TODAY_PLAN_KEY].forEach(k=>storage.delete(k));}
+const when='2026-10-21';clear();
+const bare=ctx.buildWeeklyPlan(when);
+check('21月龄无评估仍有指南来源的周计划',bare&&bare.age_months===21&&bare.focus_areas.length>0&&bare.focus_areas.length<=2&&bare.focus_areas.every(x=>x.source_type==='development_guide'));
+check('周计划只引用现有安全适龄主游戏',bare.suggested_activities.every(x=>{const a=ctx.activityById(x.activity_id);return a&&ctx.eligibleActivities(21,ctx.loadTodayPrefs(),ctx.currentDomainStates()).some(y=>y.activity_id===x.activity_id);}));
+check('同周不重复主游戏',new Set(bare.suggested_activities.map(x=>x.activity_id)).size===bare.suggested_activities.length);
+check('观察点不包含未来 capability',bare.observation_prompts.every(x=>ctx.capabilityPhase(ctx.capabilityById(x.capability_id),21)!=='future'));
+const first=ctx.ensureWeeklyPlan(when),serialized=storage.get(ctx.WEEKLY_PLAN_KEY),again=ctx.ensureWeeklyPlan('2026-10-23');
+check('同一周只生成一次且快照稳定',first.week_start===again.week_start&&storage.get(ctx.WEEKLY_PLAN_KEY)===serialized&&ctx.loadWeeklyPlans().length===1);
+check('普通读取不写任何数据',(()=>{let before=[...storage.entries()];ctx.weeklyPlanForDate('2026-10-23');ctx.loadWeeklyPlans();return JSON.stringify([...storage.entries()])===JSON.stringify(before);})());
+check('周计划不写成长记录和孩子反馈',!storage.has(ctx.EVIDENCE_KEY)&&!storage.has(ctx.ASSESSMENT_KEY)&&!storage.has(ctx.ACTIVITY_FEEDBACK_KEY));
+check('来源快照只保存引用和当时条件',!!first.source_snapshot&&Array.isArray(first.source_snapshot.evidence_refs)&&first.source_snapshot.preferences.energy==='medium');
+clear();storage.set(ctx.ASSESSMENT_KEY,JSON.stringify([{assessment_id:'monthly-focus',monthKey:'2026-10',completedAt:1,monthly_growth_summary:{monthly_focus:[{domain:'lang'}]}}]));
+check('已有本月重点可影响本周方向',ctx.buildWeeklyPlan(when).focus_areas.some(f=>f.domain==='lang'));
+clear();storage.set(ctx.EVIDENCE_KEY,JSON.stringify([17,18].map(day=>({observation_id:'emerging-'+day,date:'2026-10-'+day,raw_record:'尝试两个词',domains:['lang'],capability_ids:['lang_two_words'],evidence_strength:1,evidence_type:'emerging',source:'parent_record',confirmed:true,createdAt:Date.now()}))));
+check('多次真实 emerging 可成为重点且保留证据引用',ctx.buildWeeklyPlan(when).focus_areas.some(f=>f.domain==='lang'&&f.evidence_refs.length===2));
+clear();storage.set(ctx.EVIDENCE_KEY,JSON.stringify([{observation_id:'not-yet',date:'2026-10-18',raw_record:'尚未出现',domains:['lang'],capability_ids:['lang_two_words'],evidence_strength:1,evidence_type:'not_yet',source:'parent_record',confirmed:true,createdAt:Date.now()}]));
+check('单项 not_yet 不作为补短板证据',ctx.buildWeeklyPlan(when).focus_areas.every(f=>f.evidence_refs.indexOf('not-yet')<0));
+clear();const social=ctx.activityCatalog().find(a=>a.domains.includes('soc'));
+storage.set(ctx.ACTIVITY_FEEDBACK_KEY,JSON.stringify([17,18].map(day=>({feedback_id:'love-'+day,activity_id:social.activity_id,date:'2026-10-'+day,enjoyment:'love'}))));
+check('多日明确喜欢可轻推相近领域',ctx.buildWeeklyPlan(when).focus_areas.some(f=>f.domain==='soc'&&f.source_type==='activity_feedback'));
+clear();storage.set(ctx.TODAY_PREFS_KEY,JSON.stringify({duration:'10_15',context:'home',energy:'low',interests:[]}));
+check('很累条件选择真实 low effort 游戏',ctx.buildWeeklyPlan(when).suggested_activities.every(x=>ctx.activityById(x.activity_id).caregiver_effort==='low'));
+storage.delete(ctx.TODAY_PREFS_KEY);
+check('历史最多保留12周',ctx.normalizeWeeklyPlans(Array.from({length:15},(_,i)=>({...bare,week_start:ctx.fmt(ctx.addDays(new Date('2026-01-05T12:00:00'),i*7)),week_end:ctx.fmt(ctx.addDays(new Date('2026-01-11T12:00:00'),i*7))}))).length===12);
+clear();
+const prior=ctx.ensureWeeklyPlan(when),second=ctx.ensureWeeklyPlan('2026-10-28');
+check('跨周生成下一份并保留上周',second.week_start!==prior.week_start&&ctx.loadWeeklyPlans().length===2&&ctx.weeklyPlanForDate(when).generated_at===prior.generated_at);
+const edited=ctx.updateWeeklyPlan();
+check('显式更新覆盖本周快照而非新增',edited.updated_at&&ctx.loadWeeklyPlans().length===2&&ctx.weeklyPlanForDate(new Date()).week_start===edited.week_start);
+check('没有新输入时显式更新不无故轮换重点',edited.focus_areas.map(x=>x.domain).join('|')===second.focus_areas.map(x=>x.domain).join('|'));
+check('当周轻量加权小于最近玩过降权',(()=>{const a=ctx.activityById(edited.suggested_activities[0].activity_id);return ctx.weeklyPlanActivityBonus(a,ctx.fmt(new Date()))===5&&5<30;})());
+const originalBlob=ctx.Blob;ctx.Blob=class{constructor(parts){ctx.__exportedJson=parts.join('');}};
+ctx.exportData();const exported=JSON.parse(ctx.__exportedJson);
+check('JSON 备份包含周计划快照',Array.isArray(exported.weeklyLearningPlans)&&exported.weeklyLearningPlans.length===2);
+const idb={};const originalIdbSet=ctx.idbSet;ctx.idbSet=(key,value)=>{idb[key]=value;};ctx.autoBackup();
+check('IndexedDB 备份包含周计划快照',Array.isArray(idb.weekly_learning_plans_v1)&&idb.weekly_learning_plans_v1.length===2);
+ctx.idbSet=originalIdbSet;clear();ctx.__fileContent=ctx.__exportedJson;ctx.importData({files:[{}]});
+check('JSON 导入恢复同一份周计划',ctx.loadWeeklyPlans().length===2&&ctx.weeklyPlanForDate(when).week_start===prior.week_start);
+ctx.Blob=originalBlob;
+clear();
+const e=[{observation_id:'stairs',date:'2026-10-18',raw_record:'扶栏上楼梯',domains:['motor'],capability_ids:['motor_stairs'],evidence_strength:1,evidence_type:'observed',source:'parent_record',confirmed:true,createdAt:Date.now()},
+{observation_id:'run',date:'2026-10-18',raw_record:'会跑尚未出现',domains:['motor'],capability_ids:['motor_run'],evidence_strength:1,evidence_type:'not_yet',source:'parent_record',confirmed:true,createdAt:Date.now()},
+{observation_id:'jump',date:'2026-10-18',raw_record:'双脚跳尚未出现',domains:['motor'],capability_ids:['motor_jump'],evidence_strength:1,evidence_type:'not_yet',source:'parent_record',confirmed:true,createdAt:Date.now()}];
+storage.set(ctx.EVIDENCE_KEY,JSON.stringify(e));const regression=ctx.buildWeeklyPlan(when),allText=JSON.stringify(regression);
+check('21月龄真实案例不将未来双脚跳写入计划',!allText.includes('motor_jump')&&!allText.includes('双脚跳'));
+check('会跑尚未出现不写成担忧或训练要求',!allText.includes('建议关注')&&!allText.includes('训练跑步')&&!allText.includes('必须会跑'));
+check('既有扶栏上楼梯证据不被周计划改写',JSON.parse(storage.get(ctx.EVIDENCE_KEY)).length===3);
+clear();const old={schemaVersion:4,evidence:[],assessments:[],activityFeedback:[]};ctx.__fileContent=JSON.stringify(old);ctx.importData({files:[{}]});check('旧备份缺周计划字段也可导入',ctx.loadWeeklyPlans().length===0);
+console.log(`Weekly plan: ${pass} passed, ${fail} failed`);if(fail)process.exit(1);

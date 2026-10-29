@@ -15,7 +15,7 @@ function guideToysForBand(band,age){
   return out;
 }
 function guideActivitiesForBand(band,age){
-  var catalog=activityCatalog();return (band.activity_titles||[]).map(function(title){return catalog.find(function(a){return a.title===title&&age>=a.min_age_months&&age<=a.max_age_months&&a.safety_level!=='blocked'&&(age>=36||!a.legacy||!unsafeForAge(a.legacy));});}).filter(Boolean).slice(0,3);
+  var catalog=activityCatalog();return (band.activity_titles||[]).map(function(title){return catalog.find(function(a){return (a.title===title||a.variants&&a.variants.some(function(v){return v.title===title;}))&&(a.variants?a.variants.some(function(v){return activityAvailableAtAge(v,age);}):activityAvailableAtAge(a,age));});}).filter(Boolean).slice(0,3);
 }
 function guideCapabilityStatus(capabilityId,age,evidence){
   var cap=capabilityById(capabilityId);if(!cap)return '';
@@ -44,10 +44,11 @@ function renderHomeDevelopmentGuideSummary(age){
 function openHomeDevelopmentGuide(){
   var nav=document.getElementById('navBrain');if(!nav)return;
   showPage('brain',nav);
-  document.getElementById('developmentGuideSection').scrollIntoView({behavior:'smooth',block:'start'});
+  GrowthPageV2.selectTab('summary');
+  var details=document.getElementById('gvGuide');if(details){details.open=true;details.scrollIntoView({behavior:'smooth',block:'start'});}
 }
 function renderDevelopmentGuide(age){
-  var box=document.getElementById('developmentGuideSection');if(!box)return;
+  var box=document.getElementById('gvGuideBody');if(!box)return;
   age=age==null?ageInfo().totM:age;var band=guideForAge(age);
   if(!band){box.innerHTML='<div class="guide-outside">当前内容库覆盖18～36月龄，其他阶段的指南尚在整理。</div>';return;}
   var since=Date.now()-120*86400000,evidence=loadEvidence().filter(function(e){return e.confirmed&&e.createdAt>=since;}),toys=guideToysForBand(band,age),activities=guideActivitiesForBand(band,age);
@@ -59,11 +60,11 @@ function renderDevelopmentGuide(age){
   var life=band.life_participation.slice(0,5).map(function(x){return '<li>'+esc(x)+'</li>';}).join('');
   var observe=band.observe_points.map(function(x){return '<li>'+esc(x.text)+status(x.capability_id)+'</li>';}).join('');
   var refs=band.source_refs.map(function(id){return capabilityById(id);}).filter(Boolean),seen={};refs=refs.filter(function(c){if(seen[c.source])return false;seen[c.source]=true;return true;});
-  box.innerHTML='<div class="guide-heading"><div><span class="guide-eyebrow">'+age+'个月 · '+band.age_range[0]+'～'+band.age_range[1]+'月龄阶段</span><h2 id="developmentGuideTitle">本月发育指南</h2><p>'+esc(band.title)+'</p></div><span class="guide-heading-art" aria-hidden="true">☁</span></div><p class="guide-stage-context">'+esc(band.stage_context)+' 这里是通用阶段背景；完成评估后生成的本月成长总结，才结合小宝自己的记录。</p>'+
+  box.innerHTML='<div class="guide-expanded-body"><p class="guide-stage-context">'+esc(band.stage_context)+' 这里是通用阶段背景；完成评估后生成的本月成长总结，才结合小宝自己的记录。</p>'+
     '<div class="guide-block guide-domains"><h3>本月发育要点</h3><p class="guide-intro">这个阶段常见的探索方向，不是这个月必须完成的清单。</p>'+domains+'</div>'+
     '<div class="guide-block guide-opportunities"><h3>这个月多提供这些机会</h3><ul>'+opportunities+'</ul>'+games+'</div>'+
-    '<div class="guide-block guide-toys"><h3>这个月适合什么玩具 / 材料</h3><p class="guide-intro">先玩家里已有的，不需要每个月买新玩具。下面的“可考虑”也不是必买清单。</p>'+toyGroup('continue','家里有就继续玩','同一件东西可以换着玩法反复玩。')+toyGroup('consider','如果缺，可以考虑补 1 件','仅在家里缺少类似玩法时考虑，最多选一件。')+toyGroup('no_buy','不买也能玩','大号、安全的日常材料就很好用。')+'<p class="guide-safety-note">3岁以下只用完整的大尺寸材料，检查没有可脱落配件；玩时成人在旁边。</p></div>'+
+    '<div class="guide-block guide-toys"><h3>这个月的适龄玩法建议</h3><p class="guide-intro">先玩家里已有的，不需要每个月买新玩具。下面的“可考虑”也不是必买清单。</p>'+toyGroup('continue','家里有就继续玩','同一件东西可以换着玩法反复玩。')+toyGroup('consider','如果缺，可以考虑补 1 件','仅在家里缺少类似玩法时考虑，最多选一件。')+toyGroup('no_buy','不买也能玩','大号日常材料也可以提供类似玩法。')+'<p class="guide-safety-note">请确认无可脱落小部件并在成人看护下使用。</p></div>'+
     '<div class="guide-block guide-life"><h3>这个月可以让她参与</h3><p class="guide-intro">参与就好，不要求做得完整。</p><ul>'+life+'</ul></div>'+
     '<div class="guide-block guide-observe"><h3>本月值得留意</h3><p class="guide-intro">顺便看看自然出现的变化，不用专门测试。</p><ul>'+observe+'</ul></div>'+
-    '<details class="guide-sources"><summary>阶段内容依据</summary><p>发展要点引用项目已校准的能力锚点；生活、材料与游戏建议来自现有内容库，不设新评分线。</p><ul>'+refs.map(function(c){return '<li>'+esc(c.label)+'：'+esc(c.source)+'</li>';}).join('')+'</ul></details>';
+    '<details class="guide-sources"><summary>阶段内容依据</summary><p>发展要点引用项目已校准的能力锚点；生活、材料与游戏建议来自现有内容库，不设新评分线。</p><ul>'+refs.map(function(c){return '<li>'+esc(c.label)+'：'+esc(c.source)+'</li>';}).join('')+'</ul></details></div>';
 }

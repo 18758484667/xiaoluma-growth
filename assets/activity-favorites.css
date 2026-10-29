@@ -1,0 +1,13 @@
+/* Favorites describe a parent's saved games; child feedback remains separate. */
+.activity-favorite-btn{appearance:none;display:inline-grid;place-items:center;min-width:44px;min-height:44px;width:44px;height:44px;border:0;border-radius:50%;background:#f3faff;color:#4388b6;font-family:Arial,sans-serif;font-size:29px;font-weight:400;line-height:1;cursor:pointer;touch-action:manipulation;transition:background .18s ease,color .18s ease,transform .18s ease}
+.activity-favorite-btn:hover{background:#e5f4fd;transform:scale(1.04)}
+.activity-favorite-btn.is-saved{color:#df8b8a;background:#fff1ef}
+.activity-favorite-btn:focus-visible{outline:2px solid #287eb4;outline-offset:2px}
+#page-home .today-activity{position:relative}
+#page-home .today-activity-open{display:block;width:100%;min-width:0;padding:0;border:0;background:transparent;color:inherit;text-align:left;cursor:pointer}
+#page-home .today-favorite{position:absolute;top:10px;right:10px;z-index:3;background:#fffdf8;box-shadow:0 2px 7px rgba(52,115,156,.12)}
+.today-detail-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.today-detail-heading .detail-favorite{width:44px;height:44px;font-size:29px}
+.today-detail-heading .today-detail-close{width:36px;height:36px}
+.today-variant{margin:6px 0;color:#2877a5;font-size:14px;font-weight:600}
+@media(max-width:600px){#page-home .today-favorite{top:8px;right:8px}}

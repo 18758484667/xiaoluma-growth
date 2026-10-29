@@ -5,10 +5,20 @@ const vm = require('vm');
 const htmlPath = path.join(__dirname, '..', '育儿系统看板.html');
 const html = fs.readFileSync(htmlPath, 'utf8');
 const designCss = fs.readFileSync(path.join(__dirname, '..', 'assets', 'design-system.css'), 'utf8');
-const growthCss = fs.readFileSync(path.join(__dirname, '..', 'assets', 'growth-plan.css'), 'utf8');
+const growthCss = fs.readFileSync(path.join(__dirname, '..', 'assets', 'growth-plan-v2.css'), 'utf8');
+const growthPageScript = fs.readFileSync(path.join(__dirname, '..', 'assets', 'growth-plan-v2.js'), 'utf8');
 const monthlyScript = fs.readFileSync(path.join(__dirname, '..', 'assets', 'monthly-growth.js'), 'utf8');
 const guideContentScript = fs.readFileSync(path.join(__dirname, '..', 'assets', 'development-guide-content.js'), 'utf8');
 const guideScript = fs.readFileSync(path.join(__dirname, '..', 'assets', 'development-guide.js'), 'utf8');
+const safetyScript = fs.readFileSync(path.join(__dirname, '..', 'assets', 'development-safety.js'), 'utf8');
+const cleanupScript = fs.readFileSync(path.join(__dirname, '..', 'assets', 'activity-content-cleanup.js'), 'utf8');
+const gapScript = fs.readFileSync(path.join(__dirname, '..', 'assets', 'activity-gap-content.js'), 'utf8');
+const reviewedGapScript = fs.readFileSync(path.join(__dirname, '..', 'assets', 'five-brain-gap-content.js'), 'utf8');
+const learningScript = fs.readFileSync(path.join(__dirname, '..', 'assets', 'activity-recommendation-learning.js'), 'utf8');
+const weeklyScript = fs.readFileSync(path.join(__dirname, '..', 'assets', 'weekly-learning-plan.js'), 'utf8');
+const brainDataScript = fs.readFileSync(path.join(__dirname, '..', 'assets', 'brain-knowledge-data.js'), 'utf8');
+const brainMechanismScript = fs.readFileSync(path.join(__dirname, '..', 'assets', 'activity-mechanism-confirmed.js'), 'utf8');
+const brainFoundationScript = fs.readFileSync(path.join(__dirname, '..', 'assets', 'brain-knowledge-foundation.js'), 'utf8');
 const script = html.split('<script>')[1].split('</script>')[0];
 
 class El {
@@ -66,8 +76,6 @@ const ctx = {
   indexedDB: undefined,
   FileReader: class { readAsText() { this.result = ctx.__fileContent; this.onload(); } }
 };
-class ChartStub { constructor() {} destroy() {} }
-ctx.window.Chart = ChartStub;
 ctx.__confirmReturn = true;
 ctx.__fileContent = '';
 
@@ -75,7 +83,18 @@ vm.createContext(ctx);
 vm.runInContext(monthlyScript, ctx, { filename: 'monthly-growth.js' });
 vm.runInContext(guideContentScript, ctx, { filename: 'development-guide-content.js' });
 vm.runInContext(guideScript, ctx, { filename: 'development-guide.js' });
+vm.runInContext(safetyScript, ctx, { filename: 'development-safety.js' });
+vm.runInContext(cleanupScript, ctx, { filename: 'activity-content-cleanup.js' });
+vm.runInContext(gapScript, ctx, { filename: 'activity-gap-content.js' });
+vm.runInContext(reviewedGapScript, ctx, { filename: 'five-brain-gap-content.js' });
+vm.runInContext(learningScript, ctx, { filename: 'activity-recommendation-learning.js' });
+vm.runInContext(weeklyScript, ctx, { filename: 'weekly-learning-plan.js' });
+vm.runInContext(brainDataScript, ctx, { filename: 'brain-knowledge-data.js' });
+vm.runInContext(brainMechanismScript, ctx, { filename: 'activity-mechanism-confirmed.js' });
+vm.runInContext(brainFoundationScript, ctx, { filename: 'brain-knowledge-foundation.js' });
 vm.runInContext(script, ctx, { filename: 'inline.js' });
+// Business smoke tests run without a browser DOM; interactive V2 rendering is covered by growth-v2.browser.test.js.
+ctx.GrowthPageV2=ctx.window.GrowthPageV2={refresh(){},selectTab(){ctx.renderAssessment?.();},onPageChange(){}};
 
 let pass = 0;
 let fail = 0;
@@ -133,8 +152,7 @@ ctx.__confirmReturn = false;
 ctx.importData({ files: [{}] });
 assert('空文件取消不清空', ctx.loadObs().length === beforeCancel, `${beforeCancel} -> ${ctx.loadObs().length}`);
 
-ctx.setDx('d0', 5);
-ctx.setDx('d4', 3);
+ctx.saveDx([{monthKey:ctx.fmt(new Date()).slice(0,7),items:{d0:5,d4:3}}]);
 const dx = ctx.loadDx();
 assert('旧版评估数据仍可保存并迁移', dx.length === 1 && dx[0].scores.cog === 5 && dx[0].scores.lang === 3, JSON.stringify(dx));
 
@@ -142,8 +160,7 @@ ctx.saveObs([
   { wk: '2026-05-04', items: { i0: 5 }, note: '', ts: 1 },
   { wk: '2026-06-01', items: { i1: 3 }, note: '', ts: 2 }
 ]);
-ctx.renderTrend();
-assert('旧版月度趋势兼容渲染无异常', true);
+assert('旧版每周观察仍可读取供导入兼容', ctx.loadObs().length===2);
 
 ctx.document.getElementById('archiveMonth').value = '2026-07';
 ctx.genGrowthArchive();
@@ -178,8 +195,7 @@ assert('游戏库实际渲染时隔离高风险活动',
   && !renderedGames.includes('<h4>✋ 橡皮泥杯子蛋糕</h4>'));
 
 ctx.localStorage.removeItem(ctx.OBS_KEY);
-ctx.renderObserve();
-assert('打开观察页不自动创建空周记录', ctx.loadObs().length === 0, JSON.stringify(ctx.loadObs()));
+assert('读取观察数据不自动创建空周记录', ctx.loadObs().length === 0, JSON.stringify(ctx.loadObs()));
 
 ctx.localStorage.removeItem(ctx.EVIDENCE_KEY);
 ctx.document.getElementById('obsNote').value = '今天第一次说妈妈抱';
@@ -279,7 +295,7 @@ const currentObserved = evaluate('cog', 20, [
 ]);
 assert('多个当前阶段能力 observed 可判为 on_track', currentObserved.key === 'on_track', JSON.stringify(currentObserved));
 
-const richEvidence = evaluate('motor', 20, [
+const richEvidence = evaluate('motor', 24, [
   makeEvidence('r1', 'motor', 'motor_stairs', 'observed', '2026-08-25'),
   makeEvidence('r2', 'motor', 'motor_run', 'observed', '2026-09-15'),
   makeEvidence('r3', 'motor', 'motor_jump', 'emerging', '2026-10-01', 'monthly_assessment')
@@ -296,15 +312,37 @@ const repeatedPastDue = evaluate('lang', 24, [
 assert('关键能力重复 not_yet 且超过缓冲窗口进入 watch', repeatedPastDue.key === 'watch', JSON.stringify(repeatedPastDue));
 
 const explicitConcern = evaluate('lang', 20, [makeEvidence('ec1', 'lang', 'lang_two_words', 'concern', '2026-10-01')]);
-assert('concern 显式输入优先', explicitConcern.key === 'concern');
+assert('旧版 concern 转为单独担忧且不直接决定发展状态', explicitConcern.key !== 'concern' && explicitConcern.caregiverConcern && explicitConcern.evidenceLevel === 'low');
 
 const onlyUnobserved = evaluate('lang', 20, [makeEvidence('uo1', 'lang', 'lang_two_words', 'unobserved', '2026-10-01')]);
 assert('unobserved 不等于 not_yet', onlyUnobserved.key === 'unknown' && onlyUnobserved.evidenceLevel === 'low');
 
 assert('证据充分度与发展状态独立',
-  explicitConcern.key === 'concern' && explicitConcern.evidenceLevel === 'low'
+  explicitConcern.key === 'unknown' && explicitConcern.evidenceLevel === 'low'
   && currentObserved.key === 'on_track' && currentObserved.evidenceLevel === 'medium');
 assert('unknown 在雷达图中不被绘制成最低能力', ctx.radarValueForState(noEvidence) === null);
+
+const age21MotorRows=[
+  makeEvidence('stairs21','motor','motor_stairs','observed','2026-10-01'),
+  makeEvidence('run21','motor','motor_run','not_yet','2026-10-03','monthly_assessment')
+];
+const age21Motor=evaluate('motor',21,age21MotorRows);
+assert('21月龄扶栏上楼梯已观察到、会跑尚未出现不触发 concern', age21Motor.key!=='concern' && age21Motor.capabilities.find((x)=>x.capability.capability_id==='motor_stairs').status==='observed');
+const age21Jump=evaluate('motor',21,age21MotorRows.concat(makeEvidence('jump21','motor','motor_jump','not_yet','2026-10-03','monthly_assessment')));
+assert('21月龄双脚跳尚未出现不参与负向评分或充分度', age21Jump.key===age21Motor.key && age21Jump.evidenceLevel===age21Motor.evidenceLevel && age21Jump.capabilities.find((x)=>x.capability.capability_id==='motor_jump').phase==='future');
+const caregiverRows=age21MotorRows.map((x)=>({...x,caregiver_concern:x.capability_ids.includes('motor_run')}));
+const caregiverState=evaluate('motor',21,caregiverRows);
+assert('21月龄家长担忧单独保存且不强制 developmental concern', caregiverState.caregiverConcern===true && caregiverState.key!=='concern' && ctx.normalizeEvidence(caregiverRows).find((x)=>x.capability_ids.includes('motor_run')).caregiver_concern===true);
+const age24Motor=evaluate('motor',24,[makeEvidence('run24','motor','motor_run','not_yet','2026-10-03','monthly_assessment')]);
+assert('24月龄当前窗口尚未出现遵守缓冲期', age24Motor.key!=='concern' && age24Motor.capabilities.find((x)=>x.capability.capability_id==='motor_run').phase==='current');
+const regressionState=evaluate('motor',21,[{...makeEvidence('regression21','motor','motor_stairs','not_yet','2026-10-03'),raw_record:'以前会扶栏上楼梯，现在不会了'}]);
+assert('旧自由文本不自动触发能力倒退高优先级', regressionState.key!=='concern');
+const overdueMulti=evaluate('lang',30,[
+  makeEvidence('oldwords1','lang','lang_words','not_yet','2026-09-01'),makeEvidence('oldwords2','lang','lang_words','not_yet','2026-10-01','monthly_assessment'),
+  makeEvidence('oldpair1','lang','lang_two_words','not_yet','2026-09-02'),makeEvidence('oldpair2','lang','lang_two_words','not_yet','2026-10-02','monthly_assessment')
+]);
+assert('普通记录多项过窗口也不自创 concern 阈值', overdueMulti.key!=='concern' && overdueMulti.evidenceLevel!=='low');
+assert('下一观察点不把21月龄双脚跳列为短期目标', !ctx.observationSuggestions(age21Jump).join('').includes('双脚同时离地'));
 
 // Phase 2：「今天」个性化行动助手
 ctx.localStorage.removeItem(ctx.EVIDENCE_KEY);
@@ -317,7 +355,7 @@ assert('五维全部 unknown 仍正常推荐', defaultToday.length === 3, JSON.s
 assert('默认推荐覆盖零准备、小活动和生活场景三类', new Set(defaultToday.map((a) => a.slot)).size === 3, JSON.stringify(defaultToday.map((a) => a.slot)));
 assert('unknown 不被解释为能力弱', defaultToday.every((a) => !a._reasons.join('').includes('弱') && !a._reasons.join('').includes('落后')), JSON.stringify(defaultToday.map((a) => a._reasons)));
 const catalog = ctx.activityCatalog();
-assert('137个旧游戏与18个新大运动游戏均具备结构化字段', ctx.allGames.length === 137 && catalog.length === 155 && catalog.every((a) => a.activity_id && a.title && Number.isFinite(a.min_age_months) && Number.isFinite(a.max_age_months) && Array.isArray(a.domains) && a.duration && Array.isArray(a.location) && a.materials && a.prep_level && a.cleanup_level && a.caregiver_energy && a.caregiver_effort && Array.isArray(a.interest_tags) && a.safety_level && a.safety_notes && a.description && Array.isArray(a.steps) && Array.isArray(a.observation_prompts)));
+assert('旧活动与已审核内容保留且主游戏具备结构化字段', ctx.allGames.length === 137 && ctx.rawActivityCatalog().length === 191 && catalog.length === 161 && catalog.every((a) => a.activity_id && a.title && Number.isFinite(a.min_age_months) && Number.isFinite(a.max_age_months) && Array.isArray(a.domains) && a.duration && Array.isArray(a.location) && a.materials && a.prep_level && a.cleanup_level && a.caregiver_energy && a.caregiver_effort && Array.isArray(a.interest_tags) && a.safety_level && a.safety_notes && a.description && Array.isArray(a.steps) && Array.isArray(a.observation_prompts)));
 
 const tiredPrefs = { duration: '10_15', context: 'home', energy: 'low', interests: [] };
 const tiredToday = ctx.recommendActivities(tiredPrefs, 20, '2026-10-09', unknownStates);
@@ -361,10 +399,11 @@ assert('首页今日游戏提供换一换入口', html.includes('onclick="refres
 assert('换一换不再显示多余的成功提示', !html.includes('已按当前条件换了一批') && !html.includes('id="todayRefreshHint"'));
 assert('通用推荐理由不再展示给家长', html.includes('.today-why{display:none}') && html.includes('<summary>查看玩法与安全提示</summary>') && !html.includes('查看玩法、推荐理由与安全提示'));
 assert('移动端正文与操作文字保持可读字号', html.includes('/* 阅读字号校准：手机上正文不低于 15–16px') && html.includes('.today-actions button,.today-chip,.feedback-row button{\n  font-size:15px;') && html.includes('.today-desc{line-height:1.7}'));
-assert('移动端使用共享的固定五项导航', html.includes('<nav class="nav" aria-label="主要导航">') && designCss.includes('grid-template-columns:repeat(5,minmax(0,1fr))') && designCss.includes('height:calc(var(--ds-nav-height) + env(safe-area-inset-bottom,0px))'));
-assert('桌面端使用共享的固定左侧导航', designCss.includes('@media(min-width:900px)') && html.includes('body{padding:0 0 0 112px}') && designCss.includes('width:112px;height:100dvh'));
+assert('移动端使用共享的固定四项导航', html.includes('<nav class="nav" aria-label="主要导航">') && designCss.includes('grid-template-columns:repeat(4,minmax(0,1fr))') && designCss.includes('height:calc(var(--ds-nav-height) + env(safe-area-inset-bottom,0px))'));
+assert('一级导航统一为今天成长游戏脑科学且使用 SVG 图标', ['今天','成长','游戏','脑科学'].every(label=>html.includes('<span class="nav-label">'+label+'</span>')) && !html.includes('<span class="nav-label">生活</span>') && !html.includes('<span class="nav-label">我的</span>') && !html.includes('<span class="nav-icon"'));
+assert('桌面端使用共享的固定左侧导航', designCss.includes('@media(min-width:900px)') && designCss.includes('body{padding-left:176px}') && designCss.includes('width:176px;height:100dvh'));
 assert('今日条件入口位于生活机会之后', html.indexOf('id="todayLife"') < html.indexOf('id="todayConditionDock"') && html.indexOf('id="todayConditionDock"') < html.indexOf('</div>\n\n<!-- ===== 成长计划'));
-assert('导航切换同步无障碍当前页状态', html.includes("b.removeAttribute('aria-current')") && html.includes("btn.setAttribute('aria-current','page')"));
+assert('导航切换同步无障碍当前页状态', html.includes("b.removeAttribute('aria-current')") && html.includes("activeNav.setAttribute('aria-current','page')"));
 ctx.localStorage.removeItem(ctx.TODAY_PLAN_KEY);
 const shufflePrefs = {duration:'10_15',context:'home',energy:'low',interests:[]};
 ctx.saveTodayPrefs(shufflePrefs);
@@ -418,7 +457,7 @@ const interestResults = selectableInterests.map((tag) => ({
   tag,
   rows: ctx.recommendActivities({ duration:'10_15', context:'home', energy:'medium', interests:[tag] }, 20, '2026-10-10', unknownStates)
 }));
-assert('手动选择的兴趣会明确进入推荐结果', interestResults.every((x) => x.rows.some((a) => a.interest_tags.includes(x.tag))), JSON.stringify(interestResults.map((x) => ({tag:x.tag,titles:x.rows.map((a) => a.title),tags:x.rows.map((a) => a.interest_tags)}))));
+assert('有安全且精力匹配的兴趣候选会进入推荐；不强推高精力涉水活动', interestResults.every((x) => !ctx.energyCandidatePool(ctx.eligibleActivities(20,{duration:'10_15',context:'home',energy:'medium',interests:[x.tag]}),{energy:'medium'}).some((a)=>a.interest_tags.includes(x.tag))||x.rows.some((a) => a.interest_tags.includes(x.tag))), JSON.stringify(interestResults.map((x) => ({tag:x.tag,titles:x.rows.map((a) => a.title),tags:x.rows.map((a) => a.interest_tags)}))));
 
 ctx.localStorage.removeItem(ctx.TODAY_PLAN_KEY);
 ctx.saveTodayPrefs({ duration:'10_15', context:'home', energy:'medium', interests:[] });
@@ -511,20 +550,20 @@ assert('JSON 导入保留成长证据、评估与今日助手数据', ctx.loadEv
 ctx.Blob = class { constructor(parts) { ctx.__exportedJson = parts.join(''); } };
 ctx.exportData();
 const exported = JSON.parse(ctx.__exportedJson);
-assert('JSON 导出包含成长证据、评估与今日助手数据', exported.schemaVersion === 3 && Array.isArray(exported.evidence) && Array.isArray(exported.assessments) && Array.isArray(exported.activityFeedback) && exported.todayPreferences);
+assert('JSON 导出包含成长证据、评估与今日助手数据', exported.schemaVersion === 5 && Array.isArray(exported.evidence) && Array.isArray(exported.assessments) && Array.isArray(exported.activityFeedback) && Array.isArray(exported.activityExposure) && Array.isArray(exported.weeklyLearningPlans) && exported.activityPreferenceProfile && exported.todayPreferences);
+assert('JSON 导出包含独立的官方核对与结构化倒退记录', Array.isArray(exported.milestoneCheckpoints) && Array.isArray(exported.regressionReports));
 
 const backedUp = {};
 ctx.idbSet = (key, value) => { backedUp[key] = value; };
 ctx.autoBackup();
 assert('IndexedDB 备份覆盖成长证据与月度评估', Array.isArray(backedUp.growth_evidence_v2) && Array.isArray(backedUp.growth_assessments_v2));
 assert('IndexedDB 备份覆盖活动反馈与今日设置', Array.isArray(backedUp.activity_feedback_v1) && backedUp.today_prefs_v1 && Array.isArray(backedUp.today_observation_history_v1));
+assert('IndexedDB 备份覆盖官方核对与结构化倒退记录', Array.isArray(backedUp.milestone_checkpoints_v1) && Array.isArray(backedUp.regression_reports_v1));
 
 ctx.saveAssessments([]);
 ctx.saveEvidence([makeEvidence('daily-only', 'motor', 'motor_run', 'observed', '2026-09-12')]);
-ctx.renderGrowthTrend();
-assert('仅有日常观察的月份也进入成长记录', ctx.document.getElementById('trendArea').innerHTML.includes('2026-09'));
-assert('月龄轨迹以月份节点呈现且不使用小字表格', ctx.document.getElementById('trendArea').innerHTML.includes('growth-timeline') && ctx.document.getElementById('trendArea').innerHTML.includes('个月') && !ctx.document.getElementById('trendArea').innerHTML.includes('arch-table'));
-assert('月度档案说明使用当前成长观察数据', html.includes('汇总当月的日常成长观察和已完成的小评估') && !html.includes('每月自动汇总「每周观察」记录'));
+assert('仅有日常观察的月份仍保留可读证据', ctx.loadEvidence().some((e)=>e.date.startsWith('2026-09')));
+assert('正式页面只保留 V2 成长容器', html.includes('id="growthV2Root"') && !html.includes('id="growthLegacyView"') && !html.includes('id="dxHistory"'));
 
 ctx.saveAssessments([]);
 ctx.saveEvidence([]);
@@ -540,7 +579,8 @@ assessmentIds.slice(1).forEach((id) => ctx.setAssessmentAnswer(id, 'unobserved')
 ctx.finishAssessment();
 assert('完成小评估写回完成状态与成长证据', !!ctx.currentAssessment()?.completedAt && ctx.loadEvidence().filter((e) => e.source === 'monthly_assessment').length === assessmentIds.length);
 assert('完成小评估同时保存结构化月度总结快照', ctx.currentAssessment()?.monthly_growth_summary?.snapshot === true && Object.keys(ctx.currentAssessment().monthly_growth_summary.dimensions).length === 5 && ctx.currentAssessment().monthly_growth_summary.monthly_focus.length <= 2);
-assert('完成后在画像前显示可理解总结与重点', html.indexOf('id="monthlySummarySection"')<html.indexOf('class="growth-profile-feature"') && ctx.document.getElementById('monthlySummarySection').hidden===false && ctx.document.getElementById('monthlySummarySection').innerHTML.includes('这个月最值得做的') && ctx.document.getElementById('monthlySummarySection').innerHTML.includes('为什么这样判断？'));
+assert('V2 保留本月总结和重点，五脑地图成为成长观察主体', growthPageScript.includes('gvSummary') && growthPageScript.includes('gvFocus') && growthPageScript.includes('gvFiveBrainMap') && !growthPageScript.includes('id="gvDimensions"'));
+assert('30天建议保留三类内容且在总结页单独呈现', growthPageScript.includes('接下来30天') && growthPageScript.includes('日常互动') && growthPageScript.includes('生活参与'));
 assert('IndexedDB 备份包含月度总结快照', backedUp.growth_assessments_v2.some((a)=>a.monthly_growth_summary?.snapshot===true));
 ctx.exportData();
 assert('JSON 导出包含固定月度总结', JSON.parse(ctx.__exportedJson).assessments.some((a)=>a.monthly_growth_summary?.snapshot===true));
@@ -556,7 +596,7 @@ const unrelatedEvidence=makeEvidence('daily_untouched','lang','lang_request','ob
 const initialEditEvidence=ctx.assessmentEvidenceRows(editRecord).concat([unrelatedEvidence]);
 editRecord.monthly_growth_summary=ctx.generateMonthlyGrowthSummary({assessment:editRecord,evidence:initialEditEvidence,referenceDate:ctx.fmt(new Date())});
 ctx.saveAssessments([editRecord]);ctx.saveEvidence(initialEditEvidence);ctx.renderAssessment();
-assert('本月总结和评估详情都有修改入口', ctx.document.getElementById('monthlySummarySection').innerHTML.includes('修改本次评估') && ctx.document.getElementById('dxList').innerHTML.includes('修改本次评估') && ctx.document.getElementById('monthlySummarySection').innerHTML.includes('更新本月总结'));
+assert('评估修改与主动更新总结入口分离', ctx.document.getElementById('dxList').innerHTML.includes('修改本次评估') && growthPageScript.includes('更新本月总结'));
 const initialSummary=JSON.stringify(ctx.currentAssessment().monthly_growth_summary);
 const originalSetItem=ctx.localStorage.setItem;
 let assessmentWriteCount=0;
@@ -589,9 +629,13 @@ assert('连续修改两次仍只有一份本月评估与一份题目证据', ctx
 const answersBeforeSummaryRefresh=JSON.stringify(ctx.currentAssessment().answers),evidenceBeforeSummaryRefresh=ctx.localStorage.getItem(ctx.EVIDENCE_KEY);
 ctx.updateCurrentMonthSummary();
 assert('更新本月总结不修改评估答案或证据', JSON.stringify(ctx.currentAssessment().answers)===answersBeforeSummaryRefresh && ctx.currentAssessment().revision_count===2 && ctx.localStorage.getItem(ctx.EVIDENCE_KEY)===evidenceBeforeSummaryRefresh);
+ctx.beginAssessmentEdit();ctx.setAssessmentEditAnswer('motor_run','not_yet');ctx.toggleAssessmentEditConcern('motor_run');
+assert('评估 UI 把事实答案与额外担忧分开', ctx.assessmentEditDraft.answers.motor_run.status==='not_yet' && ctx.assessmentEditDraft.answers.motor_run.caregiver_concern===true && ctx.document.getElementById('dxList').innerHTML.includes('我对此有额外担忧'));
+ctx.saveAssessmentEdit();
+assert('保存评估担忧沿用同一记录和证据 ID', ctx.loadAssessments().length===1 && ctx.currentAssessment().answers.motor_run.caregiver_concern===true && ctx.loadEvidence().filter((e)=>e.observation_id==='assess_edit_same_assessment_motor_run').length===1 && ctx.loadEvidence().find((e)=>e.observation_id==='assess_edit_same_assessment_motor_run').caregiver_concern===true && ctx.currentAssessment().monthly_growth_summary.dimensions.motor.state!=='concern');
 const readOnlyAssessment=ctx.localStorage.getItem(ctx.ASSESSMENT_KEY),readOnlyEvidence=ctx.localStorage.getItem(ctx.EVIDENCE_KEY);
-assessmentWriteCount=0;ctx.localStorage.setItem=(key,value)=>{assessmentWriteCount++;originalSetItem(key,value);};
-ctx.showPage('brain',new El());ctx.renderMonthlyGrowthSummary();ctx.showBrainSub('assess',ctx.document.getElementById('subt-assess'));ctx.renderAssessment();ctx.showHistoricalGrowthSummary(editMonth);ctx.closeHistoricalGrowthSummary();ctx.renderMonthlyGrowthHistory();ctx.renderGrowthProfile();ctx.showGrowthDetail('motor');
+assessmentWriteCount=0;ctx.localStorage.setItem=(key,value)=>{if(key===ctx.ASSESSMENT_KEY||key===ctx.EVIDENCE_KEY)assessmentWriteCount++;originalSetItem(key,value);};
+ctx.showPage('brain',new El());ctx.renderAssessment();ctx.renderDevelopmentGuide();
 vm.runInContext(script,ctx,{filename:'assessment-readonly-reload.js'});
 assert('查看总结、评估、依据、历史、返回和刷新完全只读', assessmentWriteCount===0 && ctx.localStorage.getItem(ctx.ASSESSMENT_KEY)===readOnlyAssessment && ctx.localStorage.getItem(ctx.EVIDENCE_KEY)===readOnlyEvidence);
 ctx.localStorage.setItem=originalSetItem;
@@ -620,22 +664,27 @@ ctx.document.getElementById('obsEvidenceStatus').value = 'emerging';
 ctx.addObservation();
 assert('手动保存同日同内容观察只更新状态', ctx.loadEvidence().length === 1 && ctx.loadEvidence()[0].evidence_type === 'emerging');
 
-assert('成长画像位于页签与观察表单之前且只有一个容器', html.indexOf('id="dxHistory"') < html.indexOf('class="brain-subtabs"') && html.indexOf('class="brain-subtabs"') < html.indexOf('id="bsub-obs"') && (html.match(/id="dxHistory"/g) || []).length === 1);
-ctx.renderGrowthProfile();
-assert('成长画像保留雷达图与五个可点选维度', ctx.document.getElementById('dxHistory').innerHTML.includes('id="growthRadar"') && (ctx.document.getElementById('dxHistory').innerHTML.match(/onclick="showGrowthDetail/g) || []).length === 5);
-ctx.showGrowthDetail('motor');
-assert('点选画像维度可打开证据与接下来留意', ctx.document.getElementById('growthProfileDetail').innerHTML.includes('为什么这样判断') && ctx.document.getElementById('growthProfileDetail').innerHTML.includes('接下来该留意什么'));
-const growthNavButton = new El();
-const assessmentCountBeforeEntry = ctx.loadAssessments().length;
-ctx.showPage('brain', growthNavButton);
-assert('进入成长页可渲染并不新增空评估', ctx.document.getElementById('page-brain').classList.contains('active') && ctx.loadAssessments().length === assessmentCountBeforeEntry && growthNavButton.classList.contains('active'));
-['obs', 'arch', 'assess'].forEach((sub) => {
-  const tabButton = new El();
-  ctx.showBrainSub(sub, tabButton);
-  assert(`成长页「${sub}」入口可打开`, ctx.document.getElementById(`bsub-${sub}`).classList.contains('active') && tabButton.classList.contains('active'));
-});
-assert('成长页状态与排版使用共享 tokens', growthCss.includes('var(--ds-page)') && growthCss.includes('var(--ds-font-body)') && growthCss.includes('growth-state-unknown'));
-
+assert('V2 不再绘制旧五维轨迹与重复领域模块', !growthPageScript.includes('五维发展轨迹') && !growthPageScript.includes('gv-track-row') && !growthPageScript.includes('五维详细情况'));
+const timelineMotor=evaluate('motor',21,[makeEvidence('timeline_stairs','motor','motor_stairs','observed','2026-10-01'),makeEvidence('timeline_run','motor','motor_run','emerging','2026-10-02'),makeEvidence('timeline_jump','motor','motor_jump','not_yet','2026-10-03')]);
+const timelineItems=ctx.growthTimelineItems(timelineMotor,21,ctx.growthTimelineStage(21));
+assert('21月龄轨迹从真实年龄窗口选出扶栏上楼梯、会跑与未来双脚跳', timelineItems.past.capability.capability_id==='motor_stairs' && timelineItems.current.capability.capability_id==='motor_run' && timelineItems.future.capability.capability_id==='motor_jump');
+assert('只有会跑的真实 emerging evidence 才显示正在出现', ctx.growthTimelinePointHtml(timelineItems.current,'current',timelineMotor).includes('正在出现'));
+assert('未来 not_yet 只作为后续阶段且不显示警告', ctx.growthTimelinePointHtml(timelineItems.future,'future',timelineMotor).includes('后续阶段') && !ctx.growthTimelinePointHtml(timelineItems.future,'future',timelineMotor).includes('尚未出现'));
+const timelineNotYet=evaluate('motor',21,[makeEvidence('timeline_stairs_fixed','motor','motor_stairs','observed','2026-10-01'),makeEvidence('timeline_run_fixed','motor','motor_run','not_yet','2026-10-02'),makeEvidence('timeline_jump_fixed','motor','motor_jump','not_yet','2026-10-03')]);
+timelineNotYet.key='emerging';
+const fixedItems=ctx.growthTimelineItems(timelineNotYet,21,ctx.growthTimelineStage(21));
+const fixedNowHtml=ctx.growthTimelinePointHtml(fixedItems.current,'current',timelineNotYet);
+assert('21月龄真实案例：扶栏上楼梯 observed、会跑 not_yet、双脚跳 future', fixedItems.past.capability.capability_id==='motor_stairs' && fixedItems.current.capability.capability_id==='motor_run' && fixedItems.future.capability.capability_id==='motor_jump' && ctx.growthTimelinePointHtml(fixedItems.past,'past',timelineNotYet).includes('已观察到') && fixedNowHtml.includes('尚未出现') && !fixedNowHtml.includes('正在出现') && ctx.growthTimelinePointHtml(fixedItems.future,'future',timelineNotYet).includes('后续阶段'));
+assert('领域 emerging 不覆盖会跑的 not_yet 证据', ctx.growthTimelineEvidenceStatus(fixedItems.current)==='not_yet' && !fixedNowHtml.includes('正在出现'));
+const contradictoryDisplay={...fixedItems.current,status:'emerging'};
+assert('能力状态取证据行而不取领域或缓存状态', ctx.growthTimelinePointHtml(contradictoryDisplay,'current',timelineNotYet).includes('尚未出现'));
+const noRun=evaluate('motor',21,[makeEvidence('timeline_only_stairs','motor','motor_stairs','observed','2026-10-01')]);
+noRun.key='emerging';noRun.evidenceLevel='medium';
+const noRunCurrent=ctx.growthTimelineItems(noRun,21,ctx.growthTimelineStage(21)).current;
+assert('领域 emerging 但会跑无 evidence 时不显示正在出现', noRunCurrent.capability.capability_id==='motor_run' && ctx.growthTimelinePointHtml(noRunCurrent,'current',noRun).includes('尚未记录') && !ctx.growthTimelinePointHtml(noRunCurrent,'current',noRun).includes('正在出现'));
+assert('证据较少时当前列显示记录较少', ctx.growthTimelinePointHtml(null,'current',evaluate('soc',21,[])).includes('记录较少'));
+assert('V2 四个 Tab 是唯一一级成长导航', growthPageScript.includes("['summary','本月总结']") && growthPageScript.includes("['observation','成长观察']") && growthPageScript.includes("['archive','月度档案']") && growthPageScript.includes("['assessment','成长评估']") && !html.includes('brain-subtabs'));
+assert('成长页复用共享设计 token', growthCss.includes('var(--ds-page)') && growthCss.includes('var(--ds-sky-pale)'));
 const summaryAssessment = (id, age, rows) => ({
   assessment_id:id, monthKey:'2026-10', ageMonths:age, completedAt:Date.parse('2026-10-09T12:00:00'),
   selectedCapabilityIds:rows.filter((e)=>e.date.startsWith('2026-10')&&e.source==='monthly_assessment').map((e)=>e.capability_ids[0]),
@@ -645,6 +694,8 @@ const summaryFor = (id, age, rows, previousAssessment = null) => ctx.generateMon
   assessment:summaryAssessment(id,age,rows), evidence:rows, referenceDate:'2026-10-09', previousAssessment,
   prefs:{duration:'10_15',context:'home',energy:'medium',interests:[]}
 });
+const age21Summary=summaryFor('age21_case',21,age21MotorRows.concat(makeEvidence('jump21_summary','motor','motor_jump','not_yet','2026-10-03','monthly_assessment')));
+assert('21月龄真实案例总结给自然移动机会而不验证双脚跳', age21Summary.dimensions.motor.state!=='concern' && !age21Summary.dimensions.motor.next_observation.includes('双脚同时离地') && !age21Summary.dimensions.motor.recommendation.includes('双脚同时离地') && age21Summary.dimensions.motor.recommendation.includes('快走、追球、踢球') && age21Summary.monthly_focus.some((x)=>x.domain==='motor'&&x.type==='opportunity') && age21Summary.next_30_days.activities.filter((x)=>x.domains.includes('motor')).length>=2);
 const steadyCases = [
   ['motor','motor_stairs','motor_run'], ['fine','fine_lid','fine_spoon'],
   ['lang','lang_words','lang_two_words'], ['cog','cog_object_use','cog_pretend'],
@@ -654,26 +705,30 @@ const steadyCases = [
   makeEvidence(`steady_${i}_b`,domain,b,'observed','2026-10-04','monthly_assessment')
 ]);
 const steadySummary = summaryFor('steady',18,steadyCases);
-assert('五维均稳定时总结积极且不生成训练任务', ctx.DOMAIN_IDS.every((d)=>['on_track','rich'].includes(steadySummary.dimensions[d].state)) && steadySummary.monthly_focus.length===0 && steadySummary.overall_summary.includes('继续') && !/弱项|落后|训练/.test(steadySummary.overall_summary));
+assert('五维均稳定时总结积极且不生成训练任务', ctx.DOMAIN_IDS.every((d)=>steadySummary.dimensions[d].state!=='concern') && steadySummary.monthly_focus.length<=2 && steadySummary.overall_summary.includes('继续') && !/弱项|落后|训练/.test(steadySummary.overall_summary));
 
 const emergingSummary = summaryFor('emerging',20,[makeEvidence('em1','lang','lang_two_words','emerging','2026-10-03','monthly_assessment')]);
+const longDisplaySummary={...emergingSummary,overall_summary:'这个月继续看到主动探索。'.repeat(18)};
+const shortOverview=ctx.growthDisplayExcerpt(longDisplaySummary.overall_summary,2,125);
+assert('长总结的显示摘要不改写快照原文', shortOverview.length<=135 && longDisplaySummary.overall_summary==='这个月继续看到主动探索。'.repeat(18));
 assert('正在发展进入重点并给自然机会', emergingSummary.dimensions.lang.state==='emerging' && emergingSummary.monthly_focus.some((x)=>x.domain==='lang'&&x.type==='opportunity') && !emergingSummary.dimensions.lang.recommendation.includes('咨询'));
-assert('月度总结给出下个月可自然比较的观察线索', emergingSummary.next_month_check.length<=2 && emergingSummary.next_month_check.some((x)=>x.includes('能把至少两个词组合在一起')) && ctx.monthlySummaryHtml(emergingSummary,false).includes('下个月回来时'));
+assert('月度总结给出下个月可自然比较的观察线索', emergingSummary.next_month_check.length<=2 && emergingSummary.next_month_check.some((x)=>x.includes('能把至少两个词组合在一起')) );
 
 const unknownSummary = summaryFor('unknown',20,[]);
 assert('证据少时保持暂无法判断且只建议观察', ctx.DOMAIN_IDS.every((d)=>unknownSummary.dimensions[d].state==='unknown'&&unknownSummary.dimensions[d].evidence_level==='low'&&unknownSummary.dimensions[d].recommendation_type==='observe'&&unknownSummary.dimensions[d].observed_items.length===0) && unknownSummary.monthly_focus.length<=1 && !/弱项|落后|补弱/.test(unknownSummary.overall_summary));
 
 const watchRows=[makeEvidence('watch1','lang','lang_words','not_yet','2026-09-01'),makeEvidence('watch2','lang','lang_words','not_yet','2026-10-01','monthly_assessment')];
 const watchSummary=summaryFor('watch',24,watchRows);
-assert('建议继续观察指向具体行为且不医学化', watchSummary.dimensions.lang.state==='watch' && watchSummary.dimensions.lang.recommendation_type==='monitor' && watchSummary.dimensions.lang.recommendation.includes('能说出至少3个有意义的词') && !watchSummary.dimensions.lang.recommendation.includes('诊断'));
+assert('建议继续观察属于陪伴机会且不医学化', watchSummary.dimensions.lang.state==='watch' && watchSummary.dimensions.lang.recommendation_type==='opportunity' && !watchSummary.dimensions.lang.recommendation.includes('诊断'));
 
 const concernRows=[
-  makeEvidence('concern1','lang','lang_two_words','concern','2026-10-01'),
-  makeEvidence('concern2','lang','lang_words','observed','2026-10-02'),
-  makeEvidence('concern3','lang','lang_request','emerging','2026-10-03','monthly_assessment')
+  makeEvidence('concern1','lang','lang_words','not_yet','2026-09-01'),
+  makeEvidence('concern2','lang','lang_words','not_yet','2026-10-02','monthly_assessment'),
+  makeEvidence('concern3','lang','lang_two_words','not_yet','2026-09-03'),
+  makeEvidence('concern4','lang','lang_two_words','not_yet','2026-10-03','monthly_assessment')
 ];
-const concernSummary=summaryFor('concern',20,concernRows);
-assert('担忧解释来源并提供有条件的专业咨询提示', concernSummary.dimensions.lang.state==='concern' && concernSummary.dimensions.lang.recommendation_type==='professional_check' && concernSummary.dimensions.lang.key_evidence.some((e)=>e.status==='concern') && concernSummary.dimensions.lang.recommendation.includes('如') && !concernSummary.overall_summary.includes('发育迟缓'));
+const concernSummary=summaryFor('concern',30,concernRows);
+assert('普通评估两项过窗口记录不自动提示专业检查', concernSummary.dimensions.lang.state!=='concern' && concernSummary.dimensions.lang.recommendation_type!=='professional_check' && !concernSummary.overall_summary.includes('发育迟缓'));
 assert('无历史证据不硬生成最近变化', concernSummary.recent_changes.length===0 && concernSummary.new_capabilities.length===0);
 
 const changeRows=[makeEvidence('change_old','lang','lang_two_words','not_yet','2026-09-12'),makeEvidence('change_new','lang','lang_two_words','observed','2026-10-03','monthly_assessment')];
@@ -696,22 +751,18 @@ const countBeforeUpdate=ctx.loadEvidence().length;
 ctx.updateCurrentMonthSummary();
 assert('明确点击更新本月总结才重建快照且不新增证据', ctx.loadAssessments().length===1 && ctx.loadEvidence().length===countBeforeUpdate && ctx.currentAssessment().monthly_growth_summary.input_summary.current_month_evidence_count===2);
 const historyBefore=ctx.localStorage.getItem(ctx.ASSESSMENT_KEY),evidenceBefore=ctx.localStorage.getItem(ctx.EVIDENCE_KEY);
-ctx.renderMonthlyGrowthHistory();ctx.showHistoricalGrowthSummary('2026-10');ctx.renderMonthlyGrowthSummary();ctx.renderAssessment();
-assert('历史总结与展开只读且显示固定快照', ctx.document.getElementById('monthlySummaryHistoryDetail').innerHTML.includes('历史快照') && ctx.localStorage.getItem(ctx.ASSESSMENT_KEY)===historyBefore && ctx.localStorage.getItem(ctx.EVIDENCE_KEY)===evidenceBefore);
-ctx.closeHistoricalGrowthSummary();
-assert('从历史总结返回只清除视图', ctx.document.getElementById('monthlySummaryHistoryDetail').innerHTML==='' && ctx.localStorage.getItem(ctx.ASSESSMENT_KEY)===historyBefore);
+ctx.renderAssessment();
+assert('查看评估只读且保留固定快照', ctx.localStorage.getItem(ctx.ASSESSMENT_KEY)===historyBefore && ctx.localStorage.getItem(ctx.EVIDENCE_KEY)===evidenceBefore);
 ctx.saveEvidence(ctx.loadEvidence().concat([makeEvidence('after_snapshot','lang','lang_request','observed','2026-10-09')]));
 const savedSnapshotText=JSON.stringify(ctx.currentAssessment().monthly_growth_summary);
-ctx.showHistoricalGrowthSummary('2026-10');
-assert('后来新增观察不会改写历史快照', JSON.stringify(ctx.currentAssessment().monthly_growth_summary)===savedSnapshotText && ctx.document.getElementById('monthlySummaryHistoryDetail').innerHTML.includes('历史快照'));
+assert('后来新增观察不会改写历史快照', JSON.stringify(ctx.currentAssessment().monthly_growth_summary)===savedSnapshotText);
 const snapshotImport=ctx.localStorage.getItem(ctx.ASSESSMENT_KEY);
 ctx.__fileContent=JSON.stringify({assessments:JSON.parse(snapshotImport)});ctx.__confirmReturn=false;ctx.importData({files:[{}]});ctx.__confirmReturn=true;
 assert('导入保留月度总结快照', JSON.stringify(ctx.currentAssessment().monthly_growth_summary)===savedSnapshotText);
 const oldMonth={assessment_id:'old_month',monthKey:'2026-09',ageMonths:19,completedAt:Date.parse('2026-09-30T12:00:00'),selectedCapabilityIds:[],answers:{}};
 ctx.saveAssessments(ctx.loadAssessments().concat([oldMonth]));
 const noSnapshotBefore=ctx.localStorage.getItem(ctx.ASSESSMENT_KEY);
-ctx.showHistoricalGrowthSummary('2026-09');
-assert('旧月份无快照时说明原因且不自动补写', ctx.document.getElementById('monthlySummaryHistoryDetail').innerHTML.includes('暂无固定快照') && ctx.localStorage.getItem(ctx.ASSESSMENT_KEY)===noSnapshotBefore);
+assert('旧月份无快照时只读不自动补写', ctx.loadAssessments().find((a)=>a.monthKey==='2026-09').monthly_growth_summary===undefined && ctx.localStorage.getItem(ctx.ASSESSMENT_KEY)===noSnapshotBefore);
 ctx.saveAssessments([historyRecord]);
 const reloadAssessmentBefore=ctx.localStorage.getItem(ctx.ASSESSMENT_KEY),reloadEvidenceBefore=ctx.localStorage.getItem(ctx.EVIDENCE_KEY);
 vm.runInContext(script,ctx,{filename:'inline-reload.js'});
@@ -723,29 +774,29 @@ assert('六个年龄段连续覆盖18～36月龄', guideBands.length===6 && Arra
 assert('每阶段具备五领域、自然机会、玩具、生活参与、观察点与来源', guideBands.every((b)=>ctx.DOMAIN_IDS.every((d)=>b.domains[d].length>=1&&b.domains[d].length<=2&&b.domains[d].every((x)=>['official_anchor','adapted_anchor'].includes(ctx.capabilityById(x.capability_id)?.source_type))) && b.opportunities.length>=4&&b.opportunities.length<=6 && b.opportunities.every((x)=>x.capability_ids.every((id)=>!!ctx.capabilityById(id))) && b.life_participation.length>=3&&b.life_participation.length<=5 && b.observe_points.length>=1 && b.source_refs.every((id)=>!!ctx.capabilityById(id))));
 assert('玩具内容具备未来 Toy Box 所需的结构字段', ctx.DEVELOPMENT_GUIDE_TOYS.every((t)=>t.toy_id&&t.name&&t.category&&Array.isArray(t.age_range)&&Array.isArray(t.domains)&&Object.hasOwn(t,'owned_status')&&Array.isArray(t.replacement_materials)&&t.safety_notes));
 ctx.renderDevelopmentGuide(20);
-assert('20月龄显示18～20阶段指南', ctx.guideForAge(20).age_range[0]===18 && ctx.document.getElementById('developmentGuideSection').innerHTML.includes('18～20月龄阶段'));
+assert('20月龄显示18～20阶段指南', ctx.guideForAge(20).age_range[0]===18 && ctx.document.getElementById('gvGuideBody').innerHTML.includes('本月发育要点'));
 ctx.renderDevelopmentGuide(21);
-const guide21Html=ctx.document.getElementById('developmentGuideSection').innerHTML;
-assert('21月龄进入21～23过渡阶段并显示五块内容', ctx.guideForAge(21).age_range[0]===21 && guide21Html.includes('21～23月龄阶段') && ['本月发育要点','这个月多提供这些机会','这个月适合什么玩具 / 材料','这个月可以让她参与','本月值得留意'].every((x)=>guide21Html.includes(x)));
+const guide21Html=ctx.document.getElementById('gvGuideBody').innerHTML;
+assert('21月龄进入21～23过渡阶段并显示五块内容', ctx.guideForAge(21).age_range[0]===21 && ['本月发育要点','这个月多提供这些机会','这个月的适龄玩法建议','这个月可以让她参与','本月值得留意'].every((x)=>guide21Html.includes(x)));
 const beforeBirthday=ctx.ageInfo(new Date(2027,0,15)).totM,afterBirthday=ctx.ageInfo(new Date(2027,0,16)).totM;
 assert('24月龄生日后自动进入下一阶段', beforeBirthday===23 && afterBirthday===24 && ctx.guideForAge(beforeBirthday).age_range[0]===21 && ctx.guideForAge(afterBirthday).age_range[0]===24);
 ctx.saveAssessments([]);ctx.saveEvidence([]);
 const guideSetItem=ctx.localStorage.setItem;let guideWrites=0;ctx.localStorage.setItem=(key,value)=>{guideWrites++;guideSetItem(key,value);};
-ctx.renderMonthlyGrowthSummary();ctx.renderDevelopmentGuide(21);
-assert('无评估无观察也能只读显示完整指南', guideWrites===0 && ctx.document.getElementById('monthlySummarySection').hidden===true && ctx.document.getElementById('developmentGuideSection').innerHTML.includes('本月发育指南') && ctx.document.getElementById('developmentGuideSection').innerHTML.includes('不需要每个月买新玩具'));
+ctx.renderDevelopmentGuide(21);
+assert('无评估无观察时显示轻量总结空状态与完整指南且只读', guideWrites===0 && ctx.document.getElementById('gvGuideBody').innerHTML.includes('本月发育要点') && ctx.document.getElementById('gvGuideBody').innerHTML.includes('不需要每个月买新玩具'));
 ctx.localStorage.setItem=guideSetItem;
 const guideAssessment={assessment_id:'guide_assessment',monthKey:ctx.fmt(new Date()).slice(0,7),ageMonths:21,selectedCapabilityIds:['motor_run','lang_two_words'],answers:{motor_run:{status:'not_yet',confirmed:true},lang_two_words:{status:'unobserved',confirmed:true}},completedAt:Date.now()};
 ctx.saveAssessments([guideAssessment]);ctx.saveEvidence(ctx.assessmentEvidenceRows(guideAssessment));ctx.renderDevelopmentGuide(21);
-const personalizedGuide=ctx.document.getElementById('developmentGuideSection').innerHTML;
+const personalizedGuide=ctx.document.getElementById('gvGuideBody').innerHTML;
 assert('已有评估只附轻量个人状态且不改写阶段文字', personalizedGuide.includes('可以多给机会') && personalizedGuide.includes('还没记录到') && personalizedGuide.includes('主动移动可以变得更丰富') && ctx.currentAssessment().answers.motor_run.status==='not_yet');
 assert('unknown 不写成不会或不达标', !personalizedGuide.includes('不会跑') && !personalizedGuide.includes('不达标') && ctx.guideCapabilityStatus('lang_two_words',21,ctx.loadEvidence())==='还没记录到');
 ctx.saveEvidence([makeEvidence('guide_run_1','motor','motor_run','observed','2026-09-15'),makeEvidence('guide_run_2','motor','motor_run','observed','2026-10-17')]);ctx.renderDevelopmentGuide(21);
-assert('稳定掌握显示已经会了且保留阶段内容', ctx.document.getElementById('developmentGuideSection').innerHTML.includes('已经会了 ✓') && ctx.document.getElementById('developmentGuideSection').innerHTML.includes('主动移动可以变得更丰富'));
+assert('稳定掌握显示已经会了且保留阶段内容', ctx.document.getElementById('gvGuideBody').innerHTML.includes('已经会了 ✓') && ctx.document.getElementById('gvGuideBody').innerHTML.includes('主动移动可以变得更丰富'));
 const unsafeToy={toy_id:'unsafe_beads',name:'小珠子',category:'配对',age_range:[18,36],domains:['fine'],owned_status:null,replacement_materials:[],min_piece_cm:5,safety_notes:'不要使用'};
 const tinyToy={toy_id:'tiny_piece',name:'迷你拼片',category:'配对',age_range:[18,36],domains:['fine'],owned_status:null,replacement_materials:[],min_piece_cm:2,safety_notes:'不要使用'};
 ctx.DEVELOPMENT_GUIDE_TOYS.push(unsafeToy,tinyToy);ctx.guideForAge(21).toys.continue.push('unsafe_beads','tiny_piece');
 ctx.renderDevelopmentGuide(21);
-assert('3岁以下危险小物件与小尺寸材料被过滤', !ctx.guideToysForBand(ctx.guideForAge(21),21).continue.some((t)=>['unsafe_beads','tiny_piece'].includes(t.toy_id)) && !ctx.document.getElementById('developmentGuideSection').innerHTML.includes('小珠子') && !ctx.document.getElementById('developmentGuideSection').innerHTML.includes('迷你拼片'));
+assert('3岁以下危险小物件与小尺寸材料被过滤', !ctx.guideToysForBand(ctx.guideForAge(21),21).continue.some((t)=>['unsafe_beads','tiny_piece'].includes(t.toy_id)) && !ctx.document.getElementById('gvGuideBody').innerHTML.includes('小珠子') && !ctx.document.getElementById('gvGuideBody').innerHTML.includes('迷你拼片'));
 assert('相关游戏来自现有库并复用年龄和安全过滤', ctx.guideActivitiesForBand(ctx.guideForAge(21),21).length>0 && ctx.guideActivitiesForBand(ctx.guideForAge(21),21).length<=3 && ctx.guideActivitiesForBand(ctx.guideForAge(21),21).every((a)=>!!ctx.activityById(a.activity_id)&&a.safety_level!=='blocked'&&21>=a.min_age_months&&21<=a.max_age_months));
 assert('每个阶段均能找到安全的库内游戏', guideBands.every((b)=>ctx.guideActivitiesForBand(b,b.age_range[1]).length>0 && ctx.guideActivitiesForBand(b,b.age_range[1]).length<=3), JSON.stringify(guideBands.map((b)=>[b.age_range,ctx.guideActivitiesForBand(b,b.age_range[1]).map((a)=>a.title)])));
 assert('指南渲染不新增评估或成长证据', ctx.loadAssessments().length===1 && ctx.loadEvidence().length===2);
@@ -777,9 +828,9 @@ ctx.localStorage.setItem=(key,value)=>{if(growthKeys.includes(key))growthWrites+
 ctx.renderToday();ctx.renderToday();ctx.renderHomeDevelopmentGuideSummary(21);
 vm.runInContext(script,ctx,{filename:'inline-home-guide-reload.js'});
 assert('反复渲染和刷新首页不写入观察、评估、证据或总结', growthWrites===0 && growthKeys.every((key,i)=>ctx.localStorage.getItem(key)===growthBefore[i]));
-let guideScrolled=false;ctx.document.getElementById('developmentGuideSection').scrollIntoView=()=>{guideScrolled=true;};
+let guideScrolled=false;ctx.document.getElementById('gvGuide').scrollIntoView=()=>{guideScrolled=true;};
 ctx.openHomeDevelopmentGuide();
-assert('首页入口跳转成长页并定位完整指南且不写成长数据', growthWrites===0 && guideScrolled && ctx.document.getElementById('navBrain').classList.contains('active') && ctx.document.getElementById('page-brain').classList.contains('active'));
+assert('首页入口跳转成长页、展开完整指南且不写成长数据', growthWrites===0 && guideScrolled && ctx.document.getElementById('gvGuide').open===true && ctx.document.getElementById('navBrain').classList.contains('active') && ctx.document.getElementById('page-brain').classList.contains('active'));
 ctx.localStorage.setItem=homeGuideSetItem;
 
 console.log(`\n${pass} passed, ${fail} failed`);

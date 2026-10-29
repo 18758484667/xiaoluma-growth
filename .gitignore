@@ -2,3 +2,5 @@
 .workbuddy/
 .DS_Store
 爱贝睿/
+# 本地试点映射含孩子的个人成长记录，不纳入版本控制
+local-data/

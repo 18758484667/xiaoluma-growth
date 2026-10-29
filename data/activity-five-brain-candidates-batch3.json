@@ -1,0 +1,217 @@
+{
+  "version": "0.1.0-final-audit",
+  "age_months": 21,
+  "selection_basis": "all remaining 21-month eligible canonical activities after first two batches; no title-only filtering",
+  "candidates": [
+    {
+      "activity_id": "act_4_颜色配对分类",
+      "title": "颜色配对分类",
+      "description": "用彩色纸+同色小物轻松玩一会儿。",
+      "steps": [
+        "地上铺红黄蓝三张彩纸，每张放一个同色积木做样板",
+        "把其余积木混在一起，递给宝宝一个",
+        "问「这个积木该回哪个家？」先示范一次",
+        "宝宝放对就拍手，放错就牵着她的手一起放",
+        "熟悉2色后再加第3色，颜色名称等配对熟练后再教"
+      ],
+      "materials": "彩色纸+同色小物",
+      "safety_notes": "使用适龄、完好的大尺寸材料，全程保持在身边",
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "medium",
+      "location": [
+        "indoor"
+      ],
+      "prep_level": "low",
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "act_6_声音配对辨识",
+      "title": "声音配对辨识",
+      "description": "用空瓶/不锈钢碗/纸盒/铃铛轻松玩一会儿。",
+      "steps": [
+        "准备空瓶、不锈钢碗、纸盒、铃铛，先一样一样敲给宝宝听",
+        "每敲一样就说名字，比如「这是瓶子，咚咚咚」",
+        "打乱顺序，背对宝宝再敲一样",
+        "让宝宝转头找声音从哪里来",
+        "熟练后让她自己敲，家长猜，轮流玩"
+      ],
+      "materials": "空瓶/不锈钢碗/纸盒/铃铛",
+      "safety_notes": "使用适龄、完好的大尺寸材料，全程保持在身边",
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "medium",
+      "location": [
+        "indoor"
+      ],
+      "prep_level": "low",
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "act_7_撕贴收纳",
+      "title": "撕贴收纳",
+      "description": "用大张安全纸材撕一撕、贴一贴，不要求做出固定图案。",
+      "steps": [
+        "准备抽纸、不干胶贴纸和一个空盒",
+        "先示范把纸巾撕成小条，动作夸张一些",
+        "让宝宝自由撕，撕碎也不介意",
+        "引导她把撕好的纸片、贴纸贴到卡片上",
+        "最后一起把碎片捡进空盒，顺手练收纳"
+      ],
+      "materials": "抽纸/不干胶贴纸/空盒",
+      "safety_notes": "使用适龄、完好的大尺寸材料，全程保持在身边",
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "low",
+      "location": [
+        "indoor"
+      ],
+      "prep_level": "low",
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "act_8_瓶盖配对拧动",
+      "title": "瓶盖配对拧动",
+      "description": "用不同大小瓶盖+对应空瓶轻松玩一会儿。",
+      "steps": [
+        "收集3-4组洗净的大小瓶子和瓶盖，盖子和瓶子分开摆放",
+        "先示范拿起一个盖子，试几个瓶子找到合适的",
+        "让宝宝自己配，配好就拍手",
+        "再示范对准瓶口按压、拧开拧紧",
+        "不要代劳，多给时间让她自己想办法"
+      ],
+      "materials": "不同大小瓶盖+对应空瓶",
+      "safety_notes": "使用适龄、完好的大尺寸材料，全程保持在身边",
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "medium",
+      "location": [
+        "indoor"
+      ],
+      "prep_level": "low",
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "act_9_翻书找物",
+      "title": "翻书找物",
+      "description": "让她自己翻页，一起找书里熟悉的动物或物品。",
+      "steps": [
+        "选一本厚页绘本，在某一页用贴纸做标记",
+        "先示范翻页，一次翻2-3页，找到贴纸就开心地指出来",
+        "让宝宝自己翻，找到后一起拍手",
+        "换一页藏新贴纸，重复玩",
+        "翻页时多描述画面内容，顺便输入语言"
+      ],
+      "materials": "厚页绘本+小贴纸",
+      "safety_notes": "使用适龄、完好的大尺寸材料，全程保持在身边",
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "medium",
+      "location": [
+        "indoor",
+        "on_the_go"
+      ],
+      "prep_level": "low",
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "act_72_胶带迷宫",
+      "title": "胶带迷宫",
+      "description": "用彩色胶带贴地板迷宫行走不踩线轻松玩一会儿。",
+      "steps": [
+        "彩色胶带贴地板迷宫行走不踩线"
+      ],
+      "materials": "彩色胶带贴地板迷宫行走不踩线",
+      "safety_notes": "使用适龄、完好的大尺寸材料，全程保持在身边",
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "medium",
+      "location": [
+        "indoor"
+      ],
+      "prep_level": "low",
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "act_131_趣味玩水探索",
+      "title": "趣味玩水探索",
+      "description": "在成人伸手可及处，用大杯把浅盘里的少量水舀起再倒回。",
+      "steps": [
+        "成人在防滑地面放稳定浅盘，只倒少量温水",
+        "孩子在成人伸手可及处用大杯舀水、倒回盘里",
+        "玩3～5分钟立即倒空水、擦干地面"
+      ],
+      "materials": "稳定浅盘、少量温水、完整大号塑料杯",
+      "safety_notes": "成人全程保持伸手可及，绝不暂时离开；不用桶或深盆，结束立即倒空容器并擦干地面。",
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "high",
+      "location": [
+        "bath"
+      ],
+      "prep_level": "low",
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "act_132_颜色形状配对",
+      "title": "颜色形状配对",
+      "description": "用积木/卡片按颜色形状分类配对轻松玩一会儿。",
+      "steps": [
+        "准备红黄蓝积木或形状卡片",
+        "先只玩颜色：把红色积木放红色纸片上",
+        "宝宝会了再玩形状：圆形放圆形卡位",
+        "一次只加一个维度，避免信息太多",
+        "配对时说名称，为以后命名打基础"
+      ],
+      "materials": "积木/卡片按颜色形状分类配对",
+      "safety_notes": "使用适龄、完好的大尺寸材料，全程保持在身边",
+      "age_range": {
+        "min_months": 18,
+        "max_months": 35
+      },
+      "caregiver_effort": "medium",
+      "location": [
+        "indoor"
+      ],
+      "prep_level": "low",
+      "candidate_status": "candidate"
+    },
+    {
+      "activity_id": "gm_multi_step_delivery",
+      "title": "多步骤软玩具搬运",
+      "description": "家长设置两个安全停靠点，陪她把软玩具分步送到终点，全程跟着走和调整任务。",
+      "steps": [
+        "只选轻软的大号玩具",
+        "设置起点、中转篮子和终点",
+        "和她一起完成搬、放、再搬",
+        "完成3件就结束"
+      ],
+      "materials": "轻篮子、大号软玩具",
+      "safety_notes": "不搬重物、尖锐物、易碎物或含小部件的物品。",
+      "age_range": {
+        "min_months": 20,
+        "max_months": 30
+      },
+      "caregiver_effort": "high",
+      "location": [
+        "indoor"
+      ],
+      "prep_level": "low",
+      "candidate_status": "candidate"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+const fs=require('fs'),path=require('path'),Module=require('module'),assert=require('assert/strict');
+const file=path.join(__dirname,'weekly-theme-compatible-shadow.test.js'),loader=new Module(file,module);loader.filename=file;loader.paths=Module._nodeModulePaths(__dirname);
+loader._compile(fs.readFileSync(file,'utf8').split('const weekly=')[0]+'\nmodule.exports={ctx,storage,selector,bridge,mappings,backup};',file);
+const {ctx:c,storage,selector,bridge,mappings,backup}=loader.exports;
+const age=21,date='2026-10-29',plan=backup.weeklyLearningPlans[0],states=c.currentDomainStates(),names={motor:'自己动起来',fine:'自己动手完成',lang:'把想法说出来',cog:'找一找，看看在哪里',soc:'我和你轮流来'};
+const before=JSON.stringify([...storage]),snapshot=JSON.stringify(plan),evidence=JSON.stringify(c.loadEvidence()),prefs=c.loadTodayPrefs(),today=JSON.stringify(c.recommendActivities(prefs,age,date,states).map(x=>x.activity_id));
+function analysis(p,d=date){const options=selector.buildOptions({ctx:c,age_months:age,prefs:p,states,reference_date:d});return {options,result:selector.select({weekly_plan:plan,age_months:age,options,mappings,bridge,taxonomy:c.BRAIN_MECHANISMS,name_by_domain:names})};}
+function waterfall(p,themeId){
+ const theme=bridge.themes.find(t=>t.theme_id===themeId),approved=new Map(mappings.filter(m=>m.mapping_status==='approved'&&m.age_window&&age>=m.age_window.min_months&&age<=m.age_window.max_months).map(m=>[m.activity_id,m]));
+ const safe=c.activityCatalog().flatMap(a=>(a.variants||[a]).filter(v=>c.activityAvailableAtAge(v,age)).map(v=>({a,v,id:v.variant_id||v.activity_id})));
+ const count=xs=>new Set(xs.map(x=>x.a.activity_id)).size,locations=c.contextLocations(p.context),limit=c.durationLimit(p.duration);
+ const location=safe.filter(x=>x.v.location.some(z=>locations.includes(z)));
+ const themed=location.filter(x=>{const m=approved.get(x.id);return m&&m.mechanism_ids.some(id=>theme.primary_mechanism_ids.concat(theme.secondary_mechanism_ids).includes(id))&&(themeId!=='express_ideas'||m.primary_ability_ids.concat(m.secondary_ability_ids).includes('lang_expression'));});
+ const timed=themed.filter(x=>x.v.duration.max<=limit),actual=analysis(p),pool=actual.result.pool_by_theme.find(x=>x.theme_id===themeId);
+ const eligible=actual.options.filter(x=>timed.some(y=>y.a.activity_id===x.activity_id&&y.id===x.variant_id));
+ const compatible=eligible.filter(x=>{const m=approved.get(x.variant_id);return m&&m.mechanism_ids.some(id=>theme.primary_mechanism_ids.concat(theme.secondary_mechanism_ids).includes(id))&&(themeId!=='express_ideas'||m.primary_ability_ids.concat(m.secondary_ability_ids).includes('lang_expression'));});
+ return {safe:count(safe),location:count(location),theme:count(themed),duration:count(timed),effort:pool.candidate_count,after_exposure:pool.candidate_count,ids:[...new Set(compatible.map(x=>x.activity_id))],recent_unexposed:new Set(compatible.filter(x=>c.recentExposurePenalty(x.activity_id,date)===0).map(x=>x.activity_id)).size,variants:compatible.length};
+}
+const contexts=[['家中中等15',{context:'home',energy:'medium',duration:'10_15',interests:[]}],['家中低5',{context:'home',energy:'low',duration:'5',interests:[]}],['家中低15',{context:'home',energy:'low',duration:'10_15',interests:[]}],['户外高15',{context:'outdoor',energy:'high',duration:'10_15',interests:[]}],['户外低15',{context:'outdoor',energy:'low',duration:'10_15',interests:[]}],['家中高宽松',{context:'home',energy:'high',duration:'20_plus',interests:[]}]];
+const matrix=contexts.map(([name,p])=>({name,themes:bridge.themes.map(t=>{const x=waterfall(p,t.theme_id),n=x.effort;return {name:t.display_name,...x,status:n>=4?'healthy':n>=2?'usable but narrow':n===1?'narrow':'empty'};})}));
+const A=matrix[3].themes.find(x=>x.name==='找一找，看看在哪里'),B=matrix[1].themes.find(x=>x.name==='我和你轮流来');
+assert.equal(A.effort,1);assert.equal(B.effort,0);
+const weeks=[];for(let i=0;i<4;i++){const d=['2026-10-29','2026-11-05','2026-11-12','2026-11-19'][i],r=analysis(contexts[0][1],d).result;const ids=r.groups.flatMap(g=>g.shadow.map(x=>x.activity_id));assert.equal(new Set(ids).size,ids.length);assert.ok(r.groups.flatMap(g=>g.shadow).every(x=>x.mechanism_ids.length));weeks.push({date:d,groups:r.groups.map(g=>({theme:g.theme_name,ids:g.shadow.map(x=>x.activity_id),variants:g.shadow.map(x=>x.variant_id),pool:g.candidate_count}))});c.recordActivityExposure(ids,'today_home',d);}
+storage.set(c.ACTIVITY_EXPOSURE_KEY,JSON.stringify(backup.activityExposure));assert.equal(JSON.stringify(plan),snapshot);assert.equal(JSON.stringify(c.loadEvidence()),evidence);assert.equal(JSON.stringify(c.recommendActivities(prefs,age,date,states).map(x=>x.activity_id)),today);assert.equal(JSON.stringify([...storage]),before);
+const low=analysis(contexts[1][1]).result,emptyPlan={...plan,focus_areas:[{domain:'soc'}],suggested_activities:[]};const empty=selector.select({weekly_plan:emptyPlan,age_months:age,options:analysis(contexts[1][1]).options,mappings,bridge,taxonomy:c.BRAIN_MECHANISMS,name_by_domain:names});assert.equal(empty.groups[0].shadow.length,0);assert.equal(low.pool_by_theme.find(x=>x.theme_id==='take_turns').candidate_count,0);
+console.log(JSON.stringify({matrix,weeks,waterfalls:{A,B},tests:'15 structural assertions passed'},null,2));

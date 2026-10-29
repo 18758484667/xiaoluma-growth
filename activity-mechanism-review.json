@@ -1,0 +1,153 @@
+[
+  {
+    "activity_id": "gap_request_again",
+    "suggested_mechanism_ids": [
+      "wait_for_response"
+    ],
+    "mechanism_ids": [],
+    "status": "pending_human_review",
+    "title": "停一停，等你说再来",
+    "description": "在愉快的游戏中短暂停一下，等孩子用看、指、声音或词表示“再来”。"
+  },
+  {
+    "activity_id": "gap_choose_two",
+    "suggested_mechanism_ids": [
+      "self_choice"
+    ],
+    "mechanism_ids": [],
+    "status": "pending_human_review",
+    "title": "两样选一样",
+    "description": "给两个真实可选项，接受看、指、拿或说词作选择。"
+  },
+  {
+    "activity_id": "gap_expand_one_word",
+    "suggested_mechanism_ids": [
+      "language_expansion"
+    ],
+    "mechanism_ids": [],
+    "status": "pending_human_review",
+    "title": "接住她的一个词",
+    "description": "孩子主动说一个词时，成人自然接一句稍长的话，不要求复述。"
+  },
+  {
+    "activity_id": "gap_sound_reply",
+    "suggested_mechanism_ids": [
+      "wait_for_response",
+      "imitation"
+    ],
+    "mechanism_ids": [],
+    "status": "pending_human_review",
+    "title": "声音你来我来",
+    "description": "成人发一个熟悉的动物或车辆声音，留出空隙让孩子自由回应。"
+  },
+  {
+    "activity_id": "gap_drum_turn",
+    "suggested_mechanism_ids": [
+      "turn_taking"
+    ],
+    "mechanism_ids": [],
+    "status": "pending_human_review",
+    "title": "轮流拍大鼓",
+    "description": "一人用手轻拍一下大盆，再把位置让给另一人。"
+  },
+  {
+    "activity_id": "gap_parallel_play",
+    "suggested_mechanism_ids": [],
+    "mechanism_ids": [],
+    "status": "pending_human_review",
+    "title": "在旁边各玩一份",
+    "description": "遇到其他孩子时，两人在附近各玩相似材料，成人照看，不要求分享或合作。"
+  },
+  {
+    "activity_id": "gap_carry_together",
+    "suggested_mechanism_ids": [
+      "hands_on_action"
+    ],
+    "mechanism_ids": [],
+    "status": "pending_human_review",
+    "title": "一起抬空篮子",
+    "description": "成人和孩子各扶空篮一侧，慢慢把它移到近处。"
+  },
+  {
+    "activity_id": "gap_greeting_reply",
+    "suggested_mechanism_ids": [
+      "wait_for_response"
+    ],
+    "mechanism_ids": [],
+    "status": "pending_human_review",
+    "title": "门口打个招呼",
+    "description": "在真实见面或离开时成人先挥手，给孩子自由回应的机会。"
+  },
+  {
+    "activity_id": "gap_big_footprints",
+    "suggested_mechanism_ids": [
+      "active_movement"
+    ],
+    "mechanism_ids": [],
+    "status": "pending_human_review",
+    "title": "踩大脚印走两步",
+    "description": "成人坐在旁边，孩子在平地上踩两张相隔很近的大纸。"
+  },
+  {
+    "activity_id": "gap_reach_big_cloth",
+    "suggested_mechanism_ids": [
+      "active_movement"
+    ],
+    "mechanism_ids": [],
+    "status": "pending_human_review",
+    "title": "碰一碰大布片",
+    "description": "成人坐着拿完整大布片，孩子站着伸手轻碰不同位置。"
+  },
+  {
+    "activity_id": "gap_turn_to_picture",
+    "suggested_mechanism_ids": [
+      "active_movement"
+    ],
+    "mechanism_ids": [],
+    "status": "pending_human_review",
+    "title": "转身找大图",
+    "description": "成人坐在原地，孩子站在平地转身看看大图片的位置。"
+  },
+  {
+    "activity_id": "gm_roll_fetch",
+    "suggested_mechanism_ids": [
+      "active_movement",
+      "turn_taking"
+    ],
+    "mechanism_ids": [],
+    "status": "pending_human_review",
+    "title": "球滚远了，捡回来",
+    "description": "你坐着把大软球滚到不同方向，让她自己走去、蹲下捡起再带回来。"
+  },
+  {
+    "activity_id": "act_75_藏猫猫",
+    "suggested_mechanism_ids": [
+      "search_and_find"
+    ],
+    "mechanism_ids": [],
+    "status": "pending_human_review",
+    "title": "藏猫猫",
+    "description": "在看得见、找得到的安全范围轮流藏和找。"
+  },
+  {
+    "activity_id": "act_122_厚页绘本共读",
+    "suggested_mechanism_ids": [
+      "joint_attention",
+      "wait_for_response"
+    ],
+    "mechanism_ids": [],
+    "status": "pending_human_review",
+    "title": "厚页绘本共读",
+    "description": "读她自己选的一本厚页书，她想翻就让她翻。"
+  },
+  {
+    "activity_id": "act_124_动作模仿游戏",
+    "suggested_mechanism_ids": [
+      "imitation"
+    ],
+    "mechanism_ids": [],
+    "status": "pending_human_review",
+    "title": "你做我也做",
+    "description": "你做拍手、点头或踏脚，轮到她做时你也来模仿。"
+  }
+]
